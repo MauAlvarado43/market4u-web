@@ -1,0 +1,17 @@
+---
+engines:
+  pmd:
+    exclude_paths:
+      - "src/**"
+
+exclude_paths:
+  - "**.md"
+  - "**.css"
+  - "**.scss"
+  - "public/**"
+  - "build/**"
+  - "src/tests/**"
+  - "src/seed/tests/**"
+  - "node_modules/**"
+  - "coverage/**"
+  - ".git/**"

@@ -1,0 +1,33 @@
+{
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "opts": {
+    "destination": "./public/docs",
+    "tutorials": "./src/seed/docs",
+    "recurse":true
+  },
+  "templates": {
+    "default": {
+      "staticFiles": {
+        "include": [
+            "./bin/jsdoc/static"
+        ]
+      }
+    }
+  },
+  "docdash": {
+    "scripts": ["./style.css"],
+    "sort": false,
+    "sectionOrder": [ 
+      "Tutorials",         
+      "Modules",
+      "Classes",
+      "Externals",
+      "Events",
+      "Namespaces",
+      "Mixins",
+      "Interfaces"
+    ]
+  }
+}
