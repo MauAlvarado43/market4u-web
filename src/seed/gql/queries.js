@@ -8,8 +8,7 @@ export const CART = `
 {
   cart {
     id
-    destiny
-    user {
+    buyer {
       id
     }
     payment {
@@ -22,21 +21,18 @@ export const CART = `
 export const SET_CART = `
 mutation Set(
   $id: Int!,
-  $destiny: String,
-  $user: Int,
+  $buyer: Int,
   $payment: Int,
 )
 {
   setCart(
     id: $id,
-    destiny: $destiny,
-    user: $user,
+    buyer: $buyer,
     payment: $payment,
   ) {
     cart {
       id
-      destiny
-      user {
+      buyer {
         id
       }
       payment {
@@ -49,14 +45,12 @@ mutation Set(
 
 export const SAVE_CART = `
 mutation Save(
-  $destiny: String!,
-  $user: Int!,
+  $buyer: Int!,
   $payment: Int!,
 )
 {
   saveCart(
-    destiny: $destiny,
-    user: $user,
+    buyer: $buyer,
     payment: $payment,
   ) {
     cart {
@@ -565,7 +559,7 @@ export const PURCHASE = `
     amount
     product
     sale
-    cart {
+    shipping {
       id
     }
   }
@@ -578,7 +572,7 @@ mutation Set(
   $amount: Int,
   $product: GenericScalar,
   $sale: GenericScalar,
-  $cart: Int,
+  $shipping: Int,
 )
 {
   setPurchase(
@@ -586,14 +580,14 @@ mutation Set(
     amount: $amount,
     product: $product,
     sale: $sale,
-    cart: $cart,
+    shipping: $shipping,
   ) {
     purchase {
       id
       amount
       product
       sale
-      cart {
+      shipping {
         id
       }
     }
@@ -606,14 +600,14 @@ mutation Save(
   $amount: Int!,
   $product: GenericScalar!,
   $sale: GenericScalar!,
-  $cart: Int!,
+  $shipping: Int!,
 )
 {
   savePurchase(
     amount: $amount,
     product: $product,
     sale: $sale,
-    cart: $cart,
+    shipping: $shipping,
   ) {
     purchase {
       id
@@ -716,6 +710,96 @@ mutation Delete($id: Int!)
 }
 `;
 
+export const SHIPPING = `
+{
+  shipping {
+    id
+    info
+    folio
+    address
+    status
+    seller {
+      id
+    }
+    cart {
+      id
+    }
+  }
+}
+`;
+
+export const SET_SHIPPING = `
+mutation Set(
+  $id: Int!,
+  $info: String,
+  $folio: String,
+  $address: String,
+  $status: String,
+  $seller: Int,
+  $cart: Int,
+)
+{
+  setShipping(
+    id: $id,
+    info: $info,
+    folio: $folio,
+    address: $address,
+    status: $status,
+    seller: $seller,
+    cart: $cart,
+  ) {
+    shipping {
+      id
+      info
+      folio
+      address
+      status
+      seller {
+        id
+      }
+      cart {
+        id
+      }
+    }
+  }
+}
+`;
+
+export const SAVE_SHIPPING = `
+mutation Save(
+  $info: String!,
+  $folio: String!,
+  $address: String!,
+  $status: String!,
+  $seller: Int!,
+  $cart: Int!,
+)
+{
+  saveShipping(
+    info: $info,
+    folio: $folio,
+    address: $address,
+    status: $status,
+    seller: $seller,
+    cart: $cart,
+  ) {
+    shipping {
+      id
+    }
+  }
+}
+`;
+
+export const DELETE_SHIPPING = `
+mutation Delete($id: Int!)
+{
+  deleteShipping(id: $id)
+  {
+    id
+  }
+}
+`;
+
 export const USER = `
 {
   user {
@@ -725,11 +809,6 @@ export const USER = `
     lastName
     email
     isActive
-    username
-    password
-    email
-    firstName
-    lastName
     address
     active
     type
@@ -752,11 +831,6 @@ mutation Set(
   $email: String,
   $isActive: Boolean,
   $password: String,
-  $username: String,
-  $password: String,
-  $email: String,
-  $firstName: String,
-  $lastName: String,
   $address: String,
   $active: Boolean,
   $type: String,
@@ -772,11 +846,6 @@ mutation Set(
     email: $email,
     isActive: $isActive,
     password: $password,
-    username: $username,
-    password: $password,
-    email: $email,
-    firstName: $firstName,
-    lastName: $lastName,
     address: $address,
     active: $active,
     type: $type,
@@ -790,11 +859,6 @@ mutation Set(
       lastName
       email
       isActive
-      username
-      password
-      email
-      firstName
-      lastName
       address
       active
       type
@@ -817,11 +881,6 @@ mutation Save(
   $email: String!,
   $isActive: Boolean!,
   $password: String!,
-  $username: String!,
-  $password: String!,
-  $email: String!,
-  $firstName: String!,
-  $lastName: String!,
   $address: String!,
   $active: Boolean!,
   $type: String!,
@@ -836,11 +895,6 @@ mutation Save(
     email: $email,
     isActive: $isActive,
     password: $password,
-    username: $username,
-    password: $password,
-    email: $email,
-    firstName: $firstName,
-    lastName: $lastName,
     address: $address,
     active: $active,
     type: $type,

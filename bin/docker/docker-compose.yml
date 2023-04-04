@@ -20,4 +20,4 @@ services:
 
 networks:
   default:
-    name: market4u_frontend
+    name: market_4u_web_frontend

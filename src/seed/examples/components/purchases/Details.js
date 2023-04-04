@@ -20,7 +20,7 @@ function PurchaseDetails({ purchaseId, onCompleted = () => null, onError = () =>
       product
       sale
       createdAt
-      cart { }
+      shipping { }
     }
   }`, purchaseId);
   

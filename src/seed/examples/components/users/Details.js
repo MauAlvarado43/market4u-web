@@ -21,11 +21,6 @@ function UserDetails({ userId, onCompleted = () => null, onError = () => null })
       lastName
       email
       isActive
-      username
-      password
-      email
-      firstName
-      lastName
       address
       active
       type
@@ -36,6 +31,7 @@ function UserDetails({ userId, onCompleted = () => null, onError = () => null })
       products { }
       whishlist { }
       sales { }
+      shippings { }
     }
   }`, userId);
   

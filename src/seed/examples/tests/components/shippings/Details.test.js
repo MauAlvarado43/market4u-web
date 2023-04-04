@@ -9,11 +9,11 @@ import '@testing-library/jest-dom/extend-expect';
 import { screen } from '@testing-library/react';
 import { render, mockGql } from 'seed/jest';
 import * as data from 'seed/examples/tests/data'
-import FormSave from 'seed/examples/components/purchases/FormSave';
+import Details from 'seed/examples/components/shippings/Details';
 
-test('examples/components/purchases/FormSave', () => {
-  mockGql.useQuery({"shippings": data.GQL_SHIPPINGS});
-  mockGql.useSave({"savePurchase": data.GQL_PURCHASE});
-  render(<FormSave />);
-  expect(screen).toBeDefined();
+test('examples/components/shippings/Details', () => {
+  mockGql.useDetail({"shipping": data.GQL_SHIPPING});
+  mockGql.useDelete({"deleteShipping": data.GQL_SHIPPING});
+  render(<Details />);
+  expect(screen).toBeDefined()
 });

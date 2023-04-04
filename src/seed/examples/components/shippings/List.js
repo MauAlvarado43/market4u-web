@@ -7,41 +7,43 @@ __Seed builder__
 import React, { useState } from "react";
 import { usePagination } from "seed/gql";
 import { Loading } from "seed/helpers";
-import View from "seed/examples/components/purchases/List.view";
+import View from "seed/examples/components/shippings/List.view";
 
-function PurchaseList() {
+function ShippingList() {
 
   const pageSize = 15;
   const [pageNum, setPageNum] = useState(1);
-  const reqPurchases = usePagination(`
+  const reqShippings = usePagination(`
   {
-    purchasePagination {
+    shippingPagination {
       totalPages
-      purchases {
-        amount
-        product
-        sale
+      shippings {
+        info
+        folio
+        address
+        status
         createdAt
-        shipping { }
+        seller { }
+        cart { }
       }
     }
   }`, pageNum, pageSize);
 
-  if (reqPurchases.loading) return <Loading />;
-  if (reqPurchases.error) return "Error";
-  const { purchases = [], totalPages = 0 } = reqPurchases.data.purchasePagination;
+  if (reqShippings.loading) return <Loading />;
+  if (reqShippings.error) return "Error";
+  const { shippings = [], totalPages = 0 } = reqShippings.data.shippingPagination;
 
   const onClickPage = (pageNum) =>
     setPageNum(pageNum);
 
   return <View
-    purchases={purchases}
+    shippings={shippings}
     pageNum={pageNum}
     totalPages={totalPages}
     onClickPage={onClickPage}
   />;
 }
 
-PurchaseList.propTypes = {};
+ShippingList.propTypes = {};
 
-export default PurchaseList;
+export default ShippingList;

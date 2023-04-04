@@ -24,6 +24,8 @@ export const SINGULARS =
   "purchase": "purchase",
   "sales": "sale",
   "sale": "sale",
+  "shippings": "shipping",
+  "shipping": "shipping",
   "users": "user",
   "user": "user",
 };

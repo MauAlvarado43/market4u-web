@@ -14,7 +14,7 @@ del .\bin\docker\.env
 echo # DOCKER PORTS > .\bin\docker\.env
 echo ### MODIFY WITH WITH $ bin/setup.bat REACTJS_PORT IS_PROD ### >> .\bin\docker\.env
 echo _ >> .\bin\docker\.env
-echo COMPOSE_PROJECT_NAME=market4u_frontend >> .\bin\docker\.env
+echo COMPOSE_PROJECT_NAME=market_4u_web_frontend >> .\bin\docker\.env
 echo REACTJS_PORT=%REACTJS_PORT% >> .\bin\docker\.env
 
 del .\bin\docker\.port

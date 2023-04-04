@@ -7,34 +7,37 @@ __Seed builder__
 import React from "react";
 import PropTypes from "prop-types";
 import { useSave, useSet, useQuery, useDetail } from "seed/gql";
-import { SAVE_PURCHASE } from "seed/gql/queries";
+import { SAVE_SHIPPING } from "seed/gql/queries";
 import { Loading } from "seed/helpers";
-import View from "seed/examples/components/purchases/Form.view";
+import View from "seed/examples/components/shippings/Form.view";
 
-function PurchaseFormSave({ onCompleted = () => null, onError = () => null }) {
+function ShippingFormSave({ onCompleted = () => null, onError = () => null }) {
   
-  const qShippings = useQuery(`{ shippings { } }`);
-  const [callSave, qSave] = useSave(SAVE_PURCHASE, {
+  const qUsers = useQuery(`{ users { } }`);
+  const qCarts = useQuery(`{ carts { } }`);
+  const [callSave, qSave] = useSave(SAVE_SHIPPING, {
     onCompleted: () =>
       onCompleted()
       //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
   });
-  const { shippings = [] } = qShippings.data;
+  const { users = [] } = qUsers.data;
+  const { carts = [] } = qCarts.data;
   const error = qSave.error ? "An error has occurred" : null;
 
   const onSubmit = (values) =>
     callSave(values);
 
   return <View
-    shippings={shippings}
+    users={users}
+    carts={carts}
     error={error}
     onSubmit={onSubmit}
   />;
 }
 
-PurchaseFormSave.propTypes = {
+ShippingFormSave.propTypes = {
   onCompleted: PropTypes.func,
   onError: PropTypes.func
 };
 
-export default PurchaseFormSave;
+export default ShippingFormSave;

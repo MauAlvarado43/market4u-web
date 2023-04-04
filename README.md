@@ -1,6 +1,6 @@
-# Market4u
+# Market4u web
 
-This repository holds the source code of Market4U
+This repository holds the source code of Market 4U web
 
 ## Quickstart
 

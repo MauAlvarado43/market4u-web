@@ -1,8 +1,7 @@
 const GQL_CART_ = {
-    destiny: "",
-    purchases: [ { id: 1} ],
-    user:  { id: 1},
+    buyer:  { id: 1},
     payment:  { id: 1},
+    shippings: [ { id: 1} ],
 }
 export const GQL_CART = {
     cart: GQL_CART_
@@ -21,10 +20,9 @@ export const GQL_CART_PAGINATION = {
 }
 
 export const API_CART = {
-    destiny: "",
-    purchase_ids: [1],
-    user_id:  1,
+    buyer_id:  1,
     payment_id:  1,
+    shipping_ids: [1],
 }
 export const API_CARTS = [API_CART]
 
@@ -232,7 +230,7 @@ const GQL_PURCHASE_ = {
     amount: 128,
     product: "{}",
     sale: "{}",
-    cart:  { id: 1},
+    shipping:  { id: 1},
 }
 export const GQL_PURCHASE = {
     purchase: GQL_PURCHASE_
@@ -254,7 +252,7 @@ export const API_PURCHASE = {
     amount: 128,
     product: "{}",
     sale: "{}",
-    cart_id:  1,
+    shipping_id:  1,
 }
 export const API_PURCHASES = [API_PURCHASE]
 
@@ -290,6 +288,40 @@ export const API_SALE = {
 }
 export const API_SALES = [API_SALE]
 
+const GQL_SHIPPING_ = {
+    info: "",
+    folio: "",
+    address: "",
+    status: "CREATED",
+    seller:  { id: 1},
+    cart:  { id: 1},
+}
+export const GQL_SHIPPING = {
+    shipping: GQL_SHIPPING_
+}
+export const GQL_SHIPPINGS = {
+    shippings: [ GQL_SHIPPING_ ]
+}
+export const GQL_SHIPPING_PAGINATION = {
+    shippingPagination: {
+        pageNum: 1,
+        pageSize: 1,
+        totalPages: 1,
+        totalCount: 1,
+        shippings: [ GQL_SHIPPING_ ]
+    }
+}
+
+export const API_SHIPPING = {
+    info: "",
+    folio: "",
+    address: "",
+    status: "CREATED",
+    seller_id:  1,
+    cart_id:  1,
+}
+export const API_SHIPPINGS = [API_SHIPPING]
+
 const GQL_USER_ = {
     username: "email@test.com",
     firstName: "FirstName",
@@ -297,11 +329,6 @@ const GQL_USER_ = {
     email: "email@test.com",
     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
     isActive: true,
-    username: "",
-    password: "",
-    email: "",
-    firstName: "",
-    lastName: "",
     address: "",
     active: false,
     type: "SUPERADMIN",
@@ -311,6 +338,7 @@ const GQL_USER_ = {
     products: [ { id: 1} ],
     whishlist: [ { id: 1} ],
     sales: [ { id: 1} ],
+    shippings: [ { id: 1} ],
 }
 export const GQL_USER = {
     user: GQL_USER_
@@ -335,11 +363,6 @@ export const API_USER = {
     email: "email_1@test.com",
     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
     is_active: false,
-    username: "",
-    password: "",
-    email: "",
-    first_name: "",
-    last_name: "",
     address: "",
     active: false,
     type: "SUPERADMIN",
@@ -349,5 +372,6 @@ export const API_USER = {
     product_ids: [1],
     whishlist_ids: [1],
     sale_ids: [1],
+    shipping_ids: [1],
 }
 export const API_USERS = [API_USER]

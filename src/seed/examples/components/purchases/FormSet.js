@@ -14,7 +14,7 @@ import View from "seed/examples/components/purchases/Form.view";
 function PurchaseFormSet({ purchaseId, onCompleted = () => null, onError = () => null  }) {
 
   const qPurchase = useDetail(PURCHASE, purchaseId);
-  const qCarts = useQuery(`{ carts { } }`);
+  const qShippings = useQuery(`{ shippings { } }`);
   const [callSet, qSet] = useSet(SET_PURCHASE, {
     onCompleted: () =>
       onCompleted()
@@ -24,7 +24,7 @@ function PurchaseFormSet({ purchaseId, onCompleted = () => null, onError = () =>
   if (qPurchase.loading) return <Loading />;
 
   const { purchase = {} } = qPurchase.data;
-  const { carts = [] } = qCarts.data;
+  const { shippings = [] } = qShippings.data;
   const error = qSet.error ? "An error has occurred" : null;
 
   const onSubmit = (values) => {
@@ -34,7 +34,7 @@ function PurchaseFormSet({ purchaseId, onCompleted = () => null, onError = () =>
 
   return <View
     purchase={purchase}
-    carts={carts}
+    shippings={shippings}
     error={error}
     onSubmit={onSubmit}
   />;
