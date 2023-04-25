@@ -1,0 +1,36 @@
+/*
+__Seed builder__
+  (Read_only) Builder helper
+*/
+.module {
+  position: fixed;
+  width: 100%;
+  height: 100%; }
+
+.input {
+  position: relative !important;
+  width: 100% !important; }
+  .input__label {
+    position: absolute !important;
+    padding: 0 5px !important;
+    left: 10px !important;
+    top: 10px !important;
+    transform: translate(0, 0) !important;
+    transform-origin: 0 0 !important;
+    background: white !important;
+    transition: transform 120ms ease-in !important;
+    line-height: 1.2 !important;
+    cursor: text !important;
+    font-weight: 500 !important;
+    font-size: medium !important; }
+  .input__field {
+    font-weight: 200 !important;
+    font-size: medium !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    width: 100% !important;
+    padding: 10px 15px !important;
+    background: transparent !important; }
+    .input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+      transform: translate(0.3rem, -120%) scale(0.85) !important;
+      color: black !important; }
