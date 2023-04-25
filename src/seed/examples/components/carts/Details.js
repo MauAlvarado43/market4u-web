@@ -16,11 +16,10 @@ function CartDetails({ cartId, onCompleted = () => null, onError = () => null })
   const reqCart = useDetail(`
   {
     cart {
-      destiny
       createdAt
-      purchases { }
-      user { }
+      buyer { }
       payment { }
+      shippings { }
     }
   }`, cartId);
   

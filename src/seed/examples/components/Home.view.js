@@ -17,7 +17,10 @@ import Payments from "seed/examples/components/payments/Payments";
 import Products from "seed/examples/components/products/Products";
 import Purchases from "seed/examples/components/purchases/Purchases";
 import Sales from "seed/examples/components/sales/Sales";
+import Shippings from "seed/examples/components/shippings/Shippings";
 import Users from "seed/examples/components/users/Users";
+import Variants from "seed/examples/components/variants/Variants";
+import Variantoptions from "seed/examples/components/variantoptions/Variantoptions";
 import Sidenav from "seed/examples/components/nav/Sidenav";
 import Topnav from "seed/examples/components/nav/Topnav";
 
@@ -37,7 +40,10 @@ const HomeView = () =>
       <Route path="/products" component={Products } />
       <Route path="/purchases" component={Purchases } />
       <Route path="/sales" component={Sales } />
+      <Route path="/shippings" component={Shippings } />
       <Route path="/users" component={Users } />
+      <Route path="/variants" component={Variants } />
+      <Route path="/variantoptions" component={Variantoptions } />
     </Switch>
       <div class="footer">
         <div class="row justify-content-between align-items-center">

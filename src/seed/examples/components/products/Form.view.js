@@ -46,18 +46,6 @@ const ProductFormView = ({ product= {}, users= [], categories= [], onSubmit, err
               as="textarea" rows="3"
               class="form-control" />
             </div>
-            {/* Price */}
-            <div class="form-group">
-            <label class="input-label">Price</label>
-            <Field type="number" name="price"
-              class="form-control" />
-            </div>
-            {/* Stock */}
-            <div class="form-group">
-            <label class="input-label">Stock</label>
-            <Field type="number" name="stock"
-              class="form-control" />
-            </div>
             {/* User */}
             <div class="form-group">
             <div>

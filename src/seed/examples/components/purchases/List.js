@@ -22,7 +22,7 @@ function PurchaseList() {
         product
         sale
         createdAt
-        cart { }
+        shipping { }
       }
     }
   }`, pageNum, pageSize);

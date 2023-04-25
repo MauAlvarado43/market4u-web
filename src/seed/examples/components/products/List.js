@@ -21,14 +21,12 @@ function ProductList() {
         name
         shortDescription
         description
-        price
-        stock
         createdAt
         user { }
         opinions { }
         sales { }
         category { }
-        photos { }
+        variants { }
       }
     }
   }`, pageNum, pageSize);

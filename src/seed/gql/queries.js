@@ -8,8 +8,7 @@ export const CART = `
 {
   cart {
     id
-    destiny
-    user {
+    buyer {
       id
     }
     payment {
@@ -22,21 +21,18 @@ export const CART = `
 export const SET_CART = `
 mutation Set(
   $id: Int!,
-  $destiny: String,
-  $user: Int,
+  $buyer: Int,
   $payment: Int,
 )
 {
   setCart(
     id: $id,
-    destiny: $destiny,
-    user: $user,
+    buyer: $buyer,
     payment: $payment,
   ) {
     cart {
       id
-      destiny
-      user {
+      buyer {
         id
       }
       payment {
@@ -49,14 +45,12 @@ mutation Set(
 
 export const SAVE_CART = `
 mutation Save(
-  $destiny: String!,
-  $user: Int!,
+  $buyer: Int!,
   $payment: Int!,
 )
 {
   saveCart(
-    destiny: $destiny,
-    user: $user,
+    buyer: $buyer,
     payment: $payment,
   ) {
     cart {
@@ -469,8 +463,6 @@ export const PRODUCT = `
     name
     shortDescription
     description
-    price
-    stock
     user {
       id
     }
@@ -487,8 +479,6 @@ mutation Set(
   $name: String,
   $shortDescription: String,
   $description: String,
-  $price: Float,
-  $stock: Int,
   $user: Int,
   $category: Int,
 )
@@ -498,8 +488,6 @@ mutation Set(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    price: $price,
-    stock: $stock,
     user: $user,
     category: $category,
   ) {
@@ -508,8 +496,6 @@ mutation Set(
       name
       shortDescription
       description
-      price
-      stock
       user {
         id
       }
@@ -526,8 +512,6 @@ mutation Save(
   $name: String!,
   $shortDescription: String!,
   $description: String!,
-  $price: Float!,
-  $stock: Int!,
   $user: Int!,
   $category: Int!,
 )
@@ -536,8 +520,6 @@ mutation Save(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    price: $price,
-    stock: $stock,
     user: $user,
     category: $category,
   ) {
@@ -565,7 +547,7 @@ export const PURCHASE = `
     amount
     product
     sale
-    cart {
+    shipping {
       id
     }
   }
@@ -578,7 +560,7 @@ mutation Set(
   $amount: Int,
   $product: GenericScalar,
   $sale: GenericScalar,
-  $cart: Int,
+  $shipping: Int,
 )
 {
   setPurchase(
@@ -586,14 +568,14 @@ mutation Set(
     amount: $amount,
     product: $product,
     sale: $sale,
-    cart: $cart,
+    shipping: $shipping,
   ) {
     purchase {
       id
       amount
       product
       sale
-      cart {
+      shipping {
         id
       }
     }
@@ -606,14 +588,14 @@ mutation Save(
   $amount: Int!,
   $product: GenericScalar!,
   $sale: GenericScalar!,
-  $cart: Int!,
+  $shipping: Int!,
 )
 {
   savePurchase(
     amount: $amount,
     product: $product,
     sale: $sale,
-    cart: $cart,
+    shipping: $shipping,
   ) {
     purchase {
       id
@@ -716,6 +698,96 @@ mutation Delete($id: Int!)
 }
 `;
 
+export const SHIPPING = `
+{
+  shipping {
+    id
+    info
+    folio
+    address
+    status
+    seller {
+      id
+    }
+    cart {
+      id
+    }
+  }
+}
+`;
+
+export const SET_SHIPPING = `
+mutation Set(
+  $id: Int!,
+  $info: String,
+  $folio: String,
+  $address: String,
+  $status: String,
+  $seller: Int,
+  $cart: Int,
+)
+{
+  setShipping(
+    id: $id,
+    info: $info,
+    folio: $folio,
+    address: $address,
+    status: $status,
+    seller: $seller,
+    cart: $cart,
+  ) {
+    shipping {
+      id
+      info
+      folio
+      address
+      status
+      seller {
+        id
+      }
+      cart {
+        id
+      }
+    }
+  }
+}
+`;
+
+export const SAVE_SHIPPING = `
+mutation Save(
+  $info: String!,
+  $folio: String!,
+  $address: String!,
+  $status: String!,
+  $seller: Int!,
+  $cart: Int!,
+)
+{
+  saveShipping(
+    info: $info,
+    folio: $folio,
+    address: $address,
+    status: $status,
+    seller: $seller,
+    cart: $cart,
+  ) {
+    shipping {
+      id
+    }
+  }
+}
+`;
+
+export const DELETE_SHIPPING = `
+mutation Delete($id: Int!)
+{
+  deleteShipping(id: $id)
+  {
+    id
+  }
+}
+`;
+
 export const USER = `
 {
   user {
@@ -725,11 +797,6 @@ export const USER = `
     lastName
     email
     isActive
-    username
-    password
-    email
-    firstName
-    lastName
     address
     active
     type
@@ -752,11 +819,6 @@ mutation Set(
   $email: String,
   $isActive: Boolean,
   $password: String,
-  $username: String,
-  $password: String,
-  $email: String,
-  $firstName: String,
-  $lastName: String,
   $address: String,
   $active: Boolean,
   $type: String,
@@ -772,11 +834,6 @@ mutation Set(
     email: $email,
     isActive: $isActive,
     password: $password,
-    username: $username,
-    password: $password,
-    email: $email,
-    firstName: $firstName,
-    lastName: $lastName,
     address: $address,
     active: $active,
     type: $type,
@@ -790,11 +847,6 @@ mutation Set(
       lastName
       email
       isActive
-      username
-      password
-      email
-      firstName
-      lastName
       address
       active
       type
@@ -817,11 +869,6 @@ mutation Save(
   $email: String!,
   $isActive: Boolean!,
   $password: String!,
-  $username: String!,
-  $password: String!,
-  $email: String!,
-  $firstName: String!,
-  $lastName: String!,
   $address: String!,
   $active: Boolean!,
   $type: String!,
@@ -836,11 +883,6 @@ mutation Save(
     email: $email,
     isActive: $isActive,
     password: $password,
-    username: $username,
-    password: $password,
-    email: $email,
-    firstName: $firstName,
-    lastName: $lastName,
     address: $address,
     active: $active,
     type: $type,
@@ -858,6 +900,142 @@ export const DELETE_USER = `
 mutation Delete($id: Int!)
 {
   deleteUser(id: $id)
+  {
+    id
+  }
+}
+`;
+
+export const VARIANT = `
+{
+  variant {
+    id
+    price
+    stock
+    product {
+      id
+    }
+  }
+}
+`;
+
+export const SET_VARIANT = `
+mutation Set(
+  $id: Int!,
+  $price: Float,
+  $stock: Int,
+  $product: Int,
+)
+{
+  setVariant(
+    id: $id,
+    product: $product,
+    price: $price,
+    stock: $stock,
+  ) {
+    variant {
+      id
+      price
+      stock
+      product {
+        id
+      }
+    }
+  }
+}
+`;
+
+export const SAVE_VARIANT = `
+mutation Save(
+  $price: Float!,
+  $stock: Int!,
+  $product: Int!,
+)
+{
+  saveVariant(
+    product: $product,
+    price: $price,
+    stock: $stock,
+  ) {
+    variant {
+      id
+    }
+  }
+}
+`;
+
+export const DELETE_VARIANT = `
+mutation Delete($id: Int!)
+{
+  deleteVariant(id: $id)
+  {
+    id
+  }
+}
+`;
+
+export const VARIANTOPTION = `
+{
+  variantoption {
+    id
+    title
+    value
+    variant {
+      id
+    }
+  }
+}
+`;
+
+export const SET_VARIANTOPTION = `
+mutation Set(
+  $id: Int!,
+  $title: String,
+  $value: String,
+  $variant: Int,
+)
+{
+  setVariantoption(
+    id: $id,
+    title: $title,
+    value: $value,
+    variant: $variant,
+  ) {
+    variantoption {
+      id
+      title
+      value
+      variant {
+        id
+      }
+    }
+  }
+}
+`;
+
+export const SAVE_VARIANTOPTION = `
+mutation Save(
+  $title: String!,
+  $value: String!,
+  $variant: Int!,
+)
+{
+  saveVariantoption(
+    title: $title,
+    value: $value,
+    variant: $variant,
+  ) {
+    variantoption {
+      id
+    }
+  }
+}
+`;
+
+export const DELETE_VARIANTOPTION = `
+mutation Delete($id: Int!)
+{
+  deleteVariantoption(id: $id)
   {
     id
   }

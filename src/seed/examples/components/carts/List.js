@@ -18,11 +18,10 @@ function CartList() {
     cartPagination {
       totalPages
       carts {
-        destiny
         createdAt
-        purchases { }
-        user { }
+        buyer { }
         payment { }
+        shippings { }
       }
     }
   }`, pageNum, pageSize);

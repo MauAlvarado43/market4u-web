@@ -149,6 +149,19 @@ const SidenavView = () =>
               </NavLink>
             </li>
             
+            {/* Shippings */}
+            <li class="navbar-item">
+              <NavLink
+                to="/shippings"
+                className="js-nav-tooltip-link nav-link"
+                activeClassName="active">
+                <i class="tio-hashtag nav-icon"></i>
+                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                  Shippings
+                </span>
+              </NavLink>
+            </li>
+            
             {/* Users */}
             <li class="navbar-item">
               <NavLink
@@ -158,6 +171,32 @@ const SidenavView = () =>
                 <i class="tio-hashtag nav-icon"></i>
                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
                   Users
+                </span>
+              </NavLink>
+            </li>
+            
+            {/* Variants */}
+            <li class="navbar-item">
+              <NavLink
+                to="/variants"
+                className="js-nav-tooltip-link nav-link"
+                activeClassName="active">
+                <i class="tio-hashtag nav-icon"></i>
+                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                  Variants
+                </span>
+              </NavLink>
+            </li>
+            
+            {/* Variantoptions */}
+            <li class="navbar-item">
+              <NavLink
+                to="/variantoptions"
+                className="js-nav-tooltip-link nav-link"
+                activeClassName="active">
+                <i class="tio-hashtag nav-icon"></i>
+                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                  Variantoptions
                 </span>
               </NavLink>
             </li>

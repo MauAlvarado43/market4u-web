@@ -23,11 +23,6 @@ function UserList() {
         lastName
         email
         isActive
-        username
-        password
-        email
-        firstName
-        lastName
         address
         active
         type
@@ -38,6 +33,7 @@ function UserList() {
         products { }
         whishlist { }
         sales { }
+        shippings { }
       }
     }
   }`, pageNum, pageSize);

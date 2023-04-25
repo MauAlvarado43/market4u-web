@@ -27,17 +27,11 @@ const CartFormView = ({ cart= {}, users= [], payments= [], onSubmit, error }) =>
           {({ values, setFieldValue}) =>
           <Form>
             <div class="mb-3">
-            {/* Destiny */}
-            <div class="form-group">
-            <label class="input-label">Destiny</label>
-            <Field type="text" name="destiny"
-              class="form-control" />
-            </div>
-            {/* User */}
+            {/* Buyer */}
             <div class="form-group">
             <div>
-            <label class="input-label">User</label>
-            <Field as="select" name="user.id"
+            <label class="input-label">Buyer</label>
+            <Field as="select" name="buyer.id"
               class="form-control"  >
               <option value="">Select an option</option>
               {users.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }

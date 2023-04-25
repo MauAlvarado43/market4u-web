@@ -12,7 +12,7 @@ import * as data from 'seed/examples/tests/data'
 import FormSave from 'seed/examples/components/purchases/FormSave';
 
 test('examples/components/purchases/FormSave', () => {
-  mockGql.useQuery({"carts": data.GQL_CARTS});
+  mockGql.useQuery({"shippings": data.GQL_SHIPPINGS});
   mockGql.useSave({"savePurchase": data.GQL_PURCHASE});
   render(<FormSave />);
   expect(screen).toBeDefined();

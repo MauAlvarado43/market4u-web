@@ -19,14 +19,12 @@ function ProductDetails({ productId, onCompleted = () => null, onError = () => n
       name
       shortDescription
       description
-      price
-      stock
       createdAt
       user { }
       opinions { }
       sales { }
       category { }
-      photos { }
+      variants { }
     }
   }`, productId);
   

@@ -13,7 +13,7 @@ import FormSet from 'seed/examples/components/purchases/FormSet';
 
 test('examples/components/purchases/FormSet', () => {
   mockGql.useDetail({"purchase": data.GQL_PURCHASE});
-  mockGql.useQuery({"carts": data.GQL_CARTS});
+  mockGql.useQuery({"shippings": data.GQL_SHIPPINGS});
   mockGql.useSet({"setPurchase": data.GQL_PURCHASE});
   render(<FormSet />);
   expect(screen).toBeDefined();

@@ -27,36 +27,6 @@ const UserFormView = ({ user= {}, companies= [], onSubmit, error }) =>
           {({ values, setFieldValue}) =>
           <Form>
             <div class="mb-3">
-            {/* Username */}
-            <div class="form-group">
-            <label class="input-label">Username</label>
-            <Field type="text" name="username"
-              class="form-control" />
-            </div>
-            {/* Password */}
-            <div class="form-group">
-            <label class="input-label">Password</label>
-            <Field type="text" name="password"
-              class="form-control" />
-            </div>
-            {/* Email */}
-            <div class="form-group">
-            <label class="input-label">Email</label>
-            <Field type="text" name="email"
-              class="form-control" />
-            </div>
-            {/* First name */}
-            <div class="form-group">
-            <label class="input-label">First name</label>
-            <Field type="text" name="firstName"
-              class="form-control" />
-            </div>
-            {/* Last name */}
-            <div class="form-group">
-            <label class="input-label">Last name</label>
-            <Field type="text" name="lastName"
-              class="form-control" />
-            </div>
             {/* Address */}
             <div class="form-group">
             <label class="input-label">Address</label>
