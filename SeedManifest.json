@@ -224,14 +224,6 @@
           "type": "text"
         },
         {
-          "name": "price",
-          "type": "float"
-        },
-        {
-          "name": "stock",
-          "type": "int"
-        },
-        {
           "card": {
             "has": "0..*",
             "ref": "1"
@@ -270,8 +262,13 @@
           "type": "category"
         },
         {
-          "name": "photos",
-          "type": "file[]",
+          "card": {
+            "has": "1",
+            "ref": "0..*"
+          },
+          "is_fk": true,
+          "name": "variants",
+          "type": "variant[]",
           "write": false
         }
       ],
@@ -473,6 +470,67 @@
         }
       ],
       "name": "user"
+    },
+    {
+      "attrs": [
+        {
+          "card": {
+            "has": "1",
+            "ref": "0..*"
+          },
+          "is_fk": true,
+          "name": "options",
+          "type": "variantoption[]",
+          "write": false
+        },
+        {
+          "card": {
+            "has": "0..*",
+            "ref": "1"
+          },
+          "is_fk": true,
+          "name": "product",
+          "type": "product"
+        },
+        {
+          "name": "price",
+          "type": "float"
+        },
+        {
+          "name": "stock",
+          "type": "int"
+        },
+        {
+          "name": "photos",
+          "type": "file[]",
+          "write": false
+        }
+      ],
+      "name": "variant"
+    },
+    {
+      "attrs": [
+        {
+          "length": "100",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "length": "100",
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "card": {
+            "has": "0..*",
+            "ref": "1"
+          },
+          "is_fk": true,
+          "name": "variant",
+          "type": "variant"
+        }
+      ],
+      "name": "variantoption"
     }
   ]
 }

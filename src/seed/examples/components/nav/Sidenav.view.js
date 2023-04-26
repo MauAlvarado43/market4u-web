@@ -175,6 +175,32 @@ const SidenavView = () =>
               </NavLink>
             </li>
             
+            {/* Variants */}
+            <li class="navbar-item">
+              <NavLink
+                to="/variants"
+                className="js-nav-tooltip-link nav-link"
+                activeClassName="active">
+                <i class="tio-hashtag nav-icon"></i>
+                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                  Variants
+                </span>
+              </NavLink>
+            </li>
+            
+            {/* Variantoptions */}
+            <li class="navbar-item">
+              <NavLink
+                to="/variantoptions"
+                className="js-nav-tooltip-link nav-link"
+                activeClassName="active">
+                <i class="tio-hashtag nav-icon"></i>
+                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                  Variantoptions
+                </span>
+              </NavLink>
+            </li>
+            
             <div class="dropdown-divider my-3" style={ {borderTopColor: "#ffffff20"} }></div>
             
             {/* Options */}

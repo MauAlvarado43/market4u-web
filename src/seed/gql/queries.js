@@ -463,8 +463,6 @@ export const PRODUCT = `
     name
     shortDescription
     description
-    price
-    stock
     user {
       id
     }
@@ -481,8 +479,6 @@ mutation Set(
   $name: String,
   $shortDescription: String,
   $description: String,
-  $price: Float,
-  $stock: Int,
   $user: Int,
   $category: Int,
 )
@@ -492,8 +488,6 @@ mutation Set(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    price: $price,
-    stock: $stock,
     user: $user,
     category: $category,
   ) {
@@ -502,8 +496,6 @@ mutation Set(
       name
       shortDescription
       description
-      price
-      stock
       user {
         id
       }
@@ -520,8 +512,6 @@ mutation Save(
   $name: String!,
   $shortDescription: String!,
   $description: String!,
-  $price: Float!,
-  $stock: Int!,
   $user: Int!,
   $category: Int!,
 )
@@ -530,8 +520,6 @@ mutation Save(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    price: $price,
-    stock: $stock,
     user: $user,
     category: $category,
   ) {
@@ -912,6 +900,142 @@ export const DELETE_USER = `
 mutation Delete($id: Int!)
 {
   deleteUser(id: $id)
+  {
+    id
+  }
+}
+`;
+
+export const VARIANT = `
+{
+  variant {
+    id
+    price
+    stock
+    product {
+      id
+    }
+  }
+}
+`;
+
+export const SET_VARIANT = `
+mutation Set(
+  $id: Int!,
+  $price: Float,
+  $stock: Int,
+  $product: Int,
+)
+{
+  setVariant(
+    id: $id,
+    product: $product,
+    price: $price,
+    stock: $stock,
+  ) {
+    variant {
+      id
+      price
+      stock
+      product {
+        id
+      }
+    }
+  }
+}
+`;
+
+export const SAVE_VARIANT = `
+mutation Save(
+  $price: Float!,
+  $stock: Int!,
+  $product: Int!,
+)
+{
+  saveVariant(
+    product: $product,
+    price: $price,
+    stock: $stock,
+  ) {
+    variant {
+      id
+    }
+  }
+}
+`;
+
+export const DELETE_VARIANT = `
+mutation Delete($id: Int!)
+{
+  deleteVariant(id: $id)
+  {
+    id
+  }
+}
+`;
+
+export const VARIANTOPTION = `
+{
+  variantoption {
+    id
+    title
+    value
+    variant {
+      id
+    }
+  }
+}
+`;
+
+export const SET_VARIANTOPTION = `
+mutation Set(
+  $id: Int!,
+  $title: String,
+  $value: String,
+  $variant: Int,
+)
+{
+  setVariantoption(
+    id: $id,
+    title: $title,
+    value: $value,
+    variant: $variant,
+  ) {
+    variantoption {
+      id
+      title
+      value
+      variant {
+        id
+      }
+    }
+  }
+}
+`;
+
+export const SAVE_VARIANTOPTION = `
+mutation Save(
+  $title: String!,
+  $value: String!,
+  $variant: Int!,
+)
+{
+  saveVariantoption(
+    title: $title,
+    value: $value,
+    variant: $variant,
+  ) {
+    variantoption {
+      id
+    }
+  }
+}
+`;
+
+export const DELETE_VARIANTOPTION = `
+mutation Delete($id: Int!)
+{
+  deleteVariantoption(id: $id)
   {
     id
   }

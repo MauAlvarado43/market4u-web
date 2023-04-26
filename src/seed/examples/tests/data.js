@@ -188,13 +188,11 @@ const GQL_PRODUCT_ = {
     name: "",
     shortDescription: "",
     description: "",
-    price: 128.0,
-    stock: 128,
     user:  { id: 1},
     opinions: [ { id: 1} ],
     sales: [ { id: 1} ],
     category:  { id: 1},
-    photos: [{ url: "" }],
+    variants: [ { id: 1} ],
 }
 export const GQL_PRODUCT = {
     product: GQL_PRODUCT_
@@ -216,13 +214,11 @@ export const API_PRODUCT = {
     name: "",
     short_description: "",
     description: "",
-    price: 128.0,
-    stock: 128,
     user_id:  1,
     opinion_ids: [1],
     sale_ids: [1],
     category_id:  1,
-    photo_ids: [1],
+    variant_ids: [1],
 }
 export const API_PRODUCTS = [API_PRODUCT]
 
@@ -375,3 +371,63 @@ export const API_USER = {
     shipping_ids: [1],
 }
 export const API_USERS = [API_USER]
+
+const GQL_VARIANT_ = {
+    options: [ { id: 1} ],
+    product:  { id: 1},
+    price: 128.0,
+    stock: 128,
+    photos: [{ url: "" }],
+}
+export const GQL_VARIANT = {
+    variant: GQL_VARIANT_
+}
+export const GQL_VARIANTS = {
+    variants: [ GQL_VARIANT_ ]
+}
+export const GQL_VARIANT_PAGINATION = {
+    variantPagination: {
+        pageNum: 1,
+        pageSize: 1,
+        totalPages: 1,
+        totalCount: 1,
+        variants: [ GQL_VARIANT_ ]
+    }
+}
+
+export const API_VARIANT = {
+    option_ids: [1],
+    product_id:  1,
+    price: 128.0,
+    stock: 128,
+    photo_ids: [1],
+}
+export const API_VARIANTS = [API_VARIANT]
+
+const GQL_VARIANTOPTION_ = {
+    title: "",
+    value: "",
+    variant:  { id: 1},
+}
+export const GQL_VARIANTOPTION = {
+    variantoption: GQL_VARIANTOPTION_
+}
+export const GQL_VARIANTOPTIONS = {
+    variantoptions: [ GQL_VARIANTOPTION_ ]
+}
+export const GQL_VARIANTOPTION_PAGINATION = {
+    variantoptionPagination: {
+        pageNum: 1,
+        pageSize: 1,
+        totalPages: 1,
+        totalCount: 1,
+        variantoptions: [ GQL_VARIANTOPTION_ ]
+    }
+}
+
+export const API_VARIANTOPTION = {
+    title: "",
+    value: "",
+    variant_id:  1,
+}
+export const API_VARIANTOPTIONS = [API_VARIANTOPTION]

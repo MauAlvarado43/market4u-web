@@ -28,4 +28,8 @@ export const SINGULARS =
   "shipping": "shipping",
   "users": "user",
   "user": "user",
+  "variants": "variant",
+  "variant": "variant",
+  "variantoptions": "variantoption",
+  "variantoption": "variantoption",
 };
