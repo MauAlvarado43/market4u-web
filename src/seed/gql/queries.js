@@ -466,6 +466,9 @@ export const PRODUCT = `
     user {
       id
     }
+    sales {
+      id
+    }
     category {
       id
     }
@@ -480,6 +483,7 @@ mutation Set(
   $shortDescription: String,
   $description: String,
   $user: Int,
+  $sales: Int,
   $category: Int,
 )
 {
@@ -489,6 +493,7 @@ mutation Set(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
+    sales: $sales,
     category: $category,
   ) {
     product {
@@ -497,6 +502,9 @@ mutation Set(
       shortDescription
       description
       user {
+        id
+      }
+      sales {
         id
       }
       category {
@@ -513,6 +521,7 @@ mutation Save(
   $shortDescription: String!,
   $description: String!,
   $user: Int!,
+  $sales: Int!,
   $category: Int!,
 )
 {
@@ -521,6 +530,7 @@ mutation Save(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
+    sales: $sales,
     category: $category,
   ) {
     product {
@@ -621,10 +631,10 @@ export const SALE = `
     disscount
     startDate
     endDate
-    product {
+    user {
       id
     }
-    user {
+    banner {
       id
     }
   }
@@ -637,7 +647,7 @@ mutation Set(
   $disscount: Float,
   $startDate: DateTime,
   $endDate: DateTime,
-  $product: Int,
+  $banner: Int,
   $user: Int,
 )
 {
@@ -646,18 +656,18 @@ mutation Set(
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
-    product: $product,
     user: $user,
+    banner: $banner,
   ) {
     sale {
       id
       disscount
       startDate
       endDate
-      product {
+      user {
         id
       }
-      user {
+      banner {
         id
       }
     }
@@ -670,7 +680,7 @@ mutation Save(
   $disscount: Float!,
   $startDate: DateTime!,
   $endDate: DateTime!,
-  $product: Int!,
+  $banner: Int!,
   $user: Int!,
 )
 {
@@ -678,8 +688,8 @@ mutation Save(
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
-    product: $product,
     user: $user,
+    banner: $banner,
   ) {
     sale {
       id
