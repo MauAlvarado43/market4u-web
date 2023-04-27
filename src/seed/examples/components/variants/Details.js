@@ -18,6 +18,7 @@ function VariantDetails({ variantId, onCompleted = () => null, onError = () => n
     variant {
       price
       stock
+      shipment
       createdAt
       options { }
       product { }
