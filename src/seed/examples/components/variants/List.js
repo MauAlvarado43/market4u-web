@@ -20,6 +20,7 @@ function VariantList() {
       variants {
         price
         stock
+        shipment
         createdAt
         options { }
         product { }

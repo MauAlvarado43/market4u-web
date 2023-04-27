@@ -18,6 +18,7 @@ function SaleList() {
     salePagination {
       totalPages
       sales {
+        name
         disscount
         startDate
         endDate
