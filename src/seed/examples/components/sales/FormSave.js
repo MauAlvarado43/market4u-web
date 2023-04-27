@@ -13,14 +13,12 @@ import View from "seed/examples/components/sales/Form.view";
 
 function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
   
-  const qProducts = useQuery(`{ products { } }`);
   const qUsers = useQuery(`{ users { } }`);
   const [callSave, qSave] = useSave(SAVE_SALE, {
     onCompleted: () =>
       onCompleted()
       //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
   });
-  const { products = [] } = qProducts.data;
   const { users = [] } = qUsers.data;
   const error = qSave.error ? "An error has occurred" : null;
 
@@ -28,7 +26,6 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
     callSave(values);
 
   return <View
-    products={products}
     users={users}
     error={error}
     onSubmit={onSubmit}
