@@ -24,6 +24,7 @@ function SaleList() {
         createdAt
         product { }
         user { }
+        banner { }
       }
     }
   }`, pageNum, pageSize);
