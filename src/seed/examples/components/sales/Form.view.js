@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { MultiField, FileField } from "seed/helpers";
 
-const SaleFormView = ({ sale= {}, products= [], users= [], onSubmit, error }) =>
+const SaleFormView = ({ sale= {}, users= [], onSubmit, error }) =>
   <div class="card">
 
     {/* Header */}
@@ -45,17 +45,6 @@ const SaleFormView = ({ sale= {}, products= [], users= [], onSubmit, error }) =>
             <Field type="date" name="endDate"
               class="form-control" />
             </div>
-            {/* Product */}
-            <div class="form-group">
-            <div>
-            <label class="input-label">Product</label>
-            <Field as="select" name="product.id"
-              class="form-control"  >
-              <option value="">Select an option</option>
-              {products.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
-            </Field>
-            </div>
-            </div>
             {/* User */}
             <div class="form-group">
             <div>
@@ -66,6 +55,13 @@ const SaleFormView = ({ sale= {}, products= [], users= [], onSubmit, error }) =>
               {users.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
             </Field>
             </div>
+            </div>
+            {/* Banner */}
+            <div class="form-group">
+            <label class="input-label">Banner</label>
+            <FileField name="banner"
+              accept="*/*" setFieldValue={setFieldValue}
+              class="form-control"  />
             </div>
             </div>
             {error ? <div class="alert alert-soft-danger">{error}</div> : null}
@@ -80,7 +76,6 @@ const SaleFormView = ({ sale= {}, products= [], users= [], onSubmit, error }) =>
 
 SaleFormView.propTypes = {
   sale: PropTypes.object,
-  products: PropTypes.array,
   users: PropTypes.array,
   onSubmit: PropTypes.func.isRequired,
   error: PropTypes.string
