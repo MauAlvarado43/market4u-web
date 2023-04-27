@@ -1,0 +1,133 @@
+<Formik
+    initialValues={
+        {
+            key:"fghngf"
+        }
+    }
+    onSubmit={
+        () => { 
+
+        }
+    }
+>
+    {
+        ({ values, setFieldValues }) =>
+            <Form>
+
+                {/* Key */}
+                <div class="mb-3 mt-5">
+                    <div class="form-group">
+                        <label className="input">
+                            <Field type="text" name="key" className="form-control input__field" placeholder=" " required  />
+                            <span class="input__label">
+                                Clave 
+                                <span className='text-danger fw-bold'>*</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                {/* Description */}
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label class="input">
+                            <Field type="text" name="description" class="form-control input__field" placeholder=" " required value={values.description || ''} />
+                            <span class="input__label">
+                                Descripción 
+                                <span className='text-danger fw-bold'>*</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-3">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-plus" style={{ marginRight: "10px" }}></i>
+                        Editar 
+                    </button>
+
+                    <button type="button" class="btn btn-danger" style={{ marginLeft: "20px" }}>
+                        <i class="bi bi-x" style={{ marginRight: "10px" }}></i>
+                        Cancelar
+                    </button>
+                </div>
+
+            </Form>
+    }
+</Formik>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form>
+                    <div class="form-row align-items-center"> {/* fila-formulario alineacion-vertical */}
+                        <div class="col-2"> {/* ancho */}
+                            <label class="col-form-label" for="discountEdit">Descuento</label> {/* etiqueta-lateral */}
+                        </div>
+                        <div class="col"> {/* columna */}
+                            <input placeholder={props.formValues[0]} type="text" class="form-control form-control-sm" id="discountEdit" /> {/* elemento-formulario tamaño */}
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center"> {/* fila-formulario alineacion-vertical */}
+                        <div class="col-2"> {/* ancho */}
+                            <label class="col-form-label" for="startEdit">Fecha de inicio</label> {/* etiqueta-lateral */}
+                        </div>
+                        <div class="col"> {/* columna */}
+                            <input placeholder={props.formValues[1]} type="text" class="form-control form-control-sm" id="startEdit" /> {/* elemento-formulario tamaño */}
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center"> {/* fila-formulario alineacion-vertical */}
+                        <div class="col-2"> {/* ancho */}
+                            <label class="col-form-label" for="endEdit">Fecha de fin</label> {/* etiqueta-lateral */}
+                        </div>
+                        <div class="col"> {/* columna */}
+                            <input placeholder={props.formValues[2]} type="text" class="form-control form-control-sm" id="endEdit" /> {/* elemento-formulario tamaño */}
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center"> {/* fila-formulario alineacion-vertical */}
+                        <div class="col-2"> {/* ancho */}
+                            <label class="col-form-label" for="nameEdit">Nombre</label> {/* etiqueta-lateral */}
+                        </div>
+                        <div class="col"> {/* columna */}
+                            <input placeholder={props.formValues[3]} type="text" class="form-control form-control-sm" id="nameEdit" /> {/* elemento-formulario tamaño */}
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center"> {/* fila-formulario alineacion-vertical */}
+                        <div class="col-2"> {/* ancho */}
+                            <label class="col-form-label" for="userIdEdit">Usuario</label> {/* etiqueta-lateral */}
+                        </div>
+                        <div class="col"> {/* columna */}
+                            <input placeholder={props.formValues[4]} type="text" class="form-control form-control-sm" id="userIdEdit" /> {/* elemento-formulario tamaño */}
+                        </div>
+                        <div class="col"> {/* columna */}
+                            <input placeholder={props.formValues[5]} type="text" class="form-control form-control-sm" id="userStoreEdit" readonly="" /> {/* elemento-formulario tamaño */}
+                        </div>
+                    </div>
+                </form>

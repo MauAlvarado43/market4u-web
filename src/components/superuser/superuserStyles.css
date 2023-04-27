@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@300;500;600&display=swap');/* Para el tipo de letra */
+
+body /* Para el tipo de letra de la pagina */
+{
+    font-family: "Inter", sans-serif;
+}
+
+body.footer-offset /* Para eliminar un espacio inferior adicional */
+{
+    margin: 0; 
+}
+
+.page-title /* Para el formato del titulo */
+{
+    font-weight: 200;
+    font-size: 1.5rem;
+    color: black;
+    position: absolute;
+    top: 2rem;
+    z-index: 1;
+    background-color: white;
+    padding: 0 4rem;
+    text-shadow: 1px 1px gray;
+}
+
+
+
+
+
+
+.table-panel /* Para el formato del contenedor de la tabla */
+{
+    border-color: #519EA4 !important;
+    border-width: medium !important;
+    height: 70vh;
+}
+thead.table-head-always-visible /* Para el formato del titulo de la tabla */
+{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+table tr.table-titles th /* Para el formato de las celdas de titulo */
+{
+    font-weight: 600;
+    border: none;
+    text-transform: none;
+    font-size: 1rem;
+    color: black;
+    background-color: white;
+}
+tbody.data-table-list td /* Para el formato del contenido de la tabla */
+{
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: black;
+    border: none;
+}
+
+.App_module__7oj0v /* La clase del modulo */
+{
+    /* position: inherit; Para que los mensajes emergentes funcionen no debe ser fixed */
+    position: static;
+
+}
+
+
+.window-blue-header h5 /* Para el titulo de las ventanas emergentes */
+{
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: white;  
+}
+
+#deleteWindow h2 /* Para el titulo en las ventanas emergentes de confirmacion */
+{
+    margin-top: 2rem;
+}
+#deleteWindow p /* Para el mensaje en las ventanas emergentes de confirmacion */
+{
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
+
+.Modal_container__zItPT /* Contenedor de la ventana emergente predefinida */
+{
+    position: fixed;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    inset: 0;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.Modal_close__HMOnl /* Boton de la ventana emergente predefinido */
+{
+    margin: 0 !important;
+    z-index: 104;
+}
+.window-always-visible /* Para las ventanas emergentes no controladas por bootstrap */
+{
+    display: block;
+    overflow: auto;
+}
+
+.page-modal-title /* Para el formato del titulo */
+{
+    font-weight: 200;
+    font-size: 1.5rem;
+    color: black;
+    text-shadow: 1px 1px gray;
+}
+
+.modal-content-padding
+{
+    padding: 1rem;
+}
+
+span.form-field-style
+{
+    left: 0 !important;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+input.form-field-style
+{
+    border-bottom: 0.1625rem solid gray!important;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+}
+
+.custom-file.form-field-style
+{
+    margin-bottom: 2rem;
+}
+
+.custom-file-input~.form-field-style.custom-file-label[data-browse]::after {
+    content: attr(data-browse);
+    width: 65%;
+    text-align: center;
+    background-color: rgba(0,0,0,.08);
+}
+.form-field-style.custom-file-label {
+    padding-right: 65%;
+    overflow: auto;
+}
+
+.modal-body.form-field-style
+{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.modal-header.form-field-style
+{
+    padding-bottom: 0 !important;
+}
+
+
+
+.light-blue-button /* Para el boton de editar */
+{
+    background-color: #519EA4;
+    border-color: #519EA4;
+}
+.orange-button /* Para el boton de eliminar */
+{
+    background-color: #FC4B08;
+    border-color: #FC4B08;
+}
+
+.orange-button, /* Para los botones */
+.light-blue-button
+{
+    border-radius: 10pt;
+    padding: 0.2rem 1.5rem;
+    font-weight: 600;
+    color: white;
+    font-size: 0.85rem;
+    min-width: 8rem;
+}
+
+button.light-blue-button svg, /* Para los iconos de botones pequeños */
+button.orange-button svg 
+{
+    height: 0.85rem;
+    fill: white;
+    margin-right: .8rem;
+}
+
+.modal-footer + button 
+{
+    margin-right: 10rem;
+}
+
+.modal-footer.form-field-style
+{
+    padding-top: 0 !important;
+}
+
+
+
+
+.window-buttons /* Para los botones de las ventanas emergentes */
+{
+    border: none;
+}
+.select-photo-button /* Para el boton de seleccionar archivo en las ventanas emergentes */
+{
+    color: white;
+    background-color: #519EA4;
+    border-color: #519EA4;
+}
+
+
+.modal-footer
+{
+    padding-top: 0 !important;
+}
+
+.modal-body
+{
+    padding-bottom: 0 !important;
+}
+
+.modal-body h2
+{
+    padding-bottom: 0;
+}
+
+.modal-body p
+{
+    padding-top: 1rem;
+}
