@@ -27,6 +27,12 @@ const SaleFormView = ({ sale= {}, users= [], onSubmit, error }) =>
           {({ values, setFieldValue}) =>
           <Form>
             <div class="mb-3">
+            {/* Name */}
+            <div class="form-group">
+            <label class="input-label">Name</label>
+            <Field type="text" name="name"
+              class="form-control" />
+            </div>
             {/* Disscount */}
             <div class="form-group">
             <label class="input-label">Disscount</label>
