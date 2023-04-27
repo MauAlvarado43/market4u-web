@@ -22,6 +22,7 @@ function SaleDetails({ saleId, onCompleted = () => null, onError = () => null })
       createdAt
       product { }
       user { }
+      banner { }
     }
   }`, saleId);
   
