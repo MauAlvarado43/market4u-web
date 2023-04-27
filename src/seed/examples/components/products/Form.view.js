@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { MultiField, FileField } from "seed/helpers";
 
-const ProductFormView = ({ product= {}, users= [], categories= [], onSubmit, error }) =>
+const ProductFormView = ({ product= {}, users= [], sales= [], categories= [], onSubmit, error }) =>
   <div class="card">
 
     {/* Header */}
@@ -57,6 +57,17 @@ const ProductFormView = ({ product= {}, users= [], categories= [], onSubmit, err
             </Field>
             </div>
             </div>
+            {/* Sales */}
+            <div class="form-group">
+            <div>
+            <label class="input-label">Sales</label>
+            <Field as="select" name="sales.id"
+              class="form-control"  >
+              <option value="">Select an option</option>
+              {sales.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
+            </Field>
+            </div>
+            </div>
             {/* Category */}
             <div class="form-group">
             <div>
@@ -82,6 +93,7 @@ const ProductFormView = ({ product= {}, users= [], categories= [], onSubmit, err
 ProductFormView.propTypes = {
   product: PropTypes.object,
   users: PropTypes.array,
+  sales: PropTypes.array,
   categories: PropTypes.array,
   onSubmit: PropTypes.func.isRequired,
   error: PropTypes.string
