@@ -9,12 +9,12 @@ import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { MultiField, FileField } from "seed/helpers";
 
-const SaleFormView = ({ sale = {}, users = [], onSubmit, error }) =>
+const SaleFormView = ({ sale = {}, products = [], onSubmit, error }) =>
     <div class="card">
 
         {/* Header */}
         <div class="card-header">
-            <h3 class="card-header-title">Sale</h3>
+            <h3 class="card-header-title">Sales</h3>
         </div>
 
         {/* Body */}
@@ -51,18 +51,17 @@ const SaleFormView = ({ sale = {}, users = [], onSubmit, error }) =>
                                         <Field type="date" name="endDate"
                                             class="form-control" />
                                     </div>
-                                    {/* User */}
+                                    {/* Products */}
                                     <div class="form-group">
                                         <div>
-                                            <label class="input-label">User</label>
-                                            <Field as="select" name="user.id"
+                                            <label class="input-label">Productos</label>
+                                            <Field as="select" name="products.id"
                                                 class="form-control"  multiple>
-                                                {users.map((e, idx) => 
-                                                    <option key={idx} value={e.id}>{e.id}</option>)}
+                                                {products.map((e, idx) => 
+                                                    <option key={idx} value={e.id}>{e.name}</option>)}
                                             </Field>
                                         </div>
                                     </div>
-                                    {/* Products */}
                                     {/* Banner */}
                                     <div class="form-group">
                                         <label class="input-label">Banner</label>
