@@ -2,6 +2,7 @@ import React from "react";
 
 import "../superuserStyles.css";
 import PropTypes from "prop-types";
+import { FileField } from "seed/helpers";
 import WindowSuperuserView from "components/superuser/windows/WindowSuperuser.view";
 
 
@@ -21,14 +22,10 @@ const WindowDiscountsSuperuserView = (props) => (
                         saleStartDate: "26/04/2023",
                     }
                 }
-                onSubmit={
-                    () => {
-
-                    }
-                }
+                onSubmit={props.onSubmit}
             >
                 {
-                    ({ values, setFieldValues }) =>
+                    ({ values, setFieldValue }) =>
                         <Form>
 
                             {/* Key */}
@@ -75,8 +72,8 @@ const WindowDiscountsSuperuserView = (props) => (
                                 </div>
 
                                 <div class="custom-file form-field-style">
-                                    <input type="file" class="custom-file-input" id="" />
-                                    <label class="custom-file-label form-field-style" for="" data-browse="Seleccionar banner">Ningún archivo seleccionado</label>
+                                    <FileField className="custom-file-input" name="file.id" setFieldValue={setFieldValue} required/>
+                                    <label class="custom-file-label form-field-style" for="" data-browse="Seleccionar banner" required>Ningún archivo seleccionado</label>
                                 </div>
 
                                 <div class="form-group">
@@ -92,6 +89,7 @@ const WindowDiscountsSuperuserView = (props) => (
                                         </span>
                                     </label>
                                 </div>
+                                <button type="submit" class="btn btn-block btn-primary">Send</button>
 
                             </div>
 

@@ -18,6 +18,7 @@ import { Formik, Form, Field } from 'formik';
 
 
 import DiscountsSuperuser from "components/superuser/DiscountsSuperuser";
+import Pruebas from "components/superuser/Pruebas";
 
 
 
@@ -48,6 +49,7 @@ const HomeView = () =>
         <Route path="/history" component={History} />
         
         <Route path="/discountsSuperuser" component={DiscountsSuperuser} />
+        <Route path="/pruebas" component={Pruebas} />
 
 
         <Redirect to="/home" />
