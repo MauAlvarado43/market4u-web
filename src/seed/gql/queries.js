@@ -466,7 +466,7 @@ export const PRODUCT = `
     user {
       id
     }
-    sales {
+    sale {
       id
     }
     category {
@@ -483,7 +483,7 @@ mutation Set(
   $shortDescription: String,
   $description: String,
   $user: Int,
-  $sales: Int,
+  $sale: Int,
   $category: Int,
 )
 {
@@ -493,7 +493,7 @@ mutation Set(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
-    sales: $sales,
+    sale: $sale,
     category: $category,
   ) {
     product {
@@ -504,7 +504,7 @@ mutation Set(
       user {
         id
       }
-      sales {
+      sale {
         id
       }
       category {
@@ -521,7 +521,7 @@ mutation Save(
   $shortDescription: String!,
   $description: String!,
   $user: Int!,
-  $sales: Int!,
+  $sale: Int,
   $category: Int!,
 )
 {
@@ -530,7 +530,7 @@ mutation Save(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
-    sales: $sales,
+    sale: $sale,
     category: $category,
   ) {
     product {
@@ -685,7 +685,7 @@ mutation Save(
   $disscount: Float!,
   $startDate: DateTime!,
   $endDate: DateTime!,
-  $banner: Int!,
+  $banner: Int,
   $user: Int!,
 )
 {
@@ -888,7 +888,7 @@ mutation Save(
   $address: String!,
   $active: Boolean!,
   $type: String!,
-  $photo: Int!,
+  $photo: Int,
   $company: Int,
 )
 {
