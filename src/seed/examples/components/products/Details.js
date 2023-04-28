@@ -22,7 +22,7 @@ function ProductDetails({ productId, onCompleted = () => null, onError = () => n
       createdAt
       user { }
       opinions { }
-      sales { }
+      sale { }
       category { }
       variants { }
     }
