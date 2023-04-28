@@ -190,7 +190,7 @@ const GQL_PRODUCT_ = {
     description: "",
     user:  { id: 1},
     opinions: [ { id: 1} ],
-    sales:  { id: 1},
+    sale:  { id: 1},
     category:  { id: 1},
     variants: [ { id: 1} ],
 }
@@ -216,7 +216,7 @@ export const API_PRODUCT = {
     description: "",
     user_id:  1,
     opinion_ids: [1],
-    sales_id:  1,
+    sale_id:  1,
     category_id:  1,
     variant_ids: [1],
 }
