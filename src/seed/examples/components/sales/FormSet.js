@@ -28,7 +28,6 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null  }
   const error = qSet.error ? "An error has occurred" : null;
 
   const onSubmit = (values) => {
-    values.id = saleId;
     callSet(values);
   };
 

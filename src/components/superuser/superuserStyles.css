@@ -32,7 +32,7 @@ body.footer-offset /* Para eliminar un espacio inferior adicional */
 {
     border-color: #519EA4 !important;
     border-width: medium !important;
-    height: 70vh;
+    
 }
 thead.table-head-always-visible /* Para el formato del titulo de la tabla */
 {
@@ -83,7 +83,8 @@ tbody.data-table-list td /* Para el formato del contenido de la tabla */
     
 }
 
-.Modal_container__zItPT /* Contenedor de la ventana emergente predefinida */
+.Modal_container__zItPT,
+.Modal_container__RbNR7 /* Contenedor de la ventana emergente predefinida */
 {
     position: fixed;
     width: 100vw !important;
@@ -93,7 +94,8 @@ tbody.data-table-list td /* Para el formato del contenido de la tabla */
     display: flex;
     flex-direction: row-reverse;
 }
-.Modal_close__HMOnl /* Boton de la ventana emergente predefinido */
+.Modal_close__HMOnl,
+.Modal_close__upbJP /* Boton de la ventana emergente predefinido */
 {
     margin: 0 !important;
     z-index: 104;

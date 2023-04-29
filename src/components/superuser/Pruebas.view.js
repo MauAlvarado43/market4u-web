@@ -8,24 +8,29 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { MultiField, FileField } from "seed/helpers";
+import { DateTime } from 'luxon';
 
 const SaleFormView = ({ sale = {}, products = [], onSubmit, error }) =>
     <div class="card">
-
         {/* Header */}
         <div class="card-header">
-            <h3 class="card-header-title">Sales</h3>
+            <h3 class="card-header-title">Ofertas</h3>
         </div>
-
+        
         {/* Body */}
         <div class="card-body">
             <div class="row">
                 <div class="col">
                     <Formik
-                        initialValues={sale}
+                        initialValues={{
+                            ...sale,
+                            startDate: sale.startDate ? DateTime.fromISO(sale.startDate).toFormat("yyyy-MM-dd") : "",
+                            endDate: sale.endDate ? DateTime.fromISO(sale.endDate).toFormat("yyyy-MM-dd") : ""
+                        }}
                         onSubmit={onSubmit}>
                         {({ values, setFieldValue }) =>
                             <Form>
+                                
                                 <div class="mb-3">
                                     {/* Name */}
                                     <div class="form-group">
