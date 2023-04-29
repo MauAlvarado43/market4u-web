@@ -71,10 +71,10 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
 
         // values.products.id - ---nuevos
         // anteriores ---
-        console.log(values.products)
+        //console.log(values.products)
         if (values.products != undefined) {
 
-            console.log("hola")
+            //console.log("hola")
             //--------------------This thing doesnt work, null problem.
             for (let i = 0; i < filteredProducts.length; i++) {
                 let newProductValuesEdit = {
@@ -95,7 +95,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
 
             if(isNaN(values.banner)){
                 alert("Favor de seleccionar un banner");
-                console.log("adios")   
+                //console.log("adios")   
                 return;
     
             }

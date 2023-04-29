@@ -39,7 +39,7 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
 
 
     const onClickDelete = () =>{
-        console.log(products)
+        //console.log(products)
         const sale = parseInt(saleId);
 
         callDelete({ id: sale });
