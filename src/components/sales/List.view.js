@@ -35,7 +35,7 @@ const SaleListView = ({ sales, pageNum = 1, totalPages = 0, onClickPage = () => 
                             <td>{new Date(sale.startDate).getDate() + "/" + new Date(sale.startDate).getMonth() + "/" + new Date(sale.startDate).getFullYear()}</td>
                             <td>{new Date(sale.endDate).getDate() + "/" + new Date(sale.endDate).getMonth() + "/" + new Date(sale.endDate).getFullYear()}</td>
                             <td>
-                                <select>
+                                <select className="products-sales-names">
                                     <option>Listado</option>
                                     {
                                         productsName[idx].map((product) =>

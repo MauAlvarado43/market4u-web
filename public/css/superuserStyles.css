@@ -10,7 +10,8 @@ body.footer-offset /* Para eliminar un espacio inferior adicional */
     margin: 0; 
 }
 
-.page-title /* Para el formato del titulo */
+
+.css-sales .page-title /* Para el formato del titulo */
 {
     font-weight: 200;
     font-size: 1.5rem;
@@ -28,19 +29,19 @@ body.footer-offset /* Para eliminar un espacio inferior adicional */
 
 
 
-.table-panel /* Para el formato del contenedor de la tabla */
+.css-sales .table-panel /* Para el formato del contenedor de la tabla */
 {
     border-color: #519EA4 !important;
     border-width: medium !important;
     
 }
-thead.table-head-always-visible /* Para el formato del titulo de la tabla */
+.css-sales thead.table-head-always-visible /* Para el formato del titulo de la tabla */
 {
     position: sticky;
     top: 0;
     z-index: 5;
 }
-table tr.table-titles th /* Para el formato de las celdas de titulo */
+.css-sales table tr.table-titles th /* Para el formato de las celdas de titulo */
 {
     font-weight: 600;
     border: none;
@@ -49,7 +50,7 @@ table tr.table-titles th /* Para el formato de las celdas de titulo */
     color: black;
     background-color: white;
 }
-tbody.data-table-list td /* Para el formato del contenido de la tabla */
+.css-sales tbody.data-table-list td /* Para el formato del contenido de la tabla */
 {
     font-weight: 300;
     font-size: 0.85rem;
@@ -57,42 +58,49 @@ tbody.data-table-list td /* Para el formato del contenido de la tabla */
     border: none;
 }
 
-.App_module__7oj0v /* La clase del modulo */
-{
-    /* position: inherit; Para que los mensajes emergentes funcionen no debe ser fixed */
-    position: static;
-
-}
 
 
-.window-blue-header h5 /* Para el titulo de las ventanas emergentes */
+
+.css-sales .window-blue-header h5 /* Para el titulo de las ventanas emergentes */
 {
     font-weight: 400;
     font-size: 1.5rem;
     color: white;  
 }
 
-#deleteWindow h2 /* Para el titulo en las ventanas emergentes de confirmacion */
+.css-sales #deleteWindow h2 /* Para el titulo en las ventanas emergentes de confirmacion */
 {
     margin-top: 2rem;
 }
-#deleteWindow p /* Para el mensaje en las ventanas emergentes de confirmacion */
+.css-sales #deleteWindow p /* Para el mensaje en las ventanas emergentes de confirmacion */
 {
     margin-left: 20%;
     margin-right: 20%;
     
 }
 
+
+
+
+
+.App_module__7oj0v /* La clase del modulo */
+{
+    /* position: inherit; Para que los mensajes emergentes funcionen no debe ser fixed */
+    position: static;
+}
+
 .Modal_container__zItPT,
 .Modal_container__RbNR7 /* Contenedor de la ventana emergente predefinida */
 {
-    position: fixed;
+    position: fixed !important; 
     width: 100vw !important;
     height: 100vh !important;
     margin: 0 !important;
     inset: 0;
     display: flex;
     flex-direction: row-reverse;
+    top: 0 !important;
+    left: 0 !important;
 }
 .Modal_close__HMOnl,
 .Modal_close__upbJP /* Boton de la ventana emergente predefinido */
@@ -100,13 +108,17 @@ tbody.data-table-list td /* Para el formato del contenido de la tabla */
     margin: 0 !important;
     z-index: 104;
 }
-.window-always-visible /* Para las ventanas emergentes no controladas por bootstrap */
+
+
+
+
+.css-sales .window-always-visible /* Para las ventanas emergentes no controladas por bootstrap */
 {
     display: block;
     overflow: auto;
 }
 
-.page-modal-title /* Para el formato del titulo */
+.css-sales .page-modal-title /* Para el formato del titulo */
 {
     font-weight: 200;
     font-size: 1.5rem;
@@ -114,18 +126,18 @@ tbody.data-table-list td /* Para el formato del contenido de la tabla */
     text-shadow: 1px 1px gray;
 }
 
-.modal-content-padding
+.css-sales .modal-content-padding
 {
     padding: 1rem;
 }
 
-span.form-field-style
+.css-sales span.form-field-style
 {
     left: 0 !important;
     color: rgba(0, 0, 0, 0.5);
 }
 
-input.form-field-style
+.css-sales input.form-field-style
 {
     border-bottom: 0.1625rem solid gray!important;
     border-top: 0;
@@ -134,48 +146,48 @@ input.form-field-style
     border-radius: 0;
 }
 
-.custom-file.form-field-style
+.css-sales .custom-file.form-field-style
 {
     margin-bottom: 2rem;
 }
 
-.custom-file-input~.form-field-style.custom-file-label[data-browse]::after {
+.css-sales .custom-file-input~.form-field-style.custom-file-label[data-browse]::after {
     content: attr(data-browse);
     width: 65%;
     text-align: center;
     background-color: rgba(0,0,0,.08);
 }
-.form-field-style.custom-file-label {
+.css-sales .form-field-style.custom-file-label {
     padding-right: 65%;
     overflow: auto;
 }
 
-.modal-body.form-field-style
+.css-sales .modal-body.form-field-style
 {
     padding-top: 0;
     padding-bottom: 0;
 }
 
-.modal-header.form-field-style
+.css-sales .modal-header.form-field-style
 {
     padding-bottom: 0 !important;
 }
 
 
 
-.light-blue-button /* Para el boton de editar */
+.css-sales .light-blue-button /* Para el boton de editar */
 {
     background-color: #519EA4;
     border-color: #519EA4;
 }
-.orange-button /* Para el boton de eliminar */
+.css-sales .orange-button /* Para el boton de eliminar */
 {
     background-color: #FC4B08;
     border-color: #FC4B08;
 }
 
-.orange-button, /* Para los botones */
-.light-blue-button
+.css-sales .orange-button, /* Para los botones */
+.css-sales .light-blue-button
 {
     border-radius: 10pt;
     padding: 0.2rem 1.5rem;
@@ -185,20 +197,20 @@ input.form-field-style
     min-width: 8rem;
 }
 
-button.light-blue-button svg, /* Para los iconos de botones pequeños */
-button.orange-button svg 
+.css-sales button.light-blue-button svg, /* Para los iconos de botones pequeños */
+.css-sales button.orange-button svg 
 {
     height: 0.85rem;
     fill: white;
     margin-right: .8rem;
 }
 
-.modal-footer + button 
+.css-sales .modal-footer + button 
 {
     margin-right: 10rem;
 }
 
-.modal-footer.form-field-style
+.css-sales .modal-footer.form-field-style
 {
     padding-top: 0 !important;
 }
@@ -206,11 +218,11 @@ button.orange-button svg
 
 
 
-.window-buttons /* Para los botones de las ventanas emergentes */
+.css-sales .window-buttons /* Para los botones de las ventanas emergentes */
 {
     border: none;
 }
-.select-photo-button /* Para el boton de seleccionar archivo en las ventanas emergentes */
+.css-sales .select-photo-button /* Para el boton de seleccionar archivo en las ventanas emergentes */
 {
     color: white;
     background-color: #519EA4;
@@ -218,22 +230,28 @@ button.orange-button svg
 }
 
 
-.modal-footer
+.css-sales .modal-footer
 {
     padding-top: 0 !important;
 }
 
-.modal-body
+.css-sales .modal-body
 {
     padding-bottom: 0 !important;
 }
 
-.modal-body h2
+.css-sales .modal-body h2
 {
     padding-bottom: 0;
 }
 
-.modal-body p
+.css-sales .modal-body p
 {
     padding-top: 1rem;
+}
+
+.css-sales .products-sales-names
+{
+    width: 8vw;
+    border: none;
 }

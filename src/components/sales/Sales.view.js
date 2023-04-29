@@ -17,14 +17,14 @@ import { ModalRoute } from "seed/helpers";
  
 const SalesView = (props) =>
     <BrowserRouter basename="/sales">
-        <div class="content container-fluid">
+        <div class="content container-fluid css-sales">
 
             {/* Header */}
             <h1 class="page-header-title">Market4U</h1>
 
            
             {/* Contenido prinicpal */}
-            <div class="p-5 overflow-auto vh-100"> {/* padding medidas-desbordamiento tamño-vertical */}
+            <div class="p-5 overflow-auto"> {/* padding medidas-desbordamiento tamño-vertical */}
                 <div class="p-5"> {/* padding */}
                     <div class="row align-items-center justify-content-center"> {/* formato-fila centrados-verticalmente centrados-horizontalmente */}
                         <div class="col-auto mr-auto"> {/* ancho-columna-minimo margen-derecho-maximo */}
@@ -61,7 +61,9 @@ const SalesView = (props) =>
             {/* Modals */}
             <ModalRoute
                 path="/create"
-                component={SaleFormSave} />
+                component={SaleFormSave} 
+                windowTitle="Crear oferta"
+            />
             <ModalRoute
                 path="/:saleId(\d+)/edit"
                 component={SaleFormEdit} />
