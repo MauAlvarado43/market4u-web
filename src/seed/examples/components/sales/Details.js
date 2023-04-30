@@ -16,6 +16,7 @@ function SaleDetails({ saleId, onCompleted = () => null, onError = () => null })
   const reqSale = useDetail(`
   {
     sale {
+      name
       disscount
       startDate
       endDate

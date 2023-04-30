@@ -466,7 +466,7 @@ export const PRODUCT = `
     user {
       id
     }
-    sales {
+    sale {
       id
     }
     category {
@@ -483,7 +483,7 @@ mutation Set(
   $shortDescription: String,
   $description: String,
   $user: Int,
-  $sales: Int,
+  $sale: Int,
   $category: Int,
 )
 {
@@ -493,7 +493,7 @@ mutation Set(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
-    sales: $sales,
+    sale: $sale,
     category: $category,
   ) {
     product {
@@ -504,7 +504,7 @@ mutation Set(
       user {
         id
       }
-      sales {
+      sale {
         id
       }
       category {
@@ -521,7 +521,7 @@ mutation Save(
   $shortDescription: String!,
   $description: String!,
   $user: Int!,
-  $sales: Int!,
+  $sale: Int,
   $category: Int!,
 )
 {
@@ -530,7 +530,7 @@ mutation Save(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
-    sales: $sales,
+    sale: $sale,
     category: $category,
   ) {
     product {
@@ -628,6 +628,7 @@ export const SALE = `
 {
   sale {
     id
+    name
     disscount
     startDate
     endDate
@@ -644,6 +645,7 @@ export const SALE = `
 export const SET_SALE = `
 mutation Set(
   $id: Int!,
+  $name: String,
   $disscount: Float,
   $startDate: DateTime,
   $endDate: DateTime,
@@ -653,6 +655,7 @@ mutation Set(
 {
   setSale(
     id: $id,
+    name: $name,
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
@@ -661,6 +664,7 @@ mutation Set(
   ) {
     sale {
       id
+      name
       disscount
       startDate
       endDate
@@ -677,14 +681,16 @@ mutation Set(
 
 export const SAVE_SALE = `
 mutation Save(
+  $name: String!,
   $disscount: Float!,
   $startDate: DateTime!,
   $endDate: DateTime!,
-  $banner: Int!,
+  $banner: Int,
   $user: Int!,
 )
 {
   saveSale(
+    name: $name,
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
@@ -882,7 +888,7 @@ mutation Save(
   $address: String!,
   $active: Boolean!,
   $type: String!,
-  $photo: Int!,
+  $photo: Int,
   $company: Int,
 )
 {
@@ -922,6 +928,7 @@ export const VARIANT = `
     id
     price
     stock
+    shipment
     product {
       id
     }
@@ -934,6 +941,7 @@ mutation Set(
   $id: Int!,
   $price: Float,
   $stock: Int,
+  $shipment: Float,
   $product: Int,
 )
 {
@@ -942,11 +950,13 @@ mutation Set(
     product: $product,
     price: $price,
     stock: $stock,
+    shipment: $shipment,
   ) {
     variant {
       id
       price
       stock
+      shipment
       product {
         id
       }
@@ -959,6 +969,7 @@ export const SAVE_VARIANT = `
 mutation Save(
   $price: Float!,
   $stock: Int!,
+  $shipment: Float!,
   $product: Int!,
 )
 {
@@ -966,6 +977,7 @@ mutation Save(
     product: $product,
     price: $price,
     stock: $stock,
+    shipment: $shipment,
   ) {
     variant {
       id

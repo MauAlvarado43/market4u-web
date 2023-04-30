@@ -190,7 +190,7 @@ const GQL_PRODUCT_ = {
     description: "",
     user:  { id: 1},
     opinions: [ { id: 1} ],
-    sales:  { id: 1},
+    sale:  { id: 1},
     category:  { id: 1},
     variants: [ { id: 1} ],
 }
@@ -216,7 +216,7 @@ export const API_PRODUCT = {
     description: "",
     user_id:  1,
     opinion_ids: [1],
-    sales_id:  1,
+    sale_id:  1,
     category_id:  1,
     variant_ids: [1],
 }
@@ -253,6 +253,7 @@ export const API_PURCHASE = {
 export const API_PURCHASES = [API_PURCHASE]
 
 const GQL_SALE_ = {
+    name: "",
     disscount: 128.0,
     startDate: "2020-01-01T12:00:00+00:00",
     endDate: "2020-01-01T12:00:00+00:00",
@@ -277,6 +278,7 @@ export const GQL_SALE_PAGINATION = {
 }
 
 export const API_SALE = {
+    name: "",
     disscount: 128.0,
     start_date: "2020-01-01T12:00:00+00:00",
     end_date: "2020-01-01T12:00:00+00:00",
@@ -380,6 +382,7 @@ const GQL_VARIANT_ = {
     price: 128.0,
     stock: 128,
     photos: [{ url: "" }],
+    shipment: 128.0,
 }
 export const GQL_VARIANT = {
     variant: GQL_VARIANT_
@@ -403,6 +406,7 @@ export const API_VARIANT = {
     price: 128.0,
     stock: 128,
     photo_ids: [1],
+    shipment: 128.0,
 }
 export const API_VARIANTS = [API_VARIANT]
 
