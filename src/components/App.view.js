@@ -8,11 +8,15 @@ import Signup from "components/auth/Signup";
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
+import Main from "components/main/Main"
+
+
 
 const AppView = () =>
   <div class="module">
     <BrowserRouter>
       <Switch>
+        <Route path="/main" component={Main} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
         <Route path="/signup" component={Signup} />
