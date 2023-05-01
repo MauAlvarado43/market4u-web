@@ -23,9 +23,15 @@ function UserList() {
         lastName
         email
         isActive
-        address
         active
         type
+        street
+        city
+        cp
+        municipality
+        state
+        cologn
+        telephone
         createdAt
         photo { }
         company { }

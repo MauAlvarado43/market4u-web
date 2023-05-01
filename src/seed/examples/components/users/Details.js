@@ -21,9 +21,15 @@ function UserDetails({ userId, onCompleted = () => null, onError = () => null })
       lastName
       email
       isActive
-      address
       active
       type
+      street
+      city
+      cp
+      municipality
+      state
+      cologn
+      telephone
       createdAt
       photo { }
       company { }

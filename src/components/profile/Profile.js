@@ -1,21 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import View from "components/profile/Profile.view";
 import { useQuery } from "seed/gql";
 import { Loading } from "seed/helpers";
 
-function Profile(props) {
+function Profile() {
 
-  const { user_id } = props;
+  const [profileImg, setProfileImg] = useState("");
 
   const reqUsers = useQuery(
     `{
       users {
-        id
-        firstName
-        lastName
-        email
-        address
         type
         photo{
           id
@@ -23,21 +18,38 @@ function Profile(props) {
         }
         company{
           id
+          photo{
+            url
+          }
         }
       }
     }`,
+    "id = " + sessionStorage.getItem('id')
   );
+
+  const handleImgChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setProfileImg(reader.result);
+    };
+  };
 
   if(reqUsers.loading) return <Loading/>;
   if(reqUsers.error) return "Error";
 
   const { users } = reqUsers.data;
 
-  console.log(users)
-
-  return <View />;
+  return <View 
+          users={users}
+          profileImg={profileImg}
+          handleImgChange={handleImgChange}
+        />;
 }
 
-Profile.propTypes = {};
+Profile.propTypes = {
+  user: PropTypes.object
+};
 
 export default Profile;
