@@ -11,7 +11,7 @@ import { DELETE_SALE,SET_PRODUCT } from "seed/gql/queries";
 import { Loading } from "seed/helpers";
 import View from "components/sales/Delete.view";
 
-function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) {
+function SaleDelete({ saleId, onCompleted = () => null, onError = () => null,refetchQuery }) {
 
     let qProducts = useQuery(`{ 
         products {
@@ -30,9 +30,13 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
+    
+
     const [callDelete] = useDelete(DELETE_SALE, {
-        onCompleted: () =>
-            onCompleted()
+        onCompleted: () => {
+            refetchQuery();
+            onCompleted();
+        }
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
@@ -41,13 +45,13 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
     const onClickDelete = () =>{
         //console.log(products)
         const sale = parseInt(saleId);
-
         callDelete({ id: sale });
     }
         
 
     return <View
-        onClickDelete={onClickDelete}
+    onClose={onCompleted}
+    onClickDelete={onClickDelete}
     />;
 }
 

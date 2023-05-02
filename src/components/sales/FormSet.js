@@ -1,4 +1,4 @@
-/*
+/*historyhoB
 __Seed builder__
   (Read_only) Example component
   Be careful copying content
@@ -11,19 +11,23 @@ import { SALE, SET_SALE, SET_PRODUCT } from "seed/gql/queries";
 import { Loading } from "seed/helpers";
 import View from "components/sales/Form.view";
 import { DateTime } from "luxon";
+import { useHistory } from "react-router";
 
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null }) {
+    //const history = useHistory();
     const qSale = useDetail(SALE, saleId);
     const qUsers = useQuery(`{ users { } }`);
     const [callSet, qSet] = useSet(SET_SALE, {
-        onCompleted: () =>
-            onCompleted()
+        onCompleted: () =>{
+            onCompleted();
+        }
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
     const [callSetProducts, qSetProducts] = useSet(SET_PRODUCT, {
-        onCompleted: () =>
-            onCompleted()
+        onCompleted: () => {
+            //onCompleted();
+        }
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
@@ -61,7 +65,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
 
 
     const onSubmit = (values) => {
-        
+
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
@@ -74,7 +78,6 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         //console.log(values.products)
         if (values.products != undefined) {
 
-            //console.log("hola")
             //--------------------This thing doesnt work, null problem.
             for (let i = 0; i < filteredProducts.length; i++) {
                 let newProductValuesEdit = {
@@ -93,11 +96,11 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
                 callSetProducts(newProductValuesEdit)
             }
 
-            if(isNaN(values.banner)){
+            if (isNaN(values.banner)) {
                 alert("Favor de seleccionar un banner");
                 //console.log("adios")   
                 return;
-    
+
             }
 
         }
@@ -112,12 +115,18 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         console.log(values)
         callSet(values);
     };
+    
+    const onCancel = () => {
+        //history.goBack();
+        onCompleted();
+    }
 
     return <View
         sale={sale}
         products={filteredProducts}
         error={error}
         onSubmit={onSubmit}
+        onCancel={onCancel}
     />;
 }
 
