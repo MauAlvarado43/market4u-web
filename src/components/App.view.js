@@ -8,8 +8,9 @@ import Signup from "components/auth/Signup";
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
-import Main from "components/main/Main"
 
+import Products from "components/products/Products";
+import Main from "components/main/Main"
 
 
 const AppView = () =>
@@ -17,6 +18,7 @@ const AppView = () =>
     <BrowserRouter>
       <Switch>
         <Route path="/main" component={Main} />
+        <Route path="/products" component={Products} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
         <Route path="/signup" component={Signup} />
