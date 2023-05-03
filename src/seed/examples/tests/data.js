@@ -170,6 +170,7 @@ const GQL_PAYMENT_ = {
     type: "DEBIT",
     user:  { id: 1},
     address: "",
+    bank: "",
 }
 export const GQL_PAYMENT = {
     payment: GQL_PAYMENT_
@@ -193,6 +194,7 @@ export const API_PAYMENT = {
     type: "DEBIT",
     user_id:  1,
     address: "",
+    bank: "",
 }
 export const API_PAYMENTS = [API_PAYMENT]
 

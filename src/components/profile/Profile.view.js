@@ -1,19 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, Link } from "react-router-dom";
 import { Route, FileField } from "seed/helpers"
 import ProfileButton from "components/nav/ProfileButton";
 import InfoUser from "components/profile/InfoUser";
+import InfoCards from "components/profile/InfoCards";
 
 const ProfileView = ({
-  users,
-  profileImg,
-  handleImgChange,
-
+  users
 }) => (
   <BrowserRouter>
     <div className="w-100" style={{ minHeight: "18vh" }}></div>
-    {users.map((user) => (
+    {users && users.map((user) => (
     <div key={user.id}>
       <div className="row justify-content-center">
         <div className="col-md-2">
@@ -21,18 +19,18 @@ const ProfileView = ({
             <strong>MI CUENTA</strong>
           </h3>
           {user.type === "SELLER" ? (
-           <FileField>
+            <>
             <div className="position-relative">
               <label htmlFor="profileImg">
                 <img
                   style={{
-                    width: "300px",
-                    height: "300px",
+                    width: "250px",
+                    height: "250px",
                     objectFit: "cover",
                     objectPosition: "center",
                   }}
                   className="rounded-circle shadow-4-strong img-fluid mt-5 ml-3"
-                  src={profileImg || user.photo.url}
+                  src={user.photo.url}
                   alt="Foto de Perfil"
                 />
               </label>
@@ -40,7 +38,6 @@ const ProfileView = ({
                 type="file"
                 id="profileImg"
                 accept="image/*"
-                onChange={handleImgChange}
                 style={{ display: "none" }}
               />
             </div>
@@ -60,7 +57,7 @@ const ProfileView = ({
                 border: "2px solid white",
               }}
             />
-           </FileField> 
+           </> 
           ) :
           <img
             style={{ width: "300px", height: "300px",
@@ -74,14 +71,18 @@ const ProfileView = ({
             <div>
               {user.type === "NORMAL" ? 
               <>
-                <ProfileButton
-                  text={"Mis datos personales"}
-                  icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
-                />
-                <ProfileButton
-                  text={"Mis tarjetas"}
-                  icon_left={"fas fa-credit-card col-md-2 col-sm-1"}
-                />
+                <Link to = "/profile/info">
+                  <ProfileButton
+                    text={"Mis datos personales"}
+                    icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
+                  />
+                </Link>
+                <Link to="/profile/payments">
+                  <ProfileButton
+                    text={"Mis tarjetas"}
+                    icon_left={"fas fa-credit-card col-md-2 col-sm-1"}
+                  />
+                </Link>
                 <ProfileButton
                   text={"Mis compras"}
                   icon_left={"fas fa-shopping-bag col-md-2 col-sm-1"}
@@ -119,10 +120,12 @@ const ProfileView = ({
               : null}
               {user.type === "SELLER"?
               <>
-                <ProfileButton
-                  text={"Mis datos personales"}
-                  icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
-                />
+                <Link to = "/profile/info">
+                  <ProfileButton
+                    text={"Mis datos personales"}
+                    icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
+                  />
+                </Link>
                 <ProfileButton
                   text={"Ofertas"}
                   icon_left={"fas fa-percent col-md-2 col-sm-1"}
@@ -139,10 +142,12 @@ const ProfileView = ({
               : null}
               {user.type === "SUPERADMIN"? 
               <>
-                <ProfileButton
-                  text={"Mis datos personales"}
-                  icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
-                />
+                <Link to = "/profile/info">
+                  <ProfileButton
+                    text={"Mis datos personales"}
+                    icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
+                  />
+                </Link>
                 <ProfileButton
                   text={"Empresas"}
                   icon_left={"fas fa-building col-md-2 col-sm-1"}
@@ -166,6 +171,7 @@ const ProfileView = ({
         </div>
         <Switch>
           <Route path="/profile/info" component={InfoUser}/>
+          <Route path="/profile/payments" component={InfoCards}/>
         </Switch>
       </div>
     </div>

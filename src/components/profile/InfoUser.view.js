@@ -48,6 +48,7 @@ const InfoUserView = ({
                               name="firstName"
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                              placeholder=" "
                               required
                             />
                             <span class="input__label">
@@ -62,6 +63,7 @@ const InfoUserView = ({
                               name="company.name"
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                              placeholder=" "
                               required
                             />
                             <span class="input__label">
@@ -81,6 +83,7 @@ const InfoUserView = ({
                               name="lastName"
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                              placeholder=" "
                               required
                             />
                             <span class="input__label">
@@ -95,6 +98,7 @@ const InfoUserView = ({
                               name="company.website"
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                              placeholder=" "
                               required
                             />
                             <span class="input__label">
@@ -111,6 +115,7 @@ const InfoUserView = ({
                             name={user.type !== "ADMIN" ? "telephone" : "company.phone"}
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                            placeholder=" "
                             required
                           />
                           <span class="input__label">
@@ -126,6 +131,7 @@ const InfoUserView = ({
                             name={user.type !== "ADMIN" ? "email" : "company.email"}
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                            placeholder=" "
                             required
                           />
                           <span class="input__label">
@@ -144,6 +150,7 @@ const InfoUserView = ({
                             name={user.type !== "ADMIN" ? "street" : "company.street"}
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                            placeholder=" "
                             required
                           />
                           <span class="input__label">
@@ -159,6 +166,7 @@ const InfoUserView = ({
                             name={user.type !== "ADMIN" ? "cologn" : "company.cologn"}
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                            placeholder=" "
                             required
                           />
                           <span class="input__label">
@@ -174,6 +182,7 @@ const InfoUserView = ({
                             name={user.type !== "ADMIN" ? "cp" : "company.cp"}
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                            placeholder=" "
                             required
                           />
                           <span class="input__label">
@@ -188,6 +197,7 @@ const InfoUserView = ({
                             name={user.type !== "ADMIN" ? "city" : "company.city"}
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                            placeholder=" "
                             required
                           />
                           <span class="input__label">
@@ -263,6 +273,7 @@ const InfoUserView = ({
                               name={user.type !== "ADMIN" ? "municipality" : "company.municipality"}
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                              placeholder=" "
                               required
                             />
                             <span class="input__label">
@@ -281,6 +292,7 @@ const InfoUserView = ({
                             disabled
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                            placeholder=" "
                             required
                           />
                           <span class="input__label">

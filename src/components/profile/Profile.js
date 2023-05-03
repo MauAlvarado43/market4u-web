@@ -6,8 +6,6 @@ import { Loading } from "seed/helpers";
 
 function Profile() {
 
-  const [profileImg, setProfileImg] = useState("");
-
   const reqUsers = useQuery(
     `{
       users {
@@ -27,15 +25,6 @@ function Profile() {
     "id = " + sessionStorage.getItem('id')
   );
 
-  const handleImgChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setProfileImg(reader.result);
-    };
-  };
-
   if(reqUsers.loading) return <Loading/>;
   if(reqUsers.error) return "Error";
 
@@ -43,8 +32,6 @@ function Profile() {
 
   return <View 
           users={users}
-          profileImg={profileImg}
-          handleImgChange={handleImgChange}
         />;
 }
 

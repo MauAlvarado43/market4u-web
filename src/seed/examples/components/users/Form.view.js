@@ -100,7 +100,7 @@ const UserFormView = ({ user= {}, companies= [], onSubmit, error }) =>
               <option value="CAMPECHE">CAMPECHE</option>
               <option value="COAHUILA">COAHUILA</option>
               <option value="COLIMA">COLIMA</option>
-              <option value="CHIAPAS">Chiapas</option>
+              <option value="CHIAPAS">CHIAPAS</option>
               <option value="CHIHUAHUA">CHIHUAHUA</option>
               <option value="DURANGO">DURANGO</option>
               <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>

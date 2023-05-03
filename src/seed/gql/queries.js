@@ -420,6 +420,7 @@ export const PAYMENT = `
     expireDate
     type
     address
+    bank
     user {
       id
     }
@@ -434,6 +435,7 @@ mutation Set(
   $expireDate: String,
   $type: String,
   $address: String,
+  $bank: String,
   $user: Int,
 )
 {
@@ -444,6 +446,7 @@ mutation Set(
     type: $type,
     user: $user,
     address: $address,
+    bank: $bank,
   ) {
     payment {
       id
@@ -451,6 +454,7 @@ mutation Set(
       expireDate
       type
       address
+      bank
       user {
         id
       }
@@ -465,6 +469,7 @@ mutation Save(
   $expireDate: String!,
   $type: String!,
   $address: String!,
+  $bank: String!,
   $user: Int!,
 )
 {
@@ -474,6 +479,7 @@ mutation Save(
     type: $type,
     user: $user,
     address: $address,
+    bank: $bank,
   ) {
     payment {
       id

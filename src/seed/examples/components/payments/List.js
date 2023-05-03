@@ -22,6 +22,7 @@ function PaymentList() {
         expireDate
         type
         address
+        bank
         createdAt
         user { }
       }
