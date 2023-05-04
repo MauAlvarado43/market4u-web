@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import View from "components/profile/Profile.view";
 import { useQuery } from "seed/gql";
@@ -25,14 +25,14 @@ function Profile() {
     "id = " + sessionStorage.getItem('id')
   );
 
-  if(reqUsers.loading) return <Loading/>;
-  if(reqUsers.error) return "Error";
+  if (reqUsers.loading) return <Loading />;
+  if (reqUsers.error) return "Error";
 
   const { users } = reqUsers.data;
 
-  return <View 
-          users={users}
-        />;
+  return <View
+    users={users}
+  />;
 }
 
 Profile.propTypes = {

@@ -14,7 +14,7 @@ const SaleFormView = ({ sale= {}, users= [], onSubmit, error }) =>
 
     {/* Header */}
     <div class="card-header">
-      <h3 class="card-header-title">Sales</h3>
+      <h3 class="card-header-title">Sale</h3>
     </div>
 
     {/* Body */}
