@@ -1,279 +1,41 @@
 {
+  "platform": "reactjs",
   "models": [
     {
+      "name": "cart",
       "attrs": [
         {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
           "name": "buyer",
-          "type": "user"
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
         },
         {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
           "name": "payment",
-          "type": "payment"
+          "type": "payment",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
         },
         {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "is_fk": true,
           "name": "shippings",
           "type": "shipping[]",
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
           "write": false
         }
-      ],
-      "name": "cart"
+      ]
     },
     {
-      "attrs": [
-        {
-          "length": "100",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "is_fk": true,
-          "name": "products",
-          "type": "product[]",
-          "write": false
-        }
-      ],
-      "name": "category"
-    },
-    {
-      "attrs": [
-        {
-          "length": "100",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "length": "100",
-          "name": "common_name",
-          "type": "string"
-        },
-        {
-          "length": "20",
-          "name": "rfc",
-          "type": "string"
-        },
-        {
-          "length": "100",
-          "name": "address",
-          "type": "string"
-        },
-        {
-          "length": "20",
-          "name": "phone",
-          "type": "string"
-        },
-        {
-          "length": "100",
-          "name": "email",
-          "type": "string"
-        },
-        {
-          "default": "false",
-          "name": "active",
-          "type": "boolean"
-        },
-        {
-          "name": "photo",
-          "type": "file"
-        },
-        {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "is_fk": true,
-          "name": "users",
-          "type": "user[]",
-          "write": false
-        }
-      ],
-      "name": "company"
-    },
-    {
-      "attrs": [
-        {
-          "name": "content",
-          "type": "text"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "sender",
-          "type": "user"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "target",
-          "type": "user"
-        }
-      ],
-      "name": "message"
-    },
-    {
-      "attrs": [
-        {
-          "length": "100",
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "name": "description",
-          "type": "text"
-        },
-        {
-          "name": "rate",
-          "type": "int"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "product",
-          "type": "product"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "user",
-          "type": "user"
-        }
-      ],
-      "name": "opinion"
-    },
-    {
-      "attrs": [
-        {
-          "length": "100",
-          "name": "card_number",
-          "type": "string"
-        },
-        {
-          "length": "10",
-          "name": "expire_date",
-          "type": "string"
-        },
-        {
-          "name": "type",
-          "options": [
-            "DEBIT",
-            "CREDIT"
-          ],
-          "type": "enum"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "user",
-          "type": "user"
-        },
-        {
-          "length": "200",
-          "name": "address",
-          "type": "string"
-        }
-      ],
-      "name": "payment"
-    },
-    {
-      "attrs": [
-        {
-          "length": "100",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "length": "200",
-          "name": "short_description",
-          "type": "string"
-        },
-        {
-          "name": "description",
-          "type": "text"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "user",
-          "type": "user"
-        },
-        {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "is_fk": true,
-          "name": "opinions",
-          "type": "opinion[]",
-          "write": false
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "sales",
-          "type": "sale"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "category",
-          "type": "category"
-        },
-        {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "is_fk": true,
-          "name": "variants",
-          "type": "variant[]",
-          "write": false
-        }
-      ],
-      "name": "product"
-    },
-    {
+      "name": "purchase",
       "attrs": [
         {
           "name": "amount",
@@ -288,234 +50,479 @@
           "type": "json"
         },
         {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
           "name": "shipping",
-          "type": "shipping"
+          "type": "shipping",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
         }
-      ],
-      "name": "purchase"
+      ]
     },
     {
+      "name": "user",
       "attrs": [
         {
-          "length": "100",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "name": "disscount",
-          "type": "float"
-        },
-        {
-          "default": "now",
-          "name": "start_date",
-          "type": "date"
-        },
-        {
-          "default": "now",
-          "name": "end_date",
-          "type": "date"
-        },
-        {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "is_fk": true,
-          "name": "product",
-          "type": "product[]",
-          "write": false
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "user",
-          "type": "user"
-        },
-        {
-          "name": "banner",
-          "type": "file"
-        }
-      ],
-      "name": "sale"
-    },
-    {
-      "attrs": [
-        {
-          "name": "info",
-          "type": "text"
-        },
-        {
-          "length": "200",
-          "name": "folio",
-          "type": "string"
-        },
-        {
-          "length": "200",
           "name": "address",
-          "type": "string"
+          "type": "string",
+          "length": "200"
         },
         {
-          "name": "status",
-          "options": [
-            "CREATED",
-            "SENT",
-            "COMPLETED"
-          ],
-          "type": "enum"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "seller",
-          "type": "user"
-        },
-        {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
-          "name": "cart",
-          "type": "cart"
-        }
-      ],
-      "name": "shipping"
-    },
-    {
-      "attrs": [
-        {
-          "length": "200",
-          "name": "address",
-          "type": "string"
-        },
-        {
-          "default": "false",
           "name": "active",
-          "type": "boolean"
+          "type": "boolean",
+          "default": "false"
         },
         {
           "name": "type",
+          "type": "enum",
           "options": [
             "SUPERADMIN",
             "ADMIN",
             "SELLER",
             "NORMAL"
-          ],
-          "type": "enum"
+          ]
         },
         {
           "name": "photo",
           "type": "file"
         },
         {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "empty": true,
-          "is_fk": true,
           "name": "company",
-          "type": "company"
+          "type": "company",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          },
+          "empty": true
         },
         {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "empty": true,
-          "is_fk": true,
           "name": "carts",
           "type": "cart[]",
-          "write": false
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false,
+          "empty": true
         },
         {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "empty": true,
-          "is_fk": true,
           "name": "products",
           "type": "product[]",
-          "write": false
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false,
+          "empty": true
         },
         {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "empty": true,
-          "is_fk": true,
           "name": "whishlist",
           "type": "product[]",
-          "write": false
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false,
+          "empty": true
         },
         {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "empty": true,
-          "is_fk": true,
           "name": "sales",
           "type": "sale[]",
-          "write": false
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false,
+          "empty": true
         },
         {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
-          "empty": true,
-          "is_fk": true,
           "name": "shippings",
           "type": "shipping[]",
-          "write": false
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false,
+          "empty": true
         },
         {
-          "length": "40",
           "name": "token",
-          "type": "string"
+          "type": "string",
+          "length": "40"
         },
         {
-          "default": "false",
           "name": "token_verified",
-          "type": "boolean"
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "code",
+          "type": "int",
+          "empty": true
         }
-      ],
-      "name": "user"
+      ]
     },
     {
+      "name": "company",
       "attrs": [
         {
-          "card": {
-            "has": "1",
-            "ref": "0..*"
-          },
+          "name": "name",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "common_name",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "rfc",
+          "type": "string",
+          "length": "20"
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "phone",
+          "type": "string",
+          "length": "20"
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "photo",
+          "type": "file"
+        },
+        {
+          "name": "users",
+          "type": "user[]",
           "is_fk": true,
-          "name": "options",
-          "type": "variantoption[]",
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false
+        }
+      ]
+    },
+    {
+      "name": "product",
+      "attrs": [
+        {
+          "name": "name",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "short_description",
+          "type": "string",
+          "length": "200"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "user",
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "opinions",
+          "type": "opinion[]",
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
           "write": false
         },
         {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
+          "name": "sales",
+          "type": "sale",
           "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "category",
+          "type": "category",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "variants",
+          "type": "variant[]",
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false
+        }
+      ]
+    },
+    {
+      "name": "opinion",
+      "attrs": [
+        {
+          "name": "title",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "rate",
+          "type": "int"
+        },
+        {
           "name": "product",
-          "type": "product"
+          "type": "product",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "user",
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        }
+      ]
+    },
+    {
+      "name": "sale",
+      "attrs": [
+        {
+          "name": "name",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "disscount",
+          "type": "float"
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "default": "now"
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "default": "now"
+        },
+        {
+          "name": "product",
+          "type": "product[]",
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false
+        },
+        {
+          "name": "user",
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "banner",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "attrs": [
+        {
+          "name": "name",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "products",
+          "type": "product[]",
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false
+        }
+      ]
+    },
+    {
+      "name": "payment",
+      "attrs": [
+        {
+          "name": "card_number",
+          "type": "string",
+          "length": "100"
+        },
+        {
+          "name": "expire_date",
+          "type": "string",
+          "length": "10"
+        },
+        {
+          "name": "type",
+          "type": "enum",
+          "options": [
+            "DEBIT",
+            "CREDIT"
+          ]
+        },
+        {
+          "name": "user",
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "length": "200"
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "attrs": [
+        {
+          "name": "content",
+          "type": "text"
+        },
+        {
+          "name": "sender",
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "target",
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        }
+      ]
+    },
+    {
+      "name": "shipping",
+      "attrs": [
+        {
+          "name": "info",
+          "type": "text"
+        },
+        {
+          "name": "folio",
+          "type": "string",
+          "length": "200"
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "length": "200"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "options": [
+            "CREATED",
+            "SENT",
+            "COMPLETED"
+          ]
+        },
+        {
+          "name": "seller",
+          "type": "user",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        },
+        {
+          "name": "cart",
+          "type": "cart",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
+        }
+      ]
+    },
+    {
+      "name": "variant",
+      "attrs": [
+        {
+          "name": "options",
+          "type": "variantoption[]",
+          "is_fk": true,
+          "card": {
+            "ref": "0..*",
+            "has": "1"
+          },
+          "write": false
+        },
+        {
+          "name": "product",
+          "type": "product",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
         },
         {
           "name": "price",
@@ -534,32 +541,31 @@
           "name": "shipment",
           "type": "float"
         }
-      ],
-      "name": "variant"
+      ]
     },
     {
+      "name": "variantoption",
       "attrs": [
         {
-          "length": "100",
           "name": "title",
-          "type": "string"
+          "type": "string",
+          "length": "100"
         },
         {
-          "length": "100",
           "name": "value",
-          "type": "string"
+          "type": "string",
+          "length": "100"
         },
         {
-          "card": {
-            "has": "0..*",
-            "ref": "1"
-          },
-          "is_fk": true,
           "name": "variant",
-          "type": "variant"
+          "type": "variant",
+          "is_fk": true,
+          "card": {
+            "ref": "1",
+            "has": "0..*"
+          }
         }
-      ],
-      "name": "variantoption"
+      ]
     }
   ]
 }

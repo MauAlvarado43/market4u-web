@@ -4,156 +4,129 @@ import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import { ScriptTag } from "seed/helpers";
 
-const LoginView = ({ passwordField, onSubmit, onClickShowPassword, error }) => (
-  <main id="content" role="main" class="main">
-    <div
-      class="position-fixed top-0 end-0 start-0 bg-img-start"
-      style={{
-        height: "31rem",
-        backgroundImage: "url(/theme/svg/components/abstract-bg-4.svg)",
-      }}
-    >
-      <div class="shape shape-bottom zi-1">
-        <svg
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          viewBox="0 0 1921 273"
-        >
-          <polygon fill="#f2f4f5" points="0,273 1921,273 1921,0 " />
-        </svg>
-      </div>
-    </div>
+const LoginView = ({ passwordField, onClickShowPassword, onSubmit, error }) => (
+  <div style={{ height: "100vh", overflow: "auto" }}>
+    <main id="content" role="main" class="main pl-0">
+      <div class="container py-5 py-sm-7">
 
-    {/* Content */}
-    <div class="container py-5 py-sm-7">
-      <a class="d-flex justify-content-center mb-5" href="/">
-        <img
-          class="zi-2"
-          src="/theme/svg/logo.svg"
-          alt="Logo"
-          style={{ width: "12.7rem" }}
-        />
-      </a>
+        <div className="d-flex justify-content-center mb-5">
+          <img className="z-index-2" src="https://i.ibb.co/Rb2DkqH/Logo.jpg" alt="Logo" style={{ width: "10rem" }} />
+        </div>
 
-      <div class="mx-auto" style={{ maxWidth: "30rem", overflow: "hidden" }}>
-        <div class="card card-lg mb-5 animate__animated animate__fadeIn animate__fast">
-          <div class="card-body">
-            <Formik initialValues={{}} onSubmit={onSubmit}>
-              {() => (
-                <Form>
-                  <div class="text-center">
-                    <div class="mb-5">
-                      <h1 class="display-5">Iniciar sesión</h1>
-                      <p>
-                        ¿Todavía no tienes una cuenta?{" "}
-                        <Link to="/signup" class="link d-inline-block fw-normal">
-                          Regístrate
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Email */}
-                  <div class="mb-4">
-                    <label class="form-label" for="formEmail">
-                      Correo electrónico
-                    </label>
-                    <Field
-                      type="email"
-                      name="email"
-                      id="formEmail"
-                      class="form-control form-control-lg"
-                      tabindex="1"
-                      placeholder="email@address.com"
-                      required
-                      autofocus="1"
-                    />
-                  </div>
-
-                  {/* Password */}
-                  <div class="mb-4">
-                    <label
-                      class="form-label w-100"
-                      for="formPassword"
-                    >
-                      <span class="d-flex justify-content-between align-items-center">
-                        <span>Contraseña</span>
-                        <Link
-                          to="/recover_password"
-                          class="form-label-link fw-normal mb-0"
-                        >
-                          ¿Olvídaste tu contraseña?
-                        </Link>
-                      </span>
-                    </label>
-
-                    <div
-                      class="input-group input-group-merge"
-                      data-hs-validation-validate-class
-                    >
-                      <Field
-                        type={passwordField ? "password" : "text"}
-                        name="password"
-                        id="formPassword"
-                        placeholder="●●●●●"
-                        tabindex="2"
-                        class="js-toggle-password form-control form-control-lg"
-                        required
-                      />
-                      <div class="input-group-append">
-                        <a
-                          class="input-group-text input-group-append"
-                          onClick={onClickShowPassword}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <i id="changePassIcon" class={`bi-eye${!passwordField ? "-slash" : ""}`}></i>
-                        </a>
+        <div class="row justify-content-center">
+          <div class="col-md-7 col-lg-5">
+            <div class="card card-lg mb-5">
+              <div class="card-body" style={{border: "0.2rem solid #519FA5", borderRadius: "10px"}}>
+                <Formik
+                  initialValues={{}}
+                  onSubmit={onSubmit}>
+                  {() =>
+                    <Form>
+                      <div className="text-center mb-5">
+                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Iniciar sesión</h1>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Remember me */}
-                  <div class="form-check mb-4">
-                    <Field
-                      type="checkbox"
-                      name="rememberMe"
-                      class="form-check-input"
-                    />
-                    <label class="form-check-label" for="termsCheckbox">
-                      Recuérdame
-                    </label>
-                  </div>
+                      {/* Username */}
+                      <div class="form-group">
+                        <label className="input">
+                          <Field type="text" name="email" className="form-control input__field" placeholder=" " required />
+                          <span class="input__label">
+                            Correo electrónico <span className='text-danger fw-bold'>*</span>
+                          </span>
+                        </label>
+                      </div>
 
-                  {error ? (
-                    <div class="alert alert-soft-danger" role="alert">
-                      {error}
-                    </div>
-                  ) : null}
+                      {/* Password */}
+                      <div class="form-group">
+                        <div class="input-group input-group-merge">
+                          <label className="input">
+                            <Field
+                              id="pass"
+                              name="password"
+                              type={passwordField ? "text" : "password"}
+                              className="form-control input__field"
+                              placeholder=" "
+                              required
+                            >
+                            </Field>
+                            <span class="input__label">
+                              Contraseña
+                              <span className="text-danger fw-bold">*</span>
+                            </span>
+                          </label>
+                          <div class="input-group-append">
+                            <a
+                              type="button"
+                              onClick={onClickShowPassword}
+                              className="btn"
+                            >
+                              <i
+                                className={
+                                  passwordField
+                                    ? "fas fa-eye"
+                                    : "fas fa-eye-slash"
+                                }
+                              />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
 
-                  <div class="d-grid">
-                    <button type="submit"
-                      class="btn btn-primary btn-lg"
-                      tabindex="3">
-                      Iniciar sesión
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
+                      {error ?
+                        <div class="alert alert-soft-danger" role="alert">
+                          {error}
+                        </div> : null}
+
+                      <button type="submit" style={{ backgroundColor: '#FC4B08', color: "white" }} class="btn btn-lg btn-block border-0">
+                        <b>Iniciar sesión</b>
+                      </button>
+                    </Form>}
+                </Formik>
+
+                <div className="text-right mb-5">
+                  <span className="font-size-1 d-flex flex-row-reverse">
+                    <b> ¿Tienes problemas para iniciar sesión?
+                      <br></br>
+                      <a href="/recover_password" id="recover_password" >Recuperar contraseña</a>
+                    </b>
+                  </span>
+                </div>
+
+                <div className="text-left">
+                  <span className="font-size-1">
+                    Al continuar, aceptas las <a href="/" id="ConditionsPDF" >Condiciones de uso</a> y el <a href="/" id="PrivacyPDF" >Aviso de privacidad</a> de Market4U.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mb-3">
+              <span className="font-size-1 text-muted">¿No tienes una cuenta?</span>
+            </div>
+
+            <Link to="/signup" class="btn btn-block btn-primary border-0" style={{ backgroundColor: '#519FA5' }} >
+              <b>Crear cuenta</b>
+            </Link>
+
           </div>
         </div>
       </div>
-    </div>
 
-    <ScriptTag
-      content={`
-      new HSTogglePassword('.js-toggle-password')
-    `}
-    />
-  </main>
+      <footer>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="text-center">
+              <small className="d-block">&copy; Market4U, 2023</small>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
 );
+
+
 
 LoginView.propTypes = {
   onSubmit: PropTypes.func.isRequired,

@@ -44,15 +44,19 @@ function VerifyEmail(props) {
   });
 
   useEffect(() => {
-    callVerify({ token: token });
+    // callVerify({ token: token });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (reqVerify.loading) return <Loading />;
+
+  const onSubmit = (values) => {
+    callVerify({ token: token, code: values.code });
+  }
   const onClickGenerate = () => callGenerate({ token: token });
 
   return (
-    <View status={status} message={message} onClickGenerate={onClickGenerate} />
+    <View status={status} message={message} onClickGenerate={onClickGenerate} onSubmit={onSubmit}/>
   );
 }
 

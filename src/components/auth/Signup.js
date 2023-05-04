@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import View from "components/auth/Signup.view";
 import { usePost } from "seed/api";
 
-function Signup() {
+function Signup({ history }) {
   const [status, setStatus] = useState(null);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [passwordField, setPasswordField] = useState(true);
-  const [confirmPasswordField, setConfirmPasswordField] = useState(true);
+  const [passwordField, setPasswordField] = useState(false);
+  const [confirmPasswordField, setConfirmPasswordField] = useState(false);
 
-  const [callSignup, reqSignup] = usePost("/users/registry", {
-    onCompleted: () => {
-      setLoading(false);
-      setStatus("SUCCESS");
-      setMessage("Registro exitoso");
+  const [callSignup, reqSignup] = usePost("/users/signup", {
+    onCompleted: (data) => {
+
+      window.location.href = `/verify_email/${data.token}`
+    
     },
     onError: (data) => {
       setStatus("ERROR");
@@ -27,19 +27,19 @@ function Signup() {
           break;
       }
     },
-    includeAuth: false,
+    includeAuth: false
   });
 
   const onSubmit = (values) => {
-    const { firstName, lastName, email, password, confirmPassword } = values;
+    const { firstname, lastname, email, password, confirmPassword } = values;
     if (password != confirmPassword) {
       setStatus("ERROR");
       setMessage("Las contraseñas no coinciden, por favor revísalas");
     } else {
       setLoading(true);
       callSignup({
-        first_name: firstName,
-        last_name: lastName,
+        first_name: firstname,
+        last_name: lastname,
         email: email,
         password: password,
       });

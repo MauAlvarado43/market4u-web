@@ -6,7 +6,7 @@ import View from "components/auth/Login.view";
 function Login({ history }) {
 
   const [error, setError] = useState(null);
-  const [passwordField, setPasswordField] = useState(true);
+  const [passwordField, setPasswordField] = useState(false);
 
   const [callLogin, reqLogin] = usePost("/users/login", {
     onCompleted: (data) => {

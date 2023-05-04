@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Formik, Field, Form } from "formik";
 import { ScriptTag } from "seed/helpers";
 import { Link } from "react-router-dom";
 
@@ -7,73 +8,75 @@ const VerifyEmailView = ({
   status = "",
   message = "",
   onClickGenerate = () => { },
+  onSubmit
 }) => (
-  <main id="content" role="main" class="main">
-    <div
-      class="position-fixed top-0 end-0 start-0 bg-img-start"
-      style={{
-        height: "32rem",
-        backgroundImage: "url(/theme/svg/components/abstract-bg-4.svg)",
-      }}
-    >
-      <div class="shape shape-bottom zi-1">
-        <svg
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          viewBox="0 0 1921 273"
-        >
-          <polygon fill="#f2f4f5" points="0,273 1921,273 1921,0 " />
-        </svg>
-      </div>
-    </div>
+  <div style={{ height: "100vh", overflow: "auto" }}>
+    <main id="content" role="main" class="main pl-0">
+      <div class="container py-5 py-sm-7">
 
-    <div class="container py-5 py-sm-7">
-      <a class="d-flex justify-content-center mb-5" href="#">
-        <img
-          class="zi-2"
-          src="/theme/svg/logo.svg"
-          alt="Logo"
-          style={{ width: "12.7rem" }}
-        />
-      </a>
+        <div className="d-flex justify-content-center mb-5">
+          <img className="z-index-2" src="https://i.ibb.co/Rb2DkqH/Logo.jpg" alt="Logo" style={{ width: "8rem" }} />
+        </div>
 
-      <div class="mx-auto" style={{ maxWidth: "30rem" }}>
-        <div class="card card-lg mb-5">
-          <div class="card-body">
-            <div class="text-center">
-              <div class="mb-5">
-                <h1 class="display-5 mb-4">Verificación de correo</h1>
-                <h4 class="mb-4">{message}</h4>
-                <h5 class="mt-4">
-                  {status == "ERROR" ? (
-                    <button
-                      class="btn btn-primary btn-block"
-                      onClick={onClickGenerate}
-                    >
-                      Generar nuevo link
-                    </button>
-                  ) : null}
-                  {status == "SUCCESS" ? (
-                    <Link to="/login" class="link">
-                      Iniciar sesión
-                    </Link>
-                  ) : null}
-                </h5>
+        <div class="row justify-content-center">
+          <div class="col-md-7 col-lg-5">
+            <div class="card card-lg mb-5">
+              <div class="card-body" style={{border: "0.2rem solid #519FA5", borderRadius: "10px"}}>
+                <Formik
+                  initialValues={{}}
+                  onSubmit={onSubmit}>
+                  {() =>
+                    <Form>
+                      <div className="text-center mb-5">
+                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Verificación de Correo</h1>
+                      </div>
+
+                      <div className="text-left mb-5">
+                        <span className="font-size-1">
+                          Te has registrado de manera exitosa, pero primero debes verificar tu correo, te hemos enviado un código a tu email
+                        </span>
+                      </div>
+
+                      {/* Code */}
+                      <div class="form-group">
+                        <label className="input">
+                          <Field type="text" name="code" className="form-control input__field" placeholder=" " required />
+                          <span class="input__label">
+                            Código de verificación <span className='text-danger fw-bold'>*</span>
+                          </span>
+                        </label>
+                      </div>
+
+                      <button type="submit" style={{ backgroundColor: '#FC4B08', color: "white" }} class="btn btn-lg btn-block border-0 mb-5">
+                        <b>Crear tu cuenta de Market4U</b>
+                      </button>
+                    </Form>}
+                </Formik>
+
+                <div className="text-left">
+                  <span className="font-size-1">
+                    ¿No recibiste tu código de verificación? <a href="#" onClick={onClickGenerate}>Enviar nuevo código</a>
+                  </span>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
-    </div>
 
-    <ScriptTag
-      content={`
-      new HSTogglePassword('.js-toggle-password')
-    `}
-    />
-  </main>
+      <footer>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="text-center">
+              <small className="d-block">&copy; Market4U, 2023</small>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
 );
 VerifyEmailView.propTypes = {
   message: PropTypes.string.isRequired,

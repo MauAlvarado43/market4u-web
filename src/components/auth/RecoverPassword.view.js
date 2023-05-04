@@ -4,96 +4,68 @@ import { Formik, Field, Form } from "formik";
 import { ScriptTag } from "seed/helpers";
 
 const RecoverPasswordView = ({ onSubmit = () => { }, status, message }) => (
-  <main id="content" role="main" class="main">
-    <div
-      class="position-fixed top-0 end-0 start-0 bg-img-start"
-      style={{
-        height: "32rem",
-        backgroundImage: "url(/theme/svg/components/abstract-bg-4.svg)",
-      }}
-    >
-      <div class="shape shape-bottom zi-1">
-        <svg
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          viewBox="0 0 1921 273"
-        >
-          <polygon fill="#f2f4f5" points="0,273 1921,273 1921,0 " />
-        </svg>
-      </div>
-    </div>
+  <div style={{ height: "100vh", overflow: "auto" }}>
+    <main id="content" role="main" class="main pl-0">
+      <div class="container py-5 py-sm-7">
 
-    {/* Content */}
-    <div class="container py-5 py-sm-7">
-      <a class="d-flex justify-content-center mb-5" href="#">
-        <img
-          class="zi-2"
-          src="/theme/svg/logo.svg"
-          alt="Logo"
-          style={{ width: "12.7rem" }}
-        />
-      </a>
+        <div className="d-flex justify-content-center mb-5">
+          <img className="z-index-2" src="https://i.ibb.co/Rb2DkqH/Logo.jpg" alt="Logo" style={{ width: "8rem" }} />
+        </div>
 
-      <div class="mx-auto" style={{ maxWidth: "30rem" }}>
-        <div class="card card-lg mb-5">
-          <div class="card-body">
-            <Formik initialValues={{}} onSubmit={onSubmit}>
-              {() => (
-                <Form>
-                  <div class="text-center">
-                    <div class="mb-5">
-                      <h1 class="display-5">Recupera tu cuenta</h1>
-                    </div>
-                  </div>
+        <div class="row justify-content-center">
+          <div class="col-md-7 col-lg-5">
+            <div class="card card-lg mb-5">
+              <div class="card-body" style={{border: "0.2rem solid #519FA5", borderRadius: "10px"}}>
+                <Formik
+                  initialValues={{}}
+                  onSubmit={onSubmit}>
+                  {() =>
+                    <Form>
+                      <div className="text-center mb-5">
+                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Ayuda con la contraseña</h1>
+                      </div>
 
-                  {/* Email */}
-                  <div class="mb-4">
-                    <label class="form-label" for="formEmail">
-                      Ingresa tu correo electrónico para buscar tu cuenta
-                    </label>
-                    <Field
-                      type="email"
-                      name="email"
-                      id="formEmail"
-                      class="form-control form-control-lg"
-                      tabindex="1"
-                      placeholder="email@address.com"
-                      required
-                      autofocus="1"
-                    />
-                  </div>
+                      <div className="text-left mb-5">
+                        <span className="font-size-1">
+                          Escribe la dirección de correo electrónico asociado a tu cuenta de Market4U y te haremos llegar un link de restablecimiento 
+                        </span>
+                      </div>
 
-                  {status ? (
-                    <div
-                      class={`alert alert-soft-${status == "ERROR" ? "danger" : "success"
-                        }`}
-                      role="alert"
-                    >
-                      {message}
-                    </div>
-                  ) : null}
+                      {/* Email */}
+                      <div class="form-group mb-5">
+                        <label className="input">
+                          <Field type="text" name="email" className="form-control input__field" placeholder=" " required />
+                          <span class="input__label">
+                            Email <span className='text-danger fw-bold'>*</span>
+                          </span>
+                        </label>
+                      </div>
 
-                  <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                      Buscar cuenta
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
+                      <button type="submit" style={{ backgroundColor: '#FC4B08', color: "white" }} class="btn btn-lg btn-block border-0 mb-5">
+                        <b>Continuar</b>
+                      </button>
+                    </Form>}
+                </Formik>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
 
-    <ScriptTag
-      content={`
-    new HSTogglePassword('.js-toggle-password')
-  `}
-    />
-  </main>
+      <footer>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="text-center">
+              <small className="d-block">&copy; Market4U, 2023</small>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
 );
 
 RecoverPasswordView.propTypes = {

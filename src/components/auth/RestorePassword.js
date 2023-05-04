@@ -4,9 +4,15 @@ import View from "components/auth/RestorePassword.view";
 import { usePost } from "seed/api";
 
 function RestorePassword(props) {
-  const { token = null } = props.match.params;
+  const { token = "" } = props.match.params;
   const [status, setStatus] = useState(null);
   const [message, setMessage] = useState(null);
+
+  const [passwordField, setPasswordField] = useState(false);
+  const [confirmPasswordField, setConfirmPasswordField] = useState(false);
+
+  const onClickShowPassword = () => setPasswordField(!passwordField);
+  const onClickShowConfirmPassword = () => setConfirmPasswordField(!confirmPasswordField);
 
   const [callRestore, reqRestore] = usePost("/users/restore_password", {
     onCompleted: () => {
@@ -44,7 +50,11 @@ function RestorePassword(props) {
     }
   };
 
-  return <View onSubmit={onSubmit} status={status} message={message} />;
+  return <View onSubmit={onSubmit} passwordField={passwordField}
+    confirmPasswordField={confirmPasswordField}
+    onClickShowPassword={onClickShowPassword}
+    onClickShowConfirmPassword={onClickShowConfirmPassword}
+    status={status} message={message} />;
 }
 
 RestorePassword.propTypes = {
