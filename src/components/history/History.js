@@ -1,9 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-import View from "components/history/History.view";
+import HistoryView from "components/history/History.view";
+import { useQuery } from "seed/gql";
+
+// const qCart = useQuery(`{ 
+//   cart {
+//       buyer {}
+//       payment {}
+//       shippings {}
+//   } 
+// }`, "buyer.id=" + userId);
+
+
+// query {
+//   user (id: 10000) {
+//     address
+//     active
+//     type
+//     company {
+//       id
+//     }
+//     products {
+//       id
+//     }
+//   }
+// }
+
+
 
 function History() {
-  return <View />;
+  return <HistoryView 
+    // cart = {cart}
+  />;
 }
 
 History.propTypes = {};
