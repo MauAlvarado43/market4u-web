@@ -14,7 +14,7 @@ import SaleList from "seed/examples/components/sales/List";
 import SaleFormSave from "seed/examples/components/sales/FormSave";
 import SaleFormSet from "seed/examples/components/sales/FormSet";
 import { ModalRoute } from "seed/helpers";
-
+ 
 const SalesView = () =>
   <BrowserRouter basename="/examples/sales">
     <div class="content container-fluid">
