@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+input,
+button,
+select {
+  border: none;
+  outline: none;
+}
+
+
+/*Conponente de compras */
+
+.center {
+  max-width: 1280px;
+  margin-inline: auto                                 ;
+}
+
+.market {
+  height: 70px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bag {
+  font-size: 35px;
+  color: #000000;
+  margin-right: 18px;
+}
+
+.title-purchase h1 {
+  display: inline-block;
+}
+
+.search-total {
+  display: flex;
+  gap: 10px;
+}
+
+.search {
+  border: 1px solid rgb(166, 166, 166);
+  width: 100%;
+  height: 30px;
+  padding: 0 7px;
+}
+
+.search input,
+.option-total select  {
+  height: 100%;
+}
+
+.option-total select {
+  border: 1px solid rgb(166, 166, 166);
+  padding: 0 5px;
+}
+
+.icon-search {
+  display: inline-block;
+  color: #a6a6a6;
+}
+
+/* Componente card */
+
+.content-card {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #F1F1F1;
+  box-shadow: 0 1px 5px #000000;
+  border-radius: 10px;
+  display: grid; 
+  grid-template-columns: auto 320px 1fr 180px;
+  gap: 20px;
+}
+
+.content-image {
+  position: relative;
+}
+
+.card-image {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.card-image img {
+  width: 100%
+}
+
+.count {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+  background-color: #519ea4;
+  color: #fff;
+  padding: 2px;
+
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-description span {
+  font-size: 13px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.card-description span:nth-child(2){
+  margin-right: 10px;
+} 
+
+.background-span span {
+  padding: 3px;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.prince-bold::before {
+  content: "$";
+}
+
+.prince-bold::before {
+  content: "$";
+}
+
+/* Tablas */
+
+.purchase-data,
+.shipping-data {
+  align-self: center;
+  padding: 20px;
+  background-color: #DEDEDE;
+  border-radius: 30px;
+  box-shadow: 0 0 5px #000000;
+}
+
+.purchase-data h2,
+.shipping-data h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+td, tr {
+  padding: 7px 0;
+  
+}
+
+td:last-child {
+  text-align: end;
+  color: #000000;
+}
+
+/* Botones */
+
+.btn-edit-delete {
+  align-self: center;
+  width: 100%;
+}
+
+.btn-edit-delete button {
+  display: block;
+  width: 90%;
+  background-color: #519EA4;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  padding: 9px 0;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn-edit-delete button:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.115);
+}
+
+.btn-edit-delete button:first-child {
+  background-color: #FC4B08;
+}
+
+.icon-btn {
+  margin-right: 10px;
+  font-size: 18px;
+}

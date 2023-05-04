@@ -1,0 +1,130 @@
+/* History container */
+.history-container {
+    display: grid;
+    grid-template-columns: [line1] 25% [line2] 25% [line3] 25% [line-4] 25% ;
+    grid-template-rows: [row1] auto [row2] auto;
+    padding: 2%;
+}
+
+.history-title {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: inline-flex;
+}
+
+.history-title h1 {
+    padding-right: 3%;
+}
+
+.history-search {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.history-filter {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.history-shipping {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: [lineShip1] 25% [lineShip2] 25% [lineShip3] 25% [lineShip4] 25%;
+    grid-template-rows: [rowShip1] auto;
+    padding: 1%;
+    border-radius: 20px;
+    background-color: #F1F1F1;
+}
+
+.history-shipping div {
+    margin: 2%;
+    padding: 2%;
+}
+
+.history-shipping-products {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.history-shipping-order {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-radius: 10px;
+    background-color: #DEDEDE;
+}
+
+.history-shipping-shipment {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-radius: 10px;
+    background-color: #DEDEDE;
+}
+
+.history-shipping-buttons {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.history-shipping-buttons button {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: var(--bg-color-shop);
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    object-fit: contain;
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  .history-shipping-buttons button:hover,
+  .history-shipping-buttons button:focus {
+    background-color: var(--bg-color-hover);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .history-shipping-buttons button:hover {
+    transform: translateY(-1px);
+  }
+  
+  .history-shipping-buttons button:active {
+    background-color: var(--bg-color-active);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
