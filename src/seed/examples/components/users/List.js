@@ -32,6 +32,9 @@ function UserList() {
         state
         cologn
         telephone
+        token
+        tokenVerified
+        code
         createdAt
         photo { }
         company { }

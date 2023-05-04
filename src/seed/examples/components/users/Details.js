@@ -30,6 +30,9 @@ function UserDetails({ userId, onCompleted = () => null, onError = () => null })
       state
       cologn
       telephone
+      token
+      tokenVerified
+      code
       createdAt
       photo { }
       company { }

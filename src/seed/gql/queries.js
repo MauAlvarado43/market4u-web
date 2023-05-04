@@ -864,6 +864,9 @@ export const USER = `
     state
     cologn
     telephone
+    token
+    tokenVerified
+    code
     photo {
       id
     }
@@ -893,6 +896,9 @@ mutation Set(
   $state: String,
   $cologn: String,
   $telephone: String,
+  $token: String,
+  $tokenVerified: Boolean,
+  $code: Int,
   $company: Int,
 )
 {
@@ -915,6 +921,9 @@ mutation Set(
     state: $state,
     cologn: $cologn,
     telephone: $telephone,
+    token: $token,
+    tokenVerified: $tokenVerified,
+    code: $code,
   ) {
     user {
       id
@@ -932,6 +941,9 @@ mutation Set(
       state
       cologn
       telephone
+      token
+      tokenVerified
+      code
       photo {
         id
       }
@@ -961,6 +973,9 @@ mutation Save(
   $state: String!,
   $cologn: String!,
   $telephone: String!,
+  $token: String!,
+  $tokenVerified: Boolean!,
+  $code: Int!,
   $company: Int,
 )
 {
@@ -982,6 +997,9 @@ mutation Save(
     state: $state,
     cologn: $cologn,
     telephone: $telephone,
+    token: $token,
+    tokenVerified: $tokenVerified,
+    code: $code,
   ) {
     user {
       id

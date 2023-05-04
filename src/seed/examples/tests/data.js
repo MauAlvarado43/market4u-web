@@ -359,6 +359,9 @@ const GQL_USER_ = {
     whishlist: [ { id: 1} ],
     sales: [ { id: 1} ],
     shippings: [ { id: 1} ],
+    token: "",
+    tokenVerified: false,
+    code: 128,
 }
 export const GQL_USER = {
     user: GQL_USER_
@@ -399,6 +402,9 @@ export const API_USER = {
     whishlist_ids: [1],
     sale_ids: [1],
     shipping_ids: [1],
+    token: "",
+    token_verified: false,
+    code: 128,
 }
 export const API_USERS = [API_USER]
 

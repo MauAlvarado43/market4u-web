@@ -140,6 +140,24 @@ const UserFormView = ({ user= {}, companies= [], onSubmit, error }) =>
             <Field type="text" name="telephone"
               class="form-control" />
             </div>
+            {/* Token */}
+            <div class="form-group">
+            <label class="input-label">Token</label>
+            <Field type="text" name="token"
+              class="form-control" />
+            </div>
+            {/* Token verified */}
+            <div class="form-group">
+            <Field type="checkbox" name="tokenVerified"
+              class="d-inline mr-2" />
+            <label class="input-label d-inline">Token verified</label>
+            </div>
+            {/* Code */}
+            <div class="form-group">
+            <label class="input-label">Code</label>
+            <Field type="number" name="code"
+              class="form-control" />
+            </div>
             </div>
             {error ? <div class="alert alert-soft-danger">{error}</div> : null}
             <button type="submit" class="btn btn-block btn-primary">Send</button>
