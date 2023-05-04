@@ -129,10 +129,16 @@ export const COMPANY = `
     name
     commonName
     rfc
-    address
+    cp
     phone
     email
     active
+    municipality
+    state
+    cologn
+    website
+    street
+    city
     photo {
       id
     }
@@ -146,11 +152,17 @@ mutation Set(
   $name: String,
   $commonName: String,
   $rfc: String,
-  $address: String,
+  $cp: Int,
   $phone: String,
   $email: String,
   $active: Boolean,
   $photo: Int,
+  $municipality: String,
+  $state: String,
+  $cologn: String,
+  $website: String,
+  $street: String,
+  $city: String,
 )
 {
   setCompany(
@@ -158,21 +170,33 @@ mutation Set(
     name: $name,
     commonName: $commonName,
     rfc: $rfc,
-    address: $address,
+    cp: $cp,
     phone: $phone,
     email: $email,
     active: $active,
     photo: $photo,
+    municipality: $municipality,
+    state: $state,
+    cologn: $cologn,
+    website: $website,
+    street: $street,
+    city: $city,
   ) {
     company {
       id
       name
       commonName
       rfc
-      address
+      cp
       phone
       email
       active
+      municipality
+      state
+      cologn
+      website
+      street
+      city
       photo {
         id
       }
@@ -186,22 +210,34 @@ mutation Save(
   $name: String!,
   $commonName: String!,
   $rfc: String!,
-  $address: String!,
+  $cp: Int!,
   $phone: String!,
   $email: String!,
   $active: Boolean!,
   $photo: Int!,
+  $municipality: String!,
+  $state: String!,
+  $cologn: String!,
+  $website: String!,
+  $street: String!,
+  $city: String!,
 )
 {
   saveCompany(
     name: $name,
     commonName: $commonName,
     rfc: $rfc,
-    address: $address,
+    cp: $cp,
     phone: $phone,
     email: $email,
     active: $active,
     photo: $photo,
+    municipality: $municipality,
+    state: $state,
+    cologn: $cologn,
+    website: $website,
+    street: $street,
+    city: $city,
   ) {
     company {
       id
@@ -384,6 +420,7 @@ export const PAYMENT = `
     expireDate
     type
     address
+    bank
     user {
       id
     }
@@ -398,6 +435,7 @@ mutation Set(
   $expireDate: String,
   $type: String,
   $address: String,
+  $bank: String,
   $user: Int,
 )
 {
@@ -408,6 +446,7 @@ mutation Set(
     type: $type,
     user: $user,
     address: $address,
+    bank: $bank,
   ) {
     payment {
       id
@@ -415,6 +454,7 @@ mutation Set(
       expireDate
       type
       address
+      bank
       user {
         id
       }
@@ -429,6 +469,7 @@ mutation Save(
   $expireDate: String!,
   $type: String!,
   $address: String!,
+  $bank: String!,
   $user: Int!,
 )
 {
@@ -438,6 +479,7 @@ mutation Save(
     type: $type,
     user: $user,
     address: $address,
+    bank: $bank,
   ) {
     payment {
       id
@@ -813,9 +855,18 @@ export const USER = `
     lastName
     email
     isActive
-    address
     active
     type
+    street
+    city
+    cp
+    municipality
+    state
+    cologn
+    telephone
+    token
+    tokenVerified
+    code
     photo {
       id
     }
@@ -835,10 +886,19 @@ mutation Set(
   $email: String,
   $isActive: Boolean,
   $password: String,
-  $address: String,
   $active: Boolean,
-  $type: String,
   $photo: Int,
+  $type: String,
+  $street: String,
+  $city: String,
+  $cp: Int,
+  $municipality: String,
+  $state: String,
+  $cologn: String,
+  $telephone: String,
+  $token: String,
+  $tokenVerified: Boolean,
+  $code: Int,
   $company: Int,
 )
 {
@@ -850,11 +910,20 @@ mutation Set(
     email: $email,
     isActive: $isActive,
     password: $password,
-    address: $address,
     active: $active,
-    type: $type,
     photo: $photo,
+    type: $type,
     company: $company,
+    street: $street,
+    city: $city,
+    cp: $cp,
+    municipality: $municipality,
+    state: $state,
+    cologn: $cologn,
+    telephone: $telephone,
+    token: $token,
+    tokenVerified: $tokenVerified,
+    code: $code,
   ) {
     user {
       id
@@ -863,9 +932,18 @@ mutation Set(
       lastName
       email
       isActive
-      address
       active
       type
+      street
+      city
+      cp
+      municipality
+      state
+      cologn
+      telephone
+      token
+      tokenVerified
+      code
       photo {
         id
       }
@@ -885,10 +963,19 @@ mutation Save(
   $email: String!,
   $isActive: Boolean!,
   $password: String!,
-  $address: String!,
   $active: Boolean!,
-  $type: String!,
   $photo: Int,
+  $type: String!,
+  $street: String!,
+  $city: String!,
+  $cp: Int!,
+  $municipality: String!,
+  $state: String!,
+  $cologn: String!,
+  $telephone: String!,
+  $token: String!,
+  $tokenVerified: Boolean!,
+  $code: Int!,
   $company: Int,
 )
 {
@@ -899,11 +986,20 @@ mutation Save(
     email: $email,
     isActive: $isActive,
     password: $password,
-    address: $address,
     active: $active,
-    type: $type,
     photo: $photo,
+    type: $type,
     company: $company,
+    street: $street,
+    city: $city,
+    cp: $cp,
+    municipality: $municipality,
+    state: $state,
+    cologn: $cologn,
+    telephone: $telephone,
+    token: $token,
+    tokenVerified: $tokenVerified,
+    code: $code,
   ) {
     user {
       id

@@ -56,12 +56,18 @@ const GQL_COMPANY_ = {
     name: "",
     commonName: "",
     rfc: "",
-    address: "",
+    cp: 128,
     phone: "",
     email: "",
     active: false,
     photo: { url: "" },
     users: [ { id: 1} ],
+    municipality: "",
+    state: "NS",
+    cologn: "",
+    website: "",
+    street: "",
+    city: "",
 }
 export const GQL_COMPANY = {
     company: GQL_COMPANY_
@@ -83,12 +89,18 @@ export const API_COMPANY = {
     name: "",
     common_name: "",
     rfc: "",
-    address: "",
+    cp: 128,
     phone: "",
     email: "",
     active: false,
     photo_id: 1,
     user_ids: [1],
+    municipality: "",
+    state: "NS",
+    cologn: "",
+    website: "",
+    street: "",
+    city: "",
 }
 export const API_COMPANIES = [API_COMPANY]
 
@@ -158,6 +170,7 @@ const GQL_PAYMENT_ = {
     type: "DEBIT",
     user:  { id: 1},
     address: "",
+    bank: "",
 }
 export const GQL_PAYMENT = {
     payment: GQL_PAYMENT_
@@ -181,6 +194,7 @@ export const API_PAYMENT = {
     type: "DEBIT",
     user_id:  1,
     address: "",
+    bank: "",
 }
 export const API_PAYMENTS = [API_PAYMENT]
 
@@ -329,16 +343,25 @@ const GQL_USER_ = {
     email: "email@test.com",
     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
     isActive: true,
-    address: "",
     active: false,
-    type: "SUPERADMIN",
     photo: { url: "" },
+    type: "SUPERADMIN",
     company:  { id: 1},
+    street: "",
+    city: "",
+    cp: 128,
+    municipality: "",
+    state: "NS",
+    cologn: "",
+    telephone: "",
     carts: [ { id: 1} ],
     products: [ { id: 1} ],
     whishlist: [ { id: 1} ],
     sales: [ { id: 1} ],
     shippings: [ { id: 1} ],
+    token: "",
+    tokenVerified: false,
+    code: 128,
 }
 export const GQL_USER = {
     user: GQL_USER_
@@ -363,16 +386,25 @@ export const API_USER = {
     email: "email_1@test.com",
     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
     is_active: false,
-    address: "",
     active: false,
-    type: "SUPERADMIN",
     photo_id: 1,
+    type: "SUPERADMIN",
     company_id:  1,
+    street: "",
+    city: "",
+    cp: 128,
+    municipality: "",
+    state: "NS",
+    cologn: "",
+    telephone: "",
     cart_ids: [1],
     product_ids: [1],
     whishlist_ids: [1],
     sale_ids: [1],
     shipping_ids: [1],
+    token: "",
+    token_verified: false,
+    code: 128,
 }
 export const API_USERS = [API_USER]
 

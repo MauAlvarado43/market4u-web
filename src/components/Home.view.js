@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Redirect } from "react-router-dom";
+import { Switch, Redirect, BrowserRouter } from "react-router-dom";
 import { Route } from "seed/helpers"
 import { ScriptTag } from "seed/helpers";
 import Nav from "components/nav/Nav";
@@ -11,39 +11,23 @@ import History from "components/history/History";
 
 import { Formik, Form, Field } from 'formik';
 
-
-
-
-
-
-
-
-
 const HomeView = () =>
   <div>
-    <Nav />
 
-    
+    <div id="content">
 
-    
+      <BrowserRouter>
+        <Switch>
+          <Route path="/home" component={Main} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/sales" component={Sales} />
+          <Route path="/products" component={Products} />
+          <Route path="/history" component={History} />
+          <Redirect to="/home" />
+        </Switch>
+      </BrowserRouter>
 
-
-      <Switch>
-        <Route path="/home" component={Main} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/sales" component={Sales} />
-        <Route path="/products" component={Products} />
-        <Route path="/history" component={History} />
-        <Redirect to="/home" />
-
-
-
-
-
-
-      </Switch>
-
-    
+    </div>
 
     <ScriptTag content={`
          // Builder toggle invoker
