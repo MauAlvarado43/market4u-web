@@ -190,7 +190,7 @@ const GQL_PRODUCT_ = {
     description: "",
     user:  { id: 1},
     opinions: [ { id: 1} ],
-    sale:  { id: 1},
+    sales:  { id: 1},
     category:  { id: 1},
     variants: [ { id: 1} ],
 }
@@ -216,7 +216,7 @@ export const API_PRODUCT = {
     description: "",
     user_id:  1,
     opinion_ids: [1],
-    sale_id:  1,
+    sales_id:  1,
     category_id:  1,
     variant_ids: [1],
 }
@@ -339,6 +339,8 @@ const GQL_USER_ = {
     whishlist: [ { id: 1} ],
     sales: [ { id: 1} ],
     shippings: [ { id: 1} ],
+    token: "",
+    tokenVerified: false,
 }
 export const GQL_USER = {
     user: GQL_USER_
@@ -373,6 +375,8 @@ export const API_USER = {
     whishlist_ids: [1],
     sale_ids: [1],
     shipping_ids: [1],
+    token: "",
+    token_verified: false,
 }
 export const API_USERS = [API_USER]
 

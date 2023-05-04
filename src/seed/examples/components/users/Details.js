@@ -24,6 +24,8 @@ function UserDetails({ userId, onCompleted = () => null, onError = () => null })
       address
       active
       type
+      token
+      tokenVerified
       createdAt
       photo { }
       company { }

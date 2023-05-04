@@ -24,7 +24,7 @@ function ProductList() {
         createdAt
         user { }
         opinions { }
-        sale { }
+        sales { }
         category { }
         variants { }
       }

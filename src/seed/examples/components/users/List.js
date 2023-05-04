@@ -26,6 +26,8 @@ function UserList() {
         address
         active
         type
+        token
+        tokenVerified
         createdAt
         photo { }
         company { }

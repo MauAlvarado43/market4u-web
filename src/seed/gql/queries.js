@@ -466,7 +466,7 @@ export const PRODUCT = `
     user {
       id
     }
-    sale {
+    sales {
       id
     }
     category {
@@ -483,7 +483,7 @@ mutation Set(
   $shortDescription: String,
   $description: String,
   $user: Int,
-  $sale: Int,
+  $sales: Int,
   $category: Int,
 )
 {
@@ -493,7 +493,7 @@ mutation Set(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
-    sale: $sale,
+    sales: $sales,
     category: $category,
   ) {
     product {
@@ -504,7 +504,7 @@ mutation Set(
       user {
         id
       }
-      sale {
+      sales {
         id
       }
       category {
@@ -521,7 +521,7 @@ mutation Save(
   $shortDescription: String!,
   $description: String!,
   $user: Int!,
-  $sale: Int,
+  $sales: Int!,
   $category: Int!,
 )
 {
@@ -530,7 +530,7 @@ mutation Save(
     shortDescription: $shortDescription,
     description: $description,
     user: $user,
-    sale: $sale,
+    sales: $sales,
     category: $category,
   ) {
     product {
@@ -685,7 +685,7 @@ mutation Save(
   $disscount: Float!,
   $startDate: DateTime!,
   $endDate: DateTime!,
-  $banner: Int,
+  $banner: Int!,
   $user: Int!,
 )
 {
@@ -816,6 +816,8 @@ export const USER = `
     address
     active
     type
+    token
+    tokenVerified
     photo {
       id
     }
@@ -839,6 +841,8 @@ mutation Set(
   $active: Boolean,
   $type: String,
   $photo: Int,
+  $token: String,
+  $tokenVerified: Boolean,
   $company: Int,
 )
 {
@@ -855,6 +859,8 @@ mutation Set(
     type: $type,
     photo: $photo,
     company: $company,
+    token: $token,
+    tokenVerified: $tokenVerified,
   ) {
     user {
       id
@@ -866,6 +872,8 @@ mutation Set(
       address
       active
       type
+      token
+      tokenVerified
       photo {
         id
       }
@@ -888,7 +896,9 @@ mutation Save(
   $address: String!,
   $active: Boolean!,
   $type: String!,
-  $photo: Int,
+  $photo: Int!,
+  $token: String!,
+  $tokenVerified: Boolean!,
   $company: Int,
 )
 {
@@ -904,6 +914,8 @@ mutation Save(
     type: $type,
     photo: $photo,
     company: $company,
+    token: $token,
+    tokenVerified: $tokenVerified,
   ) {
     user {
       id

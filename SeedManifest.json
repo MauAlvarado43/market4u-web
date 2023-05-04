@@ -247,9 +247,8 @@
             "has": "0..*",
             "ref": "1"
           },
-          "empty": true,
           "is_fk": true,
-          "name": "sale",
+          "name": "sales",
           "type": "sale"
         },
         {
@@ -341,7 +340,6 @@
           "type": "user"
         },
         {
-          "empty": true,
           "name": "banner",
           "type": "file"
         }
@@ -410,13 +408,13 @@
           "name": "type",
           "options": [
             "SUPERADMIN",
-            "ADMIN;SELLER",
+            "ADMIN",
+            "SELLER",
             "NORMAL"
           ],
           "type": "enum"
         },
         {
-          "empty": true,
           "name": "photo",
           "type": "file"
         },
@@ -484,6 +482,16 @@
           "name": "shippings",
           "type": "shipping[]",
           "write": false
+        },
+        {
+          "length": "40",
+          "name": "token",
+          "type": "string"
+        },
+        {
+          "default": "false",
+          "name": "token_verified",
+          "type": "boolean"
         }
       ],
       "name": "user"

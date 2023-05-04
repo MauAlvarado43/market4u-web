@@ -19,12 +19,17 @@ const AppView = () =>
       <Switch>
         <Route path="/main" component={Main} />
         <Route path="/products" component={Products} />
+
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
-        <Route path="/signup" component={Signup} />
         <Route path="/verify_email/:token" component={VerifyEmail} />
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
+
+
+        <Route path="/signup" component={Signup} />
+
+
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

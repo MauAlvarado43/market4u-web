@@ -46,7 +46,8 @@ const UserFormView = ({ user= {}, companies= [], onSubmit, error }) =>
               class="form-control"  >
               <option value="">Select an option</option>
               <option value="SUPERADMIN">SUPERADMIN</option>
-              <option value="ADMIN;SELLER">ADMIN;SELLER</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="SELLER">SELLER</option>
               <option value="NORMAL">NORMAL</option>
             </Field>
             </div>
@@ -67,6 +68,18 @@ const UserFormView = ({ user= {}, companies= [], onSubmit, error }) =>
               {companies.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
             </Field>
             </div>
+            </div>
+            {/* Token */}
+            <div class="form-group">
+            <label class="input-label">Token</label>
+            <Field type="text" name="token"
+              class="form-control" />
+            </div>
+            {/* Token verified */}
+            <div class="form-group">
+            <Field type="checkbox" name="tokenVerified"
+              class="d-inline mr-2" />
+            <label class="input-label d-inline">Token verified</label>
             </div>
             </div>
             {error ? <div class="alert alert-soft-danger">{error}</div> : null}

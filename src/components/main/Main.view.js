@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "styles/css/main.css";
+// import "styles/css/main.css";
 import { gql, useQuery } from "@apollo/client";
 
 const GET_PRODUCTS = gql`

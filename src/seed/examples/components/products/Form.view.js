@@ -57,11 +57,11 @@ const ProductFormView = ({ product= {}, users= [], sales= [], categories= [], on
             </Field>
             </div>
             </div>
-            {/* Sale */}
+            {/* Sales */}
             <div class="form-group">
             <div>
-            <label class="input-label">Sale</label>
-            <Field as="select" name="sale.id"
+            <label class="input-label">Sales</label>
+            <Field as="select" name="sales.id"
               class="form-control"  >
               <option value="">Select an option</option>
               {sales.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
