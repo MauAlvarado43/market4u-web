@@ -32,6 +32,7 @@ const GET_BANNERS = gql`
   }
 `;
 
+
 const MainView = () => {
   const { loading: productsLoading, error: productsError, data: productsData } = useQuery(GET_PRODUCTS);
   const { loading: bannersLoading, error: bannersError, data: bannersData } = useQuery(GET_BANNERS);
