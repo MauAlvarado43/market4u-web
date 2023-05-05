@@ -5,12 +5,13 @@ import { ScriptTag } from "seed/helpers";
 
 const RestorePasswordView = ({
   onSubmit = () => { },
-  status,
+  error,
   message,
   passwordField,
   confirmPasswordField,
   onClickShowPassword,
-  onClickShowConfirmPassword
+  onClickShowConfirmPassword,
+  restorePasswordSchema
 }) => (
   <div style={{ height: "100vh", overflow: "auto" }}>
     <main id="content" role="main" class="main pl-0">
@@ -25,16 +26,21 @@ const RestorePasswordView = ({
             <div class="card card-lg mb-5">
               <div class="card-body" style={{ border: "0.2rem solid #519FA5", borderRadius: "10px" }}>
                 <Formik
+                  validationSchema={restorePasswordSchema}
                   initialValues={{}}
                   onSubmit={onSubmit}>
-                  {() =>
+                  {({ errors, touched }) =>
                     <Form>
+
                       <div className="text-center mb-5">
-                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Crear nueva contraseña</h1>
+                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>
+                          Crear nueva contraseña
+                        </h1>
                       </div>
 
                       {/* Password */}
                       <div class="form-group">
+
                         <div class="input-group input-group-merge">
                           <label className="input">
                             <Field
@@ -67,10 +73,20 @@ const RestorePasswordView = ({
                             </a>
                           </div>
                         </div>
+
+                        {
+                          errors.password && touched.password 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.password}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
                       {/* Repeat Password */}
                       <div class="form-group">
+
                         <div class="input-group input-group-merge">
                           <label className="input">
                             <Field
@@ -103,11 +119,28 @@ const RestorePasswordView = ({
                             </a>
                           </div>
                         </div>
+
+                        {
+                          errors.confirmPassword && touched.confirmPassword 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.confirmPassword}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
-                      <button type="submit" style={{ backgroundColor: '#FC4B08', color: "white" }} class="btn btn-lg btn-block border-0 mb-5">
+                      { error && <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div> }
+                      { message && <div class="mb-4 alert alert-soft-success" role="alert"> {message} </div> }
+
+                      <button 
+                        type="submit" 
+                        style={{ backgroundColor: '#FC4B08', color: "white" }} 
+                        class="btn btn-lg btn-block border-0 mb-5"
+                      >
                         <b>Actualizar contraseña</b>
                       </button>
+
                     </Form>}
                 </Formik>
 
@@ -134,8 +167,13 @@ const RestorePasswordView = ({
 
 RestorePasswordView.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  status: PropTypes.string,
   message: PropTypes.string,
+  error: PropTypes.string,
+  passwordField: PropTypes.bool.isRequired,
+  confirmPasswordField: PropTypes.bool.isRequired,
+  onClickShowPassword: PropTypes.func.isRequired,
+  onClickShowConfirmPassword: PropTypes.func.isRequired,
+  restorePasswordSchema: PropTypes.object.isRequired
 };
 
 export default RestorePasswordView;

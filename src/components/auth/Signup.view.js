@@ -2,16 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
-import { ModalRoute } from "seed/helpers";
 
 const SignupView = ({
-  status = "",
   passwordField,
   confirmPasswordField,
   onClickShowPassword,
   onClickShowConfirmPassword,
-  message = "",
-  onSubmit
+  error,
+  onSubmit,
+  signupSchema
 }) => (
   <div style={{ height: "100vh", overflow: "auto" }}>
     <main id="content" role="main" class="main pl-0">
@@ -26,46 +25,81 @@ const SignupView = ({
             <div class="card card-lg mb-1">
               <div class="card-body" style={{ border: "0.2rem solid #519FA5", borderRadius: "10px" }}>
                 <Formik
+                  validationSchema={signupSchema}
                   initialValues={{}}
                   onSubmit={onSubmit}>
-                  {() =>
+                  {({ errors, touched }) => 
                     <Form>
+
                       <div className="text-center mb-5">
                         <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Crear cuenta</h1>
                       </div>
 
                       {/* First name */}
                       <div class="form-group">
+
                         <label className="input">
-                          <Field type="text" name="firstname" className="form-control input__field" placeholder=" " required />
+                          <Field type="text" name="firstname" className="form-control input__field" placeholder=" " />
                           <span class="input__label">
                             Nombre(s) <span className='text-danger fw-bold'>*</span>
                           </span>
                         </label>
+
+                        {
+                          errors.firstname && touched.firstname 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.firstname}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
                       {/* Last name */}
                       <div class="form-group">
+
                         <label className="input">
-                          <Field type="text" name="lastname" className="form-control input__field" placeholder=" " required />
+                          <Field type="text" name="lastname" className="form-control input__field" placeholder=" " />
                           <span class="input__label">
-                            Apellidos <span className='text-danger fw-bold'>*</span>
+                            Apellido (s) <span className='text-danger fw-bold'>*</span>
                           </span>
                         </label>
+
+                        {
+                          errors.lastname && touched.lastname 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.lastname}
+                              </div>
+                            : null
+                        }
+
                       </div>
+
+                      
 
                       {/* Email */}
                       <div class="form-group">
+
                         <label className="input">
-                          <Field type="text" name="email" className="form-control input__field" placeholder=" " required />
+                          <Field type="text" name="email" className="form-control input__field" placeholder=" " />
                           <span class="input__label">
                             Correo electrónico <span className='text-danger fw-bold'>*</span>
                           </span>
                         </label>
+
+                        {
+                          errors.email && touched.email 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.email}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
                       {/* Password */}
                       <div class="form-group">
+
                         <div class="input-group input-group-merge">
                           <label className="input">
                             <Field
@@ -74,7 +108,6 @@ const SignupView = ({
                               type={passwordField ? "text" : "password"}
                               className="form-control input__field"
                               placeholder=" "
-                              required
                             >
                             </Field>
                             <span class="input__label">
@@ -98,19 +131,28 @@ const SignupView = ({
                             </a>
                           </div>
                         </div>
-                      </div>
+
+                        {
+                          errors.password && touched.password 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.password}
+                              </div>
+                            : null
+                        }
+
+                      </div>                      
 
                       {/* Password */}
                       <div class="form-group">
+                        
                         <div class="input-group input-group-merge">
                           <label className="input">
                             <Field
-                              id="pass"
+                              id="confirm_pass"
                               name="confirmPassword"
                               type={confirmPasswordField ? "text" : "password"}
                               className="form-control input__field"
                               placeholder=" "
-                              required
                             >
                             </Field>
                             <span class="input__label">
@@ -134,11 +176,27 @@ const SignupView = ({
                             </a>
                           </div>
                         </div>
+
+                        {
+                          errors.confirmPassword && touched.confirmPassword 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.confirmPassword}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
-                      <button type="submit" style={{ backgroundColor: '#FC4B08', color: "white" }} class="btn btn-lg btn-block border-0">
+                      { error && <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div> }
+
+                      <button 
+                        type="submit" 
+                        style={{ backgroundColor: '#FC4B08', color: "white" }} 
+                        class="btn btn-lg btn-block border-0"
+                      >
                         <b>Crear cuenta</b>
                       </button>
+
                     </Form>}
                 </Formik>
               </div>
@@ -149,6 +207,7 @@ const SignupView = ({
                 ¿Eres una marca oficial? <Link to="/signup_company">Registrate aquí</Link>.
               </span>
             </div>
+
           </div>
         </div>
       </div>
@@ -168,13 +227,14 @@ const SignupView = ({
 );
 
 SignupView.propTypes = {
-  status: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
+  error: PropTypes.string,
   passwordField: PropTypes.bool,
   confirmPasswordField: PropTypes.bool,
   onClickpasswordField: PropTypes.func,
   onClickShowConfirmPassword: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
+  signupSchema: PropTypes.object.isRequired,
+  onClickShowPassword: PropTypes.func,
 };
 
 export default SignupView;

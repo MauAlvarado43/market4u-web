@@ -5,6 +5,7 @@ import View from "components/products/Form.view";
 import { usePost } from "seed/api";
 import { useHistory } from "react-router";
 import { Loading } from "seed/helpers";
+import { object, string } from "yup";
 
 function ProductFormSet({ productId, onCompleted = () => null, onError = () => null, refetchQuery }) {
 
@@ -42,6 +43,53 @@ function ProductFormSet({ productId, onCompleted = () => null, onError = () => n
       onCompleted();
     }
   });
+
+  const productSchema = object({
+    name: string().test({
+      name: "name",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese un nombre del producto" });
+
+        return true;
+
+      }
+    }),
+    short_description: string().test({
+      name: "short_description",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese una descripción" });
+
+        return true;
+
+      }
+    }),
+    description: string().test({
+      name: "description",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese los detalles del producto" });
+
+        return true;
+
+      }
+    }),
+    "category.id": string().test({
+      name: "category.id",
+      test(value, context) {
+
+        if(!context.parent.category || !context.parent.category.id) 
+          return context.createError({ message: "Seleccione una categoría" });
+
+        return true;
+
+      }
+    }),
+  })
 
   const [loaded, setLoaded] = useState(false);
   const [hideModal, setHideModal] = useState(true);
@@ -237,6 +285,7 @@ function ProductFormSet({ productId, onCompleted = () => null, onError = () => n
     error={error}
     onSubmit={onSubmit}
     onCancel={onCancel}
+    productSchema={productSchema}
   />;
 
 }

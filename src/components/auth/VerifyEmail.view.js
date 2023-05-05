@@ -5,10 +5,12 @@ import { ScriptTag } from "seed/helpers";
 import { Link } from "react-router-dom";
 
 const VerifyEmailView = ({
-  status = "",
+  error = "",
   message = "",
   onClickGenerate = () => { },
-  onSubmit
+  onSubmit,
+  verifyEmailSchema,
+  verified
 }) => (
   <div style={{ height: "100vh", overflow: "auto" }}>
     <main id="content" role="main" class="main pl-0">
@@ -24,30 +26,57 @@ const VerifyEmailView = ({
               <div class="card-body" style={{border: "0.2rem solid #519FA5", borderRadius: "10px"}}>
                 <Formik
                   initialValues={{}}
+                  validationSchema={verifyEmailSchema}
                   onSubmit={onSubmit}>
-                  {() =>
+                  {({ errors, touched }) =>
                     <Form>
                       <div className="text-center mb-5">
-                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Verificación de Correo</h1>
+                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>
+                          Verificación de Correo
+                        </h1>
                       </div>
 
-                      <div className="text-left mb-5">
+                      <div className="text-left mb-5 text-center">
                         <span className="font-size-1">
-                          Te has registrado de manera exitosa, pero primero debes verificar tu correo, te hemos enviado un código a tu email
+                          <h4>El registro se ha realizado con éxito.</h4>
+                          Ingresa el código de verificación que te hemos enviado a tu correo.
                         </span>
                       </div>
 
                       {/* Code */}
                       <div class="form-group">
+
                         <label className="input">
-                          <Field type="text" name="code" className="form-control input__field" placeholder=" " required />
+                          <Field 
+                            type="text" 
+                            name="code" 
+                            className="form-control input__field" 
+                            placeholder=" "
+                            disabled={verified}
+                          />
                           <span class="input__label">
                             Código de verificación <span className='text-danger fw-bold'>*</span>
                           </span>
                         </label>
+
+                        {
+                          errors.code && touched.code
+                            ? <div class="mt-4 alert alert-soft-danger" role="alert">
+                                {errors.code}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
-                      <button type="submit" style={{ backgroundColor: '#FC4B08', color: "white" }} class="btn btn-lg btn-block border-0 mb-5">
+                      { error ? <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div> : null }
+                      { message ? <div class="mb-4 alert alert-soft-success" role="alert"> {message} </div> : null }
+
+                      <button
+                        type="submit" 
+                        style={{ backgroundColor: '#FC4B08', color: "white" }} 
+                        class="btn btn-lg btn-block border-0 mb-5"
+                      >
                         <b>Crear tu cuenta de Market4U</b>
                       </button>
                     </Form>}
@@ -55,7 +84,8 @@ const VerifyEmailView = ({
 
                 <div className="text-left">
                   <span className="font-size-1">
-                    ¿No recibiste tu código de verificación? <a href="#" onClick={onClickGenerate}>Enviar nuevo código</a>
+                    ¿No recibiste tu código de verificación? &nbsp;
+                    <a href="#" onClick={onClickGenerate}>Enviar nuevo código</a>
                   </span>
                 </div>
               </div>
@@ -78,10 +108,13 @@ const VerifyEmailView = ({
     </main>
   </div>
 );
+
 VerifyEmailView.propTypes = {
-  message: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
+  message: PropTypes.string,
   onClickGenerate: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  verifyEmailSchema: PropTypes.object,
+  verified: PropTypes.bool.isRequired
 };
 
 export default VerifyEmailView;

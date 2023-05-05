@@ -3,26 +3,44 @@ import PropTypes from "prop-types";
 import View from "components/auth/VerifyEmail.view";
 import { usePost } from "seed/api";
 import { Loading } from "seed/helpers";
+import { object, string } from "yup";
 
 function VerifyEmail(props) {
+
   const { token = "" } = props.match.params;
 
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState("");
+  const [error, setError] = useState(null);
+  const [verified, setVerified] = useState(false);
+
+  const verifyEmailSchema = object({
+    code: string().test({
+      name: "code",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese el código de verificación" });
+
+        return true;
+
+      }
+    })
+  })
 
   const [callVerify, reqVerify] = usePost("/users/registry_verify", {
     onCompleted: () => {
-      setStatus("SUCCESS");
+      setError(null);
       setMessage("Correo verificado exitosamente, ahora puedes iniciar sesión");
+      setVerified(true);
     },
     onError: (error) => {
-      setStatus("ERROR");
+      setMessage(null);
       switch (error.status) {
         case 421:
-          setMessage("El link ya no es válido, han pasado mas de 20 minutos desde que se generó");
+          setError("El link ya no es válido, han pasado mas de 20 minutos desde que se generó");
           break;
         default:
-          setMessage("Error");
+          setError("Error");
           break;
       }
     },
@@ -31,13 +49,13 @@ function VerifyEmail(props) {
 
   const [callGenerate, reqGenerate] = usePost("/users/registry_generate", {
     onCompleted: () => {
-      setStatus("SUCCESS");
+      setError(null);
       setMessage("Link enviado nuevamente, asegurate de verificarlo en los próximos 20 minutos");
     },
     onError: (data) => {
-      if (data.status == 400) {
-        setStatus("ERROR");
-        setMessage("Error");
+      setMessage(null);
+      if(data.status == 400) {
+        setError("Error");
       }
     },
     includeAuth: false,
@@ -50,14 +68,22 @@ function VerifyEmail(props) {
 
   if (reqVerify.loading) return <Loading />;
 
-  const onSubmit = (values) => {
+  const onSubmit = (values) =>
     callVerify({ token: token, code: values.code });
-  }
+
   const onClickGenerate = () => callGenerate({ token: token });
 
   return (
-    <View status={status} message={message} onClickGenerate={onClickGenerate} onSubmit={onSubmit}/>
+    <View 
+      error={error} 
+      message={message} 
+      onClickGenerate={onClickGenerate}
+      onSubmit={onSubmit}
+      verifyEmailSchema={verifyEmailSchema}
+      verified={verified}
+    />
   );
+
 }
 
 VerifyEmail.propTypes = {

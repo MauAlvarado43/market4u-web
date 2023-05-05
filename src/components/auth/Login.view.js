@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import { ScriptTag } from "seed/helpers";
 
-const LoginView = ({ passwordField, onClickShowPassword, onSubmit, error }) => (
+const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, error }) => (
   <div style={{ height: "100vh", overflow: "auto" }}>
     <main id="content" role="main" class="main pl-0">
       <div class="container py-5 py-sm-7">
@@ -18,26 +18,39 @@ const LoginView = ({ passwordField, onClickShowPassword, onSubmit, error }) => (
             <div class="card card-lg mb-5">
               <div class="card-body" style={{border: "0.2rem solid #519FA5", borderRadius: "10px"}}>
                 <Formik
+                  validationSchema={loginSchema}
                   initialValues={{}}
                   onSubmit={onSubmit}>
-                  {() =>
+                  {({ errors, touched, validateForm }) =>
                     <Form>
+
                       <div className="text-center mb-5">
                         <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Iniciar sesión</h1>
                       </div>
 
                       {/* Username */}
                       <div class="form-group">
+
                         <label className="input">
-                          <Field type="text" name="email" className="form-control input__field" placeholder=" " required />
+                          <Field type="text" name="email" className="form-control input__field" placeholder=" " />
                           <span class="input__label">
                             Correo electrónico <span className='text-danger fw-bold'>*</span>
                           </span>
                         </label>
+
+                        {
+                          errors.email && touched.email 
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.email}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
                       {/* Password */}
                       <div class="form-group">
+
                         <div class="input-group input-group-merge">
                           <label className="input">
                             <Field
@@ -46,7 +59,6 @@ const LoginView = ({ passwordField, onClickShowPassword, onSubmit, error }) => (
                               type={passwordField ? "text" : "password"}
                               className="form-control input__field"
                               placeholder=" "
-                              required
                             >
                             </Field>
                             <span class="input__label">
@@ -70,20 +82,32 @@ const LoginView = ({ passwordField, onClickShowPassword, onSubmit, error }) => (
                             </a>
                           </div>
                         </div>
+
+                        {
+                          errors.password && touched.password
+                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                {errors.password}
+                              </div>
+                            : null
+                        }
+
                       </div>
 
-                      {error ?
-                        <div class="alert alert-soft-danger" role="alert">
-                          {error}
-                        </div> : null}
+                      { error ? <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div> : null }
 
-                      <button type="submit" style={{ backgroundColor: '#FC4B08', color: "white" }} class="btn btn-lg btn-block border-0">
+                      <button 
+                        type="submit" 
+                        style={{ backgroundColor: '#FC4B08', color: "white" }} 
+                        class="btn btn-lg btn-block border-0"
+                        onClick={validateForm}
+                      >
                         <b>Iniciar sesión</b>
                       </button>
+                      
                     </Form>}
                 </Formik>
 
-                <div className="text-right mb-5">
+                <div className="text-right mb-5 mt-2">
                   <span className="font-size-1 d-flex flex-row-reverse">
                     <b> ¿Tienes problemas para iniciar sesión?
                       <br></br>
@@ -126,13 +150,12 @@ const LoginView = ({ passwordField, onClickShowPassword, onSubmit, error }) => (
   </div>
 );
 
-
-
 LoginView.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   error: PropTypes.string,
   passwordField: PropTypes.bool,
   onClickShowPassword: PropTypes.func.isRequired,
+  loginSchema: PropTypes.object.isRequired
 };
 
 export default LoginView;
