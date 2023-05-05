@@ -25,7 +25,7 @@ const RecoverPasswordView = ({
                   validationSchema={recoverPasswordSchema}
                   initialValues={{}}
                   onSubmit={onSubmit}>
-                  {({ errors, touched }) =>
+                  {({ errors, touched, submitCount }) =>
                     <Form>
                       <div className="text-center mb-5">
                         <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>
@@ -51,7 +51,7 @@ const RecoverPasswordView = ({
                         </label>
 
                         {
-                          errors.email && touched.email 
+                          errors.email && (touched.email || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.email}
                               </div>

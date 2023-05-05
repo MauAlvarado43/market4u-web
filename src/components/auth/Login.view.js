@@ -21,7 +21,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
                   validationSchema={loginSchema}
                   initialValues={{}}
                   onSubmit={onSubmit}>
-                  {({ errors, touched, validateForm }) =>
+                  {({ errors, touched, validateForm, submitCount }) =>
                     <Form>
 
                       <div className="text-center mb-5">
@@ -39,7 +39,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
                         </label>
 
                         {
-                          errors.email && touched.email 
+                          errors.email && (touched.email || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.email}
                               </div>
@@ -84,7 +84,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
                         </div>
 
                         {
-                          errors.password && touched.password
+                          errors.password && (touched.password || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.password}
                               </div>

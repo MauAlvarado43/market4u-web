@@ -28,7 +28,7 @@ const VerifyEmailView = ({
                   initialValues={{}}
                   validationSchema={verifyEmailSchema}
                   onSubmit={onSubmit}>
-                  {({ errors, touched }) =>
+                  {({ errors, touched, submitCount }) =>
                     <Form>
                       <div className="text-center mb-5">
                         <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>
@@ -60,7 +60,7 @@ const VerifyEmailView = ({
                         </label>
 
                         {
-                          errors.code && touched.code
+                          errors.code && (touched.code || submitCount > 0)
                             ? <div class="mt-4 alert alert-soft-danger" role="alert">
                                 {errors.code}
                               </div>
@@ -110,6 +110,7 @@ const VerifyEmailView = ({
 );
 
 VerifyEmailView.propTypes = {
+  error: PropTypes.string,
   message: PropTypes.string,
   onClickGenerate: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

@@ -7,7 +7,6 @@ import ProductFormSave from "components/products/FormSave";
 import ProductFormSet from "components/products/FormSet";
 import ModalRoute from "components/helpers/ModalRoute";
 import Delete from "components/products/Delete";
-import Nav from "components/nav/Nav";
 
 const ProductsView = ({ listRef, refetchQuery }) =>
   <BrowserRouter basename="/products">

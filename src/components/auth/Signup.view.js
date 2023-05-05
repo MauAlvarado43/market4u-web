@@ -28,7 +28,7 @@ const SignupView = ({
                   validationSchema={signupSchema}
                   initialValues={{}}
                   onSubmit={onSubmit}>
-                  {({ errors, touched }) => 
+                  {({ errors, touched, submitCount }) => 
                     <Form>
 
                       <div className="text-center mb-5">
@@ -46,7 +46,7 @@ const SignupView = ({
                         </label>
 
                         {
-                          errors.firstname && touched.firstname 
+                          errors.firstname && (touched.firstname || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.firstname}
                               </div>
@@ -66,7 +66,7 @@ const SignupView = ({
                         </label>
 
                         {
-                          errors.lastname && touched.lastname 
+                          errors.lastname && (touched.lastname || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.lastname}
                               </div>
@@ -88,7 +88,7 @@ const SignupView = ({
                         </label>
 
                         {
-                          errors.email && touched.email 
+                          errors.email && (touched.email || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.email}
                               </div>
@@ -133,7 +133,7 @@ const SignupView = ({
                         </div>
 
                         {
-                          errors.password && touched.password 
+                          errors.password && (touched.password || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.password}
                               </div>
@@ -178,7 +178,7 @@ const SignupView = ({
                         </div>
 
                         {
-                          errors.confirmPassword && touched.confirmPassword 
+                          errors.confirmPassword && (touched.confirmPassword || submitCount > 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.confirmPassword}
                               </div>

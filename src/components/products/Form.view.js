@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
-import { MultiField, FileField } from "seed/helpers";
 import Photos from "components/products/Photos";
 
 const ProductFormView = ({ 
@@ -58,7 +57,7 @@ const ProductFormView = ({
             }}
             onSubmit={onSubmit}
           >
-            {({ values, setFieldValue, errors, touched }) =>
+            {({ values, setFieldValue, errors, touched, submitCount }) =>
               <Form>
                 <div class="mb-3">
 
@@ -81,7 +80,7 @@ const ProductFormView = ({
                     </div>
 
                     {
-                      errors.name && touched.name
+                      errors.name && (touched.name || submitCount > 0)
                         ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
                             {errors.name}
                           </div>
@@ -109,7 +108,7 @@ const ProductFormView = ({
                     </div>
 
                     {
-                      errors.short_description && touched.short_description
+                      errors.short_description && (touched.short_description || submitCount > 0)
                         ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
                             {errors.short_description}
                           </div>
@@ -181,7 +180,7 @@ const ProductFormView = ({
                   </div>
 
                   {
-                    errors.description && touched.description
+                    errors.description && (touched.description || submitCount > 0)
                       ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
                           {errors.description}
                         </div>
@@ -189,7 +188,7 @@ const ProductFormView = ({
                   }
 
                   {
-                    errors["category.id"] && touched.category && touched.category.id
+                    errors["category.id"] && ((touched.category && touched.category.id) || submitCount > 0)
                       ? <div class="mt-3 alert alert-soft-danger" role="alert">
                           {errors["category.id"]}
                         </div>
@@ -364,7 +363,24 @@ ProductFormView.propTypes = {
   sales: PropTypes.array,
   categories: PropTypes.array,
   onSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  selectedIndex: PropTypes.number,
+  photos: PropTypes.array,
+  tabs: PropTypes.array,
+  rows: PropTypes.array,
+  hideModal: PropTypes.func.isRequired,
+  onAddTab: PropTypes.func.isRequired,
+  onRemoveTab: PropTypes.func.isRequired,
+  onAddRow: PropTypes.func.isRequired,
+  onRemoveRow: PropTypes.func.isRequired,
+  setHideModal: PropTypes.func.isRequired,
+  setRename: PropTypes.func.isRequired,
+  setName: PropTypes.func.isRequired,
+  setCell: PropTypes.func.isRequired,
+  setPhotos: PropTypes.func.isRequired,
+  onShowPhotoModal: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  productSchema: PropTypes.object.isRequired,
 };
 
 export default ProductFormView;
