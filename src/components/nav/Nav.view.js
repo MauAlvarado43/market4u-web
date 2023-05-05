@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { BrowserRouter, Link } from "react-router-dom";
 
 const NavView = ({
   users
@@ -7,9 +8,11 @@ const NavView = ({
   <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white"
     style = {{height:"22vh", marginLeft:"0vw", marginTop:"-4vh", marginBottom:"1vh"}}>
     <div class="container-fluid">
-      <a class="navbar-brand ml-4">
-        <img src="/theme/svg/logos/m4u.svg" alt="Logo" height="65"/>
-      </a>
+      <Link to={`/home`}>
+        <a class="navbar-brand ml-4">
+          <img src="/theme/svg/logos/m4u.svg" alt="Logo" height="65"/>
+        </a>
+      </Link>
       <div className="d-flex flex-grow-1 justify-content-center text-center mb-3 mt-3">
         <form className="w-100 text-center col-md-8">
           <div className="input-group">
@@ -42,11 +45,12 @@ const NavView = ({
         <li className="nav-item">
           <a className="nav-link">
             {users && users.map((user) => (
+              <Link to = {`/profile/info`} key = {user.id}>
               <img 
-                key={user.id}
                 src={user?.photo?.url}
                 alt="Foto de Perfil" class="rounded-circle" 
                 height="50"/>
+              </Link>
             ))}
           </a>
         </li>

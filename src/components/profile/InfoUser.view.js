@@ -9,6 +9,10 @@ const InfoUserView = ({
   showPassword,
   setPassword,
   togglePasswordVisibility,
+  togglePasswordVisibilityConfirm,
+  setPasswordConfirm,
+  showPassConfirm,
+  handlePasswordChange,
 }) => (
   <div className="col-md-9 ml-1">
     {users.map((user) => (
@@ -315,7 +319,7 @@ const InfoUserView = ({
                               type={showPassword ? "text" : "password"}
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                              onChange={(e) => setPassword(e.target.value)}
+                              onChange={handlePasswordChange}
                             >
                             </Field>
                             <span class="input__label">
@@ -338,8 +342,46 @@ const InfoUserView = ({
                           </label>
                         </div>
                         <div className="form-group col-md-6">
-                          <label className="text">
-                            En caso de no querer realizar modificaciones en tu contraseña, omite este campo.
+                          <label className="text-left">
+                            En caso de no querer realizar modificaciones en tu contraseña, omite estos campos.
+                          </label>
+                        </div>
+                      </div>
+                      <div className="d-flex mb-5 mt-auto">
+                        <div className="form-group col-md-6">
+                          <label className="input">
+                            <Field
+                              id="passConfirm"
+                              name="password"
+                              type={showPassConfirm ? "text" : "password"}
+                              className="form-control input__field border-top-0 border-left-0
+                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                              onChange={(ev) => setPasswordConfirm(ev.target.value)}
+                            >
+                            </Field>
+                            <span class="input__label">
+                              Confirmar contraseña
+                              <span className="text-danger fw-bold">*</span>
+                              <button
+                                type="button"
+                                onClick={togglePasswordVisibilityConfirm}
+                                className="btn btn-outline-secondary bg-transparent border-0"
+                              >
+                                <i
+                                  className={
+                                    showPassConfirm
+                                      ? "fas fa-eye"
+                                      : "fas fa-eye-slash"
+                                  }
+                                />
+                              </button>
+                            </span>
+                          </label>
+                        </div>
+                        <div className="form-group col-md-6">
+                          <label className="text-left">
+                            Debe tener mínimo: 8 caracteres, un número, una mayúscula y un caracter especial &#40;
+                            por ejemplo: &?!@&#41;.
                           </label>
                         </div>
                       </div>
@@ -383,7 +425,11 @@ InfoUserView.propTypes = {
   togglePasswordVisibility: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  togglePasswordVisibilityConfirm: PropTypes.func.isRequired,
+  setPasswordConfirm: PropTypes.func.isRequired,
+  showPassConfirm: PropTypes.func.isRequired,
+  handlePasswordChange: PropTypes.func.isRequired,
 };
 
 export default InfoUserView;
