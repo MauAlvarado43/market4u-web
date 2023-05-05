@@ -13,7 +13,7 @@ import { Formik, Form, Field } from 'formik';
 
 const HomeView = () =>
   <div>
-
+    <Nav />
     <div id="content">
 
       <BrowserRouter>

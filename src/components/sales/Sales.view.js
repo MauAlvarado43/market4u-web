@@ -1,20 +1,12 @@
-/*
-__Seed builder__
-  (Read_only) Example view
-  Be careful copying content
-*/
-
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Route } from "seed/helpers"
-import { Link, NavLink } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 
 import SaleList from "components/sales/List";
 import SaleFormSave from "components/sales/FormSave";
 import SaleFormEdit from "components/sales/FormSet";
 import SaleDelete from "components/sales/Delete";
 import ModalRoute from "components/helpers/ModalRoute";
-
+import Nav from "components/nav/Nav";
 import PropTypes from "prop-types";
 
 

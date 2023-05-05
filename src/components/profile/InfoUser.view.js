@@ -19,12 +19,12 @@ const InfoUserView = ({
     >
       <p
         className="col-md-4 text-center"
-        style={{ marginTop: "-22px", backgroundColor: "white" }}
+        style={{ backgroundColor: "white" }}
       >
         {user.type !== "ADMIN" ? (
-          <span className="display-4">Mis datos personales</span>
+          <h2 className="list-title">Mis datos personales</h2>
         ) : (
-          <span className="display-4">Datos generales</span>
+          <h2 className="list-title">Datos generales</h2>
         )}
       </p>
       <div className="card-body text-center" style={{ overflowY: "auto" }}>
@@ -345,36 +345,22 @@ const InfoUserView = ({
                       </div>
                       <div class="form-group">
                         <div className="d-flex justify-content-center">
-                          <button
-                            type="submit"
-                            className="row border-0 d-flex align-items-center justify-content-center mt-2 rounded"
-                            style={{
-                              backgroundColor: "#519EA4",
-                              minWidth: "17vh",
-                              maxWidth: "17vh",
-                            }}
+                        <div className="d-flex justify-content-center align-items-center pt-2">
+                          
+                          <button 
+                            type="button" 
+                            className="btn btn-secondary btn-sm rounded-pill px-5 mr-5" 
                           >
-                            <i className = "fas fa-sd-card"
-                              style={{ fontSize: "21px", color:"white"}}
-                            ></i>
-                            <h4 className="col-md-8 col-sm-1 mt-2" style={{ fontSize: "16px", color:"white" }}>
-                              Guardar
-                            </h4>
+                            <i className="fas fa-times mr-3 fa-lg"></i> Cancelar
                           </button>
-                          <div
-                            className="ml-5 row d-flex align-items-center justify-content-center mt-2 rounded"
-                            style={{
-                              backgroundColor: "#FC4B08",
-                              minWidth: "17vh",
-                              maxWidth: "17vh",
-                            }}
+
+                          <button 
+                            type="submit" 
+                            className="btn btn-primary btn-sm rounded-pill px-5 ml-5" 
                           >
-                            <i className = "fas fa-times"
-                              style={{ fontSize: "21px", color:"white" }}
-                            ></i>
-                            <h4 className="col-md-8 col-sm-1 mt-2" style={{ fontSize: "16px", color:"white"}}>
-                              Cancelar
-                            </h4>
+                            <i className="fas fa-save mr-3 fa-lg"></i> Guardar
+                          </button>
+
                           </div>
                         </div>
                       </div>

@@ -5,12 +5,12 @@ import { Route, FileField } from "seed/helpers"
 import ProfileButton from "components/nav/ProfileButton";
 import InfoUser from "components/profile/InfoUser";
 import InfoCards from "components/profile/InfoCards";
+import Nav from "components/nav/Nav";
 
 const ProfileView = ({
   users
 }) => (
   <BrowserRouter>
-    <div className="w-100" style={{ minHeight: "18vh" }}></div>
     {users && users.map((user) => (
       <div key={user.id}>
         <div className="row justify-content-center">
@@ -18,46 +18,40 @@ const ProfileView = ({
             <h3 className="ml-3 display-4">
               <strong>MI CUENTA</strong>
             </h3>
-            {user.type === "SELLER" ? (
+            {user?.type === "SELLER" ? (
               <>
                 <div className="position-relative">
                   <label htmlFor="profileImg">
                     <img
                       style={{
-                        width: "250px",
-                        height: "250px",
+                        width: "100%",
+                        height: "100%",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
                       className="rounded-circle shadow-4-strong img-fluid mt-5 ml-3"
-                      src={user.photo.url}
+                      src={user?.photo?.url}
                       alt="Foto de Perfil"
                     />
                   </label>
-                  <input
-                    type="file"
-                    id="profileImg"
-                    accept="image/*"
-                    style={{ display: "none" }}
+                  <img
+                    className="rounded-circle shadow-4-strong img-fluid position-absolute"
+                    src={user?.company?.photo?.url}
+                    alt={"Foto de la empresa"}
+                    style={{
+                      width: "3.5vw",
+                      height: "3.5vw",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      bottom: "1.8vh",
+                      right: "0",
+                      transform: "translate(-40%, 50%)",
+                      zIndex: 10,
+                      border: "2px solid white",
+                    }}
                   />
                 </div>
-                <img
-                  className="rounded-circle shadow-4-strong img-fluid position-absolute"
-                  src={user.company.photo.url}
-                  alt={"Foto de la empresa"}
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    top: "55%",
-                    left: "78%",
-                    transform: "translate(-50%, -100%)",
-                    zIndex: 10,
-                    border: "2px solid white",
-                  }}
-                />
-              </>
+              </> 
             ) :
               <img
                 style={{
@@ -65,13 +59,13 @@ const ProfileView = ({
                   objectFit: "cover", objectPosition: "center"
                 }}
                 className="rounded-circle shadow-4-strong img-fluid mt-5 ml-3"
-                src={user.photo.url}
+                src={user?.photo?.url}
                 alt={"Foto de Perfil"}
               />
             }
             <div className="mt-5 w-100">
               <div>
-                {user.type === "NORMAL" ?
+                {user?.type === "NORMAL" ?
                   <>
                     <Link to="/profile/info">
                       <ProfileButton
@@ -96,7 +90,7 @@ const ProfileView = ({
                   </>
                   :
                   null}
-                {user.type === "ADMIN" ?
+                {user?.type === "ADMIN" ?
                   <>
                     <ProfileButton
                       text={"Datos generales"}
@@ -120,7 +114,7 @@ const ProfileView = ({
                     />
                   </>
                   : null}
-                {user.type === "SELLER" ?
+                {user?.type === "SELLER" ?
                   <>
                     <Link to="/profile/info">
                       <ProfileButton
@@ -142,7 +136,7 @@ const ProfileView = ({
                     />
                   </>
                   : null}
-                {user.type === "SUPERADMIN" ?
+                {user?.type === "SUPERADMIN" ?
                   <>
                     <Link to="/profile/info">
                       <ProfileButton
@@ -174,6 +168,7 @@ const ProfileView = ({
           <Switch>
             <Route path="/profile/info" component={InfoUser} />
             <Route path="/profile/payments" component={InfoCards} />
+            <Route path="/profile/:card_id/delete" component={InfoUser} />
           </Switch>
         </div>
       </div>
