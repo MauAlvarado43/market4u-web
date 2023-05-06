@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "styles/css/main.css";
 import { gql, useQuery } from "@apollo/client";
+{/*import { PaginationFooter } from "seed/helpers"*/}
 
 const GET_PRODUCTS = gql`
   query {
@@ -62,8 +63,9 @@ const MainView = () => {
 
   return (
     <div className="container" style={{ width:"100%", height: "100vh", overflow: "scroll" }}>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       <div className="NavBar">
-        <h1>Aqui esta el navbar</h1>
+        <h1>Navbar</h1>
       </div>
       <div className="container-main-visual">
         <div className="container-main">
@@ -120,7 +122,10 @@ const MainView = () => {
   {currentProducts.map((product) => (
     <div key={product.id} className="col-md-3 mb-4 single-card-product">
       <button className="favorite-btn">
-        <i className="fas fa-heart"></i>
+        <span class="material-symbols-outlined">
+        favorite
+        </span>
+        {/**<i className="fas fa-heart"></i> */}
       </button>
       <div id={`carousel-${product.id}`} className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
@@ -149,7 +154,9 @@ const MainView = () => {
                     id = "prev-icon"
                     style={{ color: "black" }}
                   ></span>
-                  <span className="sr-only">Previous</span>
+                  <span class="material-symbols-outlined">
+arrow_forward_ios
+</span>
                 </a>
                 <a
                   className="carousel-control-next"
