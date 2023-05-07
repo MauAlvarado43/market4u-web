@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import css from "styles/Scrollbar.scss";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const InfoUserView = ({
   users,
   onSubmit,
   showPassword,
   setPassword,
+  validationSchema,
   togglePasswordVisibility,
   togglePasswordVisibilityConfirm,
   setPasswordConfirm,
@@ -37,9 +38,10 @@ const InfoUserView = ({
             <div className="md-form">
               <Formik
                 initialValues={user}
+                validationSchema={validationSchema}
                 onSubmit={onSubmit}
               >
-                {({ values, setFieldValue }) => (
+                {({errors, touched, values, submitCount }) => (
                   <Form>
                     <div class="mb-2 mt-2">
                       {/*BASIC FIELDS*/}
@@ -340,6 +342,11 @@ const InfoUserView = ({
                               </button>
                             </span>
                           </label>
+                          <ErrorMessage
+                            name="passwordConfirm"
+                            component="div"
+                            className="text-danger"
+                          />
                         </div>
                         <div className="form-group col-md-6">
                           <label className="text-left">
@@ -352,7 +359,7 @@ const InfoUserView = ({
                           <label className="input">
                             <Field
                               id="passConfirm"
-                              name="password"
+                              name="passwordConfirm"
                               type={showPassConfirm ? "text" : "password"}
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
@@ -377,6 +384,13 @@ const InfoUserView = ({
                               </button>
                             </span>
                           </label>
+                          {
+                            errors.password && (touched.password || submitCount >= 0)
+                              ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                                  {errors.password}
+                                </div>
+                              : null
+                          }
                         </div>
                         <div className="form-group col-md-6">
                           <label className="text-left">

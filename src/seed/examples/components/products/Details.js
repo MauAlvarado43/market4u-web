@@ -20,7 +20,7 @@ function ProductDetails({ productId, onCompleted = () => null, onError = () => n
       shortDescription
       description
       createdAt
-      user { }
+      company { }
       opinions { }
       sale { }
       category { }

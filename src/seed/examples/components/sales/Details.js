@@ -22,7 +22,7 @@ function SaleDetails({ saleId, onCompleted = () => null, onError = () => null })
       endDate
       createdAt
       product { }
-      user { }
+      company { }
       banner { }
     }
   }`, saleId);

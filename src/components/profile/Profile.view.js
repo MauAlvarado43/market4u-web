@@ -5,12 +5,13 @@ import { Route, FileField } from "seed/helpers"
 import ProfileButton from "components/nav/ProfileButton";
 import InfoUser from "components/profile/InfoUser";
 import InfoCards from "components/profile/InfoCards";
-import Nav from "components/nav/Nav";
+import ModalRoute from "components/helpers/ModalRoute";
+import DeleteCard from "components/profile/DeleteCard";
 
 const ProfileView = ({
   users
 }) => (
-  <BrowserRouter>
+  <BrowserRouter basename="/profile">
     {users && users.map((user) => (
       <div key={user.id}>
         <div className="row justify-content-center">
@@ -67,13 +68,13 @@ const ProfileView = ({
               <div>
                 {user?.type === "NORMAL" ?
                   <>
-                    <Link to="/profile/info">
+                    <Link to="/info">
                       <ProfileButton
                         text={"Mis datos personales"}
                         icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
                       />
                     </Link>
-                    <Link to="/profile/payments">
+                    <Link to="/payments">
                       <ProfileButton
                         text={"Mis tarjetas"}
                         icon_left={"fas fa-credit-card col-md-2 col-sm-1"}
@@ -116,7 +117,7 @@ const ProfileView = ({
                   : null}
                 {user?.type === "SELLER" ?
                   <>
-                    <Link to="/profile/info">
+                    <Link to="/info">
                       <ProfileButton
                         text={"Mis datos personales"}
                         icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
@@ -138,7 +139,7 @@ const ProfileView = ({
                   : null}
                 {user?.type === "SUPERADMIN" ?
                   <>
-                    <Link to="/profile/info">
+                    <Link to="/info">
                       <ProfileButton
                         text={"Mis datos personales"}
                         icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
@@ -166,13 +167,21 @@ const ProfileView = ({
             </div>
           </div>
           <Switch>
-            <Route path="/profile/info" component={InfoUser} />
-            <Route path="/profile/payments" component={InfoCards} />
-            <Route path="/profile/:card_id/delete" component={InfoUser} />
+            <Route path="/info" component={InfoUser} />
+            <Route path="/payments" component={InfoCards} />
           </Switch>
         </div>
       </div>
     ))}
+
+
+    <ModalRoute
+      path="/payments/:cardId(\d+)/delete"
+      component={DeleteCard} 
+      width="400"
+      height="400" 
+    />
+
   </BrowserRouter>
 );
 

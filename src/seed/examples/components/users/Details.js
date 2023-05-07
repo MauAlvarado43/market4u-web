@@ -37,9 +37,7 @@ function UserDetails({ userId, onCompleted = () => null, onError = () => null })
       photo { }
       company { }
       carts { }
-      products { }
-      whishlist { }
-      sales { }
+      wishlist { }
       shippings { }
     }
   }`, userId);
