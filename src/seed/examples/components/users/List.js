@@ -39,9 +39,7 @@ function UserList() {
         photo { }
         company { }
         carts { }
-        products { }
-        whishlist { }
-        sales { }
+        wishlist { }
         shippings { }
       }
     }

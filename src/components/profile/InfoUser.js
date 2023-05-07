@@ -4,16 +4,19 @@ import View from "components/profile/InfoUser.view";
 import { useQuery } from "seed/gql";
 import { usePost } from "seed/api";
 import { Loading } from "seed/helpers";
+import swal from "sweetalert";
+import { object, string } from "yup";
 
 function InfoUser() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [error, setError] = useState(null);
 
   const [callUpdateUser, updateUserStatus] = usePost("/users/update_user", {
     onCompleted: () => {
-      alert("Se ha actualizado correctamente");
+      swal("¡Listo!", "Se ha actualizado la información", "success");
     },
   });
 
@@ -75,8 +78,6 @@ function InfoUser() {
 
   const validatePassword = (pass) => {
     const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-    console.log(regex.test(pass));
-
     if(regex.test(pass)) {
       return true;
     } else {
@@ -84,35 +85,58 @@ function InfoUser() {
     }
   };
 
+  const validationSchema = object({
+    password: string().test({
+      name: "password",
+      test(value, context) {
+        if(!validatePassword(password) && (password))
+          return context.createError({
+            message: "La contraseña debe de tener al menos 8 caracteres, un caracter especial y un número."
+          });
+
+        return true;
+      }
+    }),
+    passwordConfirm: string().test({
+      id:"passConfirm",
+      test(value, context) {
+        if (passwordConfirm !== password) {
+          return context.createError({
+            message: "Las contraseñas no coinciden",
+          });
+        }
+       
+        return true;
+       
+      }
+    })
+  });
+
   const onSubmit = (values) => {
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
-    
-    if(password !== passwordConfirm){
-      alert("Las contraseñas no coinciden");
-      return;
+
+    if(!password) {
+      delete newValues.id;
+      newValues.password = password;
+      callUpdateUser(newValues);
+    } else {
+      validationSchema.validate({ password }); 
+      delete newValues.id;
+      newValues.password = password;
+      callUpdateUser(newValues);
     }
-
-    if(validatePassword(password) === false){
-      alert("La contraseña debe ser mínimo de 8 caracteres, que incluyen al menos un número y un caracter especial.");
-      return;
-    } 
-
-    newValues.password = password;
-    delete newValues.id;
-
-
-
-    callUpdateUser(newValues);
   };
 
   return (
     <View
+      error={error}
       users={users}
       onSubmit={onSubmit}
       setPassword={setPassword}
       showPassword={showPassword}
       showPassConfirm={showPassConfirm}
+      validationSchema={validationSchema}
       setPasswordConfirm={setPasswordConfirm}
       handlePasswordChange={handlePasswordChange}
       togglePasswordVisibility={togglePasswordVisibility}

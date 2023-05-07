@@ -84,7 +84,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
                         </div>
 
                         {
-                          errors.password && (touched.password || submitCount > 0)
+                          errors.password && (touched.password || submitCount >= 0)
                             ? <div class="mt-3 alert alert-soft-danger" role="alert">
                                 {errors.password}
                               </div>

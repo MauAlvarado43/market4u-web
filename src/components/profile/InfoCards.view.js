@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const InfoCards = ({ 
     payments,
@@ -15,10 +16,10 @@ const InfoCards = ({
       }}
     >
       <p
-        className="col-md-4 text-center"
-        style={{ marginTop: "-22px", backgroundColor: "white" }}
+        className="col-md-3 text-center"
+        style={{ backgroundColor: "white" }}
       >
-        <span className="display-4">Mis tarjetas</span>
+        <h2 className="list-title">Mis tarjetas</h2>
       </p>
       <div className="card-body mt-2" style={{ overflowY: "auto" }}>
         {payments.map((payment) => (
@@ -67,15 +68,11 @@ const InfoCards = ({
                     <div>{payment.expireDate}</div>
                   </div>
                   <div className="col-md-2 d-flex justify-content-center align-items-center">
-                    <button
-                      className="btn btn-dark border-0 bg-transparent"
+                    <Link to={`/payments/${payment.id}/delete`}
                       style={{ color: "blue" }}
-                      onClick={() => {
-                        onClickDelete(payment);
-                      }}
                     >
                       Eliminar
-                    </button>
+                    </Link>
                   </div>
                 </div>
                 <hr/>
