@@ -16,7 +16,7 @@ import { useHistory } from "react-router";
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null }) {
     //const history = useHistory();
     const qSale = useDetail(SALE, saleId);
-    const qUsers = useQuery(`{ users { } }`);
+
     const [callSet, qSet] = useSet(SET_SALE, {
         onCompleted: () =>{
             onCompleted();
@@ -31,7 +31,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
-    const userId = sessionStorage.getItem("id");
+    const userId = sessionStorage.getItem("company");
 
     let qProducts = useQuery(`{ 
         products {
@@ -39,7 +39,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
             name
             sale {}
         } 
-    }`, "user.id=" + userId);
+    }`, "company.id=" + userId);
 
 
 
@@ -60,7 +60,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
     if (qSale.loading) return <Loading />;
 
     const { sale = {} } = qSale.data;
-    const { users = [] } = qUsers.data;
+    console.log(sale)
     const error = qSet.error ? "An error has occurred" : null;
 
 
@@ -71,7 +71,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.disscount = parseFloat(values.disscount);
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
-        values.user = parseInt(sessionStorage.getItem("id"));
+        values.company = parseInt(sessionStorage.getItem("company"));
 
         // values.products.id - ---nuevos
         // anteriores ---

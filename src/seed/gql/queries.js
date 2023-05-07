@@ -505,7 +505,7 @@ export const PRODUCT = `
     name
     shortDescription
     description
-    user {
+    company {
       id
     }
     sale {
@@ -524,7 +524,7 @@ mutation Set(
   $name: String,
   $shortDescription: String,
   $description: String,
-  $user: Int,
+  $company: Int,
   $sale: Int,
   $category: Int,
 )
@@ -534,7 +534,7 @@ mutation Set(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    user: $user,
+    company: $company,
     sale: $sale,
     category: $category,
   ) {
@@ -543,7 +543,7 @@ mutation Set(
       name
       shortDescription
       description
-      user {
+      company {
         id
       }
       sale {
@@ -562,7 +562,7 @@ mutation Save(
   $name: String!,
   $shortDescription: String!,
   $description: String!,
-  $user: Int!,
+  $company: Int!,
   $sale: Int,
   $category: Int!,
 )
@@ -571,7 +571,7 @@ mutation Save(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    user: $user,
+    company: $company,
     sale: $sale,
     category: $category,
   ) {
@@ -674,7 +674,7 @@ export const SALE = `
     disscount
     startDate
     endDate
-    user {
+    company {
       id
     }
     banner {
@@ -692,7 +692,7 @@ mutation Set(
   $startDate: DateTime,
   $endDate: DateTime,
   $banner: Int,
-  $user: Int,
+  $company: Int,
 )
 {
   setSale(
@@ -701,7 +701,7 @@ mutation Set(
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
-    user: $user,
+    company: $company,
     banner: $banner,
   ) {
     sale {
@@ -710,7 +710,7 @@ mutation Set(
       disscount
       startDate
       endDate
-      user {
+      company {
         id
       }
       banner {
@@ -728,7 +728,7 @@ mutation Save(
   $startDate: DateTime!,
   $endDate: DateTime!,
   $banner: Int,
-  $user: Int!,
+  $company: Int!,
 )
 {
   saveSale(
@@ -736,7 +736,7 @@ mutation Save(
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
-    user: $user,
+    company: $company,
     banner: $banner,
   ) {
     sale {

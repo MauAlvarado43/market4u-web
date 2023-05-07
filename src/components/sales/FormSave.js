@@ -18,7 +18,7 @@ import { useHistory } from "react-router";
 function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
 
     //const history = useHistory();
-    const userId = sessionStorage.getItem("id");
+    const companyId = sessionStorage.getItem("company");
     const [selectedProducts, setSelectedProducts] = useState([])
 
     const qProducts = useQuery(`{ 
@@ -27,7 +27,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
             name
             sale {}
         } 
-    }`, "user.id=" + userId);
+    }`, "company.id=" + companyId);
     const { products = [] } = qProducts.data;
     const [callSet, qSet] = useSet(SET_PRODUCT, {
         onCompleted: () => {
@@ -67,13 +67,12 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
     const error = qSave.error ? "An error has occurred" : null;
 
     const onSubmit = (values) => {
-        //console.log(qUsers.data);
-        console.log(values);
+        
         values.disscount = parseFloat(values.disscount);
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
         values.banner = parseInt(values.banner_id);
-        values.user = parseInt(sessionStorage.getItem("id"));
+        values.company = parseInt(sessionStorage.getItem("company"));
 
         if (values.products != undefined)
             setSelectedProducts(values.products.id);
