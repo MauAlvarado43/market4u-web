@@ -5,36 +5,44 @@ import View from "components/products/List.view";
 
 const ProductList = forwardRef(function ProductList(props, ref){
 
+  const companyId = sessionStorage.getItem('company');
   const userId = sessionStorage.getItem('id');
   const pageSize = 15;
   const [pageNum, setPageNum] = useState(1);
   const reqProducts = usePagination(`
-  {
-    productPagination {
-      totalPages
-      products {
-        name
-        shortDescription
-        description
-        createdAt
-        user { }
-        sale { name }
-        category { name }
-        variants {
-          stock
-          price
-          shipment
-          photos {
-            url
+    {
+      productPagination {
+        totalPages
+        products {
+          name
+          shortDescription
+          description
+          createdAt
+          user { 
+            company { }
           }
-          variantoptions {
-            title
-            value
+          sale { name }
+          category { name }
+          variants {
+            stock
+            price
+            shipment
+            photos {
+              url
+            }
+            variantoptions {
+              title
+              value
+            }
           }
         }
       }
-    }
-  }`, pageNum, pageSize, "(user.id=" + userId + ")", { orderBy: "-id" });
+    }`, 
+    pageNum, 
+    pageSize,
+    companyId ? "(user.company.id=" + companyId + ")" : "(user.id=" + userId + ")", 
+    { orderBy: "-id" }
+  );
 
   const refetchQuery = () => reqProducts.refetch();
   useImperativeHandle(ref, () => ({ refetchQuery }));

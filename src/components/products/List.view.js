@@ -2,16 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { PaginationFooter } from "seed/helpers"
-import ProductFormSave from "components/products/FormSave";
-import ProductFormSet from "components/products/FormSet";
-import { ModalRoute } from "seed/helpers";
 
 const ProductListView = ({ 
   products, 
   pageNum = 1, 
   totalPages = 0, 
   onClickPage = () => {},
-  reqProducts,
   onClickDelete = () => {}
 }) =>
   <div className="border border-primary rounded-lg">
@@ -23,8 +19,7 @@ const ProductListView = ({
     <table className="table table-borderless">
       <thead className="">
         <tr className="font-weight-bold" style={{color: "#000"}}>
-          <th className="text-center" style={{width: "10%"}}>&nbsp;</th>
-          <th className="text-center" style={{width: "15%"}}>Nombre</th>
+          <th className="text-center" style={{width: "30%"}}>Nombre</th>
           <th className="text-center" style={{width: "15%"}}>Categoría</th>
           <th className="text-center" style={{width: "10%"}}>Cantidad</th>
           <th className="text-center" style={{width: "10%"}}>Precio</th>
@@ -36,12 +31,6 @@ const ProductListView = ({
         {
           products.map((product) =>
             <tr key={product.id}>
-              <td className="align-middle text-center">
-                {function(){
-                  let photo = product.variants[0]?.photos[0]?.url;
-                  if(photo) return <img src={photo} width="90" height="50" alt=""/>
-                }()}
-              </td>
               <td className="align-middle text-center">
                 {product.name}
               </td>
@@ -91,7 +80,6 @@ ProductListView.propTypes = {
   totalPages: PropTypes.number,
   onClickPage: PropTypes.func,
   onClickDelete: PropTypes.func,
-  reqProducts: PropTypes.object
 };
 
 export default ProductListView;

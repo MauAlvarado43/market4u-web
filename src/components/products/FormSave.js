@@ -4,6 +4,7 @@ import { useQuery } from "seed/gql";
 import View from "components/products/Form.view";
 import { usePost } from "seed/api";
 import { useHistory } from "react-router";
+import { object, string } from "yup";
 
 function ProductFormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
   
@@ -16,6 +17,53 @@ function ProductFormSave({ onCompleted = () => null, onError = () => null, refet
       onCompleted();
     }
   });
+
+  const productSchema = object({
+    name: string().test({
+      name: "name",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese un nombre del producto" });
+
+        return true;
+
+      }
+    }),
+    short_description: string().test({
+      name: "short_description",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese una descripción" });
+
+        return true;
+
+      }
+    }),
+    description: string().test({
+      name: "description",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese los detalles del producto" });
+
+        return true;
+
+      }
+    }),
+    "category.id": string().test({
+      name: "category.id",
+      test(value, context) {
+
+        if(!context.parent.category || !context.parent.category.id) 
+          return context.createError({ message: "Seleccione una categoría" });
+
+        return true;
+
+      }
+    }),
+  })
 
   const [hideModal, setHideModal] = useState(true);
   const [photos, setPhotos] = useState([ [] ]);
@@ -65,7 +113,7 @@ function ProductFormSave({ onCompleted = () => null, onError = () => null, refet
       "type": "text"
     });
 
-    newRows.forEach(row => row.push(""));
+    newRows.forEach(row => row.push(null));
 
     setTabs(newTabs);
     setRows(newRows);
@@ -115,7 +163,7 @@ function ProductFormSave({ onCompleted = () => null, onError = () => null, refet
 
   const onAddRow = () => {
     const newRows = [...rows];
-    newRows.push(new Array(tabs.length).fill(""));
+    newRows.push(new Array(tabs.length).fill(null));
     setRows(newRows);
     setPhotos([...photos, []]);
   }
@@ -179,6 +227,7 @@ function ProductFormSave({ onCompleted = () => null, onError = () => null, refet
     error={error}
     onSubmit={onSubmit}
     onCancel={onCancel}
+    productSchema={productSchema}
   />;
 
 }

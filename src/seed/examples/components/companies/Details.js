@@ -19,10 +19,16 @@ function CompanyDetails({ companyId, onCompleted = () => null, onError = () => n
       name
       commonName
       rfc
-      address
+      cp
       phone
       email
       active
+      municipality
+      state
+      cologn
+      website
+      street
+      city
       createdAt
       photo { }
       users { }

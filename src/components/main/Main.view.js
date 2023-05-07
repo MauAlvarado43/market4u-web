@@ -122,11 +122,10 @@ const MainView = () => {
   ))}
 </div>
 
+
       </div>
     </div>
-  </div>
-</div>
-);
+  );
 };
 
 MainView.propTypes = {};
