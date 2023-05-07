@@ -24,7 +24,7 @@ function SaleList() {
         endDate
         createdAt
         product { }
-        user { }
+        company { }
         banner { }
       }
     }

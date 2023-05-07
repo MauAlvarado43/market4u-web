@@ -22,7 +22,7 @@ function ProductList() {
         shortDescription
         description
         createdAt
-        user { }
+        company { }
         opinions { }
         sale { }
         category { }

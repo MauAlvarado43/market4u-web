@@ -505,7 +505,7 @@ export const PRODUCT = `
     name
     shortDescription
     description
-    user {
+    company {
       id
     }
     sale {
@@ -524,7 +524,7 @@ mutation Set(
   $name: String,
   $shortDescription: String,
   $description: String,
-  $user: Int,
+  $company: Int,
   $sale: Int,
   $category: Int,
 )
@@ -534,7 +534,7 @@ mutation Set(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    user: $user,
+    company: $company,
     sale: $sale,
     category: $category,
   ) {
@@ -543,7 +543,7 @@ mutation Set(
       name
       shortDescription
       description
-      user {
+      company {
         id
       }
       sale {
@@ -562,7 +562,7 @@ mutation Save(
   $name: String!,
   $shortDescription: String!,
   $description: String!,
-  $user: Int!,
+  $company: Int!,
   $sale: Int,
   $category: Int!,
 )
@@ -571,7 +571,7 @@ mutation Save(
     name: $name,
     shortDescription: $shortDescription,
     description: $description,
-    user: $user,
+    company: $company,
     sale: $sale,
     category: $category,
   ) {
@@ -674,7 +674,7 @@ export const SALE = `
     disscount
     startDate
     endDate
-    user {
+    company {
       id
     }
     banner {
@@ -692,7 +692,7 @@ mutation Set(
   $startDate: DateTime,
   $endDate: DateTime,
   $banner: Int,
-  $user: Int,
+  $company: Int,
 )
 {
   setSale(
@@ -701,7 +701,7 @@ mutation Set(
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
-    user: $user,
+    company: $company,
     banner: $banner,
   ) {
     sale {
@@ -710,7 +710,7 @@ mutation Set(
       disscount
       startDate
       endDate
-      user {
+      company {
         id
       }
       banner {
@@ -728,7 +728,7 @@ mutation Save(
   $startDate: DateTime!,
   $endDate: DateTime!,
   $banner: Int,
-  $user: Int!,
+  $company: Int!,
 )
 {
   saveSale(
@@ -736,7 +736,7 @@ mutation Save(
     disscount: $disscount,
     startDate: $startDate,
     endDate: $endDate,
-    user: $user,
+    company: $company,
     banner: $banner,
   ) {
     sale {
@@ -873,6 +873,9 @@ export const USER = `
     company {
       id
     }
+    wishlist {
+      id
+    }
   }
 }
 `;
@@ -900,6 +903,7 @@ mutation Set(
   $tokenVerified: Boolean,
   $code: Int,
   $company: Int,
+  $wishlist: [Int],
 )
 {
   setUser(
@@ -921,6 +925,7 @@ mutation Set(
     state: $state,
     cologn: $cologn,
     telephone: $telephone,
+    wishlist: $wishlist,
     token: $token,
     tokenVerified: $tokenVerified,
     code: $code,
@@ -950,6 +955,9 @@ mutation Set(
       company {
         id
       }
+      wishlist {
+        id
+      }
     }
   }
 }
@@ -977,6 +985,7 @@ mutation Save(
   $tokenVerified: Boolean!,
   $code: Int!,
   $company: Int,
+  $wishlist: [Int],
 )
 {
   saveUser(
@@ -997,6 +1006,7 @@ mutation Save(
     state: $state,
     cologn: $cologn,
     telephone: $telephone,
+    wishlist: $wishlist,
     token: $token,
     tokenVerified: $tokenVerified,
     code: $code,
