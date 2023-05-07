@@ -19,12 +19,12 @@ const ProductListView = ({
     <table className="table table-borderless">
       <thead className="">
         <tr className="font-weight-bold" style={{color: "#000"}}>
-          <th className="text-center" style={{width: "30%"}}>Nombre</th>
+          <th className="text-center" style={{width: "20%"}}>Nombre</th>
           <th className="text-center" style={{width: "15%"}}>Categoría</th>
           <th className="text-center" style={{width: "10%"}}>Cantidad</th>
           <th className="text-center" style={{width: "10%"}}>Precio</th>
           <th className="text-center" style={{width: "15%"}}>Ofertas</th>
-          <th className="text-center" style={{width: "20%"}}>Acciones</th>
+          <th className="text-center" style={{width: "30%"}}>Acciones</th>
         </tr>
       </thead>
       <tbody>

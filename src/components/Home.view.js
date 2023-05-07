@@ -8,6 +8,7 @@ import Profile from "components/profile/Profile";
 import Sales from "components/sales/Sales";
 import Products from "components/products/Products";
 import History from "components/history/History";
+import ProductDetail from "components/products/Detail";
 
 const HomeView = () =>
   <BrowserRouter>
@@ -24,6 +25,7 @@ const HomeView = () =>
             <Route path="/sales" component={Sales} />
             <Route path="/products" component={Products} />
             <Route path="/history" component={History} />
+            <Route path="/product/:productId(\d+)" component={ProductDetail} />
             <Redirect to="/home" />
           </Switch>
 

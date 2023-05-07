@@ -14,7 +14,7 @@ function ProductFormSave({ onCompleted = () => null, onError = () => null, refet
   const [callSave, qSave] = usePost("/products/create_product", {
     onCompleted: () => {
       refetchQuery();
-      onCompleted();
+      history.goBack();
     }
   });
 

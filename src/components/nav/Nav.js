@@ -21,8 +21,6 @@ function Nav() {
     }
   }`, sessionStorage.getItem("id"));
 
-  console.log(reqUser);
-
   if (reqUser.loading) return <Loading />;
   if (reqUser.error) return "Error";
 

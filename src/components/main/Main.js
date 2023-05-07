@@ -6,6 +6,8 @@ import View from "components/main/Main.view";
 
 function Main() {
 
+  console.log("asdasd")
+
   const pageSize = 20;
   const [pageNum, setPageNum] = useState(1);
 

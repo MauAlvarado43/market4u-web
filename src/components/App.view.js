@@ -10,7 +10,6 @@ import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
 
 import Main from "components/main/Main"
-import Products from "components/products/Products";
 
 const AppView = () =>
   <div class="module">
@@ -23,7 +22,6 @@ const AppView = () =>
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
         <Route path="/main" component={Main} />
-        <Route path="/products" component={Products} />
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

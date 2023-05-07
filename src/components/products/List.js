@@ -15,12 +15,10 @@ const ProductList = forwardRef(function ProductList(props, ref){
         totalPages
         products {
           name
+          company { name }
           shortDescription
           description
           createdAt
-          user { 
-            company { }
-          }
           sale { name }
           category { name }
           variants {
@@ -40,7 +38,7 @@ const ProductList = forwardRef(function ProductList(props, ref){
     }`, 
     pageNum, 
     pageSize,
-    companyId ? "(user.company.id=" + companyId + ")" : "(user.id=" + userId + ")", 
+    companyId ? "(company.id=" + companyId + ")" : "(user.id=" + userId + ")", 
     { orderBy: "-id" }
   );
 
