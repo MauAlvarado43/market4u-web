@@ -180,6 +180,7 @@ const ProfileView = ({
       component={DeleteCard} 
       width="400"
       height="400" 
+      style = {{position:"fixed", marginTop:"0", marginLeft:"0"}}
     />
 
   </BrowserRouter>

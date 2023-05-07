@@ -8,6 +8,7 @@ import Profile from "components/profile/Profile";
 import Sales from "components/sales/Sales";
 import Products from "components/products/Products";
 import History from "components/history/History";
+import Filter from "components/nav/Filter";
 
 const HomeView = () =>
   <BrowserRouter>
