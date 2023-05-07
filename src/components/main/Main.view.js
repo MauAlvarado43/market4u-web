@@ -62,14 +62,14 @@ const MainView = () => {
               <h4 className="title">PRODUCTOS DESTACADOS</h4>
             </div>
 
-            <div className="row justify-content flex-wrap">
+            <div className="row justify-content-centery flex-wrap">
   {currentProducts.map((product) => (
-    <div key={product.id} className="col-md-3 mb-4 single-card-product">
+    <div key={product.id} className="col-md-3 mb-4">
+      <div className="single-card-product col-margin">
       <button className="favorite-btn">
         <span class="material-symbols-outlined">
-        favorite
+          favorite
         </span>
-        {/**<i className="fas fa-heart"></i> */}
       </button>
       <div id={`carousel-${product.id}`} className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
@@ -83,53 +83,45 @@ const MainView = () => {
               <img src={photo.url} className="d-block w-100 card-img-top" alt={product.name} />
             </div>
           ))}
-                    </div>
-                    <a
-                      className="carousel-control-prev"
-                      href={`#carousel-${product.id}`}
-                      role="button"
-                     
-
-                  data-slide="prev"
-                >
-                  <span
-                    className="carousel-control-prev-icon"
-                    aria-hidden="true"
-                    id = "prev-icon"
-                    style={{ color: "black" }}
-                  ></span>
-                  <span class="material-symbols-outlined">
-arrow_forward_ios
-</span>
-                </a>
-                <a
-                  className="carousel-control-next"
-                  href={`#carousel-${product.id}`}
-                  role="button"
-                  data-slide="next"
-                >
-                  <span
-                    className="carousel-control-next-icon"
-                    aria-hidden="true"
-                    id = "next-icon"
-                    style={{ color: "black" }}
-                  ></span>
-                  <span className="sr-only">Next</span>
-                </a>
-              </div>
-
-              <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
-                <p className="card-text">{product.shortDescription}</p>
-                <p className="card-text">
-                <small className="text" style={{ fontSize: '20px' }}>
-                    ${product.variants[0].price}
-                  </small>
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
+        <a
+          className="carousel-control-prev"
+          href={`#carousel-${product.id}`}
+          role="button"
+          data-slide="prev"
+        >
+          <span class="material-symbols-outlined" id="prev-icon">
+            arrow_back_ios
+          </span>
+        
+          
+        </a>
+        <a
+          className="carousel-control-next"
+          href={`#carousel-${product.id}`}
+          role="button"
+          data-slide="next"
+        >
+          <span class="material-symbols-outlined next" id="prev-icon">
+            arrow_forward_ios
+          </span>
+        </a>
+      </div>
+
+      <div className="card-body">
+        <h5 className="card-title">{product.name}</h5>
+        <p className="card-text">{product.shortDescription}</p>
+        <p className="card-text">
+          <small className="text" style={{ fontSize: '20px' }}>
+            ${product.variants[0].price}
+          </small>
+        </p>
+      </div>
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
     </div>
   </div>
