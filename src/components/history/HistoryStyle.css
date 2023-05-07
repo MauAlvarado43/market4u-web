@@ -46,7 +46,7 @@
 
 .history-shipping {
     display: grid;
-    grid-template-columns: [lineShip1] 35% [lineShip2] 22% [lineShip3] 22% [lineShip4] 21%;
+    grid-template-columns: [lineShip1] 33% [lineShip2] 25% [lineShip3] 25% [lineShip4] 17%;
     grid-template-rows: [rowShip1] auto;
     padding: 1%;
     border-radius: 1rem;
@@ -107,6 +107,12 @@
     text-align:center;
 }
 
+.history-shipping-order table {
+    margin: 5%;
+    font-size: 1vw;
+}
+
+
 .history-shipping-shipment {
     grid-column-start: 3;
     grid-column-end: 4;
@@ -117,8 +123,17 @@
     padding: 5%;
 }
 
-.history-shipping-shipment {
+.history-shipping-shipment h3{
     text-align:center;
+}
+
+.history-shipping-shipment table{
+    margin: 5%;
+}
+
+.history-shipping-shipment table td{
+    font-size: 1vw;
+    vertical-align: top;
 }
 
 .history-shipping-buttons {
@@ -126,6 +141,11 @@
     grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 2;
+}
+
+.history-shipping-buttons svg {
+    margin: auto;
+    /* margin-right: 3vw; */
 }
 
 .history-shipping-buttons button {
@@ -143,7 +163,7 @@
     font-weight: 600;
     justify-content: center;
     line-height: 1.25;
-    margin: 0 auto;
+    margin: auto;
     min-height: 3rem;
     padding: calc(.875rem - 1px) calc(1.5rem - 1px);
     position: relative;
