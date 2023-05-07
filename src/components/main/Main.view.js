@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "styles/css/main.css";
+import "styles/css/carrusel.css";
 import { gql, useQuery } from "@apollo/client";
-{/*import { PaginationFooter } from "seed/helpers"*/}
+import Banner from "components/main/Banner.view";
+
 
 const GET_PRODUCTS = gql`
   query {
@@ -21,22 +23,8 @@ const GET_PRODUCTS = gql`
   }
 `;
 
-const GET_BANNERS = gql`
-  query {
-    sales {
-      banner {
-        id
-        name
-        url
-      }
-    }
-  }
-`;
-
-
 const MainView = () => {
   const { loading: productsLoading, error: productsError, data: productsData } = useQuery(GET_PRODUCTS);
-  const { loading: bannersLoading, error: bannersError, data: bannersData } = useQuery(GET_BANNERS);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(80);
@@ -46,9 +34,6 @@ const MainView = () => {
       setProducts(productsData.products);
     }
   }, [productsData]);
-
-  if (productsLoading || bannersLoading) return <p>Loading...</p>;
-  if (productsError || bannersError) return <p>Error :(</p>;
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -64,52 +49,11 @@ const MainView = () => {
   return (
     <div className="container" style={{ width:"100%", height: "100vh", overflow: "scroll" }}>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-      <div className="NavBar">
-        <h1>Navbar</h1>
-      </div>
       <div className="container-main-visual">
         <div className="container-main">
-          <div className="banner-offers">
-            <div className="carousel slide" data-ride="carousel" id="bannerCarousel">
-              <div className="carousel-inner">
-                {bannersData.sales.banner && bannersData.sales.banner.map((banner, index) => (
-                  <div
-                    key={banner.id}
-                    className={`carousel-item${index === 0 ? " active" : ""}`}
-                  >
-                    <img
-                      src={banner.url}
-                      alt={banner.name}
-                      className="d-block w-100"
-                      style={{ height: "100vh", objectFit: "cover" }}
-                    />
-                  </div>
-                ))}
-              </div>
-              <a
-                className="carousel-control-prev"
-                href="#bannerCarousel"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Previous</span>
-              </a>
-              <a
-                className="carousel-control-next"
-                href="#bannerCarousel"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Next</span>
-              </a>
+          <div className="banner">
+            <div clasName = "banner-container">
+              <Banner />
             </div>
           </div>
 
