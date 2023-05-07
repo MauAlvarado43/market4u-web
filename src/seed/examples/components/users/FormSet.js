@@ -15,6 +15,7 @@ function UserFormSet({ userId, onCompleted = () => null, onError = () => null  }
 
   const qUser = useDetail(USER, userId);
   const qCompanies = useQuery(`{ companies { } }`);
+  const qProducts = useQuery(`{ products { } }`);
   const [callSet, qSet] = useSet(SET_USER, {
     onCompleted: () =>
       onCompleted()
@@ -25,6 +26,7 @@ function UserFormSet({ userId, onCompleted = () => null, onError = () => null  }
 
   const { user = {} } = qUser.data;
   const { companies = [] } = qCompanies.data;
+  const { products = [] } = qProducts.data;
   const error = qSet.error ? "An error has occurred" : null;
 
   const onSubmit = (values) => {
@@ -35,6 +37,7 @@ function UserFormSet({ userId, onCompleted = () => null, onError = () => null  }
   return <View
     user={user}
     companies={companies}
+    products={products}
     error={error}
     onSubmit={onSubmit}
   />;

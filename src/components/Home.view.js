@@ -9,16 +9,14 @@ import Sales from "components/sales/Sales";
 import Products from "components/products/Products";
 import History from "components/history/History";
 
-import { Formik, Form, Field } from 'formik';
-
 const HomeView = () =>
-<BrowserRouter>
-  <Switch>
-    <div>
+  <BrowserRouter>
+    <Switch>
+      <div>
 
-      <Nav />
-      
-      <div id="content">
+        <Nav />
+
+        <div id="content">
 
           <Switch>
             <Route path="/home" component={Main} />
@@ -29,9 +27,9 @@ const HomeView = () =>
             <Redirect to="/home" />
           </Switch>
 
-      </div>
+        </div>
 
-      <ScriptTag content={`
+        <ScriptTag content={`
           // Builder toggle invoker
           $('.js-navbar-vertical-aside-toggle-invoker').click(function () {
             $('.js-navbar-vertical-aside-toggle-invoker i').tooltip('hide');
@@ -59,9 +57,9 @@ const HomeView = () =>
             new HSFormSearch($(this)).init()
           });
       `} />
-    </div>
-  </Switch>
-</BrowserRouter>;
+      </div>
+    </Switch>
+  </BrowserRouter>;
 
 HomeView.propTypes = {};
 

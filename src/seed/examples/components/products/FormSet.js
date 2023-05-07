@@ -14,7 +14,7 @@ import View from "seed/examples/components/products/Form.view";
 function ProductFormSet({ productId, onCompleted = () => null, onError = () => null  }) {
 
   const qProduct = useDetail(PRODUCT, productId);
-  const qUsers = useQuery(`{ users { } }`);
+  const qCompanies = useQuery(`{ companies { } }`);
   const qSales = useQuery(`{ sales { } }`);
   const qCategories = useQuery(`{ categories { } }`);
   const [callSet, qSet] = useSet(SET_PRODUCT, {
@@ -26,7 +26,7 @@ function ProductFormSet({ productId, onCompleted = () => null, onError = () => n
   if (qProduct.loading) return <Loading />;
 
   const { product = {} } = qProduct.data;
-  const { users = [] } = qUsers.data;
+  const { companies = [] } = qCompanies.data;
   const { sales = [] } = qSales.data;
   const { categories = [] } = qCategories.data;
   const error = qSet.error ? "An error has occurred" : null;
@@ -38,7 +38,7 @@ function ProductFormSet({ productId, onCompleted = () => null, onError = () => n
 
   return <View
     product={product}
-    users={users}
+    companies={companies}
     sales={sales}
     categories={categories}
     error={error}

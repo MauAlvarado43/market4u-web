@@ -1,35 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import View from "components/nav/Nav.view";
-import { useQuery } from "seed/gql";
+import { useDetail } from "seed/gql";
 import { Loading } from "seed/helpers";
 
 function Nav() {
-  const reqUsers = useQuery(
-    `{
-      users {
-        type
+  const reqUser = useDetail(`{
+    user {
+      type
+      photo{
+        id
+        url
+      }
+      company{
+        id
         photo{
-          id
           url
         }
-        company{
-          id
-          photo{
-            url
-          }
-        }
       }
-    }`,
-    "id = " + sessionStorage.getItem("id")
-  );
+    }
+  }`, sessionStorage.getItem("id"));
 
-  if (reqUsers.loading) return <Loading />;
-  if (reqUsers.error) return "Error";
+  console.log(reqUser);
 
-  const { users } = reqUsers.data;
+  if (reqUser.loading) return <Loading />;
+  if (reqUser.error) return "Error";
 
-  return <View users={users} />;
+  const { user = {} } = reqUser.data;
+
+  return <View user={user} />;
 }
 
 Nav.propTypes = {};

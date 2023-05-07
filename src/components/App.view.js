@@ -16,7 +16,6 @@ const AppView = () =>
   <div class="module">
     <BrowserRouter>
       <Switch>
-        
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/logout" component={Logout} />

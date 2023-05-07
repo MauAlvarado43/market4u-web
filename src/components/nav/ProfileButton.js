@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import View from "components/nav/ProfileButton.view";
 
-function ProfileButton(props){
+function ProfileButton(props) {
 
     const { text, icon_left } = props;
 
