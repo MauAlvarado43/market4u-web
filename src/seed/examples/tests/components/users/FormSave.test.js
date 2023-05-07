@@ -13,6 +13,7 @@ import FormSave from 'seed/examples/components/users/FormSave';
 
 test('examples/components/users/FormSave', () => {
   mockGql.useQuery({"companies": data.GQL_COMPANIES});
+  mockGql.useQuery({"products": data.GQL_PRODUCTS});
   mockGql.useSave({"saveUser": data.GQL_USER});
   render(<FormSave />);
   expect(screen).toBeDefined();

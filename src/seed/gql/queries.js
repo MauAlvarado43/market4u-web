@@ -873,6 +873,9 @@ export const USER = `
     company {
       id
     }
+    wishlist {
+      id
+    }
   }
 }
 `;
@@ -900,6 +903,7 @@ mutation Set(
   $tokenVerified: Boolean,
   $code: Int,
   $company: Int,
+  $wishlist: [Int],
 )
 {
   setUser(
@@ -921,6 +925,7 @@ mutation Set(
     state: $state,
     cologn: $cologn,
     telephone: $telephone,
+    wishlist: $wishlist,
     token: $token,
     tokenVerified: $tokenVerified,
     code: $code,
@@ -950,6 +955,9 @@ mutation Set(
       company {
         id
       }
+      wishlist {
+        id
+      }
     }
   }
 }
@@ -977,6 +985,7 @@ mutation Save(
   $tokenVerified: Boolean!,
   $code: Int!,
   $company: Int,
+  $wishlist: [Int],
 )
 {
   saveUser(
@@ -997,6 +1006,7 @@ mutation Save(
     state: $state,
     cologn: $cologn,
     telephone: $telephone,
+    wishlist: $wishlist,
     token: $token,
     tokenVerified: $tokenVerified,
     code: $code,
