@@ -14,6 +14,7 @@ import FormSet from 'seed/examples/components/users/FormSet';
 test('examples/components/users/FormSet', () => {
   mockGql.useDetail({"user": data.GQL_USER});
   mockGql.useQuery({"companies": data.GQL_COMPANIES});
+  mockGql.useQuery({"products": data.GQL_PRODUCTS});
   mockGql.useSet({"setUser": data.GQL_USER});
   render(<FormSet />);
   expect(screen).toBeDefined();

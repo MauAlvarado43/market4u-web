@@ -21,16 +21,23 @@ function UserDetails({ userId, onCompleted = () => null, onError = () => null })
       lastName
       email
       isActive
-      address
       active
       type
+      street
+      city
+      cp
+      municipality
+      state
+      cologn
+      telephone
+      token
+      tokenVerified
+      code
       createdAt
       photo { }
       company { }
       carts { }
-      products { }
-      whishlist { }
-      sales { }
+      wishlist { }
       shippings { }
     }
   }`, userId);

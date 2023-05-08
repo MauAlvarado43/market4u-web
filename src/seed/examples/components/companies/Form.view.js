@@ -45,10 +45,10 @@ const CompanyFormView = ({ company= {}, onSubmit, error }) =>
             <Field type="text" name="rfc"
               class="form-control" />
             </div>
-            {/* Address */}
+            {/* Cp */}
             <div class="form-group">
-            <label class="input-label">Address</label>
-            <Field type="text" name="address"
+            <label class="input-label">Cp</label>
+            <Field type="number" name="cp"
               class="form-control" />
             </div>
             {/* Phone */}
@@ -75,6 +75,77 @@ const CompanyFormView = ({ company= {}, onSubmit, error }) =>
             <FileField name="photo"
               accept="*/*" setFieldValue={setFieldValue}
               class="form-control"  />
+            </div>
+            {/* Municipality */}
+            <div class="form-group">
+            <label class="input-label">Municipality</label>
+            <Field type="text" name="municipality"
+              class="form-control" />
+            </div>
+            {/* State */}
+            <div class="form-group">
+            <label class="input-label">State</label>
+            <Field as="select" name="state"
+              class="form-control"  >
+              <option value="">Select an option</option>
+              <option value="NS">NS</option>
+              <option value="AGUASCALIENTES">AGUASCALIENTES</option>
+              <option value="BAJA CALIFORNIA">BAJA CALIFORNIA</option>
+              <option value="BAJA CALIFORNIA SUR">BAJA CALIFORNIA SUR</option>
+              <option value="CAMPECHE">CAMPECHE</option>
+              <option value="COAHUILA">COAHUILA</option>
+              <option value="COLIMA">COLIMA</option>
+              <option value="CHIAPAS">Chiapas</option>
+              <option value="CHIHUAHUA">CHIHUAHUA</option>
+              <option value="DURANGO">DURANGO</option>
+              <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
+              <option value="GUANAJUATO">GUANAJUATO</option>
+              <option value="GUERRERO">GUERRERO</option>
+              <option value="HIDALGO">HIDALGO</option>
+              <option value="JALISCO">JALISCO</option>
+              <option value="MEXICO">MEXICO</option>
+              <option value="MICHOACAN">MICHOACAN</option>
+              <option value="MORELOS">MORELOS</option>
+              <option value="NAYARIT">NAYARIT</option>
+              <option value="NUEVO LEON">NUEVO LEON</option>
+              <option value="OAXACA">OAXACA</option>
+              <option value="PUEBLA">PUEBLA</option>
+              <option value="QUERETARO">QUERETARO</option>
+              <option value="QUINTANA ROO">QUINTANA ROO</option>
+              <option value="SAN LUIS POTOSI">SAN LUIS POTOSI</option>
+              <option value="SINALOA">SINALOA</option>
+              <option value="SONORA">SONORA</option>
+              <option value="TABASCO">TABASCO</option>
+              <option value="TAMAULIPAS">TAMAULIPAS</option>
+              <option value="TLAXCALA">TLAXCALA</option>
+              <option value="VERACRUZ">VERACRUZ</option>
+              <option value="YUCATAN">YUCATAN</option>
+              <option value="ZACATECAS">ZACATECAS</option>
+            </Field>
+            </div>
+            {/* Cologn */}
+            <div class="form-group">
+            <label class="input-label">Cologn</label>
+            <Field type="text" name="cologn"
+              class="form-control" />
+            </div>
+            {/* Website */}
+            <div class="form-group">
+            <label class="input-label">Website</label>
+            <Field type="text" name="website"
+              class="form-control" />
+            </div>
+            {/* Street */}
+            <div class="form-group">
+            <label class="input-label">Street</label>
+            <Field type="text" name="street"
+              class="form-control" />
+            </div>
+            {/* City */}
+            <div class="form-group">
+            <label class="input-label">City</label>
+            <Field type="text" name="city"
+              class="form-control" />
             </div>
             </div>
             {error ? <div class="alert alert-soft-danger">{error}</div> : null}

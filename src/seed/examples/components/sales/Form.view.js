@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { MultiField, FileField } from "seed/helpers";
 
-const SaleFormView = ({ sale= {}, users= [], onSubmit, error }) =>
+const SaleFormView = ({ sale= {}, companies= [], onSubmit, error }) =>
   <div class="card">
 
     {/* Header */}
@@ -51,14 +51,14 @@ const SaleFormView = ({ sale= {}, users= [], onSubmit, error }) =>
             <Field type="date" name="endDate"
               class="form-control" />
             </div>
-            {/* User */}
+            {/* Company */}
             <div class="form-group">
             <div>
-            <label class="input-label">User</label>
-            <Field as="select" name="user.id"
+            <label class="input-label">Company</label>
+            <Field as="select" name="company.id"
               class="form-control"  >
               <option value="">Select an option</option>
-              {users.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
+              {companies.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
             </Field>
             </div>
             </div>
@@ -82,7 +82,7 @@ const SaleFormView = ({ sale= {}, users= [], onSubmit, error }) =>
 
 SaleFormView.propTypes = {
   sale: PropTypes.object,
-  users: PropTypes.array,
+  companies: PropTypes.array,
   onSubmit: PropTypes.func.isRequired,
   error: PropTypes.string
 };
