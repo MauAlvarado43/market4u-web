@@ -31,7 +31,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
-    const userId = sessionStorage.getItem("id");
+    const companyId = sessionStorage.getItem("company");
 
     let qProducts = useQuery(`{ 
         products {
@@ -39,7 +39,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
             name
             sale {}
         } 
-    }`, "user.id=" + userId);
+    }`, "company.id=" + companyId);
 
 
 
@@ -69,9 +69,17 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
+        if(values.disscount < 1 || values.disscount > 100){
+            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
+            return;
+        }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
-        values.user = parseInt(sessionStorage.getItem("id"));
+        if(values.startDate > values.endDate){
+            alert("Fechas ingresadas incorrectas.")
+            return
+        }
+        values.company = parseInt(sessionStorage.getItem("company"));
 
         // values.products.id - ---nuevos
         // anteriores ---

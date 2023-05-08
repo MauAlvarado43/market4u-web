@@ -30,7 +30,7 @@ const SaleListView = ({
                     <th className="text-center" style={{ width: "15%" }}>Descuento</th>
                     <th className="text-center" style={{ width: "10%" }}>Fecha de inicio</th>
                     <th className="text-center" style={{ width: "10%" }}>Fecha de fin</th>
-                    <th className="text-center" style={{ width: "15%" }}>Productos</th>
+                    <th className="text-center" style={{ width: "10%" }}>Productos</th>
                     <th className="text-center" style={{ width: "20%" }}>Acciones</th>
                 </tr>
             </thead>
@@ -46,13 +46,13 @@ const SaleListView = ({
                                 {sale.disscount + " %"}
                             </td>
                             <td className="align-middle text-center">
-                                {new Date(sale.startDate).getDate() + "/" + new Date(sale.startDate).getMonth() + "/" + new Date(sale.startDate).getFullYear()}
+                                {new Date(sale.startDate).getDate() + "/" + (new Date(sale.startDate).getMonth()+1) + "/" + new Date(sale.startDate).getFullYear()}
                             </td>
                             <td className="align-middle text-center">
-                                {new Date(sale.endDate).getDate() + "/" + new Date(sale.endDate).getMonth() + "/" + new Date(sale.endDate).getFullYear()}
+                                {new Date(sale.endDate).getDate() + "/" + (new Date(sale.endDate).getMonth()+1) + "/" + new Date(sale.endDate).getFullYear()}
                             </td>
                             <td className="align-middle text-center">
-                                <select className="products-sales-names">
+                                <select className="form-control">
                                     <option>Listado</option>
                                     {
                                         productsName[idx].map((product) =>

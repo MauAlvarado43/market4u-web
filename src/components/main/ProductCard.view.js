@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ProductCardView = ({ product }) =>
@@ -88,7 +89,9 @@ const ProductCardView = ({ product }) =>
     <div className="mt-2 w-100" >
       <div className="text-center">
         <div className="h-1 mt-0 mb-0">
-          <span className="h3 " >{product.name}</span>
+          <Link to={`/product/${product.id}`} className="text-decoration-none">
+            <span className="h3 " >{product.name}</span>
+          </Link>
         </div>
         <div className="text-muted">{product.shortDescription}</div>
         <div className="">

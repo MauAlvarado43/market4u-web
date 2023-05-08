@@ -25,10 +25,7 @@ const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
             {
               products.map((product) =>
                 <div key={product.id} className="col-md-3 my-2">
-                  <Link to={`/product/${product.id}`} className="text-decoration-none">
-                    <ProductCard product={product} />
-                  </Link>
-
+                  <ProductCard product={product} />
                 </div>
               )
             }
