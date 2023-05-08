@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
+import RelatedProducts from "./RelatedProducts";
+import ProductOpinionList from "./ProductOpinionList";
+
 
 const DetailView = ({ 
   product = {}, 
@@ -11,7 +14,8 @@ const DetailView = ({
   price,
   setSelectedOptions,
   selectedOptions,
-  stock
+  stock,
+  rate
 }) =>
   <div class="px-6" style={{overflowY: "auto", overflowX: "hidden", maxHeight: "80vh"}}>
 
@@ -74,9 +78,6 @@ const DetailView = ({
 
         {
           function(){
-
-            let rate = product.opinions.reduce((acc, opinion) => acc + opinion.rate, 0);
-            if(product.opinions.length > 0) rate = rate / product.opinions.length;
 
             let stars = [];
 
@@ -167,16 +168,41 @@ const DetailView = ({
       </div>
     </div>
 
-    <div className="row mt-3">
-        <div className="col-md-12">
-          <h1 className="display-5 text-dark">Productos relacionados con este artículo</h1>
-        </div>
+    <div className="row mt-6 mb-3">
+      <div className="col-md-12">
+        <h1 className="display-5 text-dark">Productos relacionados con este artículo</h1>
+      </div>
+    </div>
+
+    <div className="row my-3">
+      <div className="col-md-12 d-flex justify-content-center">
+        <RelatedProducts product={product} />
+      </div>
+    </div>
+
+    <div className="row mt-6 mb-3">
+      <div className="col-md-12">
+        <h1 className="display-5 text-dark">Opiniones del producto</h1>
+      </div>
+    </div>
+
+    <div className="my-3">
+      <ProductOpinionList product={product} rate={rate} />
     </div>
 
   </div>;
 
 DetailView.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object,
+  variantOptions: PropTypes.object,
+  photos: PropTypes.array,
+  photoIndex: PropTypes.number,
+  setPhotoIndex: PropTypes.func,
+  price: PropTypes.number,
+  setSelectedOptions: PropTypes.func,
+  selectedOptions: PropTypes.object,
+  stock: PropTypes.number,
+  rate: PropTypes.number
 };
 
 export default DetailView;

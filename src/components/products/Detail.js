@@ -28,10 +28,15 @@ function Detail({ match }) {
           endDate
         }
         opinions {
+          createdAt
           title
           description
           rate
-          user {  }
+          user { 
+            firstName
+            lastName
+            photo { url }
+          }
         }
         variants {
           price
@@ -101,6 +106,9 @@ function Detail({ match }) {
 
   if(photos.length < photoIndex) setPhotoIndex(0);
 
+  let rate = product.opinions.reduce((acc, opinion) => acc + opinion.rate, 0);
+  if(product.opinions.length > 0) rate = rate / product.opinions.length;
+
   return <View 
     product={product}
     variantOptions={variantOptions}
@@ -111,6 +119,7 @@ function Detail({ match }) {
     setPhotoIndex={setPhotoIndex}
     price={price}
     stock={stock}
+    rate={rate}
   />;
 
 }

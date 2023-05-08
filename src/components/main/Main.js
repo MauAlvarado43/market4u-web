@@ -6,8 +6,6 @@ import View from "components/main/Main.view";
 
 function Main() {
 
-  console.log("asdasd")
-
   const pageSize = 20;
   const [pageNum, setPageNum] = useState(1);
 
@@ -35,7 +33,13 @@ function Main() {
   const { products = [], totalPages = 0 } = reqProducts.data.productPagination;
   const onClickPage = (pageNum) => setPageNum(pageNum);
 
-  return <View products={products} onClickPage={onClickPage} pageNum={pageNum} totalPages={totalPages}/>;
+  return <View 
+    products={products} 
+    onClickPage={onClickPage} 
+    pageNum={pageNum} 
+    totalPages={totalPages}
+  />;
+
 }
 
 Main.propTypes = {};
