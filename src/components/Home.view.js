@@ -19,7 +19,6 @@ const HomeView = () =>
         <Nav />
 
         <div id="content">
-
           <Switch>
             <Route path="/home" component={Main} />
             <Route path="/profile" component={Profile} />
