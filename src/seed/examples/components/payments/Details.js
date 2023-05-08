@@ -20,6 +20,7 @@ function PaymentDetails({ paymentId, onCompleted = () => null, onError = () => n
       expireDate
       type
       address
+      bank
       createdAt
       user { }
     }

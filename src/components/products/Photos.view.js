@@ -105,6 +105,15 @@ const PhotosView = ({
     }
   />;
 
-PhotosView.propTypes = {};
+PhotosView.propTypes = {
+  message: PropTypes.string,
+  newPhotos: PropTypes.array,
+  onSave: PropTypes.func,
+  onRemovePhoto: PropTypes.func,
+  onClose: PropTypes.func,
+  onDragOver: PropTypes.func,
+  onDrop: PropTypes.func,
+  onSelectFiles: PropTypes.func,
+};
 
 export default PhotosView;

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
-import { MultiField, FileField } from "seed/helpers";
 import Photos from "components/products/Photos";
 
 const ProductFormView = ({ 
@@ -25,7 +24,8 @@ const ProductFormView = ({
   setPhotos,
   onShowPhotoModal,
   onCancel,
-  error 
+  error,
+  productSchema
 }) =>
   <div class="card">
 
@@ -51,17 +51,19 @@ const ProductFormView = ({
       <div class="row">
         <div class="col">
           <Formik
+            validationSchema={productSchema}
             initialValues={{
               ...product
             }}
             onSubmit={onSubmit}
           >
-            {({ values, setFieldValue}) =>
+            {({ values, setFieldValue, errors, touched, submitCount }) =>
               <Form>
                 <div class="mb-3">
 
                   {/* Name */}
                   <div class="mb-3">
+
                     <div class="form-group">
                       <label class="input">
                         <Field 
@@ -69,7 +71,6 @@ const ProductFormView = ({
                           name="name" 
                           class="form-control input__field" 
                           placeholder=" " 
-                          required 
                           value={values.name || ''} 
                         />
                         <span class="input__label">
@@ -77,10 +78,20 @@ const ProductFormView = ({
                         </span>
                       </label>
                     </div>
+
+                    {
+                      errors.name && (touched.name || submitCount > 0)
+                        ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                            {errors.name}
+                          </div>
+                        : null
+                    }
+
                   </div>
 
                   {/* Short description */}
                   <div class="mb-3">
+
                     <div class="form-group">
                       <label class="input">
                         <Field 
@@ -88,7 +99,6 @@ const ProductFormView = ({
                           name="short_description" 
                           class="form-control input__field" 
                           placeholder=" " 
-                          required 
                           value={values.short_description || ''} 
                         />
                         <span class="input__label">
@@ -96,19 +106,27 @@ const ProductFormView = ({
                         </span>
                       </label>
                     </div>
+
+                    {
+                      errors.short_description && (touched.short_description || submitCount > 0)
+                        ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                            {errors.short_description}
+                          </div>
+                        : null
+                    }
+
                   </div>
 
                   <div className="row">
                     <div className="col-md-6">
-                      <div class="form-group">
+                      <div class="">
                         <label class="input">
-                          <textarea 
+                          <Field 
+                          component="textarea"
                             name="description" 
                             class="form-control input__field"
                             placeholder=" " 
-                            required
                             style={{resize: 'none', height: "7.15rem"}}
-                            onChange={e => setFieldValue('description', e.target.value)}
                             value={values.description || ''} 
                           />
                           <span class="input__label">
@@ -126,8 +144,7 @@ const ProductFormView = ({
                                 as="select" 
                                 name="category.id" 
                                 class="form-control input__field" 
-                                placeholder=" " 
-                                required 
+                                placeholder=" "  
                               >
                                 <option value="">Seleccione una opción</option>
                                 {categories.map((e, idx) => <option key={idx} value={e.id}>{e.name}</option>) }
@@ -141,7 +158,7 @@ const ProductFormView = ({
                       </div>
                       <div className="row">
                         <div class="col-md-12">
-                          <div class="form-group">
+                          <div class="">
                             <label class="input">
                               <Field 
                                 as="select" 
@@ -162,7 +179,23 @@ const ProductFormView = ({
                     </div>
                   </div>
 
-                  <div className="row d-flex align-items-center">
+                  {
+                    errors.description && (touched.description || submitCount > 0)
+                      ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                          {errors.description}
+                        </div>
+                      : null
+                  }
+
+                  {
+                    errors["category.id"] && ((touched.category && touched.category.id) || submitCount > 0)
+                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                          {errors["category.id"]}
+                        </div>
+                      : null
+                  }
+
+                  <div className="row d-flex align-items-center mt-3">
                     <div class="col-md-9">
                       <h3>Variantes</h3>
                     </div>
@@ -330,7 +363,24 @@ ProductFormView.propTypes = {
   sales: PropTypes.array,
   categories: PropTypes.array,
   onSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  selectedIndex: PropTypes.number,
+  photos: PropTypes.array,
+  tabs: PropTypes.array,
+  rows: PropTypes.array,
+  hideModal: PropTypes.func.isRequired,
+  onAddTab: PropTypes.func.isRequired,
+  onRemoveTab: PropTypes.func.isRequired,
+  onAddRow: PropTypes.func.isRequired,
+  onRemoveRow: PropTypes.func.isRequired,
+  setHideModal: PropTypes.func.isRequired,
+  setRename: PropTypes.func.isRequired,
+  setName: PropTypes.func.isRequired,
+  setCell: PropTypes.func.isRequired,
+  setPhotos: PropTypes.func.isRequired,
+  onShowPhotoModal: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  productSchema: PropTypes.object.isRequired,
 };
 
 export default ProductFormView;

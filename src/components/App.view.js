@@ -8,6 +8,8 @@ import Signup from "components/auth/Signup";
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
+
+import Main from "components/main/Main"
 import Products from "components/products/Products";
 import History from "components/history/History";
 import App from "components/history/App";
@@ -17,16 +19,16 @@ const AppView = () =>
   <div class="module">
     <BrowserRouter>
       <Switch>
-        <Route path="/products" component={Products} />
         <Route path="/login" component={Login} />
-        <Route path="/logout" component={Logout} />
         <Route path="/signup" component={Signup} />
+        <Route path="/logout" component={Logout} />
         <Route path="/verify_email/:token" component={VerifyEmail} />
         <Route path="/history" component={History} />
         <Route path="/App" component={App} />
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
- 
+        <Route path="/main" component={Main} />
+        <Route path="/products" component={Products} />
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

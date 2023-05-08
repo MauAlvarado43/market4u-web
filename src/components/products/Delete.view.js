@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Formik, Field, Form } from "formik";
-import { MultiField, FileField } from "seed/helpers";
 
 const DeleteView = ({ onClickDelete = () => null, onClose = () => null }) =>
   <div class="card card-body">
@@ -43,6 +41,9 @@ const DeleteView = ({ onClickDelete = () => null, onClose = () => null }) =>
     </div>
   </div>;
 
-DeleteView.propTypes = {};
+DeleteView.propTypes = {
+  onClickDelete: PropTypes.func,
+  onClose: PropTypes.func
+};
 
 export default DeleteView;
