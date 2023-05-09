@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import View from "components/products/Photos.view";
+import View from "components/superadmin/products/PhotosSA.view";
 import $ from "jquery";
 import { API_URL } from "settings";
 

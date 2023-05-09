@@ -28,7 +28,7 @@ const SaleList = forwardRef(function SaList(props, ref) {
           banner { }
         }
       }
-    }`, pageNum, pageSize, "company_id=" + sessionStorage.getItem("company"));
+    }`, pageNum, pageSize, "company.id=" + sessionStorage.getItem("company"));
     //"user_id=10000" + sessionStorage.getItem("id")
 
     const qProducts = useQuery(`{ 
@@ -39,7 +39,7 @@ const SaleList = forwardRef(function SaList(props, ref) {
                 id
             }
         } 
-    }`, "company_id=" + sessionStorage.getItem("company"));
+    }`, "company.id=" + sessionStorage.getItem("company"));
     const { products = [] } = qProducts.data;
 
 
@@ -64,8 +64,7 @@ const SaleList = forwardRef(function SaList(props, ref) {
         }
         productsName.push(productsNameRow);
     }
-    console.log(sales)
-    console.log(products);
+    //console.log(productsName);
     
     const onClickPage = (pageNum) =>
         setPageNum(pageNum);

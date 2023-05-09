@@ -1,13 +1,12 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { usePagination } from "seed/gql";
 import { Loading } from "seed/helpers";
-import View from "components/products/List.view";
+import View from "components/superadmin/products/ListSA.view";
 
 const ProductList = forwardRef(function ProductList(props, ref){
 
   const companyId = sessionStorage.getItem('company');
-  const userId = sessionStorage.getItem('id');
-  const pageSize = 15;
+  const pageSize = 6;
   const [pageNum, setPageNum] = useState(1);
   const reqProducts = usePagination(`
     {
@@ -15,12 +14,10 @@ const ProductList = forwardRef(function ProductList(props, ref){
         totalPages
         products {
           name
+          company { name }
           shortDescription
           description
           createdAt
-          user { 
-            company { }
-          }
           sale { name }
           category { name }
           variants {
@@ -39,10 +36,7 @@ const ProductList = forwardRef(function ProductList(props, ref){
       }
     }`, 
     pageNum, 
-    pageSize,
-    companyId ? "(user.company.id=" + companyId + ")" : "(user.id=" + userId + ")", 
-    { orderBy: "-id" }
-  );
+    pageSize);
 
   const refetchQuery = () => reqProducts.refetch();
   useImperativeHandle(ref, () => ({ refetchQuery }));

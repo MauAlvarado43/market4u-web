@@ -16,7 +16,7 @@ import { useHistory } from "react-router";
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null }) {
     //const history = useHistory();
     const qSale = useDetail(SALE, saleId);
-
+    const qUsers = useQuery(`{ users { } }`);
     const [callSet, qSet] = useSet(SET_SALE, {
         onCompleted: () =>{
             onCompleted();
@@ -31,7 +31,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
-    const userId = sessionStorage.getItem("company");
+    const companyId = sessionStorage.getItem("company");
 
     let qProducts = useQuery(`{ 
         products {
@@ -39,7 +39,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
             name
             sale {}
         } 
-    }`, "company.id=" + userId);
+    }`, "company.id=" + companyId);
 
 
 
@@ -60,7 +60,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
     if (qSale.loading) return <Loading />;
 
     const { sale = {} } = qSale.data;
-    console.log(sale)
+    const { users = [] } = qUsers.data;
     const error = qSet.error ? "An error has occurred" : null;
 
 
@@ -69,8 +69,16 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
+        if(values.disscount < 1 || values.disscount > 100){
+            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
+            return;
+        }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
+        if(values.startDate > values.endDate){
+            alert("Fechas ingresadas incorrectas.")
+            return
+        }
         values.company = parseInt(sessionStorage.getItem("company"));
 
         // values.products.id - ---nuevos

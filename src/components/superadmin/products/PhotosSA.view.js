@@ -31,21 +31,21 @@ const PhotosView = ({
               <div className="d-flex flex-nowrap" key={index}>
                 <img src={photo.url} height={110} className="mr-3" alt="Producto"/>
                 <div style={{}}>
-                  <button 
+                  {/* <button 
                     style={{left: "-25px", position: "relative", zIndex: "1"}}
                     type="button" 
                     className="btn btn-danger btn-sm rounded-circle" 
                     onClick={() => onRemovePhoto(index)}
                   >
                     <i className="fas fa-times"></i>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             )
           }
         </div>
 
-        <div className="d-flex justify-content-center align-items-center px-6 py-6">
+        {/* <div className="d-flex justify-content-center align-items-center px-6 py-6">
           <div 
             className="container" 
             style={{width: "100%", height: "20em", backgroundColor: "#F0F0F0"}} 
@@ -78,7 +78,7 @@ const PhotosView = ({
             </div>
 
           </div>
-        </div>
+        </div> */}
         
         <div className="d-flex justify-content-center align-items-center">
 
@@ -90,13 +90,13 @@ const PhotosView = ({
               <i className="fas fa-times mr-3 fa-lg"></i> Cancelar
             </button>
 
-            <button 
+            {/* <button 
               type="button" 
               className="btn btn-primary btn-sm rounded-pill px-4 ml-5" 
               onClick={onSave}
             >
               <i className="fas fa-save mr-3 fa-lg"></i> Guardar
-            </button>
+            </button> */}
 
         </div>
 

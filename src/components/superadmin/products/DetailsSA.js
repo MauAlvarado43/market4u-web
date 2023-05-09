@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { useQuery, useDetail } from "seed/gql";
-import View from "components/products/Form.view";
+import View from "components/superadmin/products/DetailsSA.view";
 import { usePost } from "seed/api";
 import { useHistory } from "react-router";
 import { Loading } from "seed/helpers";

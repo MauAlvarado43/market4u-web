@@ -57,10 +57,10 @@ const ProductListView = ({
                   </Link>
 
                   <Link 
-                    to={`/${product.id}/edit`}
+                    to={`/${product.id}/details`}
                     className="btn btn-primary btn-sm rounded-pill px-4 ml-3" 
                   >
-                    <i className="fas fa-pen mr-3 fa-lg"></i> Editar
+                    <i className="fas fa-pen mr-3 fa-lg"></i> Detalles
                   </Link>
 
               </td>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
-import Photos from "components/products/Photos";
+import Photos from "components/superadmin/products/PhotosSA";
 
 const ProductFormView = ({ 
   selectedIndex,
@@ -42,7 +42,7 @@ const ProductFormView = ({
     {/* Header */}
     <div class="card-header">
       <h1 class="card-header-title">
-        {product.id ? "Editar producto" : "Nuevo producto"}
+        Detalles del producto
       </h1>
     </div>
 
@@ -71,6 +71,7 @@ const ProductFormView = ({
                           name="name" 
                           class="form-control input__field" 
                           placeholder=" " 
+                          readonly= " "
                           value={values.name || ''} 
                         />
                         <span class="input__label">
@@ -100,6 +101,7 @@ const ProductFormView = ({
                           class="form-control input__field" 
                           placeholder=" " 
                           value={values.short_description || ''} 
+                          readonly= " "
                         />
                         <span class="input__label">
                           Descripción <span className='text-danger fw-bold'>*</span>
@@ -128,6 +130,7 @@ const ProductFormView = ({
                             placeholder=" " 
                             style={{resize: 'none', height: "7.15rem"}}
                             value={values.description || ''} 
+                            readonly= " "
                           />
                           <span class="input__label">
                             Detalles del producto <span className='text-danger fw-bold'>*</span>
@@ -141,10 +144,13 @@ const ProductFormView = ({
                           <div class="form-group">
                             <label class="input">
                               <Field 
+                                //type="text"
                                 as="select" 
                                 name="category.id" 
                                 class="form-control input__field" 
                                 placeholder=" "  
+                                readonly= " "
+                                style={{pointerEvents: "none"}}
                               >
                                 <option value="">Seleccione una opción</option>
                                 {categories.map((e, idx) => <option key={idx} value={e.id}>{e.name}</option>) }
@@ -161,10 +167,13 @@ const ProductFormView = ({
                           <div class="">
                             <label class="input">
                               <Field 
+                                //type="text"
                                 as="select" 
                                 name="sale.id" 
                                 class="form-control input__field" 
                                 placeholder=" " 
+                                readonly= " "
+                                style={{pointerEvents: "none"}}
                               >
                                 <option value="">Seleccione una opción</option>
                                 {sales.map((e, idx) => <option key={idx} value={e.id}>{e.name}</option>) }
@@ -200,9 +209,9 @@ const ProductFormView = ({
                       <h3>Variantes</h3>
                     </div>
                     <div className="col-md-3 d-flex justify-content-end">
-                      <button className="btn btn-primary" type="button" onClick={onAddTab}>
+                      {/* <button className="btn btn-primary" type="button" onClick={onAddTab}>
                         <i className="fas fa-plus"></i> Agregar variante
-                      </button>
+                      </button> */}
                     </div>
                   </div>
 
@@ -228,6 +237,7 @@ const ProductFormView = ({
                                       value={tab.name}
                                       onBlur={() => setRename(index, false)}
                                       onChange={e => setName(index, e.target.value)}
+                                      readonly= " "
                                     />
                                   : <button 
                                       type="button"
@@ -281,9 +291,9 @@ const ProductFormView = ({
                         )
                       }
                       <th>
-                        <button className="btn btn-link btn-white" type="button" onClick={onAddRow}>
+                        {/*<button className="btn btn-link btn-white" type="button" onClick={onAddRow}>
                           <i className="fas fa-plus"></i>
-                        </button>
+                        </button>*/}
                       </th>
                     </tr>
 
@@ -303,6 +313,7 @@ const ProductFormView = ({
                                         required
                                         value={cell}
                                         onChange={e => setCell(rowIndex, cellIndex, e.target.value)}
+                                        readonly= " "
                                       />
                                     : <button 
                                         type="button"
@@ -317,9 +328,9 @@ const ProductFormView = ({
                             )
                           }
                           <td>
-                            <button className="btn btn-danger" type="button" onClick={() => onRemoveRow(rowIndex)}>
+                            {/* <button className="btn btn-danger" type="button" onClick={() => onRemoveRow(rowIndex)}>
                               <i className="fas fa-minus"></i>
-                            </button>
+                            </button> */}
                           </td>
                         </tr>
                       )
@@ -339,12 +350,12 @@ const ProductFormView = ({
                     <i className="fas fa-times mr-3 fa-lg"></i> Cancelar
                   </button>
 
-                  <button 
+                  {/* <button 
                     type="submit" 
                     className="btn btn-primary btn-sm rounded-pill px-5 ml-5" 
                   >
                     <i className="fas fa-save mr-3 fa-lg"></i> Guardar
-                  </button>
+                  </button> */}
 
                 </div>
 

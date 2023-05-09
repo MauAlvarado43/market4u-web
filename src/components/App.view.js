@@ -19,6 +19,12 @@ import OpinionSA from "components/superadmin/opinion/OpinionSA"
 import SalesSA from "components/superadmin/sales/SalesSA"
 import productsSA from "components/superadmin/products/productsSA"
 
+
+/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+import UsersSA from "components/superadmin/users/UsersSA"
+import CompaniesSA from "components/superadmin/companies/CompaniesSA"
+///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 const AppView = () =>
   <div class="module">
     <BrowserRouter>
@@ -38,6 +44,12 @@ const AppView = () =>
         <Route path="/superadmin/opinion" component={OpinionSA} />
         <Route path="/superadmin/sales" component={SalesSA} />
         <Route path="/superadmin/products" component={productsSA} />
+
+        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+        <Route path="/superadmin/users" component={UsersSA} />
+        <Route path="/superadmin/companies" component={CompaniesSA} />
+        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+        
 
         <Route path="/" component={Home} />
         <Redirect to="/" />

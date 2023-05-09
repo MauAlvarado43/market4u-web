@@ -25,6 +25,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         products {
             id
             name
+            company {}
             sale {}
         } 
     }`, "company.id=" + companyId);
@@ -67,10 +68,20 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
     const error = qSave.error ? "An error has occurred" : null;
 
     const onSubmit = (values) => {
-        
+        //console.log(qUsers.data);
+        console.log(values);
         values.disscount = parseFloat(values.disscount);
+        if(values.disscount < 1 || values.disscount > 100){
+            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
+            return;
+        }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
+        if(values.startDate > values.endDate){
+            alert("Fechas ingresadas incorrectas.")
+            return
+        }
+        if(values)
         values.banner = parseInt(values.banner_id);
         values.company = parseInt(sessionStorage.getItem("company"));
 

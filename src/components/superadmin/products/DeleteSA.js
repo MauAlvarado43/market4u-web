@@ -1,7 +1,7 @@
 import React from "react";
 import { useDelete } from "seed/gql";
 import { DELETE_PRODUCT } from "seed/gql/queries";
-import View from "components/products/Delete.view";
+import View from "components/superadmin/products/DeleteSA.view";
 import PropTypes from "prop-types";
 
 function Delete({ productId, onCompleted = () => null, onError = () => null, refetchQuery }) {
