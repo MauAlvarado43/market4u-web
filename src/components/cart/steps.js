@@ -27,7 +27,6 @@ const Steps = (props) => {
         <div className={activeDiv === 4 ? 'div-transition active' : 'div-transition'} onClick={() => setActiveDiv(4)}>4</div>
         <div className={activeDiv === 4 ? 'div-transition active' : 'div-transition-text'} onClick={() => setActiveDiv(4)}>Resumen del pedido</div>
       </div>
-      <p id='actual-state'>{activeDiv}</p>
     </div>
     
   )
