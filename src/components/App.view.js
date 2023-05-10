@@ -10,11 +10,13 @@ import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
 
 import Main from "components/main/Main"
+import WishList from "components/wishlist/WishList";
 
 const AppView = () =>
   <div class="module">
     <BrowserRouter>
       <Switch>
+         <Route path="/wishlist" component={WishList} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/logout" component={Logout} />
