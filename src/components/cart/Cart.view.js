@@ -1,9 +1,9 @@
-import React, { useState  } from "react";
+import React, { useState, useEffect} from "react";
 import Steps from "./steps";
-import CarritoCompras from "./CarritoCompras";
-import DetallesEntrega from "./DetallesEntrega";
-import MetodoPago from "./MetodoPago";
-import ResumenPedido from "./ResumenPedido";
+import CarritoCompras from "./step1CarritoCompras";
+import DetallesEntrega from "./step2DetallesEntrega";
+import MetodoPago from "./step3MetodoPago";
+import ResumenPedido from "./step4ResumenPedido";
 import "./CartStyle.css"
 import { useQuery } from "seed/gql";
 import PropTypes from "prop-types";
@@ -11,6 +11,10 @@ import PropTypes from "prop-types";
 const CartView = () =>{
   
   let [activeDiv, setActiveDiv] = useState(1);
+
+  useEffect(() => {
+    setActiveDiv(activeDiv);
+  }, [activeDiv]);
 
   const userId = sessionStorage.getItem("id");
 
@@ -65,32 +69,45 @@ const CartView = () =>{
   
   return (
     <div className="cart-content">
-      <div id="step-bar">
+      <div className="step-bar-try">
         <Steps
-          state={activeDiv}
+          activeDiv= {activeDiv}
+          setActiveDiv={setActiveDiv}
         />
       </div>
 
       <div className="steps-content">
 
         <div className={activeDiv === 1 ? 'step-div active' : 'step-div'}>
-          <CarritoCompras
+          {<CarritoCompras
             cart = {cart.users[0].buyerCarts[0]}
-            state= {activeDiv}
-          />
-          {}
+            activeDiv= {activeDiv}
+            setActiveDiv={setActiveDiv}
+          />}
         </div>
 
         <div className={activeDiv === 2 ? 'step-div active' : 'step-div'}>
-          <DetallesEntrega></DetallesEntrega>
+          <DetallesEntrega
+            cart = {cart.users[0].buyerCarts[0]}
+            activeDiv= {activeDiv}
+            setActiveDiv={setActiveDiv}
+          />
         </div>
 
         <div className={activeDiv === 3 ? 'step-div active' : 'step-div'}>
-          <MetodoPago></MetodoPago>
+          <MetodoPago
+            cart = {cart.users[0].buyerCarts[0]}
+            activeDiv= {activeDiv}
+            setActiveDiv={setActiveDiv}
+          />
         </div>
 
         <div className={activeDiv === 4 ? 'step-div active' : 'step-div'}>
-          <ResumenPedido></ResumenPedido>
+          <ResumenPedido
+            cart = {cart.users[0].buyerCarts[0]}
+            activeDiv= {activeDiv}
+            setActiveDiv={setActiveDiv}
+          />
         </div>
 
       </div>    

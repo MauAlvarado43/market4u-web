@@ -3,24 +3,21 @@ import './CartStyle.css'
 import { Divider } from "@material-ui/core";
 
 const CarritoCompras = (props) => {
-  const {cart, state} = props
+  const {cart, activeDiv, setActiveDiv} = props
 
-  const [activeDiv, setActiveDiv] = useState(state);
+  useEffect(() => {
+    setActiveDiv(activeDiv);
+  }, [activeDiv]);
 
   let shipments = cart.shippings.filter(shipment => shipment.status === "CREATED");
-  console.log((shipments[0].purchases.length))
 
   
   return (
     <div className='step-cart'>
 
-      <div className='cart-info'>
+      <div className='cart-products'>
         <h2>Productos agregados ({shipments[0].purchases.length})</h2>
         <Divider/>
-      </div>
-
-
-      <div className='cart-products'>
         {shipments.map((shipment) => (
           <div className="shipment">
             {shipment.purchases.map((purchase) => (
@@ -58,9 +55,8 @@ const CarritoCompras = (props) => {
           </tr>
         </table>
         <button onClick={() => setActiveDiv(2)} className="buttonShopping" style={{"--bg-color-shop": '#fa6400', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000'}}>Continuar</button>
-        {console.log(activeDiv)}
       </div>
-      {/* {state} */}
+      {console.log(activeDiv)}
     </div>
   )
 }

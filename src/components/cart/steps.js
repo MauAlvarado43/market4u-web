@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import './CartStyle.css'
 
 const Steps = (props) => {
-  const {state} = props
+  const {activeDiv, setActiveDiv} = props
 
-  const [activeDiv, setActiveDiv] = useState(state);
+  useEffect(() => {
+    setActiveDiv(props.activeDiv);
+  }, [props.activeDiv]);
   
   return (
     <div className='steps-bar'>
