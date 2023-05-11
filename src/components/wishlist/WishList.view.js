@@ -1,76 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CategoryDropdown from "components/wishlist/CatDropdown.view"
+import ProductList from "components/wishlist/ProductList.view"
 
 
 const WishlistView = () =>
-  <div className="container" style={{ width: "100%", height: "100vh", overflowY: "scroll" }}>
-    <div>
-        <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{margin:"10px"}}>
-            Todos los productos
+<div className="container" style={{ width: "100%", height: "100vh", overflowY: "scroll" }}>
+<div class="d-flex justify-content-end" style={{margin:"15px"}}>
+    <div style={{marginLeft:"15px"}}>
+    <form>
+        <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar"/>
+        <div class="input-group-append">
+            <button class="btn btn-light" type="submit">
+            <i class="fa fa-search"></i>
+            </button>
+        </div>
+        </div>
+    </form>
+    </div>
+    
+    <div class="dropdown" >
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+        Agregados recientemente
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
-        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Más antiguos</a>
+        <a class="dropdown-item" href="#">Mayor precio</a>
+        <a class="dropdown-item" href="#">Menor precio</a>
         </div>
     </div>
-    <div>
-    <table  class="table table-bordered table-nowrap table-align-middle card-table dataTable no-footer" 
-            role="grid" aria-describedby="datatable_info" style={{width: "100%", borderBottomColor: "black" }}>
-            {/***/}<thead class="thead-light">
-                <tr role="row">
-                    <th style={{width:"250px"}}>P1</th>
-                    <th>P1</th>
-                    <th>P1</th>
-                </tr>
-            </thead> 
-            <tbody>
-                <tr role="row">
-                    <th>
-                        <img style={{height: "200px", width:"200px"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsBnmlNdzywUBubkfIMgX_5VF6vqlPAr3aIQ&usqp=CAU"></img>
-                    </th>
-                    
-                    <th>
-                        <div className="h-1 mt-0 mb-0">
-                        <span className="h3">product.name</span>
-                        </div>
-                        <div className="">product.shortDescription</div>
-                        <div>
-                            
-                            <i class="far fa-star" style={{color: "#000000"}}></i>
-                            <i class="far fa-star" style={{color: "#000000"}}></i>
-                            <i class="far fa-star" style={{color: "#000000"}}></i>
-                            <i class="far fa-star" style={{color: "#000000"}}></i>
-                            <i class="far fa-star" style={{color: "#000000"}}></i>
-                        </div>
-                    </th>
-                    <th>
-                        <thead>Fecha</thead>
-                        <th>
-                            <div class="dropdown">
-                            <button class="btn btn-secondary" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{padding:"10px"}}>
-                            <i class="fas fa-trash" style={{color: "#ffffff", marginRight:"10px"}}></i>Eliminar
-                            </button>
-        
-                            </div>
-                        </th>
-                        <th>
-                            <div class="dropdown">
-                            <button class="btn btn-primary" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{padding:"10px"}}>
-                            <i class="fas fa-shopping-cart" style={{color: "#ffffff", marginRight:"10px"}}></i>Agregar a carrito
-                            </button>
-        
-                            </div>
-                        </th>
-                    </th>
-                </tr>
-            </tbody>
-          </table>
-    </div>
+    <CategoryDropdown></CategoryDropdown>
+</div>
 
-  </div>;
+<div>
+    <ProductList></ProductList>
+</div>
+
+</div>;
 
 WishlistView.propTypes = {};
 
