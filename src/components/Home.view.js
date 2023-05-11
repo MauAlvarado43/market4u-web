@@ -9,7 +9,7 @@ import Sales from "components/sales/Sales";
 import Products from "components/products/Products";
 import History from "components/history/History";
 import ProductDetail from "components/products/Detail";
-import Filter from "components/nav/Filter";
+import WishList from "components/wishlist/WishList";
 
 const HomeView = () =>
   <BrowserRouter>
@@ -21,6 +21,7 @@ const HomeView = () =>
         <div id="content">
 
           <Switch>
+            <Route path="/wishlist" component={WishList} />
             <Route path="/home" component={Main} />
             <Route path="/profile" component={Profile} />
             <Route path="/sales" component={Sales} />
