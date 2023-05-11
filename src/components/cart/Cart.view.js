@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const CartView = () =>{
   
-  let [activeDiv, setActiveDiv] = useState(1);
+  const [activeDiv, setActiveDiv] = useState(1);
 
   useEffect(() => {
     setActiveDiv(activeDiv);
@@ -61,7 +61,7 @@ const CartView = () =>{
 
   if (info.users) {
     cart = info
-    console.log((cart.users[0].address))
+    // console.log((cart.users[0].address))
   } else {
     return "Loading"
   }

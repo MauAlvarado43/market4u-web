@@ -29,9 +29,8 @@ const ResumenPedido = (props) => {
             <td>$ {(((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)) + 99).toFixed(2)}</td>
           </tr>
         </table>
-        <button onClick={() => setActiveDiv(1)} className="buttonShopping" style={{"--bg-color-shop": '#fa6400', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000'}}>Continuar</button>
+        <button onClick={() => setActiveDiv(4)} className="buttonShopping" style={{"--bg-color-shop": '#fa6400', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000'}}>Continuar</button>
       </div>
-      {console.log(activeDiv)}
     </div>
   )
 }
