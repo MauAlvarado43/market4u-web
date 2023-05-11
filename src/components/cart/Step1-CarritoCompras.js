@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './CartStyle.css'
 import { Divider } from "@material-ui/core";
-import AddRemoveBtn from './AddRemoveBtns'
+import AddRemoveBtn from './S1-AddRemoveBtns'
 
 const CarritoCompras = (props) => {
 
@@ -28,19 +28,15 @@ const CarritoCompras = (props) => {
   }, [activeDiv]);
   
   
-  
-
-  
   return (
     <div className='step-cart'>
 
       <div className='cart-info'>
-        <h2>Productos agregados ({shipments[0].purchases.length})</h2>
+        <h2>Productos agregados ({finalAmount})</h2>
         <Divider/>
       </div>
 
       <div className='cart-products'>
-        {finalAmount}
         {shipments.map((shipment) => (
           <div className="shipment">
             {shipment.purchases.map((purchase, index) => {
@@ -75,7 +71,7 @@ const CarritoCompras = (props) => {
         <h1>Resumen de compra</h1>
         <table className='summary-table'>
           <tr>
-            <td>Subtotal ({shipments[0].purchases.length} productos:)</td>
+            <td>Subtotal ({finalAmount} productos:)</td>
             <td>$ {((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)).toFixed(2)}</td>
           </tr>
           <tr>

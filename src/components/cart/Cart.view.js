@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from "react";
-import Steps from "./steps";
-import CarritoCompras from "./step1CarritoCompras";
-import DetallesEntrega from "./step2DetallesEntrega";
-import MetodoPago from "./step3MetodoPago";
-import ResumenPedido from "./step4ResumenPedido";
+import Steps from "./StepsBar";
+import CarritoCompras from "./Step1-CarritoCompras";
+import DetallesEntrega from "./Step2-DetallesEntrega";
+import MetodoPago from "./Step3-MetodoPago";
+import ResumenPedido from "./Step4-ResumenPedido";
 import "./CartStyle.css"
 import { useQuery } from "seed/gql";
 import PropTypes from "prop-types";
