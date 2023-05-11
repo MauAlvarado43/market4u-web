@@ -23,6 +23,8 @@ import productsSA from "components/superadmin/products/productsSA"
 /////////////////////////////////INICIO-EDITAR////////////////////////////////////
 import UsersSA from "components/superadmin/users/UsersSA"
 import CompaniesSA from "components/superadmin/companies/CompaniesSA"
+
+import Users from "components/users/Users"
 ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
 
 const AppView = () =>
@@ -48,6 +50,8 @@ const AppView = () =>
         {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
+
+        <Route path="/users" component={Users} />
         {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
         
 
