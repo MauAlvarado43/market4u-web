@@ -18,16 +18,17 @@ import { useHistory } from "react-router";
 function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
 
     //const history = useHistory();
-    const userId = sessionStorage.getItem("id");
+    const companyId = sessionStorage.getItem("company");
     const [selectedProducts, setSelectedProducts] = useState([])
 
     const qProducts = useQuery(`{ 
         products {
             id
             name
+            company {}
             sale {}
         } 
-    }`, "user.id=" + userId);
+    }`, "company.id=" + companyId);
     const { products = [] } = qProducts.data;
     const [callSet, qSet] = useSet(SET_PRODUCT, {
         onCompleted: () => {
@@ -70,10 +71,19 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         //console.log(qUsers.data);
         console.log(values);
         values.disscount = parseFloat(values.disscount);
+        if(values.disscount < 1 || values.disscount > 100){
+            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
+            return;
+        }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
+        if(values.startDate > values.endDate){
+            alert("Fechas ingresadas incorrectas.")
+            return
+        }
+        if(values)
         values.banner = parseInt(values.banner_id);
-        values.user = parseInt(sessionStorage.getItem("id"));
+        values.company = parseInt(sessionStorage.getItem("company"));
 
         if (values.products != undefined)
             setSelectedProducts(values.products.id);
