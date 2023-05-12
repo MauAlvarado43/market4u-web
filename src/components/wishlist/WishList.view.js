@@ -3,7 +3,7 @@ import ProductList from "components/wishlist/ProductList";
 import { BrowserRouter } from "react-router-dom";
 
 const WishListView = () => (
-    <div className="container" style={{ width: "100%" }}>
+    <div className="container" style={{ width: "100%", overflowY:"auto", maxHeight:"75vh"}}>
       <div class="d-flex justify-content-end" style={{ margin: "15px" }}>
         <div style={{ marginLeft: "15px" }}>
           <form>
