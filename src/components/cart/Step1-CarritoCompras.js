@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './CartStyle.css'
 import { Divider } from "@material-ui/core";
-import AddRemoveBtn from './S1-AddRemoveBtns'
+import PurchaseCard from './S1-Purchase'
 
 const CarritoCompras = (props) => {
 
@@ -18,10 +18,17 @@ const CarritoCompras = (props) => {
   }
   
   const [finalAmount, setFinalAmount] = useState(auxSum)
+  const [totalCost, setTotalCost] = useState(((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)))
+  
 
   function updateAmount(num) {
     setFinalAmount(finalAmount + num)
   }
+  
+  function updateTotalCost(cost) {
+    setTotalCost(totalCost + cost)
+  }
+  
   
   useEffect(() => {
     setActiveDiv(activeDiv);
@@ -37,42 +44,27 @@ const CarritoCompras = (props) => {
       </div>
 
       <div className='cart-products'>
-        {shipments.map((shipment) => (
-          <div className="shipment">
-            {shipment.purchases.map((purchase, index) => {
-              return (
-              <div className="purchase">
-
-                <div className="purchase-img-div">
-                  <img
-                    src={(JSON.parse(purchase.product)).url_img}
-                  />
-                  <div className='prod-amount'><p>{purchase.amount}</p></div>
-                </div>
-
-                <div className="purchase-info">
-                  <h4>{(JSON.parse(purchase.product)).name}</h4>
-                  <p>$ {(JSON.parse(purchase.product)).price * purchase.amount}</p>
-                  Talla: {(JSON.parse(purchase.product)).size}
-                </div>
-
-                <AddRemoveBtn
-                  amount = {purchase.amount}
-                  updateAmount = {updateAmount}
-                />
-
-              </div>)
-            })}
+        {shipments.map((shipment,indexs) => (
+          <div className="shipment" id={indexs}>
+            {shipment.purchases.map((purchase, indexp) =>(
+              <PurchaseCard
+                indexs = {indexs}
+                indexp = {indexp}
+                purchase = {purchase}
+                updateAmount = {updateAmount}
+                updateTotalCost = {updateTotalCost}
+              />
+            ))}
           </div>
         ))}
       </div>
-
+      
       <div className='cart-summary'>
         <h1>Resumen de compra</h1>
         <table className='summary-table'>
           <tr>
             <td>Subtotal ({finalAmount} productos:)</td>
-            <td>$ {((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)).toFixed(2)}</td>
+            <td>$ {totalCost.toFixed(2)}</td>
           </tr>
           <tr>
             <td>Envío:</td>
@@ -80,11 +72,12 @@ const CarritoCompras = (props) => {
           </tr>
           <tr>
             <td>Total:</td>
-            <td>$ {(((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)) + 99).toFixed(2)}</td>
+            <td>$ {(totalCost + 99).toFixed(2)}</td>
           </tr>
         </table>
         <button onClick={() => setActiveDiv(2)} className="buttonShopping" style={{"--bg-color-shop": '#fa6400', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000'}}>Continuar</button>
       </div>
+
     </div>
   )
 }

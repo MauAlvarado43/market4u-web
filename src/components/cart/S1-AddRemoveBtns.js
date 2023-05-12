@@ -2,28 +2,34 @@ import React, { useEffect, useState } from 'react'
 import './CartStyle.css'
 
 const AddRemoveBtn = (props) => {
-  const {amount, updateAmount} = props
+  const {productAmount, updateAmount, setProductAmount, updateTotalCost, price} = props
 
-  const [numPieces, setNumPieces] = useState(amount);
+  // const [numPieces, setNumPieces] = useState(productAmount);
+
+  useEffect(() => {
+    setProductAmount(productAmount);
+  }, [productAmount]);
 
   const addProduct = () => {
-    setNumPieces(numPieces + 1)
+    setProductAmount(productAmount + 1)
     updateAmount(1)
+    updateTotalCost(price)
   }
   
   const removeProduct = () => {
-    if (numPieces > 0) {
-      setNumPieces(numPieces - 1)
+    if (productAmount > 0) {
+      setProductAmount(productAmount - 1)
       updateAmount(-1)
+      updateTotalCost(-price)
     } else {
-      setNumPieces(0)
+      setProductAmount(0)
     }
   }
 
   return (
     <div className='purchase-btns-div'>
       <button className='add-remove-btn' onClick={removeProduct}>-</button>
-      <p>{numPieces}</p>
+      <p>{productAmount}</p>
       <button className='add-remove-btn' onClick={addProduct}>+</button>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './CartStyle.css'
-import CartView3 from './cart3/Cart3'
+// import CartView3 from './cart3/Cart3'
 
 const MetodoPago = (props) => {
   const {cart, activeDiv, setActiveDiv} = props
@@ -14,7 +14,7 @@ const MetodoPago = (props) => {
   
   return (
     <div>
-      <CartView3/>
+      {/* <CartView3/> */}
     </div>
   )
 }
