@@ -37,11 +37,11 @@ const WishListView = ({
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Filtrar por
+            Ordenar por
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div class="dropdown-item" onClick={() => handlePriceFilter("all")}>
-              Todos
+                Sin ordenar
             </div>
             <div class="dropdown-item" onClick={() => handlePriceFilter("highest")}>
               Mayor precio
