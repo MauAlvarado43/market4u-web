@@ -11,10 +11,10 @@ import { Loading } from "seed/helpers";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import { COMPANY, SET_COMPANY } from "seed/gql/queries";
 import View from "components/superadmin/companies/FormSA.view";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 function FormSet({ 
     itemId, 
@@ -23,17 +23,17 @@ function FormSet({
 }) {
     const qItem = useDetail(
         
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         COMPANY, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+        
 
         itemId
     );
     const [callSet, qSet] = useSet(
         
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         SET_COMPANY, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+        
 
         {
             onCompleted: () =>{
@@ -43,9 +43,9 @@ function FormSet({
         }
     );
     if (qItem.loading) return <Loading />;
-    /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
+    
     const { company = {} } = qItem.data;
-    ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+    
     // let item = {
     //    id: "1",
     //    name: "NombreFiscal",
@@ -57,21 +57,21 @@ function FormSet({
     //    municipality: "municipio",
     //    state: "estado",
     //};
-    /////////////////////////////////FIN-COMENTAR//////////////////////////////////    
+        
     const error = qSet.error ? "Error" : null;
     const onSubmit = (values) => {
         
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         values.id = parseInt(itemId);
         values.cp = parseInt(values.cp)
         values.photo = parseInt(values.photo.id);
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
         
-        /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
+        
+        
         callSet(values);
-        ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+        
         // onCompleted();
-        /////////////////////////////////FIN-COMENTAR//////////////////////////////////
+        
     };
     const onCancel = () => {
         onCompleted();

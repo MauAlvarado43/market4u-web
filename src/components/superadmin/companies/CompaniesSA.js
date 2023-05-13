@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import View from "components/superadmin/companies/CompaniesSA.view";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 function Element() {
     // Crea una referencia mutable

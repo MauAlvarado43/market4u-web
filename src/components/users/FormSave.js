@@ -12,10 +12,10 @@ import { usePost } from "seed/api";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import { SAVE_USER } from "seed/gql/queries";
 import View from "components/users/Form.view";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 function FormSave({ 
     onCompleted = () => null, 
@@ -24,9 +24,9 @@ function FormSave({
 }) {
     const [callSave, qSave] = useSave(
         
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         SAVE_USER, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+        
 
         {
             onCompleted: (data) => {
@@ -50,9 +50,9 @@ function FormSave({
     );
     const { users = [] } = qUsers.data;
 
-    /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+    
     const companyId = sessionStorage.getItem("company");
-    ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+    
 
     const onSubmit = (values) => {
         
@@ -80,11 +80,11 @@ function FormSave({
         values.company = parseInt(companyId)
         values.username = values.email.slice();
         console.log(values);
-        /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
+        
         callSave(values);
-        ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+        
         // onCompleted();
-        /////////////////////////////////FIN-COMENTAR//////////////////////////////////
+        
     }
     const onCancel = () => {
         onCompleted();

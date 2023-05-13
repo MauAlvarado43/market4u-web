@@ -10,9 +10,9 @@ const DeleteView = ({
         <div className="row mt-2">
             <div className="col-md-12 text-center">
                 
-                {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                {/**/}
                 <h2>¿Desea eliminar la empresa?</h2>
-                {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                {/**/}
 
             </div>
         </div>

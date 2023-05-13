@@ -62,7 +62,7 @@ function FormSet({
     const { user = {} } = qItem.data;
     const lastEmail = user.email;
 
-    ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+    
     // let item = {
     //     id: "1",
     //     username: "usuario1",
@@ -77,7 +77,7 @@ function FormSet({
     //     state: "estado",
     //     telephone: "0000000000",
     // };
-    /////////////////////////////////FIN-COMENTAR////////////////////////////////// 
+     
     const error = qSet.error ? "Error" : null;
 
     const onSubmit = (values) => {
@@ -103,28 +103,23 @@ function FormSet({
 
         if (values.company != undefined)
             values.company = parseInt(values.company.id);
-
         if(values.password == undefined)
             values.password = ''
             values.password2 = ''
-        if(values.type==="NORMAL" && isNaN(values.company)){
-            alert("El usuario normal no puede tener una compañia")
-            return
+        if((values.type==="NORMAL" || values.type==="SUPERADMIN")){
+            values.company = null
         }else if(values.type === 'SELLER' || values.type === 'ADMIN' ){
-            console.log(values.company)
             if(isNaN(values.company)){
                 alert('Este tipo de usuario debe tener una compañia')
                 return
             }
                 
         }
-            
 
         let newValues = JSON.parse(JSON.stringify(values));
         newValues.user_id = newValues.id;
         delete newValues.id;
 
-        console.log(newValues);
         callSet(newValues);
     };
     const onCancel = () => {

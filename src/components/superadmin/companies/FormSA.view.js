@@ -24,9 +24,9 @@ const FormView = (
         <div class="card-header">
             <h1 class="card-header-title">
                 
-                {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                {/**/}
                 {item.id ? "Editar empresa" : "Nueva empresa"}
-                {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                {/**/}
 
             </h1>
         </div>
@@ -57,22 +57,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="name"
                                                         value={values.name || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Nombre fiscal
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -86,22 +86,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="commonName"
                                                         value={values.commonName || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Nombre comercial
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -115,22 +115,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="rfc"
                                                         value={values.rfc || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         RFC
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -144,22 +144,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="cp"
                                                         value={values.cp || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Código Postal
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -173,22 +173,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="phone"
                                                         value={values.phone || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Teléfono
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -202,22 +202,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="email"
                                                         value={values.email || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Correo eléctronico
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -247,23 +247,23 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         // as = "select"
                                                         name="municipality"
                                                         value={values.municipality || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Municipio
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -277,13 +277,13 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         // type="text"
                                                         as = "select"
                                                         name="state"
                                                         value={values.state || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
@@ -324,10 +324,10 @@ const FormView = (
                                                     </Field>
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Estado
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -341,22 +341,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="cologn"
                                                         value={values.cologn || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Colonia
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -370,22 +370,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="website"
                                                         value={values.website || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Sitio web
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -399,22 +399,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="street"
                                                         value={values.street || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Calle
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>
@@ -428,22 +428,22 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                        
                                                         type="text"
                                                         name="city"
                                                         value={values.city || ''}
                                                         required
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                        
 
                                                         class="form-control input__field"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                        {/**/}
                                                         Ciudad
                                                         <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                        {/**/}
 
                                                     </span>
                                                 </label>

@@ -9,9 +9,9 @@ import { usePagination } from "seed/gql";
 import { Loading } from "seed/helpers";
 import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import View from "components/superadmin/companies/ListSA.view";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 // forwardRef es una funcion de React que permite a un componente pasar una ref 
 // a uno de sus hijos
@@ -32,7 +32,7 @@ const List = forwardRef(
         // para restricciones, un objeto opciones (onCompleted, onError, orderBy)
         const reqCompanies = usePagination(
             
-            /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+            
             `
             {
                 companyPagination {
@@ -51,7 +51,7 @@ const List = forwardRef(
                 }
             }
             `, 
-            ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+            
 
             pageNum, 
             pageSize
@@ -86,7 +86,7 @@ const List = forwardRef(
         // un error durante una operación asíncrona. La variable de estado error se establece en true 
         // cuando se produce un error durante la operación asíncrona y se establece en false cuando no 
         // se produce ningún error.
-        /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
+        
         if (reqCompanies.error) return "Error";
         // Después de ejecutar una consulta GraphQL con useQuery, los datos se almacenan en la propiedad 
         // .data del objeto de resultado. Puede acceder a los datos de la consulta utilizando la propiedad 
@@ -94,7 +94,7 @@ const List = forwardRef(
         // En este caso extrae el arreglo de los resultados y el total de paginas
         ///////////////////////////////DESCOMENTAR/////////////////////////////////// 
         const { companies = [], totalPages = 0 } = reqCompanies.data.companyPagination;
-        ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+        
         // let items = [
         //     {
         //         id: "1",
@@ -120,7 +120,7 @@ const List = forwardRef(
         //     }
         // ];
         // let totalPages = 1;
-        /////////////////////////////////FIN-COMENTAR//////////////////////////////////
+        
         // Funcion que actualiza el numero de pagina
         const onClickPage = (pageNum) => {
             // Actualiza el valor del un estado

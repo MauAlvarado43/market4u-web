@@ -12,10 +12,10 @@ import { usePost } from "seed/api";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import { SAVE_USER } from "seed/gql/queries";
 import View from "components/superadmin/users/FormSA.view";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 function FormSave({ 
     onCompleted = () => null, 
@@ -77,34 +77,27 @@ function FormSave({
         // values.isActive = true;
         // values.active = true;
         // values.code = 0;
-        values.company = parseInt(values.company.id)
+        if (values.company != undefined)
+            values.company = parseInt(values.company.id);
         values.username = values.email.slice();
-        if(values.type==="NORMAL" && isNaN(values.company)){
-            alert("El usuario normal no puede tener una compañia")
-            return
+        if((values.type==="NORMAL" || values.type==="SUPERADMIN")){
+            values.company = null
         }else if(values.type === 'SELLER' || values.type === 'ADMIN' ){
-            //console.log(values.company)
             if(isNaN(values.company)){
                 alert('Este tipo de usuario debe tener una compañia')
                 return
             }
                 
         }
-        if(values.type==="NORMAL")
-            delete values.company
-        console.log(values);
+
         if(values.password === '' || isNaN(values.password)){
             alert("Debe poner una contraseña")
             return 
         }
-
+        
         console.log(values.password)
-
-        /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
         callSave(values);
-        ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
-        // onCompleted();
-        /////////////////////////////////FIN-COMENTAR//////////////////////////////////
+
     }
     const onCancel = () => {
         onCompleted();

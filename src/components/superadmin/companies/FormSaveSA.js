@@ -12,10 +12,10 @@ import { usePost } from "seed/api";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import { SAVE_COMPANY } from "seed/gql/queries";
 import View from "components/superadmin/companies/FormSA.view";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 function FormSave({ 
     onCompleted = () => null, 
@@ -24,9 +24,9 @@ function FormSave({
 }) {
     const [callSave, qSave] = useSave(
         
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         SAVE_COMPANY, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+        
 
         {
             onCompleted: (data) => {
@@ -45,11 +45,11 @@ function FormSave({
         }
         values.photo = parseInt(values.photo_id);
         values.active = false
-        /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
+        
         callSave(values);
-        ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+        
         // onCompleted();
-        /////////////////////////////////FIN-COMENTAR//////////////////////////////////
+        
     }
     const onCancel = () => {
         onCompleted();

@@ -11,10 +11,10 @@ import { Loading } from "seed/helpers";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 import { usePost } from "seed/api";
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import { USER, SET_USER } from "seed/gql/queries";
 import View from "components/users/Form.view";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 function FormSet({ 
     itemId, 
@@ -23,9 +23,9 @@ function FormSet({
 }) {
     const qItem = useDetail(
         
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         USER, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+        
 
         itemId
     );
@@ -47,15 +47,15 @@ function FormSet({
     );
     const { users = [] } = qUsers.data;
     if (qItem.loading) return <Loading />;
-    /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
+    
     const { user = {} } = qItem.data;
 
-    /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+    
     const lastEmail = user.email;
     const companyId = sessionStorage.getItem("company");
-    ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+    
 
-    ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+    
     // let item = {
     //     id: "1",
     //     username: "usuario1",
@@ -70,11 +70,11 @@ function FormSet({
     //     state: "estado",
     //     telephone: "0000000000",
     // };
-    /////////////////////////////////FIN-COMENTAR////////////////////////////////// 
+     
     const error = qSet.error ? "Error" : null;
     const onSubmit = (values) => {
         
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         for (let i = 0; i < users.length; i++) {
             if (users[i].email === values.email && users[i].email !== lastEmail) {
                 alert("Este correo ya ha sido utilizado");

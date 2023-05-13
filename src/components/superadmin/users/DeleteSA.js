@@ -9,10 +9,10 @@ import PropTypes from "prop-types";
 import { useSet, useDelete,useQuery } from "seed/gql";
 import { Loading } from "seed/helpers";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import View from "components/superadmin/users/DeleteSA.view";
 import { DELETE_USER } from "seed/gql/queries";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 function Delete({ 
     itemId, 
@@ -22,9 +22,9 @@ function Delete({
 }) {
     const [callDelete] = useDelete(
 
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+        
         DELETE_USER, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+        
 
         {
             onCompleted: () => {
@@ -36,11 +36,11 @@ function Delete({
     );
     const onClickDelete = () => {
         const id = parseInt(itemId);
-        /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
+        
         callDelete({ id: id });
-        ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
+        
         // onCompleted();
-        /////////////////////////////////FIN-COMENTAR//////////////////////////////////
+        
     }
     return <View
         onClose={onCompleted}

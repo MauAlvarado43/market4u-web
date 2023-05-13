@@ -4,7 +4,7 @@ import ModalRoute from "components/helpers/ModalRoute";
 import Nav from "components/nav/Nav";
 import PropTypes from "prop-types";
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 // Componente de la tabla
 import List from "components/users/List";
 // Componente de crear
@@ -15,16 +15,16 @@ import FormEdit from "components/users/FormSet";
 import Delete from "components/users/Delete";
 // Componente de detalles
 // import Details from "components/users/Details";
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 const View = ({ 
     listRef, 
     refetchQuery 
 }) => (
 
-    /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+    
     <BrowserRouter basename="/users">
-    {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+    {/**/}
         
         <div class="content container-fluid mt-3">
             {/* Titulo */}
@@ -35,9 +35,9 @@ const View = ({
                         <Link to="/create" className="btn btn-primary rounded-pill px-5">
                             <i class="text-white font-weight-bold tio-add mr-1"></i> 
                             
-                            {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                            {/**/}
                             Nuevo usuario
-                            {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                            {/**/}
 
                         </Link>
                     </div>

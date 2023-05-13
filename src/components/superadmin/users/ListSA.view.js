@@ -16,22 +16,22 @@ const View = ({
     <div className="border border-primary rounded-lg">
         <div className="list-title">
             
-            {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+            {/**/}
             <h2>Usuarios</h2>
-            {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+            {/**/}
 
         </div>
         <table className="table table-borderless">
             <thead className="">
                 <tr className="font-weight-bold" style={{ color: "#000" }}>
 
-                    {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                    {/**/}
                     <th className="text-center" style={{ width: "15%" }}>Correo eléctronico</th>
                     <th className="text-center" style={{ width: "15%" }}>Nombres</th>
                     <th className="text-center" style={{ width: "15%" }}>Apellidos</th>
                     <th className="text-center" style={{ width: "15%" }}>Tipo</th>
                     <th className="text-center" style={{ width: "20%" }}>Acciones</th>
-                    {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                    {/**/}
 
                 </tr>
             </thead>
@@ -41,7 +41,7 @@ const View = ({
                         (item, idx) => (
                             <tr key={item.id}>
                                 
-                                {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                {/**/}
                                 <td className="align-middle text-center">
                                     {item.email}
                                 </td>
@@ -54,7 +54,7 @@ const View = ({
                                 <td className="align-middle text-center">
                                     {item.type}
                                 </td>
-                                {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                {/**/}
                             
                                 <td className="align-middle text-center">
                                     <Link

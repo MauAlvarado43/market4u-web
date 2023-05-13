@@ -20,12 +20,12 @@ import SalesSA from "components/superadmin/sales/SalesSA"
 import productsSA from "components/superadmin/products/productsSA"
 
 
-/////////////////////////////////INICIO-EDITAR////////////////////////////////////
+
 import UsersSA from "components/superadmin/users/UsersSA"
 import CompaniesSA from "components/superadmin/companies/CompaniesSA"
 
 import Users from "components/users/Users"
-///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+
 
 const AppView = () =>
   <div class="module">
@@ -47,12 +47,12 @@ const AppView = () =>
         <Route path="/superadmin/sales" component={SalesSA} />
         <Route path="/superadmin/products" component={productsSA} />
 
-        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+        {/**/}
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
 
         <Route path="/users" component={Users} />
-        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+        {/**/}
         
 
         <Route path="/" component={Home} />
