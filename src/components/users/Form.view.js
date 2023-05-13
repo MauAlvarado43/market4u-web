@@ -148,7 +148,6 @@ const FormView = (
                                                         type="password"
                                                         name="password"
                                                         value={values.password || ''}
-                                                        required
                                                         ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
 
                                                         class="form-control input__field"
@@ -158,7 +157,6 @@ const FormView = (
 
                                                         {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
                                                         Contraseña
-                                                        <span className='text-danger fw-bold'>*</span>
                                                         {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
 
                                                     </span>
@@ -177,7 +175,6 @@ const FormView = (
                                                         type="password"
                                                         name="password2"
                                                         value={values.password2 || ''}
-                                                        required
                                                         ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
 
                                                         class="form-control input__field"
@@ -187,7 +184,6 @@ const FormView = (
 
                                                         {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
                                                         Confirmar contraseña
-                                                        <span className='text-danger fw-bold'>*</span>
                                                         {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
 
                                                     </span>
@@ -196,30 +192,7 @@ const FormView = (
                                         </div>
                                     </div>
                                     {/* Foto */}
-                                    <div class="mb-3">
-                                        <div class="custom-file form-field-style">
-                                            <FileField
-                                                className="custom-file-input"
-
-                                                /////////////////////////////////INICIO-EDITAR////////////////////////////////////
-                                                name="photo"
-                                                required
-                                                ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
-
-                                                setFieldValue={setFieldValue}
-                                            />
-                                            <label class="custom-file-label form-field-style" for="" data-browse="Seleccionar banner">
-                                                <span class="input__label">
-
-                                                    {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
-                                                    Ningún archivo seleccionado
-                                                    <span className='text-danger fw-bold'>*</span>
-                                                    {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
-
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
+                                    
                                     {/* Tipo */}
                                     <div class="mb-3">
                                         <div class="mb-3">

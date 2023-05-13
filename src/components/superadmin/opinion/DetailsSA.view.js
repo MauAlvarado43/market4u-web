@@ -121,22 +121,14 @@ const FormView = (
                                                     <label class="input">
                                                         <Field
                                                             type="text"
-                                                            
-                                                            ///
                                                             name="product"
-                                                            ///
-
                                                             class="form-control input__field"
                                                             placeholder=" "
                                                             readonly= " "
-                                                            value={values.product.name +" - " +values.user.company.name || ''}
+                                                            value={values.product.name +" - " +values.product.company.name || ''}
                                                         />
                                                         <span class="input__label">
-                                                            
-                                                            {/*///*/}
                                                             Producto - Empresa
-                                                            {/*///*/}
-
                                                         </span>
                                                     </label>
                                                 </div>
@@ -150,11 +142,7 @@ const FormView = (
                                                     <label class="input">
                                                         <Field
                                                             type="text"
-                                                            
-                                                            ///
                                                             name="rate"
-                                                            ///
-
                                                             class="form-control input__field"
                                                             placeholder=" "
                                                             readonly= " "

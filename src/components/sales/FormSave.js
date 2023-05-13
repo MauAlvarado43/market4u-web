@@ -15,7 +15,7 @@ import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 
 
-function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
+function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
 
     //const history = useHistory();
     const companyId = sessionStorage.getItem("company");
@@ -50,7 +50,6 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
             }
             // iterar selectedProducts
-            refetchQuery();
             onCompleted();
             //console.log("sss");
         }

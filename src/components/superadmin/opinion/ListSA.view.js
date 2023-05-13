@@ -49,7 +49,7 @@ const View = ({
                             </td>
                             <td className="align-middle text-center">
                                 
-                                {opinion.product.name + " - " +opinion.user.company.name }
+                                {opinion.product.name + " - " +opinion.product.company.name }
                             </td>
                             <td className="align-middle text-center">
                                 {opinion.rate + " / 5"}

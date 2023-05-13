@@ -34,7 +34,8 @@ function Delete({
         ///
 
         {
-            onCompleted: () => {
+            onCompleted: (data) => {
+                console.log(data)
                 refetchQuery();
                 onCompleted();
             }

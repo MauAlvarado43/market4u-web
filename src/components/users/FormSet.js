@@ -10,7 +10,7 @@ import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 import { Loading } from "seed/helpers";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
-
+import { usePost } from "seed/api";
 /////////////////////////////////INICIO-EDITAR////////////////////////////////////
 import { USER, SET_USER } from "seed/gql/queries";
 import View from "components/users/Form.view";
@@ -29,19 +29,12 @@ function FormSet({
 
         itemId
     );
-    const [callSet, qSet] = useSet(
-        
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
-        SET_USER, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
-
-        {
-            onCompleted: () =>{
-                onCompleted();
-            }
-            //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
-        }
-    );
+    const [callSet, qSet] = usePost("/users/update_user_normal", {
+        onCompleted: () => {
+            console.log("se ha actualizado de manera exitosa el usuario");
+            onCompleted();
+        },
+    });
     const qUsers = useQuery(
         `
         { 
@@ -98,15 +91,16 @@ function FormSet({
         values.id = parseInt(itemId);
         values.cp = parseInt(values.cp);
         values.company = parseInt(companyId);
-        values.photo = parseInt(values.photo);
-        console.log(values);
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
-        
-        /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
-        callSet(values);
-        ///////////////////////////////INICIO-COMENTAR/////////////////////////////////
-        // onCompleted();
-        /////////////////////////////////FIN-COMENTAR//////////////////////////////////
+        //values.photo = parseInt(values.photo);
+        if(values.password == undefined)
+            values.password = ''
+
+        let newValues = JSON.parse(JSON.stringify(values));
+        newValues.user_id = newValues.id;
+        delete newValues.id;
+
+        console.log(newValues);
+        callSet(newValues);
     };
     const onCancel = () => {
         onCompleted();

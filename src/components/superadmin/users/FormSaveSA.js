@@ -22,20 +22,12 @@ function FormSave({
     onError = () => null, 
     refetchQuery 
 }) {
-    const [callSave, qSave] = useSave(
-        
-        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
-        SAVE_USER, 
-        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
-
-        {
-            onCompleted: (data) => {
-                refetchQuery();
-                onCompleted();
-            }
-            //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
-        }
-    );
+    const [callSave, qSave] = usePost("/users/create_user_superadmin", {
+        onCompleted: () => {
+            console.log("se ha actualizado de manera exitosa el usuario");
+            onCompleted();
+        },
+    });
     const error = qSave.error ? "An error has occurred" : null;
 
     const qUsers = useQuery(
@@ -77,17 +69,37 @@ function FormSave({
         if (values.cp !== "") {
             values.cp = parseInt(values.cp);
         }
-        values.tokenVerified = true;
-        values.token = ""
-        for (let i = 1; i <= 20; i++) {
-            values.token += Math.random().toString(36).substring(2, 3);
-        }
-        values.isActive = true;
-        values.active = true;
-        values.code = 0;
+        // values.tokenVerified = true;
+        // values.token = ""
+        // for (let i = 1; i <= 20; i++) {
+        //     values.token += Math.random().toString(36).substring(2, 3);
+        // }
+        // values.isActive = true;
+        // values.active = true;
+        // values.code = 0;
         values.company = parseInt(values.company.id)
         values.username = values.email.slice();
+        if(values.type==="NORMAL" && isNaN(values.company)){
+            alert("El usuario normal no puede tener una compañia")
+            return
+        }else if(values.type === 'SELLER' || values.type === 'ADMIN' ){
+            //console.log(values.company)
+            if(isNaN(values.company)){
+                alert('Este tipo de usuario debe tener una compañia')
+                return
+            }
+                
+        }
+        if(values.type==="NORMAL")
+            delete values.company
         console.log(values);
+        if(values.password === '' || isNaN(values.password)){
+            alert("Debe poner una contraseña")
+            return 
+        }
+
+        console.log(values.password)
+
         /////////////////////////////////DESCOMENTAR/////////////////////////////////// 
         callSave(values);
         ///////////////////////////////INICIO-COMENTAR/////////////////////////////////

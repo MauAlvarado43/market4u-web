@@ -27,13 +27,14 @@ const List = forwardRef(
                     product {
                       id
                       name
+                      company{
+                        name
+                      }
                     }
                     user{
                       id
                       username
-                      company{
-                        name
-                      }
+                      
                     }
                     rate
                   }

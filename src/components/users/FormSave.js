@@ -69,14 +69,14 @@ function FormSave({
         if (values.cp !== "") {
             values.cp = parseInt(values.cp);
         }
-        values.tokenVerified = true;
-        values.token = ""
+        // values.tokenVerified = true;
+        // values.token = ""
         for (let i = 1; i <= 20; i++) {
             values.token += Math.random().toString(36).substring(2, 3);
         }
-        values.isActive = true;
-        values.active = true;
-        values.code = 0;
+        // values.isActive = true;
+        // values.active = true;
+        // values.code = 0;
         values.company = parseInt(companyId)
         values.username = values.email.slice();
         console.log(values);

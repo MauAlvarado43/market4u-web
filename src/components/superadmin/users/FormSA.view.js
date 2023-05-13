@@ -149,7 +149,6 @@ const FormView = (
                                                         type="password"
                                                         name="password"
                                                         value={values.password || ''}
-                                                        required
                                                         ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
 
                                                         class="form-control input__field"
@@ -159,7 +158,6 @@ const FormView = (
 
                                                         {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
                                                         Contraseña
-                                                        <span className='text-danger fw-bold'>*</span>
                                                         {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
 
                                                     </span>
@@ -178,7 +176,6 @@ const FormView = (
                                                         type="password"
                                                         name="password2"
                                                         value={values.password2 || ''}
-                                                        required
                                                         ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
 
                                                         class="form-control input__field"
@@ -188,7 +185,6 @@ const FormView = (
 
                                                         {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
                                                         Confirmar contraseña
-                                                        <span className='text-danger fw-bold'>*</span>
                                                         {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
 
                                                     </span>
@@ -197,30 +193,7 @@ const FormView = (
                                         </div>
                                     </div>
                                     {/* Foto */}
-                                    <div class="mb-3">
-                                        <div class="custom-file form-field-style">
-                                            <FileField
-                                                className="custom-file-input"
 
-                                                /////////////////////////////////INICIO-EDITAR////////////////////////////////////
-                                                name="photo"
-                                                required
-                                                ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
-
-                                                setFieldValue={setFieldValue}
-                                            />
-                                            <label class="custom-file-label form-field-style" for="" data-browse="Seleccionar banner">
-                                                <span class="input__label">
-
-                                                    {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
-                                                    Ningún archivo seleccionado
-                                                    <span className='text-danger fw-bold'>*</span>
-                                                    {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
-
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
                                     {/* Tipo */}
                                     <div class="mb-3">
                                         <div class="mb-3">
@@ -495,32 +468,34 @@ const FormView = (
                                         </div>
                                     </div>
                                     {/* Empresa */}
-                                    <div class="mb-3">
+                                    <div >
                                         <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
+                                            <div class="mb-3">
+                                                <div class="form-group">
+                                                    <label class="input">
+                                                        <Field
 
-                                                        /////////////////////////////////INICIO-EDITAR////////////////////////////////////
-                                                        as="select"
-                                                        name="company.id"
-                                                        ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
+                                                            /////////////////////////////////INICIO-EDITAR////////////////////////////////////
+                                                            as="select"
+                                                            name="company.id"
+                                                            ///////////////////////////////////FIN-EDITAR/////////////////////////////////////
 
-                                                        class="form-control input__field"
-                                                        placeholder=" "
-                                                    >
-                                                        <option value="">Seleccione una empresa</option>
-                                                        {companies.map((e, idx) => <option key={idx} value={e.id}>{e.name}</option>)}
-                                                    </Field>
-                                                    <span class="input__label">
+                                                            class="form-control input__field"
+                                                            placeholder=" "
+                                                        >
+                                                            <option value="">Seleccione una empresa</option>
+                                                            {companies.map((e, idx) => <option key={idx} value={e.id}>{e.name}</option>)}
+                                                        </Field>
+                                                        <span class="input__label">
 
-                                                        {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
-                                                        Empresa
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                        {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
+                                                            {/*/////////////////////////////////INICIO-EDITAR////////////////////////////////////*/}
+                                                            Empresa
+                                                            <span className='text-danger fw-bold'>*</span>
+                                                            {/*///////////////////////////////////FIN-EDITAR/////////////////////////////////////*/}
 
-                                                    </span>
-                                                </label>
+                                                        </span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

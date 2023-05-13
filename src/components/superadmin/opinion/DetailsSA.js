@@ -42,13 +42,14 @@ function FormDetails({
                 product {
                     id
                     name
+                    company {
+                        name
+                    }
                 }
                 user {
                     id
                     username
-                    company {
-                        name
-                    }
+                    
                 }
             }
         }
