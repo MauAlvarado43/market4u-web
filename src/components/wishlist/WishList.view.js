@@ -1,8 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ProductList from "components/wishlist/ProductList";
+import DeleteProduct from "components/wishlist/Delete";
 import { BrowserRouter } from "react-router-dom";
+import { ModalRoute } from "seed/helpers";
 
-const WishListView = () => (
+const WishListView = ({
+  categories,
+  selectedCategory,
+  selectedPriceFilter,
+  handleCategoryFilter,
+  handlePriceFilter
+}) => (
+  <BrowserRouter baseName="/wishlist">
     <div className="container" style={{ width: "100%", overflowY:"auto", maxHeight:"75vh"}}>
       <div class="d-flex justify-content-end" style={{ margin: "15px" }}>
         <div style={{ marginLeft: "15px" }}>
@@ -27,18 +37,18 @@ const WishListView = () => (
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Agregados recientemente
+            Filtrar por
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">
-              Más antiguos
-            </a>
-            <a class="dropdown-item" href="#">
+            <div class="dropdown-item" onClick={() => handlePriceFilter("all")}>
+              Todos
+            </div>
+            <div class="dropdown-item" onClick={() => handlePriceFilter("highest")}>
               Mayor precio
-            </a>
-            <a class="dropdown-item" href="#">
+            </div>
+            <div class="dropdown-item" onClick={() => handlePriceFilter("lowest")}>
               Menor precio
-            </a>
+            </div>
           </div>
         </div>
         <div>
@@ -51,23 +61,50 @@ const WishListView = () => (
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Todos los productos
+              Filtrar por categoría
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <button className="dropdown-item" type="button">
-                Categoria 1
+              <button className="dropdown-item" type="button" onClick={() => handleCategoryFilter("all")}>
+                Todas las categorías
               </button>
+              {categories.map((category) => (
+              <button className="dropdown-item" 
+                type="button" 
+                key={category.id}
+                onClick={() => handleCategoryFilter(category.name)}>
+                {category.name}
+              </button>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       <div>
-        <ProductList/>
+        <ProductList
+          selectedCategory={selectedCategory}
+          selectedPriceFilter={selectedPriceFilter}
+          />
       </div>
     </div>
+
+    <ModalRoute
+      path="/wishlist/:productId(\d+)/delete"
+      component={DeleteProduct} 
+      width="400"
+      height="400" 
+      style = {{position:"fixed", marginTop:"0", marginLeft:"0"}}
+    />
+
+  </BrowserRouter>
 );
 
-WishListView.propTypes = {};
+WishListView.propTypes = {
+  categories: PropTypes.array,
+  selectedCategory: PropTypes.object,
+  selectedPriceFilter: PropTypes.string,
+  handleCategoryFilter: PropTypes.func,
+  handlePriceFilter: PropTypes.func
+};
 
 export default WishListView;

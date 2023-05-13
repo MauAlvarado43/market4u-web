@@ -11,7 +11,6 @@ import { SALE, SET_SALE, SET_PRODUCT } from "seed/gql/queries";
 import { Loading } from "seed/helpers";
 import View from "components/sales/Form.view";
 import { DateTime } from "luxon";
-import { useHistory } from "react-router";
 
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null }) {
     //const history = useHistory();
@@ -52,9 +51,6 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         else
             return false;
     })
-    //console.log(filteredProducts)
-
-
 
 
     if (qSale.loading) return <Loading />;
