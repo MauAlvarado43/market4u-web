@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import Banners from "components/main/Banners";
 import ProductCard from "./ProductCard";
 
-const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
+const MainView = ({ 
+  products, 
+}) =>
   <div className="container" style={{ width: "100%", height: "100vh", overflowY: "scroll" }}>
     
     <div className="container-main-visual">
       <div className="container-main">
-
         {/* <div className="banner">
           <div clasName="banner-container">
             <Banners />

@@ -15,18 +15,6 @@ const WishListView = ({
   <BrowserRouter baseName="/wishlist">
     <div className="container" style={{ width: "100%", overflowY:"auto", maxHeight:"75vh"}}>
       <div class="d-flex justify-content-end" style={{ margin: "15px" }}>
-        <div style={{ marginLeft: "15px" }}>
-          <form>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar" />
-              <div class="input-group-append">
-                <button class="btn btn-light" type="submit">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
 
         <div class="dropdown">
           <button

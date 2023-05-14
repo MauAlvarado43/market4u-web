@@ -5,10 +5,12 @@ import { Range } from "react-range";
 const FilterView = ({
     user,
     values,
-    handleChange,
+    handlePriceChange,
     handleModalToggle,
     categories,
     companies,
+    handleCategoryChange,
+    handleCompanyChange,
 }) => (
   <>
     <div
@@ -50,7 +52,7 @@ const FilterView = ({
             min={0}
             max={15000}
             step={100}
-            onChange={handleChange}
+            onChange={handlePriceChange}
             renderTrack={({ props, children }) => (
               <div
                 {...props}
@@ -109,24 +111,30 @@ const FilterView = ({
         <div className="mt-5">
             <h3>CATEGORÍA:</h3>
             {categories.map((category) => (
-                <>
-                    <label className="ml-4 d-flex">
-                        <input type="checkbox" name="category"/> 
-                        <h4 className="mt-2 ml-1">{category?.name}</h4>
-                    </label>
-                </>
+              <label className="ml-4 d-flex" key={category.id}>
+                <input 
+                    type="checkbox" 
+                    name="category"
+                    value={category.name}
+                    onChange={handleCategoryChange}
+                /> 
+                <h4 className="mt-2 ml-1">{category?.name}</h4>
+              </label>
             ))}
         </div>
         <hr/>
         <div className="mt-5">
             <h3>MARCA:</h3>
             {companies.map((company) => (
-                <>
-                    <label className="ml-4 d-flex">
-                        <input type="checkbox" name="category"/> 
-                        <h4 className="mt-2 ml-1">{company?.commonName}</h4>
-                    </label>
-                </>
+              <label className="ml-4 d-flex" key={company.id}>
+                <input 
+                  type="checkbox" 
+                  name="category"
+                  value={company.commonName}
+                  onChange={handleCompanyChange}
+                />
+                <h4 className="mt-2 ml-1">{company?.commonName}</h4>
+              </label>
             ))}
         </div>
       </div>
@@ -146,10 +154,12 @@ const FilterView = ({
 FilterView.propTypes = {
     user: PropTypes.object,
     values: PropTypes.array,
-    handleChange: PropTypes.func,
+    handlePriceChange: PropTypes.func,
     handleModalToggle: PropTypes.func,
     categories: PropTypes.array,
-    companies: PropTypes.array
+    companies: PropTypes.array,
+    handleCategoryChange: PropTypes.func,
+    handleCompanyChange: PropTypes.func,
 };
 
 export default FilterView;
