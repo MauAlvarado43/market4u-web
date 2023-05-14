@@ -15,6 +15,8 @@ function Filter(props) {
     setSelectedCompanies,
     priceRange,
     setPriceRange,
+    selectedPriceFilter,
+    setSelectedPriceFilter,
   } = useContext(FilterContext);
 
   const reqCategory = useQuery(`{
@@ -64,6 +66,10 @@ function Filter(props) {
     }
   };
 
+  const handlePriceFilter = (filter) => {
+    setSelectedPriceFilter(filter);
+  };
+
   const handlePriceChange = (newPriceRange) => {
     setPriceRange(newPriceRange);
     handleChange(newPriceRange);
@@ -78,6 +84,7 @@ function Filter(props) {
       handleChange={handlePriceChange}
       handleModalToggle={handleModalToggle}
       handlePriceChange={handlePriceChange}
+      handlePriceFilter={handlePriceFilter}
       handleCompanyChange={handleCompanyChange}
       handleCategoryChange={handleCategoryChange}
     />

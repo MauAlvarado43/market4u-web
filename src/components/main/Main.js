@@ -9,7 +9,7 @@ function Main() {
   
   const pageSize = 20;
   const [pageNum, setPageNum] = useState(1);
-  const { selectedCategories, selectedCompanies, priceRange } = useContext(FilterContext);
+  const { selectedCategories, selectedCompanies, priceRange, selectedPriceFilter } = useContext(FilterContext);
 
   const reqProducts = usePagination(
     `{
@@ -65,9 +65,19 @@ function Main() {
     return true;
   });
 
+  let sortedProducts = [...filteredProducts];
+
+  if (selectedPriceFilter !== '') {
+    if (selectedPriceFilter === 'highest') {
+      sortedProducts.sort((a, b) => b.variants[0].price - a.variants[0].price);
+    } else if (selectedPriceFilter === 'lowest') {
+      sortedProducts.sort((a, b) => a.variants[0].price - b.variants[0].price);
+    }
+  }
+
   return (
         <View
-          products={filteredProducts}
+          products={sortedProducts}
         />
   );
 }

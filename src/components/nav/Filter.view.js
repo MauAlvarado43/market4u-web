@@ -5,6 +5,7 @@ import { Range } from "react-range";
 const FilterView = ({
     user,
     values,
+    handlePriceFilter,
     handlePriceChange,
     handleModalToggle,
     categories,
@@ -42,8 +43,16 @@ const FilterView = ({
       <div className="card-body ml-3 mt-2">
         <h3>ORDENAR POR:</h3>
         <ul style={{ color: "black" }}>
-          <li style={{ cursor: "pointer" }}>Precio (Mayor a menor)</li>
-          <li style={{ cursor: "pointer" }}>Precio (Menor a mayor)</li>
+          <li 
+            style={{ cursor: "pointer" }}
+            onClick={() => handlePriceFilter("highest")}>
+              Precio (Mayor a menor)
+          </li>
+          <li 
+            style={{ cursor: "pointer" }}
+            onClick={() => handlePriceFilter("lowest")}>
+              Precio (Menor a mayor)
+          </li>
           <li>Rango de precio</li>
         </ul>
         <div className="col-md-9 ml-6">
