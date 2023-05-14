@@ -4,14 +4,11 @@ import './CartStyle.css'
 // import CartView4 from './cart4/Cart4'
 
 const ResumenPedido = (props) => {
-  const {cart, activeDiv, setActiveDiv} = props
+  const { shipments, activeDiv, setActiveDiv } = props
 
   useEffect(() => {
     setActiveDiv(activeDiv);
   }, [activeDiv]);
-
-  let shipments = cart.shippings.filter(shipment => shipment.status === "CREATED");
-
   
   return (
     <div>

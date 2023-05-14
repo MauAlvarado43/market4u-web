@@ -3,13 +3,11 @@ import './CartStyle.css'
 // import CartView3 from './cart3/Cart3'
 
 const MetodoPago = (props) => {
-  const {cart, activeDiv, setActiveDiv} = props
+  const { shipments, activeDiv, setActiveDiv } = props
 
   useEffect(() => {
     setActiveDiv(activeDiv);
   }, [activeDiv]);
-
-  let shipments = cart.shippings.filter(shipment => shipment.status === "CREATED");
 
   
   return (

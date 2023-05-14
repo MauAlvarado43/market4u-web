@@ -104,7 +104,7 @@
 }
 
 
-/* ------------- Carrito de Compras ------------- */
+/* ---------------------------- Carrito de Compras ---------------------------- */
 
 .step-cart {
     display: grid;
@@ -114,7 +114,7 @@
 }
 
 .step-cart div {
-    margin: 2%;
+    margin: 1%;
 }
 
 .cart-info {
@@ -122,8 +122,10 @@
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    width: 100%;
-    height: 100%;
+    width: 96%;
+    height: 96%;
+    display: flex;
+    align-items: center;
 }
 
 .cart-products {
@@ -131,8 +133,8 @@
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
-    width: 100%;
-    height: 100%;
+    width: 96%;
+    height: 96%;
 }
 
 .cart-summary {
@@ -140,8 +142,8 @@
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    width: 100%;
-    height: 100%;
+    width: 96%;
+    height: 96%;
     position: sticky;
     top: 0;
 }
@@ -291,6 +293,7 @@
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 10%;
+    margin-bottom: 10%;
     /* max-width: 300px; */
 }
 
@@ -308,4 +311,34 @@
     background-color: var(--bg-color-active);
     box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
     transform: translateY(0);
+}
+
+.buttonShopping:disabled {
+    background-color: #9b9b9b;
+}
+
+/* ------------- Detalles de Entrega ------------- */
+
+.delivery-title {
+    padding: 2%;
+    background-color: #F5F5F5;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.delivery-data {
+    padding: 2%;
+    background-color: #F5F5F5;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.delivery-table {
+    background-color: #F5F5F5;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }

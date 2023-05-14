@@ -1,73 +1,32 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Steps from "./StepsBar";
 import CarritoCompras from "./Step1-CarritoCompras";
 import DetallesEntrega from "./Step2-DetallesEntrega";
 import MetodoPago from "./Step3-MetodoPago";
 import ResumenPedido from "./Step4-ResumenPedido";
 import "./CartStyle.css"
-import { useQuery } from "seed/gql";
 import PropTypes from "prop-types";
 
-const CartView = () =>{
+
+const CartView = (props) =>{
+
+  const { cart } = props
   
-  const [activeDiv, setActiveDiv] = useState(1);
+  const [activeDiv, setActiveDiv] = useState(2);
 
   useEffect(() => {
     setActiveDiv(activeDiv);
   }, [activeDiv]);
 
-  const userId = sessionStorage.getItem("id");
+  let shipments = cart.users[0].buyerCarts[0].shippings.filter(shipment => shipment.status === "CREATED");
 
-  const qInfo = useQuery(`
-  {
-    users {
-      id
-      firstName
-      lastName
-      username
-      email
-      payments {
-        cardNumber
-      }
-      address
-      buyerCarts {
-        id
-        createdAt
-        payment {
-          id
-          cardNumber
-          type
-        }
-        shippings {
-          createdAt
-          info
-          folio
-          address
-          status
-          purchases {
-            id
-            createdAt
-            amount
-            sale
-            product
-          }
-        }
-      }
-    }
-  }
-  `, `id=${userId} AND buyerCarts.shippings.status=CREATED`);
-  let info = qInfo.data
-  let cart
+  const [finalAmount, setFinalAmount] = useState(((shipments[0].purchases).reduce((acc, curr) => acc + (curr.amount), 0)))
 
-  if (info.users) {
-    cart = info
-    // console.log((cart.users[0].address))
-  } else {
-    return "Loading"
-  }
-
+  const [totalCost, setTotalCost] = useState(((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)))
+  
   
   return (
+      
     <div className="cart-content">
       <div className="step-bar-try">
         <Steps
@@ -80,33 +39,50 @@ const CartView = () =>{
 
         <div className={activeDiv === 1 ? 'step-div active' : 'step-div'}>
           {<CarritoCompras
-            cart = {cart.users[0].buyerCarts[0]}
+            shipments = {shipments}
             activeDiv= {activeDiv}
             setActiveDiv={setActiveDiv}
+            finalAmount={finalAmount}
+            setFinalAmount={setFinalAmount}
+            totalCost={totalCost}
+            setTotalCost={setTotalCost}
           />}
         </div>
 
         <div className={activeDiv === 2 ? 'step-div active' : 'step-div'}>
           <DetallesEntrega
-            cart = {cart.users[0].buyerCarts[0]}
+            cart = {cart}
+            shipments = {shipments}
             activeDiv= {activeDiv}
             setActiveDiv={setActiveDiv}
+            finalAmount={finalAmount}
+            setFinalAmount={setFinalAmount}
+            totalCost={totalCost}
+            setTotalCost={setTotalCost}
           />
         </div>
 
         <div className={activeDiv === 3 ? 'step-div active' : 'step-div'}>
           <MetodoPago
-            cart = {cart.users[0].buyerCarts[0]}
+            shipments = {shipments}
             activeDiv= {activeDiv}
             setActiveDiv={setActiveDiv}
+            finalAmount={finalAmount}
+            setFinalAmount={setFinalAmount}
+            totalCost={totalCost}
+            setTotalCost={setTotalCost}
           />
         </div>
 
         <div className={activeDiv === 4 ? 'step-div active' : 'step-div'}>
           <ResumenPedido
-            cart = {cart.users[0].buyerCarts[0]}
+            shipments = {shipments}
             activeDiv= {activeDiv}
             setActiveDiv={setActiveDiv}
+            finalAmount={finalAmount}
+            setFinalAmount={setFinalAmount}
+            totalCost={totalCost}
+            setTotalCost={setTotalCost}
           />
         </div>
 
