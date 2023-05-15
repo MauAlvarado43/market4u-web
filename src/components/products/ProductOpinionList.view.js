@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import RelatedProductCard from "./RelatedProductCard";
 import { DateTime } from "luxon";
 
 const ProductOpinionListView = ({ 
@@ -89,7 +88,7 @@ const ProductOpinionListView = ({
               <div className="row">
                 <div className="col-md-1 d-flex justify-content-center align-items-center">
                   <img
-                    src={opinion.user.photo.url}
+                    src={opinion.user?.photo?.url}
                     className="img-fluid rounded-circle ml-3"
                     alt=""
                     style={{ maxWidth: "50px", maxHeight: "50px" }}

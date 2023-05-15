@@ -12,6 +12,7 @@ function Detail({ match }) {
   let photos = [];
   let price = 0;
   let stock = 0;
+  let exist = false;
 
   const qProduct = useDetail(`
     {
@@ -98,7 +99,8 @@ function Detail({ match }) {
         price = variant.price;
         stock = variant.stock;
         find = true;
-      }
+        exist = true;
+      } 
 
     });
 
@@ -120,6 +122,7 @@ function Detail({ match }) {
     price={price}
     stock={stock}
     rate={rate}
+    exist={exist}
   />;
 
 }

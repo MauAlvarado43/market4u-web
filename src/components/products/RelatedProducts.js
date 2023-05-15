@@ -5,7 +5,7 @@ import { useQuery } from "seed/gql";
 
 function RelatedProducts({ product }) {
   
-  const pageSize = 5;
+  const pageSize = 3;
   const pageLimit = 10;
   const [pageIndex, setPageIndex] = useState(0);
   const category = product.category.name;
