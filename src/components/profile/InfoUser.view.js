@@ -7,7 +7,6 @@ const InfoUserView = ({
   users,
   onSubmit,
   showPassword,
-  setPassword,
   validationSchema,
   togglePasswordVisibility,
   togglePasswordVisibilityConfirm,

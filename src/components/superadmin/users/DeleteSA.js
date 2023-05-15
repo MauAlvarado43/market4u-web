@@ -18,17 +18,11 @@ function Delete({
     itemId, 
     onCompleted = () => null, 
     onError = () => null,
-    refetchQuery 
 }) {
     const [callDelete] = useDelete(
-
-        
         DELETE_USER, 
-        
-
         {
             onCompleted: () => {
-                refetchQuery();
                 onCompleted();
             }
             //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
@@ -38,8 +32,6 @@ function Delete({
         const id = parseInt(itemId);
         
         callDelete({ id: id });
-        
-        // onCompleted();
         
     }
     return <View

@@ -53,7 +53,7 @@ const View = ({
                 component={FormSave}
                 refetchQuery={refetchQuery}
                 width="920"
-                height="700"
+                height="600"
             />
             {/* Ventana editar */}
             <ModalRoute
@@ -61,7 +61,7 @@ const View = ({
                 component={FormEdit}
                 refetchQuery={refetchQuery}
                 width="920"
-                height="700"
+                height="600"
             />
             {/* Ventana eliminar */}
             <ModalRoute
