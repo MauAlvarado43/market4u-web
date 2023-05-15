@@ -69,7 +69,8 @@ const ProductFormView = ({
                         <Field 
                           type="text" 
                           name="name" 
-                          class="form-control input__field" 
+                          className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                           placeholder=" " 
                           readonly= " "
                           value={values.name || ''} 
@@ -98,7 +99,8 @@ const ProductFormView = ({
                         <Field 
                           type="text" 
                           name="short_description" 
-                          class="form-control input__field" 
+                          className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                           placeholder=" " 
                           value={values.short_description || ''} 
                           readonly= " "
@@ -126,7 +128,8 @@ const ProductFormView = ({
                           <Field 
                           component="textarea"
                             name="description" 
-                            class="form-control input__field"
+                            className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                             placeholder=" " 
                             style={{resize: 'none', height: "7.15rem"}}
                             value={values.description || ''} 
@@ -147,7 +150,7 @@ const ProductFormView = ({
                                 //type="text"
                                 as="select" 
                                 name="category.id" 
-                                class="form-control input__field" 
+                                class="form-control input__field border-dark mb-4" 
                                 placeholder=" "  
                                 readonly= " "
                                 style={{pointerEvents: "none"}}
@@ -170,7 +173,7 @@ const ProductFormView = ({
                                 //type="text"
                                 as="select" 
                                 name="sale.id" 
-                                class="form-control input__field" 
+                                class="form-control input__field border-dark mb-4" 
                                 placeholder=" " 
                                 readonly= " "
                                 style={{pointerEvents: "none"}}

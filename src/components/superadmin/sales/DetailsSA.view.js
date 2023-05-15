@@ -72,7 +72,8 @@ const FormView = (
                                                     value={values.name || ''}
                                                     ///
 
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                 />
                                                 <span class="input__label">
@@ -98,7 +99,8 @@ const FormView = (
                                                     value={values.disscount + " %"}
                                                     ///
 
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                 />
                                                 <span class="input__label">
@@ -125,7 +127,8 @@ const FormView = (
                                                     value={values.startDate || ''}
                                                     ///
 
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                 />
                                                 <span class="input__label">
@@ -152,7 +155,8 @@ const FormView = (
                                                     value={values.endDate || ''}
                                                     ///
 
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                 />
                                                 <span class="input__label">

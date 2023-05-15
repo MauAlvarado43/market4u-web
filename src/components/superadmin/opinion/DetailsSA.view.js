@@ -68,7 +68,8 @@ const FormView = (
                                                     name="title"
                                                     ///
 
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                     readonly= " "
                                                     value={values.title || ''}
@@ -96,7 +97,8 @@ const FormView = (
                                                     readonly= " "
                                                     ///
 
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                     value={values.description || ''}
                                                 />
@@ -122,7 +124,8 @@ const FormView = (
                                                         <Field
                                                             type="text"
                                                             name="product"
-                                                            class="form-control input__field"
+                                                            className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                             placeholder=" "
                                                             readonly= " "
                                                             value={values.product.name +" - " +values.product.company.name || ''}
@@ -143,7 +146,8 @@ const FormView = (
                                                         <Field
                                                             type="text"
                                                             name="rate"
-                                                            class="form-control input__field"
+                                                            className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                             placeholder=" "
                                                             readonly= " "
                                                             value={values.rate + " / 5" || ''}
@@ -174,7 +178,8 @@ const FormView = (
                                                     name="username"
                                                     ///
 
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                     readonly= " "
                                                     value={values.user.username || ''}

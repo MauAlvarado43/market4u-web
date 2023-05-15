@@ -64,7 +64,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -93,7 +94,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -122,7 +124,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -150,7 +153,8 @@ const FormView = (
                                                         value={values.password || ''}
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -177,7 +181,8 @@ const FormView = (
                                                         value={values.password2 || ''}
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -208,7 +213,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     >
                                                         {/* <option value="SUPERADMIN">SUPERADMIN</option> */}
@@ -243,7 +249,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -272,7 +279,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -301,7 +309,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -330,7 +339,8 @@ const FormView = (
                                                         //required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -359,7 +369,8 @@ const FormView = (
                                                         //required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -389,7 +400,7 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field .l"
+                                                        class="form-control input__field border-dark mb-4"
                                                         placeholder=" "
                                                     >
                                                         <option value="NS">Seleccionar estado</option>
@@ -452,7 +463,8 @@ const FormView = (
                                                         required
                                                         
 
-                                                        class="form-control input__field"
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
