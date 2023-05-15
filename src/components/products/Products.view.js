@@ -25,7 +25,9 @@ const ProductsView = ({ listRef, refetchQuery }) =>
 
     </div>
 
-    <ProductList ref={listRef}/>
+    <div className="pt-2" style={{ maxHeight: "80vh", overflowY: "auto", paddingBottom: "6em" }}>
+      <ProductList ref={listRef}/>
+    </div>
 
     <ModalRoute
       path="/create"

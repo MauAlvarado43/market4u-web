@@ -13,6 +13,7 @@ const ProductList = forwardRef(function ProductList(props, ref){
       productPagination {
         totalPages
         products {
+          sku
           name
           company { name }
           shortDescription

@@ -61,6 +61,32 @@ const ProductFormView = ({
               <Form>
                 <div class="mb-3">
 
+                  {/* SKu */}
+                  <div class="mb-3">
+                    <div class="form-group">
+                      <label class="input">
+                        <Field 
+                          type="text" 
+                          name="sku" 
+                          class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
+                          placeholder=" " 
+                          value={values.sku || ''} 
+                        />
+                        <span class="input__label">
+                          SKU <span className='text-danger fw-bold'>*</span>
+                        </span>
+                      </label>
+                    </div>
+
+                    {
+                      errors.sku && (touched.sku || submitCount > 0)
+                        ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                            {errors.sku}
+                          </div>
+                        : null
+                    }
+                  </div>
+
                   {/* Name */}
                   <div class="mb-3">
 
@@ -69,7 +95,7 @@ const ProductFormView = ({
                         <Field 
                           type="text" 
                           name="name" 
-                          class="form-control input__field" 
+                          class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                           placeholder=" " 
                           value={values.name || ''} 
                         />
@@ -97,7 +123,7 @@ const ProductFormView = ({
                         <Field 
                           type="text" 
                           name="short_description" 
-                          class="form-control input__field" 
+                          class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                           placeholder=" " 
                           value={values.short_description || ''} 
                         />
@@ -122,9 +148,9 @@ const ProductFormView = ({
                       <div class="">
                         <label class="input">
                           <Field 
-                          component="textarea"
+                            component="textarea"
                             name="description" 
-                            class="form-control input__field"
+                            class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                             placeholder=" " 
                             style={{resize: 'none', height: "7.15rem"}}
                             value={values.description || ''} 
@@ -143,7 +169,7 @@ const ProductFormView = ({
                               <Field 
                                 as="select" 
                                 name="category.id" 
-                                class="form-control input__field" 
+                                class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                                 placeholder=" "  
                               >
                                 <option value="">Seleccione una opción</option>
@@ -163,7 +189,7 @@ const ProductFormView = ({
                               <Field 
                                 as="select" 
                                 name="sale.id" 
-                                class="form-control input__field" 
+                                class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                                 placeholder=" " 
                               >
                                 <option value="">Seleccione una opción</option>
@@ -224,7 +250,7 @@ const ProductFormView = ({
                                     ? <input
                                         id={`tab-${index}`}
                                         type="text"
-                                        className="form-control"
+                                        class="border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                                         style={{width: "10em"}}
                                         value={tab.name}
                                         onBlur={() => setRename(index, false)}
@@ -299,7 +325,7 @@ const ProductFormView = ({
                                       ? <input
                                           style={{width: "10em"}}
                                           type={tabs[cellIndex].type}
-                                          class="form-control"
+                                          class="border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                                           placeholder=" "
                                           required
                                           value={cell}
