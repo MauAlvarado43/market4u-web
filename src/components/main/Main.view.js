@@ -4,12 +4,11 @@ import { Link } from "react-router-dom"
 import Banners from "components/main/Banners";
 import ProductCard from "./ProductCard";
 
+
 const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
   <div className="container" style={{ width: "100%", height: "100vh", overflow: "auto", paddingBottom: "200px" }}>
-
     <div className="container-main-visual">
       <div className="container-main">
-
         {/* <div className="banner">
           <div clasName="banner-container">
             <Banners />

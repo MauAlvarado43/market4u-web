@@ -16,6 +16,7 @@ const NavView = ({
     <nav
       className="navbar navbar-expand-lg navbar-light bg-light bg-white"
       style={{
+        height: "20vh",
         marginLeft: "0vw",
         marginBottom: "1vh",
       }}
@@ -71,13 +72,14 @@ const NavView = ({
             </div>
           </form>
         </div>
-
-        <span
-          className="mr-3 mt-1"
-          style={{ fontSize: "25px", cursor: "pointer" }}
-        >
-          <i className="fas fa-heart"></i>
-        </span>
+        <Link to={`/wishlist`}>
+          <span
+            className="mr-3 mt-1"
+            style={{ fontSize: "25px", cursor: "pointer", color:"red"}}
+          >
+            <i className="fas fa-heart"></i>
+          </span>
+        </Link>
         <span class="mr-3 mt-1" style={{ fontSize: "25px", cursor: "pointer" }}>
           <i class="fas fa-shopping-cart"></i>
         </span>

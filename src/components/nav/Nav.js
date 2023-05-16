@@ -8,9 +8,7 @@ import { useLocation } from "react-router-dom";
 function Nav() {
   const location = useLocation();
   const showFilterIcon = location.pathname.includes("/home");
-
   const [showModal, setShowModal] = useState(false);
-
   const [values, setValues] = useState([1000, 15000]);
 
   const handleChange = (newValues) => {

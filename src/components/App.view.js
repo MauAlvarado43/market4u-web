@@ -8,8 +8,11 @@ import Signup from "components/auth/Signup";
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
+import Main from "components/main/Main"
+import { FilterProvider } from "components/helpers/FilterContext";
 
 const AppView = () =>
+<FilterProvider>
   <div class="module">
     <BrowserRouter>
       <Switch>
@@ -23,7 +26,8 @@ const AppView = () =>
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
-  </div>;
+  </div>
+</FilterProvider>;
 
 AppView.propTypes = {};
 
