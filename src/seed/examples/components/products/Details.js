@@ -18,6 +18,7 @@ function ProductDetails({ productId, onCompleted = () => null, onError = () => n
     product {
       name
       shortDescription
+      sku
       description
       createdAt
       company { }

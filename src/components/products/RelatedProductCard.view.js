@@ -1,40 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const RelatedProductCardView = ({ product }) => 
   <div 
-    className="card card-body border-dark d-flex justify-content-center align-items-center mx-2" 
+    className="card card-body border-dark d-flex justify-content-center mx-2" 
     style={{
-      maxHeight: "190px",
-      maxWidth: "190px",
-      height: "190px",
-      width: "190px",
+      height: "20em",
+      width: "20em",
     }}
   >
 
-    <div 
-      className="d-flex justify-content-center align-items-center"
-      style={{
-        height: "70px",
-        width: "70px",
-      }}
-    >
+    <div className="d-flex justify-content-center align-items-center">
       {
         product.variants.length > 0 && product.variants[0].photos && product.variants[0].photos.length > 0 &&
         <div
           className="d-flex justify-content-center align-items-center"
           style={{
-            height: "80px",
-            width: "80px",
+            height: "6.2em",
           }}
         >
-            <img
+          <img
             src={product.variants[0].photos[0].url}
             alt={product.name}
             className="img-fluid"
             style={{
-              maxHeight: "80px",
-              maxWidth: "80px",
+              maxHeight: "6em",
+              maxWidth: "6em",
             }}
           />
         </div>
@@ -43,10 +35,18 @@ const RelatedProductCardView = ({ product }) =>
 
     <div className="mt-2 w-100">
       <div className="text-center">
-        <div className="h-1 mt-0 mb-0">
-          <span className="h3">{product.name}</span>
+
+        <div className="d-flex align-items-center justify-content-center" style={{height: "4em"}}>
+          <Link to={`/product/${product.id}`} className="text-decoration-none">
+            <span className="h5">{product.name}</span>
+          </Link>
         </div>
-        <div className="">{product.shortDescription}</div>
+
+        <div className="d-flex justify-content-center align-items-center" style={{ height: "3em" }}>
+          <span className="h6 text-muted text-truncate">
+            {product.shortDescription}
+          </span>
+        </div>
 
         {
           function(){
@@ -72,9 +72,10 @@ const RelatedProductCardView = ({ product }) =>
           }()
         }
 
-        <div className="">
+        <div className="mt-1">
             ${product.variants.length > 0 && product.variants[0].price}
         </div>
+
       </div>
     </div>
 

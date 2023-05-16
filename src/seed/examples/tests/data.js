@@ -201,6 +201,7 @@ export const API_PAYMENTS = [API_PAYMENT]
 const GQL_PRODUCT_ = {
     name: "",
     shortDescription: "",
+    sku: "",
     description: "",
     company:  { id: 1},
     opinions: [ { id: 1} ],
@@ -227,6 +228,7 @@ export const GQL_PRODUCT_PAGINATION = {
 export const API_PRODUCT = {
     name: "",
     short_description: "",
+    sku: "",
     description: "",
     company_id:  1,
     opinion_ids: [1],

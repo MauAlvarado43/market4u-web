@@ -4,8 +4,7 @@ import { DateTime } from "luxon";
 import RelatedProducts from "./RelatedProducts";
 import ProductOpinionList from "./ProductOpinionList";
 
-
-const DetailView = ({ 
+const DetailView = ({
   product = {}, 
   variantOptions = {}, 
   photos = [],
@@ -15,9 +14,10 @@ const DetailView = ({
   setSelectedOptions,
   selectedOptions,
   stock,
-  rate
+  rate,
+  exist
 }) =>
-  <div class="px-6" style={{overflowY: "auto", overflowX: "hidden", maxHeight: "80vh"}}>
+  <div class="px-6" style={{overflowY: "auto", overflowX: "hidden", maxHeight: "95vh"}}>
 
     <div className="row">
       <div className="col-md-1">
@@ -29,10 +29,10 @@ const DetailView = ({
                 className="p-1 mb-4 d-flex justify-content-center align-items-center" 
                 style={{
                   backgroundColor: "#F0F0F0", 
-                  maxHeight: "80px", 
-                  height: "80px", 
-                  maxWidth: "80px", 
-                  width: "80px"
+                  maxHeight: "6em", 
+                  height: "6em", 
+                  maxWidth: "6em", 
+                  width: "6em"
                 }}
                 onMouseOver={() => setPhotoIndex(index)}
               >
@@ -40,41 +40,42 @@ const DetailView = ({
                   src={photo.url} 
                   className="img-fluid" 
                   alt="" 
-                  style={{ maxWidth: "65px", maxHeight: "65px" }} 
+                  style={{ maxWidth: "5em", maxHeight: "5em" }} 
                 />
               </div>
             )
           }
         </div>
       </div>
-      <div 
-        className="col-md-5 d-flex justify-content-center align-items-center" 
-      >
+      <div className="col-md-5 d-flex justify-content-center">
         <div 
           style={{
             backgroundColor: "#F0F0F0", 
-            maxHeight: "500px", 
-            height: "500px", 
-            maxWidth: "500px", 
-            width: "500px"
+            maxHeight: "40em", 
+            height: "40em", 
+            maxWidth: "40em", 
+            width: "40em"
           }}
           className="d-flex justify-content-center align-items-center p-6"
         >
           {
-            photos.length > 1 && 
-              <img 
-                src={photos[photoIndex].url} 
-                className="img-fluid" 
-                alt="" 
-                style={{ maxWidth: "400px", maxHeight: "400px" }} 
-              />
+            photos.length > 1 
+              ? <img 
+                  src={photos[photoIndex].url} 
+                  className="img-fluid" 
+                  alt="" 
+                  style={{ maxWidth: "35em", maxHeight: "35em" }} 
+                />
+              : <div style={{ maxWidth: "35em", maxHeight: "35em" }} >
+                  <i className="fas fa-image fa-10x text-muted"></i>
+                </div>
           }
         </div>
       </div>
       <div className="col-md-4 px-6">
 
-        <h1 className="display-4"> {product.name} </h1>
-        <h3 className="text-muted"> {product.shortDescription} </h3>
+        <h1 className="display-5"> {product.name} </h1>
+        <h3 className="text-muted h4"> {product.shortDescription} </h3>
 
         {
           function(){
@@ -150,19 +151,28 @@ const DetailView = ({
           )
         }
 
-        <p> { product.description } </p>
+        <p className="text-justify"> { product.description } </p>
 
       </div>
       <div className="col-md-2 px-3">
         <div className="d-flex flex-column align-items-center justify-content-center">
 
-          <button className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3">
+          <button className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3" disabled={!exist || stock == 0}>
             <i className="fas fa-shopping-cart mr-3 fa-lg"></i> Agregar al carrito
           </button>
           
-          <button className="btn btn-secondary btn-sm rounded-pill p-2 w-100 px-3 mt-3">
+          <button className="btn btn-secondary btn-sm rounded-pill p-2 w-100 px-3 mt-3" disabled={!exist || stock == 0}>
             <i className="fas fa-check mr-3 fa-lg"></i> Comprar ahora
           </button>
+
+          {
+            (!exist || stock == 0) && <div className="">
+                <div className="alert alert-danger mt-3 p-2" role="alert">
+                  { exist && stock == 0 ? "No hay stock disponible" : "" }
+                  { !exist ? "Este producto no existe" : ""}
+              </div>
+            </div>
+          }
 
         </div>
       </div>

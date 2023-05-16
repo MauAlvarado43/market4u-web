@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom"
 import Banners from "components/main/Banners";
 import ProductCard from "./ProductCard";
 
-const MainView = ({ 
-  products, 
-}) =>
-  <div className="container" style={{ width: "100%", height: "100vh", overflowY: "scroll" }}>
-    
+
+const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
+  <div className="container" style={{ width: "100%", height: "100vh", overflow: "auto", paddingBottom: "200px" }}>
     <div className="container-main-visual">
       <div className="container-main">
         {/* <div className="banner">
@@ -16,22 +15,22 @@ const MainView = ({
           </div>
         </div> */}
 
-        <div className="container-products">
-
+        <div style={{ marginTop: "100px" }}>
           <div className="my-3">
             <h2 className="title">PRODUCTOS DESTACADOS</h2>
           </div>
 
-          <div className="row mx-3">
+          <div className="row">
             {
-              products.map((product) => 
-                <div key={product.id} className="mx-3">
+              products.map((product) =>
+                <div key={product.id} className="col-md-3 my-2">
                   <ProductCard product={product} />
                 </div>
               )
             }
           </div>
         </div>
+
       </div>
     </div>
   </div>;

@@ -19,8 +19,7 @@ function Nav() {
     setShowModal(!showModal);
   };
 
-  const reqUser = useDetail(
-    `{
+  const reqUser = useDetail(`{
     user {
       firstName
       type
@@ -42,14 +41,14 @@ function Nav() {
 
   const { user = {} } = reqUser.data;
 
-  return <View 
-          user={user} 
-          values={values}
-          showModal={showModal}
-          handleChange={handleChange}
-          showFilterIcon={showFilterIcon} 
-          handleModalToggle={handleModalToggle}
-          />;
+  return <View
+    user={user}
+    values={values}
+    showModal={showModal}
+    handleChange={handleChange}
+    showFilterIcon={showFilterIcon}
+    handleModalToggle={handleModalToggle}
+  />;
 }
 
 Nav.propTypes = {

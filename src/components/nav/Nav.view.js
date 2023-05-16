@@ -18,7 +18,6 @@ const NavView = ({
       style={{
         height: "20vh",
         marginLeft: "0vw",
-        marginTop: "-4vh",
         marginBottom: "1vh",
       }}
     >

@@ -22,7 +22,6 @@ const AppView = () =>
         <Route path="/verify_email/:token" component={VerifyEmail} />
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
-        <Route path="/main" component={Main} />
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

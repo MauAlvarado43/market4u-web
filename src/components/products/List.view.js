@@ -19,18 +19,22 @@ const ProductListView = ({
     <table className="table table-borderless">
       <thead className="">
         <tr className="font-weight-bold" style={{color: "#000"}}>
+          <th className="text-center" style={{width: "10%"}}>SKU</th>
           <th className="text-center" style={{width: "20%"}}>Nombre</th>
           <th className="text-center" style={{width: "15%"}}>Categoría</th>
           <th className="text-center" style={{width: "10%"}}>Cantidad</th>
           <th className="text-center" style={{width: "10%"}}>Precio</th>
           <th className="text-center" style={{width: "15%"}}>Ofertas</th>
-          <th className="text-center" style={{width: "30%"}}>Acciones</th>
+          <th className="text-center" style={{width: "20%"}}>Acciones</th>
         </tr>
       </thead>
       <tbody>
         {
           products.map((product) =>
             <tr key={product.id}>
+              <td className="align-middle text-center">
+                {product.sku}
+              </td>
               <td className="align-middle text-center">
                 {product.name}
               </td>
@@ -48,20 +52,24 @@ const ProductListView = ({
               </td>
               <td className="align-middle text-center">
 
-                  <Link 
-                    to={`/${product.id}/delete`}
-                    className="btn btn-secondary btn-sm rounded-pill px-3" 
-                    onClick={() => onClickDelete(product.id)}
-                  >
-                    <i className="fas fa-times mr-3 fa-lg"></i> Eliminar
-                  </Link>
+                <Link 
+                  to={`/${product.id}/delete`}
+                  className="btn btn-secondary btn-sm rounded-pill px-auto" 
+                  style={{ width: "9em" }}
+                  onClick={() => onClickDelete(product.id)}
+                >
+                  <i className="fas fa-times mr-3 fa-lg"></i> Eliminar
+                </Link>
 
-                  <Link 
-                    to={`/${product.id}/edit`}
-                    className="btn btn-primary btn-sm rounded-pill px-4 ml-3" 
-                  >
-                    <i className="fas fa-pen mr-3 fa-lg"></i> Editar
-                  </Link>
+                <span className="mx-2"></span>
+
+                <Link 
+                  to={`/${product.id}/edit`}
+                  style={{ width: "9em" }}
+                  className="btn btn-primary btn-sm rounded-pill px-auto"
+                >
+                  <i className="fas fa-pen mr-3 fa-lg"></i> Editar
+                </Link>
 
               </td>
             </tr>

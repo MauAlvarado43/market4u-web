@@ -15,10 +15,26 @@ function ProductFormSave({ onCompleted = () => null, onError = () => null, refet
     onCompleted: () => {
       refetchQuery();
       history.goBack();
+    },
+    onError: (error) => {
+      if(error.status == 409) {
+        alert("El sku ya existe");
+      }
     }
   });
 
   const productSchema = object({
+    sku: string().test({
+      name: "sku",
+      test(value, context) {
+        
+        if(!value || value.length === 0) 
+          return context.createError({ message: "Ingrese un sku del producto" });
+
+        return true;
+
+      }
+    }),
     name: string().test({
       name: "name",
       test(value, context) {

@@ -20,7 +20,6 @@ const HomeView = () =>
         <Nav/>
 
         <div id="content">
-
           <Switch>
             <Route path="/wishlist" component={WishList} />
             <Route path="/home" component={Main}/>

@@ -13,6 +13,7 @@ function ProductFormSet({ productId, onCompleted = () => null, onError = () => n
   const qProduct = useDetail(`
     {
       product {
+        sku
         name
         short_description: shortDescription
         description
@@ -40,7 +41,7 @@ function ProductFormSet({ productId, onCompleted = () => null, onError = () => n
   const [callSet, qSet] = usePost("/products/update_product", {
     onCompleted: () => {
       refetchQuery();
-      onCompleted();
+      history.goBack();
     }
   });
 
