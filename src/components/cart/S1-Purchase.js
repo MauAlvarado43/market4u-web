@@ -4,37 +4,39 @@ import './CartStyle.css'
 
 const PurchaseCard = (props) => {
 
-  const { indexs, indexp, purchase, updateAmount, updateTotalCost } = props
+  const { activeDiv, indexs, indexp, purchase, updateAmount, updateTotalCost, updateProdAmount, prodAmounts } = props
 
   const [productAmount, setProductAmount] = useState(purchase.amount)
 
   const price = (JSON.parse(purchase.product)).price
 
-  // const [productTotal, setProductTotal] = useState(purchase.amount)
-  
 
   return (
-    <div className="purchase" id={indexs+indexp}>
-      <div className="purchase-img-div">
+    <div className={activeDiv === 1 ? 'purchase' : 'payment-prod-div'} key={indexs+indexp}>
+      <div className={activeDiv === 1 ? 'purchase-img-div' : 'payment-img-div'} >
         <img
           src={(JSON.parse(purchase.product)).url_img}
         />
-        <div className='prod-amount'><p>{productAmount}</p></div>
+        <div className='prod-amount'><p>{prodAmounts[indexp]}</p></div>
       </div>
 
-      <div className="purchase-info">
+      <div className={activeDiv === 1 ? 'purchase-info' : 'payment-info'} >
         <h4>{(JSON.parse(purchase.product)).name}</h4>
-        <p>$ {(price * productAmount).toFixed(2)}</p>
+        <p>$ {(price * prodAmounts[indexp]).toFixed(2)}</p>
         Talla: {(JSON.parse(purchase.product)).size}
       </div>
 
-      <AddRemoveBtn
-        productAmount = {productAmount}
-        updateAmount = {updateAmount}
-        setProductAmount = {setProductAmount}
-        updateTotalCost = {updateTotalCost}
-        price = {price}
-      />
+      <div className={activeDiv === 1 ? 'purchase-btns-div' : 'hidden-div'} >
+        <AddRemoveBtn 
+          productAmount = {productAmount}
+          updateAmount = {updateAmount}
+          setProductAmount = {setProductAmount}
+          updateTotalCost = {updateTotalCost}
+          price = {price}
+          updateProdAmount={updateProdAmount}
+          indexp={indexp}
+        />
+      </div>
       
     </div>
   )

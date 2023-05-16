@@ -18,6 +18,9 @@ function Cart() {
       email
       payments {
         cardNumber
+        expireDate
+        type
+        address
       }
       address
       buyerCarts {
@@ -27,6 +30,7 @@ function Cart() {
           id
           cardNumber
           type
+          expireDate
         }
         shippings {
           createdAt

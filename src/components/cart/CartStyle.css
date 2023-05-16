@@ -65,7 +65,6 @@
     grid-template-rows: [row1] auto;
     margin-left: 5%;
     margin-right: 5%;
-    cursor: pointer;
     position: sticky;
     top:50px;
     background-color: #ffffff;
@@ -77,6 +76,8 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
+    width: auto;
+    cursor: pointer;
 }
 
 .second-step-bar {
@@ -85,6 +86,8 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
+    width: auto;
+    cursor: pointer;
 }
 
 .third-step-bar {
@@ -93,6 +96,8 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
+    width: auto;
+    cursor: pointer;
 }
 
 .fourth-step-bar {
@@ -101,6 +106,18 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
+    width: auto;
+    cursor: pointer;
+}
+
+.line {
+    /* grid-column-start: 2;
+    grid-column-end: 3; */
+    display: flex;
+    cursor: auto;
+    height: 1px;
+    background: black;
+    align-self: center;
 }
 
 
@@ -144,8 +161,6 @@
     grid-row-end: 3;
     width: 96%;
     height: 96%;
-    position: sticky;
-    top: 0;
 }
 
 .purchase {
@@ -258,10 +273,11 @@
 }
 
 .summary-table {
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     width: 70%;
-    margin-top: 10%;
+    margin: 5% auto 5% auto;
+    text-align: left;
 }
 
 .buttonShopping {
@@ -290,11 +306,14 @@
     vertical-align: baseline;
     object-fit: contain;
     width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    /* max-width: 300px; */
+    margin: 5% auto 5% auto;
+    max-width: 300px;
+}
+
+.buttons {
+    display: inline-block;
+    width: 100%;
+    margin: 5% auto 5% auto;    
 }
 
 .buttonShopping:hover,
@@ -317,28 +336,256 @@
     background-color: #9b9b9b;
 }
 
-/* ------------- Detalles de Entrega ------------- */
+
+/* ---------------------------- Detalles de Entrega ---------------------------- */
+
+.delivery-cart {
+    display: grid;
+    grid-template-columns: [col-deliv] 60% [col-deliv] 40% ;
+    grid-template-rows: [row-deliv-1] auto [row-deliv-2] auto ;
+}
 
 .delivery-title {
-    padding: 2%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
     background-color: #F5F5F5;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    padding: 3%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    text-align: left;
 }
 
 .delivery-data {
-    padding: 2%;
-    background-color: #F5F5F5;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.fields-formik {
+    width: 100%;
+    position: relative;
+}
+
+.payment-section {
+    margin: 0 0 5% 0;
+}
+
+.test {
+    display: grid;
+    grid-template-columns: [col-deliv-data-1] 60% [col-deliv-data-2] 40% ;
+    grid-template-rows: [row-deliv-data-1] auto;
 }
 
 .delivery-table {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
     background-color: #F5F5F5;
-    width: 90%;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    width: 100%;
+}
+
+.delivery-table table{
+    width: 80%;
+    margin: 5% 10% 10% 10%;
+    text-align: left;
+}
+
+.delivery-summary {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #519EA4;
+    border-radius: 15px;
+    padding-top: 5%;
+    margin-left: 5%;
+}
+
+.required {
+    color: red;
+}
+
+
+/* ---------------------------- Método de pago ---------------------------- */
+
+.payment-div {
+    display: grid;
+    grid-template-columns: [col-deliv] 60% [col-deliv] 40% ;
+    grid-template-rows: [row-deliv-1] auto;
+}
+
+.payment-order-div {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin: 0 5% 0 0;
+    background-color: #F5F5F5;
+    padding: 3%;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.payment-order-div h2 {
+    text-align: left;
+}
+
+.payment-products {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: block;
+    background-color: #F5F5F5;
+    border-radius: 20px;
+}
+
+.payment-num-prods {
+    display:inline-block;
+    border-radius: 10px;
+    background-color: #519EA4;
+    padding: 1%;
+    width: 40%;
+    margin: 5% 5%;
+}
+
+.payment-num-prods h2 {
+    color: #ffffff;
+}
+
+.payment-prods-edit {
+    display:inline-block;
+    width: 40%;
+    text-align: right;
+    cursor: pointer;
+}
+
+.payment-prods-list {
+    display: grid;
+    grid-template-columns: [col-pur-1] 30% [col-pur-2] 45% [col-pur-3] 25% ;
+    grid-template-rows: [row-pur-1] auto;
+    border-radius: 15px;
+}
+
+.payment-prod-div {
+    display: grid;
+    grid-template-columns: [col-pur-1] 35% [col-pur-2] 65% [col-pur-2] 0% ;
+    grid-template-rows: [row-pur-1] auto;
+}
+
+.payment-prod-div div {
+    margin: 10%;
+}
+
+.hidden-div {
+    visibility: hidden;
+    width: 0%;
+}
+
+.payment-img-div {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: #ffffff;
+    border-radius: 15px;
+    position: relative;
+}
+
+.payment-img-div img {
     margin-left: auto;
     margin-right: auto;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    height: 100%;
+    width: 100%;
+    max-height: 100px;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+.payment-info {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: left;
+}
+
+.payment-info p {
+    text-align: right;
+    font-weight: bolder;
+    color: black;
+    font-size: large;
+}
+
+.deb-cred-card {
+    background-color: #D9D9D9;
+    padding: 2%;
+    font-size: larger;
+    color: black;
+    font-weight: bold;
+    border-radius: 15px;
+    width: 60%;
+    margin: 5% 0 5% 0;
+}
+
+
+/* ---------------------------- Resumen del pedido ---------------------------- */
+
+.order-sum-heads {
+    margin: 3% 0 1% 0;
+    display: flex;
+}
+
+.order-sum-heads h3 {
+    width: 50%;
+}
+
+.order-sum-heads p {
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    color: #519EA4;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.order-data {
+    font-size: large;
+}
+
+.card-info {
+    display: grid;
+    grid-template-columns: [col-card-1] 20% [col-card-2] 80% ;
+    grid-template-rows: [row-card-1] auto;
+    margin: 2% 0 0 0 ;
+}
+
+.card-img {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.card-img img {
+    border-radius:50%;
+    width:12vh;
+    height:12vh;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+.card-data {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.card-data p {
+    font-size: medium;
 }

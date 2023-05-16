@@ -12,7 +12,7 @@ const CartView = (props) =>{
 
   const { cart } = props
   
-  const [activeDiv, setActiveDiv] = useState(2);
+  const [activeDiv, setActiveDiv] = useState(3);
 
   useEffect(() => {
     setActiveDiv(activeDiv);
@@ -23,6 +23,8 @@ const CartView = (props) =>{
   const [finalAmount, setFinalAmount] = useState(((shipments[0].purchases).reduce((acc, curr) => acc + (curr.amount), 0)))
 
   const [totalCost, setTotalCost] = useState(((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)))
+
+  const [prodAmounts, setProdAmounts] = useState(shipments[0].purchases.map((purchase) => purchase.amount));
   
   
   return (
@@ -39,6 +41,7 @@ const CartView = (props) =>{
 
         <div className={activeDiv === 1 ? 'step-div active' : 'step-div'}>
           {<CarritoCompras
+            cart = {cart}
             shipments = {shipments}
             activeDiv= {activeDiv}
             setActiveDiv={setActiveDiv}
@@ -46,6 +49,8 @@ const CartView = (props) =>{
             setFinalAmount={setFinalAmount}
             totalCost={totalCost}
             setTotalCost={setTotalCost}
+            prodAmounts={prodAmounts}
+            setProdAmounts={setProdAmounts}
           />}
         </div>
 
@@ -64,6 +69,7 @@ const CartView = (props) =>{
 
         <div className={activeDiv === 3 ? 'step-div active' : 'step-div'}>
           <MetodoPago
+            cart = {cart}
             shipments = {shipments}
             activeDiv= {activeDiv}
             setActiveDiv={setActiveDiv}
@@ -71,11 +77,13 @@ const CartView = (props) =>{
             setFinalAmount={setFinalAmount}
             totalCost={totalCost}
             setTotalCost={setTotalCost}
+            prodAmounts={prodAmounts}
           />
         </div>
 
         <div className={activeDiv === 4 ? 'step-div active' : 'step-div'}>
           <ResumenPedido
+            cart = {cart}
             shipments = {shipments}
             activeDiv= {activeDiv}
             setActiveDiv={setActiveDiv}
@@ -83,6 +91,7 @@ const CartView = (props) =>{
             setFinalAmount={setFinalAmount}
             totalCost={totalCost}
             setTotalCost={setTotalCost}
+            prodAmounts={prodAmounts}
           />
         </div>
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './CartStyle.css'
 
 const AddRemoveBtn = (props) => {
-  const {productAmount, updateAmount, setProductAmount, updateTotalCost, price} = props
+  const {productAmount, updateAmount, setProductAmount, updateTotalCost, price, updateProdAmount, indexp } = props
 
   // const [numPieces, setNumPieces] = useState(productAmount);
 
@@ -14,6 +14,7 @@ const AddRemoveBtn = (props) => {
     setProductAmount(productAmount + 1)
     updateAmount(1)
     updateTotalCost(price)
+    updateProdAmount(indexp,1)
   }
   
   const removeProduct = () => {
@@ -21,6 +22,7 @@ const AddRemoveBtn = (props) => {
       setProductAmount(productAmount - 1)
       updateAmount(-1)
       updateTotalCost(-price)
+      updateProdAmount(indexp,-1)
     } else {
       setProductAmount(0)
     }

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './CartStyle.css'
-import { Divider } from '@material-ui/core'
+import { Divider } from "@material-ui/core"
 import PurchaseCard from './S1-Purchase'
 
 const CarritoCompras = (props) => {
 
-  const { shipments, activeDiv, setActiveDiv, finalAmount, setFinalAmount, totalCost, setTotalCost } = props
+
+  const { cart, shipments, activeDiv, setActiveDiv, finalAmount, setFinalAmount, totalCost, setTotalCost, prodAmounts, setProdAmounts } = props
   
+
   function updateAmount(num) {
     setFinalAmount(finalAmount + num)
   }
@@ -14,6 +16,15 @@ const CarritoCompras = (props) => {
   function updateTotalCost(cost) {
     setTotalCost(totalCost + cost)
   }
+
+  const updateProdAmount = (index, newValue) => {
+    setProdAmounts(prevItems => {
+      const updatedItems = [...prevItems];
+      updatedItems[index] = prevItems[index]+newValue;
+      return updatedItems;
+    });
+  };
+  
   
   useEffect(() => {
     setActiveDiv(activeDiv);
@@ -33,11 +44,14 @@ const CarritoCompras = (props) => {
           <div className="shipment" id={indexs}>
             {shipment.purchases.map((purchase, indexp) =>(
               <PurchaseCard
+                activeDiv = {activeDiv}
                 indexs = {indexs}
                 indexp = {indexp}
                 purchase = {purchase}
                 updateAmount = {updateAmount}
                 updateTotalCost = {updateTotalCost}
+                updateProdAmount={updateProdAmount}
+                prodAmounts = {prodAmounts}
               />
             ))}
           </div>
@@ -60,9 +74,10 @@ const CarritoCompras = (props) => {
             <td>$ {(totalCost + 99).toFixed(2)}</td>
           </tr>
         </table>
-        <button onClick={() => setActiveDiv(2)} disabled={totalCost == 0} className="buttonShopping" style={{"--bg-color-shop": '#FC4B08', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000'}}>Continuar</button>
+        <div className='buttons'>
+          <button onClick={() => setActiveDiv(2)} disabled={totalCost == 0} className="buttonShopping" style={{"--bg-color-shop": '#FC4B08', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000', 'marginLeft': "100px", 'marginRight': "auto" }}>Continuar</button>
+        </div>  
       </div>
-
     </div>
   )
 }
