@@ -2,18 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 
-const DeleteView = ({ 
-    onClickDelete = () => null, 
-    onClose = () => null 
+const DeleteView = ({
+    onClickDelete = () => null,
+    onClose = () => null
 }) => (
     <div class="card card-body">
         <div className="row mt-2">
             <div className="col-md-12 text-center">
-                
-                {/**/}
                 <h2>¿Desea eliminar al usuario?</h2>
-                {/**/}
-
             </div>
         </div>
         <div className="row my-2">
@@ -31,7 +27,7 @@ const DeleteView = ({
                         className="btn btn-secondary btn-sm rounded-pill px-4 mr-5"
                         onClick={onClose}
                     >
-                        <i className="fas fa-times mr-3 fa-lg"></i> 
+                        <i className="fas fa-times mr-3 fa-lg"></i>
                         Cancelar
                     </button>
                     <button
@@ -39,7 +35,7 @@ const DeleteView = ({
                         onClick={onClickDelete}
                         className="btn btn-primary btn-sm rounded-pill px-4 ml-5"
                     >
-                        <i className="fas fa-check mr-3 fa-lg"></i> 
+                        <i className="fas fa-check mr-3 fa-lg"></i>
                         Eliminar
                     </button>
                 </div>
@@ -48,7 +44,7 @@ const DeleteView = ({
     </div>
 );
 
-DeleteView.propTypes = { // Establece el tipo de dato de las propiedades
+DeleteView.propTypes = {
 };
 
 export default DeleteView;

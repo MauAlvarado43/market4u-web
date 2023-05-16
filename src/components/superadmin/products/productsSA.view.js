@@ -3,18 +3,12 @@ import PropTypes from "prop-types";
 import { BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ModalRoute from "components/helpers/ModalRoute";
-///
 import List from "components/superadmin/products/ListSA";
 import FormSet from "components/superadmin/products/DetailsSA";
 import Delete from "components/superadmin/products/DeleteSA";
-///
-
 const ProductsView = ({ listRef, refetchQuery }) =>
     <BrowserRouter basename="/superadmin/products">
         <div class="content container-fluid mt-3">
-
-            {/* Header */}
-
             <List ref={listRef} />
 
             <ModalRoute

@@ -1,20 +1,11 @@
-/*
-__Seed builder__
-  (Read_only) Example component
-  Be careful copying content
-*/
-
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { usePagination } from "seed/gql";
 import { Loading } from "seed/helpers";
-
 import View from "components/superadmin/users/ListSA.view";
-
 const List = forwardRef(
     function List(props, ref) {
         const pageSize = 6;
         const [pageNum, setPageNum] = useState(1);
-
         const reqItems = usePagination(
             `
             {
@@ -42,7 +33,6 @@ const List = forwardRef(
             "type = SELLER OR type = NORMAL OR type = ADMIN",
             {orderBy: "-id"}
         );
-
 
         if (reqItems.loading) return <Loading />;
         if (reqItems.error) return "Error";

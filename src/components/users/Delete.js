@@ -1,46 +1,27 @@
-/*
-__Seed builder__
-  (Read_only) Example component
-  Be careful copying content
-*/
-
 import React from "react";
 import PropTypes from "prop-types";
-import { useSet, useDelete,useQuery } from "seed/gql";
+import { useSet, useDelete, useQuery } from "seed/gql";
 import { Loading } from "seed/helpers";
-
-
 import View from "components/users/Delete.view";
 import { DELETE_USER } from "seed/gql/queries";
 
-
-function Delete({ 
-    itemId, 
-    onCompleted = () => null, 
+function Delete({
+    itemId,
+    onCompleted = () => null,
     onError = () => null,
-    refetchQuery 
+    refetchQuery
 }) {
-    const [callDelete] = useDelete(
-
-        
-        DELETE_USER, 
-        
-
-        {
-            onCompleted: () => {
-                refetchQuery();
-                onCompleted();
-            }
-            //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
+    const [callDelete] = useDelete(DELETE_USER, {
+        onCompleted: () => {
+            refetchQuery();
+            onCompleted();
         }
+    }
     );
+
     const onClickDelete = () => {
         const id = parseInt(itemId);
-        
         callDelete({ id: id });
-        
-        // onCompleted();
-        
     }
     return <View
         onClose={onCompleted}

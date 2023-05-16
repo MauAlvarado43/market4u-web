@@ -15,24 +15,16 @@ const View = ({
 }) => (
     <div className="border border-primary rounded-lg">
         <div className="list-title">
-            
-            {/**/}
             <h2>Empresas</h2>
-            {/**/}
-
         </div>
         <table className="table table-borderless">
             <thead className="">
                 <tr className="font-weight-bold" style={{ color: "#000" }}>
-
-                    {/**/}
                     <th className="text-center" style={{ width: "15%" }}>Nombre comercial</th>
                     <th className="text-center" style={{ width: "15%" }}>RFC</th>
                     <th className="text-center" style={{ width: "15%" }}>Teléfono</th>
                     <th className="text-center" style={{ width: "15%" }}>Correo</th>
                     <th className="text-center" style={{ width: "20%" }}>Acciones</th>
-                    {/**/}
-
                 </tr>
             </thead>
             <tbody>
@@ -40,8 +32,6 @@ const View = ({
                     items.map(
                         (item, idx) => (
                             <tr key={item.id}>
-                                
-                                {/**/}
                                 <td className="align-middle text-center">
                                     {item.commonName}
                                 </td>
@@ -54,8 +44,6 @@ const View = ({
                                 <td className="align-middle text-center">
                                     {item.email}
                                 </td>
-                                {/**/}
-                            
                                 <td className="align-middle text-center">
                                     <Link
                                         to={`/${item.id}/delete`}

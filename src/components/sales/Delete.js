@@ -38,7 +38,6 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
         onCompleted: () => {
             onCompleted();
         }
-        //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
 

@@ -1,9 +1,3 @@
-/*
-__Seed builder__
-  (Read_only) Example component
-  Be careful copying content
-*/
-
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { usePagination } from "seed/gql";
 import { Loading } from "seed/helpers";
@@ -11,13 +5,10 @@ import View from "components/superadmin/sales/ListSA.view";
 import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 
 const List = forwardRef(
-    function SaList(props, ref) {
-
-        const pageSize = 6;
-        const [pageNum, setPageNum] = useState(1);
-        
-        ///
-        const reqSales = usePagination(`
+  function SaList(props, ref) {
+    const pageSize = 6;
+    const [pageNum, setPageNum] = useState(1);
+    const reqSales = usePagination(`
         {
             salePagination {
                 totalPages
@@ -38,39 +29,27 @@ const List = forwardRef(
                   }
             }
         }`, pageNum, pageSize);
-        const refetchQuery = () => reqSales.refetch();
-        ///
+    const refetchQuery = () => reqSales.refetch();
 
-        useImperativeHandle(ref, () => ({ refetchQuery }));
+    useImperativeHandle(ref, () => ({ refetchQuery }));
 
-        ///
-        if (reqSales.loading) return <Loading />;
-        ///
+    if (reqSales.loading) return <Loading />;
 
-        ///
-        if (reqSales.error) return "Error";
-        ///
+    if (reqSales.error) return "Error";
 
-        ///
-        const { sales = [], totalPages = 0 } = reqSales.data.salePagination;
-    
-        ///
+    const { sales = [], totalPages = 0 } = reqSales.data.salePagination;
 
-        const onClickPage = (pageNum) =>
-            setPageNum(pageNum);
+    const onClickPage = (pageNum) =>
+      setPageNum(pageNum);
 
-        return <View
-            
-            ///
-            sales={sales}
-            ///
-
-            pageNum={pageNum}
-            totalPages={totalPages}
-            onClickPage={onClickPage}
-        />;
-    }
-); 
+    return <View
+      sales={sales}
+      pageNum={pageNum}
+      totalPages={totalPages}
+      onClickPage={onClickPage}
+    />;
+  }
+);
 
 List.propTypes = {};
 

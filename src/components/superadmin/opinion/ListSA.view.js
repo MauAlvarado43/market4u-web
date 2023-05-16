@@ -13,51 +13,33 @@ const View = ({
     onClickPage = () => { },
     onClickDelete = () => { },
 }) =>
-
     <div className="border border-primary rounded-lg">
-
         <div className="list-title">
-            
-            {/*///*/}
             <h2>Opiniones</h2>
-            {/*///*/}
-
         </div>
-
         <table className="table table-borderless">
             <thead className="">
                 <tr className="font-weight-bold" style={{ color: "#000" }}>
-
-                    {/*///*/}
                     <th className="text-center" style={{ width: "20%" }}>Titulo</th>
                     <th className="text-center" style={{ width: "25%" }}>Producto</th>
                     <th className="text-center" style={{ width: "10" }}>Calificación</th>
                     <th className="text-center" style={{ width: "25%" }}>Acciones</th>
-                    {/*///*/}
-
                 </tr>
             </thead>
             <tbody>
                 {
-                    
                     opinions.map((opinion, idx) =>
                         <tr key={opinion.id}>
-
-                            {/*///*/}
                             <td className="align-middle text-center">
                                 {opinion.title}
                             </td>
                             <td className="align-middle text-center">
-                                
-                                {opinion.product.name + " - " +opinion.product.company.name }
+                                {opinion.product.name + " - " + opinion.product.company.name}
                             </td>
                             <td className="align-middle text-center">
                                 {opinion.rate + " / 5"}
                             </td>
-                            {/*///*/}
-                           
                             <td className="align-middle text-center">
-
                                 <Link
                                     to={`/${opinion.id}/censor`}
                                     className="btn btn-secondary btn-sm rounded-pill px-3"
@@ -66,7 +48,6 @@ const View = ({
                                     <i className="fas fa-eye-slash mr-3 fa-lg"></i>
                                     Censurar
                                 </Link>
-
                                 <Link
                                     to={`/${opinion.id}/details`}
                                     className="btn btn-primary btn-sm rounded-pill px-4 ml-3"
@@ -91,11 +72,7 @@ const View = ({
     </div>;
 
 View.propTypes = {
-
-    ///
     opinions: PropTypes.array.isRequired,
-    ///
-
     pageNum: PropTypes.number,
     totalPages: PropTypes.number,
     onClickPage: PropTypes.func,

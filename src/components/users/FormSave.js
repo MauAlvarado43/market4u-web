@@ -1,9 +1,3 @@
-/*
-__Seed builder__
-  (Read_only) Example component
-  Be careful copying content
-*/
-
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSave, useSet, useQuery, useDetail } from "seed/gql";
@@ -11,8 +5,6 @@ import { Loading } from "seed/helpers";
 import { usePost } from "seed/api";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
-
-
 import { SAVE_USER } from "seed/gql/queries";
 import View from "components/users/Form.view";
 import swal from "sweetalert";
@@ -47,42 +39,7 @@ function FormSave({
 
     const companyId = sessionStorage.getItem("company");
 
-
-    // const onSubmit = (values) => {
-
-    //     for (let i = 0; i < users.length; i++) {
-    //         if (users[i].email === values.email) {
-    //             alert("Este correo ya ha sido utilizado");
-    //             return;
-    //         }
-    //     }
-    //     if (values.password !== values.password2) {
-    //         alert("Las contraseñas no coinciden");
-    //         return;
-    //     }
-    //     if (values.cp !== "") {
-    //         values.cp = parseInt(values.cp);
-    //     }
-    //     // values.tokenVerified = true;
-    //     // values.token = ""
-    //     for (let i = 1; i <= 20; i++) {
-    //         values.token += Math.random().toString(36).substring(2, 3);
-    //     }
-    //     // values.isActive = true;
-    //     // values.active = true;
-    //     // values.code = 0;
-    //     values.company = parseInt(companyId)
-    //     values.username = values.email.slice();
-    //     console.log(values);
-
-    //     callSave(values);
-
-    //     // onCompleted();
-
-    // }
-
     const onSubmit = (values) => {
-
         for (let i = 0; i < users.length; i++) {
             if (users[i].email === values.email) {
                 alert("Este correo ya ha sido utilizado");
@@ -101,14 +58,8 @@ function FormSave({
             newValues.company_id = null;
         else
             newValues.company_id = parseInt(companyId);
-
         delete newValues.company;
-
-        
         callSave(newValues)
-        
-        
-
     }
 
     const onCancel = () => {

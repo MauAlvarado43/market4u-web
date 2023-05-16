@@ -10,25 +10,11 @@ import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 import { Loading } from "seed/helpers";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
-
-///
 import { OPINION } from "seed/gql/queries";
 import View from "components/superadmin/sales/DetailsSA.view";
-///
 
-function FormDetails({ 
+function FormDetails({ saleId, onCompleted = () => null, onError = () => null }) {
 
-    ///
-    saleId, 
-    ///
-    
-    onCompleted = () => 
-        null
-    , 
-    onError = () => 
-        null 
-}) {
-    
     const qSale = useDetail(
         `
         {
@@ -48,36 +34,24 @@ function FormDetails({
                 }
             }
         }
-        `, 
-        saleId
-    );
+        `, saleId);
 
     if (qSale.loading) return <Loading />;
 
-    ///
     const { sale = {} } = qSale.data;
-    console.log(sale)
-    ///
-    
+
     const onCancel = () => {
         onCompleted();
     }
 
     return <View
-
-        ///
         sale={sale}
-        ///
         onCancel={onCancel}
     />;
 }
 
 FormDetails.propTypes = {
-    
-    ///
     saleId: PropTypes.number.isRequired,
-    ///
-    
     onCompleted: PropTypes.func,
     onError: PropTypes.func
 };

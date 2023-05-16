@@ -8,8 +8,8 @@ function Delete({ productId, onCompleted = () => null, onError = () => null, ref
 
   const [callDelete] = useDelete(DELETE_PRODUCT, {
     onCompleted: () => {
-        refetchQuery();
-        onCompleted();
+      refetchQuery();
+      onCompleted();
     }
   });
 
