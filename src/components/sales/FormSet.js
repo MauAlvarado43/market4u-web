@@ -32,6 +32,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
+
     const [callSetNull, qSetNull] = usePost("/products/update_product_null", {
         onCompleted: () => {
             console.log("se ha actualizado de manera exitosa el producto");
@@ -60,9 +61,6 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         else
             return false;
     })
-    //console.log(filteredProducts)
-
-
 
 
     if (qSale.loading) return <Loading />;
@@ -77,13 +75,17 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
-        if (values.disscount < 1 || values.disscount > 100) {
+      
+        if(values.disscount < 1 || values.disscount > 100){
+          if(values.disscount < 1 || values.disscount > 100) {
             alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
             return;
         }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
-        if (values.startDate > values.endDate) {
+
+        if(values.startDate > values.endDate){
+         if(values.startDate > values.endDate) {
             alert("Fechas ingresadas incorrectas.")
             return
         }

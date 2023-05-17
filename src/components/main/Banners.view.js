@@ -5,26 +5,26 @@ import PropTypes from "prop-types";
 const BannersView = ({ sales, activeIndex, handlePrevClick, handleNextClick }) => (
 
   <div className="banner-carousel-container">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    {/* <link rel="stylesheet" style={{width: "100%"}} href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"  /> */}
     <div className="banner-carousel">
       {sales.map((sale, index) => (
         <div
           key={sale.id}
           className={`banner-image ${index === activeIndex ? 'active' : ''}`}
         >
-          <img src={sale?.banner?.url} alt={sale?.banner?.name} />
+          <img style={{width: "100%"}} src={sale?.banner?.url} alt={sale?.banner?.name} />
           {/*<div className="banner-name">{sale.banner.name}</div>*/}
           {/*BOTON VER PRODUCTOS*/}
 
-          <button className="view-products" onClick={() => console.log("Ver productos")}>
+          {/* <button className="view-products" onClick={() => console.log("Ver productos")}>
             Ver productos
-          </button>
+          </button> */}
 
         </div>
       ))}
 
     </div>
-    <button className="prev-button" onClick={handlePrevClick}>
+    {/* <button className="prev-button" onClick={handlePrevClick}>
       <span className="material-symbols-outlined">
         arrow_forward_ios
       </span>
@@ -33,7 +33,7 @@ const BannersView = ({ sales, activeIndex, handlePrevClick, handleNextClick }) =
       <span className="material-symbols-outlined">
         arrow_back_ios_new
       </span>
-    </button>
+    </button> */}
   </div>
 
 );

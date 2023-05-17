@@ -61,6 +61,32 @@ const ProductFormView = ({
               <Form>
                 <div class="mb-3">
 
+                  {/* SKu */}
+                  <div class="mb-3">
+                    <div class="form-group">
+                      <label class="input">
+                        <Field 
+                          type="text" 
+                          name="sku" 
+                          class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
+                          placeholder=" " 
+                          value={values.sku || ''} 
+                        />
+                        <span class="input__label">
+                          SKU <span className='text-danger fw-bold'>*</span>
+                        </span>
+                      </label>
+                    </div>
+
+                    {
+                      errors.sku && (touched.sku || submitCount > 0)
+                        ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                            {errors.sku}
+                          </div>
+                        : null
+                    }
+                  </div>
+
                   {/* Name */}
                   <div class="mb-3">
 
@@ -69,7 +95,7 @@ const ProductFormView = ({
                         <Field 
                           type="text" 
                           name="name" 
-                          class="form-control input__field" 
+                          class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                           placeholder=" " 
                           value={values.name || ''} 
                         />
@@ -97,7 +123,7 @@ const ProductFormView = ({
                         <Field 
                           type="text" 
                           name="short_description" 
-                          class="form-control input__field" 
+                          class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                           placeholder=" " 
                           value={values.short_description || ''} 
                         />
@@ -122,9 +148,9 @@ const ProductFormView = ({
                       <div class="">
                         <label class="input">
                           <Field 
-                          component="textarea"
+                            component="textarea"
                             name="description" 
-                            class="form-control input__field"
+                            class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                             placeholder=" " 
                             style={{resize: 'none', height: "7.15rem"}}
                             value={values.description || ''} 
@@ -143,7 +169,7 @@ const ProductFormView = ({
                               <Field 
                                 as="select" 
                                 name="category.id" 
-                                class="form-control input__field" 
+                                class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                                 placeholder=" "  
                               >
                                 <option value="">Seleccione una opción</option>
@@ -163,7 +189,7 @@ const ProductFormView = ({
                               <Field 
                                 as="select" 
                                 name="sale.id" 
-                                class="form-control input__field" 
+                                class="form-control input__field border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                                 placeholder=" " 
                               >
                                 <option value="">Seleccione una opción</option>
@@ -206,126 +232,128 @@ const ProductFormView = ({
                     </div>
                   </div>
 
-                  <table className="border-0 mt-3">
+                  <div style={{maxWidth: "900px", overflowX: "auto"}}>
+                    <table className="border-0 mt-3">
 
-                    <tr>
-                      {
-                        tabs.map((tab, index) => 
-                          <th key={index}>
-                            <a 
-                              href="#"
-                              onDoubleClick={() => setRename(index, true)}
-                              className={`d-flex align-items-center`}
-                            >
+                      <tr>
+                        {
+                          tabs.map((tab, index) => 
+                            <th key={index}>
+                              <a 
+                                href="#"
+                                onDoubleClick={() => setRename(index, true)}
+                                className={`d-flex align-items-center`}
+                              >
 
-                              {
-                                tab.rename
-                                  ? <input
-                                      id={`tab-${index}`}
-                                      type="text"
-                                      className="form-control"
-                                      style={{width: "10em"}}
-                                      value={tab.name}
-                                      onBlur={() => setRename(index, false)}
-                                      onChange={e => setName(index, e.target.value)}
-                                    />
-                                  : <button 
-                                      type="button"
-                                      style={{width: "10em"}}
-                                      className={`btn btn-white btn-link ${tab.edit ? "pr-6" : ""}`}
-                                      onDoubleClick={() => setRename(index, true)}
-                                    >
-                                      {tab.name}
-                                    </button>
-                              }
-                              
-                              {
-                                tab.edit && !tab.rename
-                                  ? <>
-                                      <i
-                                        style={{left: "-40px", position: "relative"}}
-                                        className="fas fa-ellipsis-v ml-3"
-                                        role="button"
-                                        aria-haspopup="true"
-                                        data-toggle="dropdown"
-                                        aria-expanded="false"
-                                        id={"tab_dropdown_" + index}
-                                      />
-                                        <div class="dropdown-menu" >
-                                          <a 
-                                            href="#"
-                                            class="dropdown-item"
-                                            onClick={() => {
-                                              setRename(index, true)
-                                            }}>
-                                              Renombrar
-                                          </a>
-                                          <a
-                                            href="#" 
-                                            class="dropdown-item" 
-                                            onClick={() => onRemoveTab(index)}
-                                          >
-                                              Eliminar
-                                          </a>
-                                        </div>
-                                    </>
-                                  : <>
-                                      <i
-                                        style={{left: "-40px", position: "relative", opacity: 0}}
-                                        className="fas fa-ellipsis-v ml-3"/>
-                                    </>
-                              }
-                              
-                            </a>
-                          </th>
-                        )
-                      }
-                      <th>
-                        <button className="btn btn-link btn-white" type="button" onClick={onAddRow}>
-                          <i className="fas fa-plus"></i>
-                        </button>
-                      </th>
-                    </tr>
-
-                    {
-                      rows.map((row, rowIndex) =>
-                        <tr key={"row_" + rowIndex}>
-                          {
-                            row.map((cell, cellIndex) =>
-                              <td key={"cell_" + cellIndex} className="pt-2">
                                 {
-                                  tabs[cellIndex].type == "text" || tabs[cellIndex].type == "number"
+                                  tab.rename
                                     ? <input
+                                        id={`tab-${index}`}
+                                        type="text"
+                                        class="border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
                                         style={{width: "10em"}}
-                                        type={tabs[cellIndex].type}
-                                        class="form-control"
-                                        placeholder=" "
-                                        required
-                                        value={cell}
-                                        onChange={e => setCell(rowIndex, cellIndex, e.target.value)}
+                                        value={tab.name}
+                                        onBlur={() => setRename(index, false)}
+                                        onChange={e => setName(index, e.target.value)}
                                       />
                                     : <button 
                                         type="button"
-                                        className="btn btn-link btn-white" 
                                         style={{width: "10em"}}
-                                        onClick={() => onShowPhotoModal(rowIndex)}
+                                        className={`btn btn-white btn-link ${tab.edit ? "pr-6" : ""}`}
+                                        onDoubleClick={() => setRename(index, true)}
                                       >
-                                        <i class="fa fa-folder-open"></i>
-                                    </button>
-                                  }
-                              </td>
-                            )
-                          }
-                          <td>
-                            <button className="btn btn-danger" type="button" onClick={() => onRemoveRow(rowIndex)}>
-                              <i className="fas fa-minus"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      )
-                    }
+                                        {tab.name}
+                                      </button>
+                                }
+                                
+                                {
+                                  tab.edit && !tab.rename
+                                    ? <>
+                                        <i
+                                          style={{left: "-40px", position: "relative"}}
+                                          className="fas fa-ellipsis-v ml-3"
+                                          role="button"
+                                          aria-haspopup="true"
+                                          data-toggle="dropdown"
+                                          aria-expanded="false"
+                                          id={"tab_dropdown_" + index}
+                                        />
+                                          <div class="dropdown-menu" >
+                                            <a 
+                                              href="#"
+                                              class="dropdown-item"
+                                              onClick={() => {
+                                                setRename(index, true)
+                                              }}>
+                                                Renombrar
+                                            </a>
+                                            <a
+                                              href="#" 
+                                              class="dropdown-item" 
+                                              onClick={() => onRemoveTab(index)}
+                                            >
+                                                Eliminar
+                                            </a>
+                                          </div>
+                                      </>
+                                    : <>
+                                        <i
+                                          style={{left: "-40px", position: "relative", opacity: 0}}
+                                          className="fas fa-ellipsis-v ml-3"/>
+                                      </>
+                                }
+                                
+                              </a>
+                            </th>
+                          )
+                        }
+                        <th>
+                          <button className="btn btn-link btn-white" type="button" onClick={onAddRow}>
+                            <i className="fas fa-plus"></i>
+                          </button>
+                        </th>
+                      </tr>
 
-                  </table>
+                      {
+                        rows.map((row, rowIndex) =>
+                          <tr key={"row_" + rowIndex}>
+                            {
+                              row.map((cell, cellIndex) =>
+                                <td key={"cell_" + cellIndex} className="pt-2">
+                                  {
+                                    tabs[cellIndex].type == "text" || tabs[cellIndex].type == "number"
+                                      ? <input
+                                          style={{width: "10em"}}
+                                          type={tabs[cellIndex].type}
+                                          class="border-dark border-top-0 border-left-0 border-right-0 rounded-0" 
+                                          placeholder=" "
+                                          required
+                                          value={cell}
+                                          onChange={e => setCell(rowIndex, cellIndex, e.target.value)}
+                                        />
+                                      : <button 
+                                          type="button"
+                                          className="btn btn-link btn-white" 
+                                          style={{width: "10em"}}
+                                          onClick={() => onShowPhotoModal(rowIndex)}
+                                        >
+                                          <i class="fa fa-folder-open"></i>
+                                      </button>
+                                    }
+                                </td>
+                              )
+                            }
+                            <td>
+                              <button className="btn btn-danger" type="button" onClick={() => onRemoveRow(rowIndex)}>
+                                <i className="fas fa-minus"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        )
+                      }
+
+                    </table>
+                  </div>
 
                 </div>
                 

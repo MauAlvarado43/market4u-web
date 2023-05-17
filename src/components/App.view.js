@@ -8,9 +8,8 @@ import Signup from "components/auth/Signup";
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
-
 import Main from "components/main/Main"
-import Products from "components/products/Products";
+import { FilterProvider } from "components/helpers/FilterContext";
 
 import Sales from "components/sales/Sales";
 
@@ -28,6 +27,7 @@ import Users from "components/users/Users"
 
 
 const AppView = () =>
+<FilterProvider>
   <div class="module">
     <BrowserRouter>
       <Switch>
@@ -39,27 +39,23 @@ const AppView = () =>
         <Route path="/restore_password/:token" component={RestorePassword} />
         <Route path="/main" component={Main} />
         <Route path="/products" component={Products} />
-
         <Route path="/sales" component={Sales} />
-
         <Route path="/superadmin/category" component={CategorySA} />
         <Route path="/superadmin/opinion" component={OpinionSA} />
         <Route path="/superadmin/sales" component={SalesSA} />
         <Route path="/superadmin/products" component={productsSA} />
-
         {/**/}
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
 
         <Route path="/users" component={Users} />
         {/**/}
-        
-
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
-  </div>;
+  </div>
+</FilterProvider>;
 
 AppView.propTypes = {};
 

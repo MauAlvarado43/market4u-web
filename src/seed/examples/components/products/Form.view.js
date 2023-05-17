@@ -39,6 +39,12 @@ const ProductFormView = ({ product= {}, companies= [], sales= [], categories= []
             <Field type="text" name="shortDescription"
               class="form-control" />
             </div>
+            {/* Sku */}
+            <div class="form-group">
+            <label class="input-label">Sku</label>
+            <Field type="text" name="sku"
+              class="form-control" />
+            </div>
             {/* Description */}
             <div class="form-group">
             <label class="input-label">Description</label>

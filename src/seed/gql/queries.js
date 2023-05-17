@@ -504,6 +504,7 @@ export const PRODUCT = `
     id
     name
     shortDescription
+    sku
     description
     company {
       id
@@ -523,6 +524,7 @@ mutation Set(
   $id: Int!,
   $name: String,
   $shortDescription: String,
+  $sku: String,
   $description: String,
   $company: Int,
   $sale: Int,
@@ -533,6 +535,7 @@ mutation Set(
     id: $id,
     name: $name,
     shortDescription: $shortDescription,
+    sku: $sku,
     description: $description,
     company: $company,
     sale: $sale,
@@ -542,6 +545,7 @@ mutation Set(
       id
       name
       shortDescription
+      sku
       description
       company {
         id
@@ -561,6 +565,7 @@ export const SAVE_PRODUCT = `
 mutation Save(
   $name: String!,
   $shortDescription: String!,
+  $sku: String!,
   $description: String!,
   $company: Int!,
   $sale: Int,
@@ -570,6 +575,7 @@ mutation Save(
   saveProduct(
     name: $name,
     shortDescription: $shortDescription,
+    sku: $sku,
     description: $description,
     company: $company,
     sale: $sale,
