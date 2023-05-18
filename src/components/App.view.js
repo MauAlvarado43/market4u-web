@@ -9,6 +9,8 @@ import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
 import Cart from "components/cart/Cart";
+import FinalizarCompra from "components/cart/PurchaseCompleted";
+
 
 import Main from "components/main/Main"
 import Products from "components/products/Products";
@@ -26,6 +28,7 @@ const AppView = () =>
         <Route path="/main" component={Main} />
         <Route path="/products" component={Products} />
         <Route path="/cart" component={Cart} />
+        <Route path="/finalizar" component={FinalizarCompra} />
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

@@ -6,6 +6,7 @@ import PurchaseCard from './S1-Purchase'
 import PaymentCard from './S4-PaymentCard'
 import PurchaseCompleted from "./PurchaseCompleted";
 import { BrowserRouter, Switch, Redirect } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 
 const ResumenPedido = (props) => {
@@ -27,6 +28,8 @@ const ResumenPedido = (props) => {
   const email = cart.users[0].email
   const address = cart.users[0].address
   const payment = (cart.users[0].buyerCarts[0].payment)
+
+  const history = useHistory();
 
   
   return (
@@ -132,7 +135,7 @@ const ResumenPedido = (props) => {
           <Divider/>
 
           <div className='buttons'>
-            <button onClick={(e) => setActiveDiv(4)}  disabled={totalCost == 0} className="buttonShopping" style={{"--bg-color-shop": '#FC4B08', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000'}}>Realizar pedido</button>
+            <button onClick={(e) => history.push('/finalizar')}  disabled={totalCost == 0} className="buttonShopping" style={{"--bg-color-shop": '#FC4B08', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000'}}>Realizar pedido</button>
             <button onClick={(e) => setActiveDiv(2)} className="buttonShopping" style={{"--bg-color-shop": '#519EA4', "--bg-color-hover": '#6ad2d9', "--bg-color-active": '#366a6e'}}>Regresar</button>
           </div>
         </div>
