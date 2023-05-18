@@ -12,7 +12,7 @@ const CartView = (props) =>{
 
   const { cart } = props
   
-  const [activeDiv, setActiveDiv] = useState(3);
+  const [activeDiv, setActiveDiv] = useState(1);
 
   useEffect(() => {
     setActiveDiv(activeDiv);

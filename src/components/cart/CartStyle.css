@@ -77,7 +77,7 @@
     grid-row-end: 2;
     display: flex;
     width: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 .second-step-bar {
@@ -87,7 +87,7 @@
     grid-row-end: 2;
     display: flex;
     width: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 .third-step-bar {
@@ -97,7 +97,7 @@
     grid-row-end: 2;
     display: flex;
     width: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 .fourth-step-bar {
@@ -107,7 +107,7 @@
     grid-row-end: 2;
     display: flex;
     width: auto;
-    cursor: pointer;
+    cursor: default;
 }
 
 .line {
