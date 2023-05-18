@@ -76,7 +76,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
       
-        if(values.disscount < 1 || values.disscount > 100){
+        //if(values.disscount < 1 || values.disscount > 100){
           if(values.disscount < 1 || values.disscount > 100) {
             alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
             return;
@@ -84,7 +84,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
 
-        if(values.startDate > values.endDate){
+        //if(values.startDate > values.endDate){
          if(values.startDate > values.endDate) {
             alert("Fechas ingresadas incorrectas.")
             return
