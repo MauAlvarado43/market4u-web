@@ -17,9 +17,6 @@ import CategorySA from "components/superadmin/category/CategorySA";
 import OpinionSA from "components/superadmin/opinion/OpinionSA"
 import SalesSA from "components/superadmin/sales/SalesSA"
 import productsSA from "components/superadmin/products/productsSA"
-
-
-
 import UsersSA from "components/superadmin/users/UsersSA"
 import CompaniesSA from "components/superadmin/companies/CompaniesSA"
 
@@ -38,7 +35,6 @@ const AppView = () =>
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
         <Route path="/main" component={Main} />
-        <Route path="/products" component={Products} />
         <Route path="/sales" component={Sales} />
         <Route path="/superadmin/category" component={CategorySA} />
         <Route path="/superadmin/opinion" component={OpinionSA} />
