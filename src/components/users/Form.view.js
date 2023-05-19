@@ -1,16 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import { MultiField, FileField } from "seed/helpers";
-import { DateTime } from 'luxon';
-import { Link, NavLink } from "react-router-dom";
 
 const FormView = (
     {
         item = {},
         onSubmit,
-        error,
         onCancel,
+        companies = [],
+        onChangeType,
+        showPassword,
+        validationSchema,
+        togglePasswordVisibility,
+        togglePasswordVisibilityConfirm,
+        setPasswordConfirm,
+        showPassConfirm,
+        handlePasswordChange,
+        showCompany,
+        changeType,
+        userType
     }
 ) => (
     <div class="card">
@@ -20,41 +29,22 @@ const FormView = (
             </h1>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col">
+            <div class="row justify-content-center">
+                <div class="col-md-11">
                     <Formik
-                        initialValues={{
-                            ...item,
-                        }}
+                        initialValues={item}
+                        validationSchema={validationSchema}
                         onSubmit={onSubmit}
                     >
                         {
                             ({
                                 values,
-                                setFieldValue
+                                setFieldValue,
+                                errors,
+                                touched,
+                                submitCount
                             }) => (
                                 <Form>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="email"
-                                                        value={values.email || ''}
-                                                        required
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Correo eléctronico
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="mb-3">
                                         <div class="mb-3">
                                             <div class="form-group">
@@ -64,15 +54,22 @@ const FormView = (
                                                         name="firstName"
                                                         value={values.firstName || ''}
                                                         required
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
-                                                    <span class="input__label">
-                                                        Nombre
+                                                    <span class="input__label ">
+                                                        Nombre(s)
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.firstName && (touched.firstName || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.firstName}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -85,15 +82,22 @@ const FormView = (
                                                         name="lastName"
                                                         value={values.lastName || ''}
                                                         required
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
-                                                        Apellido
+                                                        Apellido(s)
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.lastName && (touched.lastName || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.lastName}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -102,60 +106,26 @@ const FormView = (
                                             <div class="form-group">
                                                 <label class="input">
                                                     <Field
-                                                        type="password"
-                                                        name="password"
-                                                        value={values.password || ''}
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Contraseña
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="password"
-                                                        name="password2"
-                                                        value={values.password2 || ''}
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Confirmar contraseña
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        as="select"
-                                                        name="type"
+                                                        type="email"
+                                                        name="email"
+                                                        value={values.email || ''}
                                                         required
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
-                                                    >
-                                                        <option value="-">Seleccionar tipo de cuenta</option>
-                                                        <option value="ADMIN">ADMIN</option>
-                                                        <option value="SELLER">SELLER</option>
-                                                    </Field>
+                                                    />
                                                     <span class="input__label">
-                                                        Tipo
+                                                        Correo eléctronico
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.email && (touched.email || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.email}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -165,11 +135,40 @@ const FormView = (
                                                 <label class="input">
                                                     <Field
                                                         type="text"
+                                                        name="telephone"
+                                                        value={values.telephone || ''}
+                                                        required
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0 mb-4"
+                                                        placeholder=" "
+                                                    />
+                                                    <span class="input__label">
+                                                        Teléfono
+                                                        <span className='text-danger fw-bold'>*</span>
+                                                    </span>
+                                                </label>
+                                                {
+                                                errors.telephone && (touched.telephone || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.telephone}
+                                                    </div>
+                                                    : null
+                                            }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span className="h4">Dirección</span>
+                                    <div class="mb-3 mt-2">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label class="input">
+                                                    <Field
+                                                        type="text"
                                                         name="street"
                                                         value={values.street || ''}
                                                         required
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -177,6 +176,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.street && (touched.street || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.street}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -189,8 +195,8 @@ const FormView = (
                                                         name="cologn"
                                                         value={values.cologn || ''}
                                                         required
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -198,6 +204,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.cologn && (touched.cologn || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.cologn}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -210,8 +223,8 @@ const FormView = (
                                                         name="city"
                                                         value={values.city || ''}
                                                         required
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -219,6 +232,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.city && (touched.city || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.city}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -227,11 +247,12 @@ const FormView = (
                                             <div class="form-group">
                                                 <label class="input">
                                                     <Field
-                                                        type="text"
+                                                        type="number"
                                                         name="cp"
+                                                        required
                                                         value={values.cp || ''}
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -239,19 +260,27 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.cp && (touched.cp || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.cp}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
+                                        <div class="mb-3 row">
+                                            <div class="form-group col-md-6">
                                                 <label class="input">
                                                     <Field
                                                         type="text"
                                                         name="municipality"
                                                         value={values.municipality || ''}
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                        required
+                                                        class="form-control input__field border-top-0 border-left-0
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -259,45 +288,47 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.municipality && (touched.municipality || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.municipality}
+                                                    </div>
+                                                    : null
+                                                }
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
+                                            <div class="form-group col-md-6 mt-1">
                                                 <label class="input">
                                                     <Field
                                                         as="select"
                                                         name="state"
-                                                        required
                                                         class="form-control input__field border-dark mb-4"
-                                                        placeholder=" "
+                                                        required
                                                     >
-                                                        <option value="NS">Seleccionar estado</option>
+                                                        <option value="">Seleccione una opción</option>
                                                         <option value="AGUASCALIENTES">AGUASCALIENTES</option>
-                                                        <option value="BAJA CALIFORNIA">BAJA CALIFORNIA</option>
-                                                        <option value="BAJA CALIFORNIA SUR">BAJA CALIFORNIA SUR</option>
+                                                        <option value="BAJA_CALIFORNIA">BAJA CALIFORNIA</option>
+                                                        <option value="BAJA_CALIFORNIA_SUR">BAJA CALIFORNIA SUR</option>
                                                         <option value="CAMPECHE">CAMPECHE</option>
                                                         <option value="COAHUILA">COAHUILA</option>
                                                         <option value="COLIMA">COLIMA</option>
-                                                        <option value="CHIAPAS">Chiapas</option>
+                                                        <option value="CHIAPAS">CHIAPAS</option>
                                                         <option value="CHIHUAHUA">CHIHUAHUA</option>
                                                         <option value="DURANGO">DURANGO</option>
-                                                        <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
+                                                        <option value="CIUDAD_DE_MEXICO">CIUDAD DE MEXICO</option>
                                                         <option value="GUANAJUATO">GUANAJUATO</option>
-                                                        <option value="GUERRERO" selected="">GUERRERO</option>
+                                                        <option value="GUERRERO">GUERRERO</option>
                                                         <option value="HIDALGO">HIDALGO</option>
                                                         <option value="JALISCO">JALISCO</option>
                                                         <option value="MEXICO">MEXICO</option>
                                                         <option value="MICHOACAN">MICHOACAN</option>
                                                         <option value="MORELOS">MORELOS</option>
                                                         <option value="NAYARIT">NAYARIT</option>
-                                                        <option value="NUEVO LEON">NUEVO LEON</option>
+                                                        <option value="NUEVO_LEON">NUEVO LEON</option>
                                                         <option value="OAXACA">OAXACA</option>
                                                         <option value="PUEBLA">PUEBLA</option>
                                                         <option value="QUERETARO">QUERETARO</option>
-                                                        <option value="QUINTANA ROO">QUINTANA ROO</option>
-                                                        <option value="SAN LUIS POTOSI">SAN LUIS POTOSI</option>
+                                                        <option value="QUINTANA_ROO">QUINTANA ROO</option>
+                                                        <option value="SAN_LUIS_POTOSI">SAN LUIS POTOSI</option>
                                                         <option value="SINALOA">SINALOA</option>
                                                         <option value="SONORA">SONORA</option>
                                                         <option value="TABASCO">TABASCO</option>
@@ -315,25 +346,96 @@ const FormView = (
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="telephone"
-                                                        value={values.telephone || ''}
-                                                        required
-                                                        className="form-control input__field border-top-0 border-left-0
+                                    
+                                    <div class="form-group text-left mb-auto">
+                                        <   h4>Contraseña</h4>
+                                    </div>
+                                    <br /><br />
+                                    <div className="d-flex mb-5 mt-auto">
+                                        <div className="form-group col-md-6">
+                                            <label className="input">
+                                                <Field
+                                                    id="pass"
+                                                    name="password"
+                                                    type={showPassword ? "text" : "password"}
+                                                    className="form-control input__field border-top-0 border-left-0
                                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Teléfono
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
+                                                    onChange={handlePasswordChange}
+                                                >
+                                                </Field>
+                                                <span class="input__label">
+                                                    Escribir contraseña
+                                                    {item.id ? null : <span className='text-danger fw-bold'>*</span>}
+                                                    <button
+                                                        type="button"
+                                                        onClick={togglePasswordVisibility}
+                                                        className="btn btn-outline-secondary bg-transparent border-0"
+                                                    >
+                                                        <i
+                                                            className={
+                                                                showPassword
+                                                                    ? "fas fa-eye"
+                                                                    : "fas fa-eye-slash"
+                                                            }
+                                                        />
+                                                    </button>
+                                                </span>
+                                            </label>
+                                            <ErrorMessage
+                                                name="passwordConfirm"
+                                                component="div"
+                                                className="text-danger"
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label className="text-left">
+                                                {item.id ? "En caso de no querer realizar modificaciones en tu contraseña, omite estos campos." : null}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex mb-5 mt-auto">
+                                        <div className="form-group col-md-6">
+                                            <label className="input">
+                                                <Field
+                                                    id="passConfirm"
+                                                    name="passwordConfirm"
+                                                    type={showPassConfirm ? "text" : "password"}
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    onChange={(ev) => setPasswordConfirm(ev.target.value)}
+                                                >
+                                                </Field>
+                                                <span class="input__label">
+                                                    Confirmar contraseña
+                                                    {item.id ? null : <span className='text-danger fw-bold'>*</span>}
+                                                    <button
+                                                        type="button"
+                                                        onClick={togglePasswordVisibilityConfirm}
+                                                        className="btn btn-outline-secondary bg-transparent border-0"
+                                                    >
+                                                        <i
+                                                            className={
+                                                                showPassConfirm
+                                                                    ? "fas fa-eye"
+                                                                    : "fas fa-eye-slash"
+                                                            }
+                                                        />
+                                                    </button>
+                                                </span>
+                                            </label>
+                                            {
+                                                errors.password && (touched.password || submitCount >= 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.password}
+                                                    </div>
+                                                    : null
+                                            }
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label className="text-left">
+                                                Debe tener mínimo: 8 caracteres, un número, una mayúscula y un caracter especial
+                                                (por ejemplo: &?!@).
+                                            </label>
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-center align-items-center pt-2">
@@ -365,7 +467,16 @@ const FormView = (
 
 FormView.propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    error: PropTypes.string
+    item: PropTypes.object.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    companies: PropTypes.array.isRequired,
+    onChangeType: PropTypes.func,
+    showPassword: PropTypes.bool,
+    togglePasswordVisibility: PropTypes,
+    showPassConfirm: PropTypes.bool,
+    togglePasswordVisibilityConfirm: PropTypes.func,
+    handlePasswordChange: PropTypes.func,
+    setPasswordConfirm: PropTypes.func
 };
 
 export default FormView;

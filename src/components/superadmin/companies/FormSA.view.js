@@ -10,7 +10,8 @@ const FormView = (
         item = {},
         onSubmit,
         error,
-        onCancel
+        onCancel,
+        productSchema 
     }
 ) => (
     <div class="card">
@@ -23,6 +24,7 @@ const FormView = (
             <div class="row">
                 <div class="col">
                     <Formik
+                        validationSchema={productSchema}
                         initialValues={{
                             ...item,
                         }}
@@ -31,7 +33,10 @@ const FormView = (
                         {
                             ({
                                 values,
-                                setFieldValue
+                                setFieldValue,
+                                errors,
+                                touched, 
+                                submitCount
                             }) => (
                                 <Form>
                                     <div class="mb-3">
@@ -52,6 +57,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.name && (touched.name || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.name}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -73,6 +85,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.commonName && (touched.commonName || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.commonName}
+                                                    </div>
+                                                    : null
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -94,6 +113,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.rfc && (touched.rfc || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.rfc}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -115,6 +141,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.cp && (touched.cp || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.cp}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -136,6 +169,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.phone && (touched.phone || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.phone}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -157,6 +197,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.email && (touched.email || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.email}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -193,6 +240,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.municipality && (touched.municipality || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.municipality}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -268,6 +322,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.cologn && (touched.cologn || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.cologn}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -289,6 +350,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.website && (touched.website || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.website}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -310,6 +378,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.street && (touched.street || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.street}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -331,6 +406,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.city && (touched.city || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.city}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>

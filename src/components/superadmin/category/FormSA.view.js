@@ -5,7 +5,7 @@ import { MultiField, FileField } from "seed/helpers";
 import { DateTime } from 'luxon';
 import { Link, NavLink } from "react-router-dom";
 
-const FormView = ({ category = {}, onSubmit, error, onCancel }) =>
+const FormView = ({ category = {}, onSubmit, error, onCancel, productSchema }) =>
     <div class="card">
         <div class="card-header">
             <h1 class="card-header-title">
@@ -15,10 +15,16 @@ const FormView = ({ category = {}, onSubmit, error, onCancel }) =>
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <Formik initialValues={{ ...category, }} onSubmit={onSubmit}>
+                    <Formik
+                        validationSchema={productSchema}
+                        initialValues={{ ...category, }}
+                        onSubmit={onSubmit}>
                         {({
                             values,
-                            setFieldValue
+                            setFieldValue,
+                            errors,
+                            touched, 
+                            submitCount
                         }) =>
                             <Form>
                                 <div class="mb-3">
@@ -39,6 +45,13 @@ const FormView = ({ category = {}, onSubmit, error, onCancel }) =>
                                                     <span className='text-danger fw-bold'>*</span>
                                                 </span>
                                             </label>
+                                            {
+                                                errors.name && (touched.name || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.name}
+                                                    </div>
+                                                    : null
+                                            }
                                         </div>
                                     </div>
                                 </div>

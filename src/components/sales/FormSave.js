@@ -13,13 +13,62 @@ import View from "components/sales/Form.view";
 import { usePost } from "seed/api";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
-
+import { object, string } from "yup";
 
 function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
 
     //const history = useHistory();
     const companyId = sessionStorage.getItem("company");
     const [selectedProducts, setSelectedProducts] = useState([])
+    // const [selectedStartDate, setSelectedStartDate] = useState()
+    // const [selectedEndDate, setselectedEndDate] = useState()
+
+    const productSchema = object({
+        name: string().test({
+            name: "name",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese un nombre de la oferta" });
+
+                return true;
+
+            }
+        }),
+        disscount: string().test({
+            name: "disscount",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese el descuento de la oferta" });
+
+                return true;
+
+            }
+        }),
+        startDate: string().test({
+            name: "startDate",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Fechas de inicio ingresada incorrectamente" });
+
+                return true;
+
+            }
+        }),
+        endDate: string().test({
+            name: "endDate",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Fechas de fin ingresada incorrectamente" });
+
+                return true;
+
+            }
+        })
+    })
 
     const qProducts = useQuery(`{ 
         products {
@@ -49,13 +98,13 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
                 callSet(newProductValues)
 
             }
-            // iterar selectedProducts
+            
             onCompleted();
-            //console.log("sss");
+           
         }
-        //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
+        
     });
-    //const { users = [] } = qUsers.data;
+
 
 
 
@@ -67,7 +116,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
     const error = qSave.error ? "An error has occurred" : null;
 
     const onSubmit = (values) => {
-        //console.log(qUsers.data);
+        
         console.log(values);
         values.disscount = parseFloat(values.disscount);
         if(values.disscount < 1 || values.disscount > 100){
@@ -76,10 +125,10 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
         }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
-        if(values.startDate > values.endDate){
-            alert("Fechas ingresadas incorrectas.")
-            return
-        }
+        // if(values.startDate > values.endDate){
+        //     alert("Fechas ingresadas incorrectas.")
+        //     return
+        // }
         if(values)
         values.banner = parseInt(values.banner_id);
         values.company = parseInt(sessionStorage.getItem("company"));
@@ -88,19 +137,13 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
             setSelectedProducts(values.products.id);
 
     
-        if (isNaN(values.banner)) {
-            alert("Favor de seleccionar un banner");
-            //console.log("adios")   
-            return;
-
-        }
 
         callSave(values);
 
     }
 
     const onCancel = () => {
-        //history.goBack();
+        
         onCompleted();
     }
 
@@ -110,6 +153,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
         error={error}
         onSubmit={onSubmit}
         onCancel={onCancel}
+        productSchema={productSchema}
     />;
 }
 

@@ -1,9 +1,3 @@
-/*
-__Seed builder__
-  (Read_only) Example view
-  Be careful copying content
-*/
-
 import React from "react";
 import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
@@ -17,35 +11,40 @@ const SaleFormView = ({
     onSubmit,
     error,
     windowTitle,
-    onCancel
+    onCancel,
+    productSchema
 }) =>
 
     <div class="card">
 
-        {/* Header */}
         <div class="card-header">
             <h1 class="card-header-title">
                 {sale.id ? "Editar oferta" : "Nueva oferta"}
             </h1>
         </div>
         
-        {/* Body */}
         <div class="card-body">
             <div class="row">
                 <div class="col">
                     <Formik
+                        validationSchema={productSchema}
                         initialValues={{
                             ...sale,
                             startDate: sale.startDate ? DateTime.fromISO(sale.startDate).toFormat("yyyy-MM-dd") : "",
-                            endDate: sale.endDate ? DateTime.fromISO(sale.endDate).toFormat("yyyy-MM-dd") : ""
+                            endDate: sale.endDate ? DateTime.fromISO(sale.endDate).toFormat("yyyy-MM-dd") : "",
+                            
                         }}
                         onSubmit={onSubmit}
+                        
                     >
-                        {({ values, setFieldValue }) =>
+                        {({ values, 
+                            setFieldValue,
+                            errors,
+                            touched, 
+                            submitCount, }) =>
                             <Form>
                                 <div class="mb-3">
 
-                                    {/* Nombre */}
                                     <div class="mb-3">
                                         <div class="form-group">
                                             <label class="input">
@@ -63,10 +62,16 @@ const SaleFormView = ({
                                                     <span className='text-danger fw-bold'>*</span>
                                                 </span>
                                             </label>
+                                            {
+                                                errors.name && (touched.name || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.name}
+                                                    </div>
+                                                    : null
+                                            }
                                         </div>
                                     </div>
 
-                                    {/* Descuento */}
                                     <div class="mb-3">
                                         <div class="form-group">
                                             <label class="input">
@@ -84,10 +89,16 @@ const SaleFormView = ({
                                                     <span className='text-danger fw-bold'>*</span>
                                                 </span>
                                             </label>
+                                            {
+                                                errors.disscount && (touched.disscount || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.disscount}
+                                                    </div>
+                                                    : null
+                                            }
                                         </div>
                                     </div>
 
-                                    {/*StartDate */}
                                     <div class="mb-3">
                                         <div class="form-group">
                                             <label class="input">
@@ -105,10 +116,16 @@ const SaleFormView = ({
                                                     <span className='text-danger fw-bold'>*</span>
                                                 </span>
                                             </label>
+                                            {
+                                                errors.startDate && (touched.startDate || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.startDate}
+                                                    </div>
+                                                    : null
+                                            }
                                         </div>
                                     </div>
 
-                                    {/* Fecha de fin */}
                                     <div class="mb-3">
                                         <div class="form-group">
                                             <label class="input">
@@ -126,6 +143,13 @@ const SaleFormView = ({
                                                     <span className='text-danger fw-bold'>*</span>
                                                 </span>
                                             </label>
+                                            {
+                                                errors.endDate && (touched.endDate || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.endDate}
+                                                    </div>
+                                                    : null
+                                            }
                                         </div>
                                     </div>
                                     
@@ -143,9 +167,6 @@ const SaleFormView = ({
                                         </div>
                                     </div>
 
-
-
-                                    {/* Products*/}
                                     <div class="form-group">
                                         <label className="input">
                                             <Field

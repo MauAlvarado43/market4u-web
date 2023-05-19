@@ -76,7 +76,7 @@ const RestorePasswordView = ({
 
                         {
                           errors.password && (touched.password || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                            ? <div class="text-danger mt-2" role="alert">
                                 {errors.password}
                               </div>
                             : null
@@ -122,7 +122,7 @@ const RestorePasswordView = ({
 
                         {
                           errors.confirmPassword && (touched.confirmPassword || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                            ? <div class="text-danger mt-2" role="alert">
                                 {errors.confirmPassword}
                               </div>
                             : null
@@ -130,7 +130,7 @@ const RestorePasswordView = ({
 
                       </div>
 
-                      { error && <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div> }
+                      { error && <div class="text-danger mt-2" role="alert"> {error} </div> }
                       { message && <div class="mb-4 alert alert-soft-success" role="alert"> {message} </div> }
 
                       <button 

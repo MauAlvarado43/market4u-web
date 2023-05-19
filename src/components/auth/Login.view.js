@@ -40,7 +40,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
 
                         {
                           errors.email && (touched.email || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                            ? <div class="text-danger mt-2" role="alert">
                                 {errors.email}
                               </div>
                             : null
@@ -85,7 +85,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
 
                         {
                           errors.password && (touched.password || submitCount >= 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                            ? <div class="text-danger mt-2" role="alert">
                                 {errors.password}
                               </div>
                             : null
@@ -93,7 +93,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
 
                       </div>
 
-                      { error ? <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div> : null }
+                      { error ? <div class="text-danger mt-2" role="alert"> {error} </div> : null }
 
                       <button 
                         type="submit" 

@@ -101,7 +101,106 @@ function FormSave({
         return true;
 
       }
-    })
+    }),
+    firstName: string().test({
+      name: "firstName",
+      test(value, context) {
+
+          if (!value || value.length === 0)
+              return context.createError({ message: "Ingrese el nombre del usuario" });
+
+          return true;
+
+      }
+  }),
+  lastName: string().test({
+    name: "lastName",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese el apellido del usuario" });
+
+        return true;
+
+    }
+  }),
+  email: string().test({
+    name: "email",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese el correo electrónico del usuario" });
+
+        return true;
+
+    }
+  }),
+  telephone: string().test({
+    name: "telephone",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese el teléfono del usuario" });
+
+        return true;
+
+    }
+  }),
+  street: string().test({
+    name: "street",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese la calle del usuario" });
+
+        return true;
+
+    }
+  }),
+  cologn: string().test({
+    name: "cologn",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese la colonia del usuario" });
+
+        return true;
+
+    }
+  }),
+  city: string().test({
+    name: "city",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese la ciudad del usuario" });
+
+        return true;
+
+    }
+  }),
+  cp: string().test({
+    name: "cp",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese el código postal del usuario" });
+
+        return true;
+
+    }
+  }),
+  municipality: string().test({
+    name: "municipality",
+    test(value, context) {
+
+        if (!value || value.length === 0)
+            return context.createError({ message: "Ingrese el municipio del usuario" });
+
+        return true;
+
+    }
+  }),
   });
 
   const onChangeType = (event) => {
