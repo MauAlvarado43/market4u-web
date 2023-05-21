@@ -220,10 +220,7 @@ function FormSave({
 
     delete newValues.company;
 
-    if (validationSchema.validate({ password }))
-      callSave(newValues)
-    else
-      return;
+    callSave(newValues)
 
   }
 

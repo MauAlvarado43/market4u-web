@@ -20,8 +20,12 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
     //const history = useHistory();
     const companyId = sessionStorage.getItem("company");
     const [selectedProducts, setSelectedProducts] = useState([])
-    // const [selectedStartDate, setSelectedStartDate] = useState()
-    // const [selectedEndDate, setselectedEndDate] = useState()
+    const [selectedStartDate, setSelectedStartDate] = useState('');
+    const [selectedEndDate, setselectedEndDate] = useState('');
+
+    const handleStartDateChange = (event) => {
+        setSelectedStartDate(event.target.value);
+    };
 
     const productSchema = object({
         name: string().test({
@@ -67,7 +71,20 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
                 return true;
 
             }
-        })
+        }),
+        // selectedStartDate: string().test({
+        //     id: "startDateValidation",
+        //     test(value, context) {
+        //         if (selectedStartDate > selectedEndDate) {
+        //             return context.createError({
+        //                 message: "La fecha inicial no puede empezar despues que la final",
+        //             });
+        //         }
+
+        //         return true;
+
+        //     }
+        // }),
     })
 
     const qProducts = useQuery(`{ 
@@ -154,6 +171,9 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
+        // setSelectedStartDate={setSelectedStartDate}
+        // setselectedEndDate={setselectedEndDate}
+        // handleStartDateChange={handleStartDateChange}
     />;
 }
 

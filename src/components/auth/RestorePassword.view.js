@@ -131,7 +131,7 @@ const RestorePasswordView = ({
                       </div>
 
                       { error && <div class="text-danger mt-2" role="alert"> {error} </div> }
-                      { message && <div class="mb-4 alert alert-soft-success" role="alert"> {message} </div> }
+                      { message && <div class="text-danger mt-2" role="alert"> {message} </div> }
 
                       <button 
                         type="submit" 

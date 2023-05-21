@@ -21,7 +21,7 @@ function FormSet({
   const qItem = useDetail(USER, itemId);
   const { user = {} } = qItem.data;
 
-  const [callSet, qSet] = usePost("/users/update_user_superadmin", {
+  const [callSet, qSet] = usePost("/users/update_user_company", {
     onCompleted: () => {
       swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success");
     },
@@ -219,6 +219,8 @@ function FormSet({
 
     
     newValues.company_id = parseInt(companyId);
+
+    newValues.type = 'SELLER'
 
     delete newValues.id;
     delete newValues.company;

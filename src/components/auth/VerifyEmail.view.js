@@ -70,7 +70,7 @@ const VerifyEmailView = ({
                       </div>
 
                       { error ? <div class="text-danger mt-2" role="alert"> {error} </div> : null }
-                      { message ? <div class="mb-4 alert alert-soft-success" role="alert"> {message} </div> : null }
+                      { message ? <div class="text-danger mt-2" role="alert"> {message} </div> : null }
 
                       <button
                         type="submit" 

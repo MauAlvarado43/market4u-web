@@ -93,18 +93,18 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.disscount = parseFloat(values.disscount);
       
         
-          if(values.disscount < 1 || values.disscount > 100) {
-            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
-            return;
-        }
+        //   if(values.disscount < 1 || values.disscount > 100) {
+        //     alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
+        //     return;
+        // }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
 
         
-         if(values.startDate > values.endDate) {
-            alert("Fechas ingresadas incorrectas.")
-            return
-        }
+        //  if(values.startDate > values.endDate) {
+        //     alert("Fechas ingresadas incorrectas.")
+        //     return
+        // }
         values.company = parseInt(sessionStorage.getItem("company"));
 
         for (let i = 0; i < filteredProducts.length; i++) {
@@ -118,7 +118,6 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         }
 
         if (values.products != undefined) {
-            console.log(filteredProducts)
 
             for (let i = 0; i < values.products.id.length; i++) {
                 let newProductValuesEdit = {

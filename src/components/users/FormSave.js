@@ -219,13 +219,10 @@ function FormSave({
 
         newValues.company_id = parseInt(companyId);
 
-        //delete newValues.company;
-        console.log(newValues)
+        newValues.type = 'SELLER'
 
-        if (validationSchema.validate({ password }))
-            callSave(newValues)
-        else
-            return;
+        //delete newValues.company;
+        callSave(newValues)
 
     }
 
