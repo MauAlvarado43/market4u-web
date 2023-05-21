@@ -38,7 +38,6 @@ const AppView = () =>
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
         <Route path="/main" component={Main} />
-        <Route path="/products" component={Products} />
         <Route path="/sales" component={Sales} />
         <Route path="/superadmin/category" component={CategorySA} />
         <Route path="/superadmin/opinion" component={OpinionSA} />

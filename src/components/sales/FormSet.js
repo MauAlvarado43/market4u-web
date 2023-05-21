@@ -75,69 +75,71 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
-      
-        if(values.disscount < 1 || values.disscount > 100){
-          if(values.disscount < 1 || values.disscount > 100) {
-            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
-            return;
-        }
-        values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
-        values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
 
-        if(values.startDate > values.endDate){
-         if(values.startDate > values.endDate) {
-            alert("Fechas ingresadas incorrectas.")
-            return
-        }
-        values.company = parseInt(sessionStorage.getItem("company"));
-
-        // values.products.id - ---nuevos
-        // anteriores ---
-
-        for (let i = 0; i < filteredProducts.length; i++) {
-            
-            let newValues = JSON.parse(JSON.stringify(filteredProducts[i]));
-            newValues.product_id = newValues.id;
-            delete newValues.id;
-
-            console.log(newValues);
-            callSetNull(newValues)
-        }
-
-        if (values.products != undefined) {
-            //--------------------This thing doesnt work, null problem.
-            console.log(filteredProducts)
-            
-            //---------------------------------------------
-
-            for (let i = 0; i < values.products.id.length; i++) {
-                let newProductValuesEdit = {
-                    id: parseInt(values.products.id[i]),
-                    sale: parseInt(saleId)
-                };
-                callSetProducts(newProductValuesEdit)
-            }
-
-            if (isNaN(values.banner)) {
-                alert("Favor de seleccionar un banner");
-                //console.log("adios")   
+        if (values.disscount < 1 || values.disscount > 100) {
+            if (values.disscount < 1 || values.disscount > 100) {
+                alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
                 return;
-
             }
+            values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
+            values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
 
+            if (values.startDate > values.endDate) {
+                if (values.startDate > values.endDate) {
+                    alert("Fechas ingresadas incorrectas.")
+                    return
+                }
+                values.company = parseInt(sessionStorage.getItem("company"));
+
+                // values.products.id - ---nuevos
+                // anteriores ---
+
+                for (let i = 0; i < filteredProducts.length; i++) {
+
+                    let newValues = JSON.parse(JSON.stringify(filteredProducts[i]));
+                    newValues.product_id = newValues.id;
+                    delete newValues.id;
+
+                    console.log(newValues);
+                    callSetNull(newValues)
+                }
+
+                if (values.products != undefined) {
+                    //--------------------This thing doesnt work, null problem.
+                    console.log(filteredProducts)
+
+                    //---------------------------------------------
+
+                    for (let i = 0; i < values.products.id.length; i++) {
+                        let newProductValuesEdit = {
+                            id: parseInt(values.products.id[i]),
+                            sale: parseInt(saleId)
+                        };
+                        callSetProducts(newProductValuesEdit)
+                    }
+
+                    if (isNaN(values.banner)) {
+                        alert("Favor de seleccionar un banner");
+                        //console.log("adios")   
+                        return;
+
+                    }
+
+                }
+                // for(let i=0;i<selectedProductsInt.length;i++){
+                //     var newProductValues = {
+                //         id: selectedProductsInt[i],
+                //         sale: data.saveSale.sale.id
+                //         };
+                //     callSet(newProductValues)
+
+                // }
+                //console.log(values)
+                callSet(values);
+                onCompleted();
+            }
         }
-        // for(let i=0;i<selectedProductsInt.length;i++){
-        //     var newProductValues = {
-        //         id: selectedProductsInt[i],
-        //         sale: data.saveSale.sale.id
-        //         };
-        //     callSet(newProductValues)
-
-        // }
-        //console.log(values)
-        callSet(values);
-        onCompleted();
-    };
+    }
 
     const onCancel = () => {
         //history.goBack();
