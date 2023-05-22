@@ -1,0 +1,73 @@
+.border-color-839a99 {
+  border: 2px solid #519EA4;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+
+/* Div contenedor */
+
+.max-width {
+  max-width: 1200px;
+}
+
+.h-div-container {
+  height: 85vh;
+}
+
+.column-gap {
+  column-gap: 2rem;
+}
+
+/* Productos */
+
+.w-div-product {
+  width: 250px;
+}
+
+.h-div-product {
+  height: 250px;
+}
+
+/* Imagen producto */
+.custom-img {
+  max-width: 55%;
+}
+
+/* Detalle de pedido */
+
+.legend-w-30 {
+  width: 30%;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+
+.h-info {
+  height: 150px;
+}
+
+/* Botones */
+
+.w-btn {
+  width: 180px;
+}
+
+.bg-color-Ff4406 {
+  background-color: #ff4406;
+}
+.bg-color-Ff440 i {
+  padding-right: 0.5rem;
+}
+.bg-color-50a3a6 {
+  background-color: #50a3a6;
+}
+.bg-color-50a3a6 i {
+  padding-right: 0.5rem;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}

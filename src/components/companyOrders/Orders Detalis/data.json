@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "image": "https://m.media-amazon.com/images/I/61jhZ1yzhnL._AC_SX695_.jpg",
+      "make": "tommy hilfiger tenis laddin",
+      "gender": "caballero",
+      "price": "$1.234,50"
+    },
+    {
+      "id": 2,
+      "image": "https://cdn1.coppel.com/images/catalog/pr/8128062-5.jpg",
+      "make": "tommy hilfiger tenis twiliams",
+      "gender": "dama",
+      "price": "$1.173,50"
+    },
+    {
+      "id": 3,
+      "image": "https://cdn1.coppel.com/images/catalog/pr/8128062-5.jpg",
+      "make": "tommy hilfiger tenis twiliams",
+      "gender": "dama",
+      "price": "$1.173,50"
+    }
+  ],
+  "orders": {
+    "nameUser": "Cristiano Ronaldo",
+    "address": "Avenida Cultura Griega, UH el Rosario. Edificio A. Garcia Bravo dto 101 edificio color amarrillo.",
+    "contact": "5572063634",
+    "information": ""
+  }
+}
