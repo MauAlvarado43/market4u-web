@@ -84,10 +84,14 @@ const ProfileView = ({
                       text={"Mis compras"}
                       icon_left={"fas fa-shopping-bag col-md-2 col-sm-1"}
                     />
-                    <ProfileButton
-                      text={"Wishlist"}
-                      icon_left={"fas fa-star col-md-2 col-sm-1"}
-                    />
+                    <div
+                      style={{cursor:"pointer"}} 
+                      onClick={() => { window.location.href = "/wishlist" }}>
+                      <ProfileButton
+                        text={"Wishlist"}
+                        icon_left={"fas fa-star col-md-2 col-sm-1"}
+                      />
+                    </div>
                   </>
                   :
                   null}

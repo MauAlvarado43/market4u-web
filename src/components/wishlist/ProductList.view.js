@@ -49,23 +49,14 @@ const ProductListView = ({ wishlist }) => (
           <span className="h3">${product?.variants[0]?.price}</span>
         </div>
 
-        <div class="col-md-3 d-flex justify-content-between align-items-center">
-          <div className="w-75">
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
+          <div className="w-50">
             <Link to={`/wishlist/${product.id}/delete`}>
               <button class="btn btn-secondary btn-xs btn-block p-auto" type="button">
                 <i className="fas fa-trash mr-1" style={{ color: "#ffffff" }}></i>
                 <span>Eliminar</span>
               </button>
             </Link>
-          </div>
-          <div className="w-75 ml-2">
-            <button class="btn btn-primary btn-xs btn-block p-auto" type="button">
-              <i
-                className="fas fa-shopping-cart mr-1"
-                style={{ color: "#ffffff" }}
-              ></i>
-              <span>Agregar a carrito</span>
-            </button>
           </div>
         </div>
       </div>

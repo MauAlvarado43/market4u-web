@@ -6,7 +6,7 @@ import ProductCard from "./ProductCard";
 
 
 const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
-  <div className="container" style={{ width: "100%", height: "100vh", overflow: "auto", paddingBottom: "200px" }}>
+  <div className="container" style={{ width: "100vw", height: "100vh", overflow: "auto", paddingBottom: "200px" }}>
     <div className="container-main-visual">
       <div className="container-main">
         {/* <div className="banner">
@@ -15,7 +15,7 @@ const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
           </div>
         </div> */}
 
-        <div style={{ marginTop: "100px" }}>
+        <div>
           <div className="my-3">
             <h2 className="title">PRODUCTOS DESTACADOS</h2>
           </div>

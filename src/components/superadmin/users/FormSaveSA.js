@@ -9,13 +9,13 @@ import { object, string } from "yup";
 
 function FormSave({
   onCompleted = () => null,
-  refetchQuery
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showCompany, setShowCompany] = useState(true);
+  const [selectedType, setSelectedType] = useState("ADMIN");
 
   const qUsers = useQuery(
     `
@@ -27,7 +27,6 @@ function FormSave({
         }
         `
   );
-  const { users = [] } = qUsers.data;
 
   const qCompanies = useQuery(
     `
@@ -43,9 +42,9 @@ function FormSave({
 
   const [callSave, qSave] = usePost("/users/create_user_superadmin", {
     onCompleted: () => {
-      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success");
       onCompleted();
-      refetchQuery();
+      window.location.href = "/superadmin/users";
+      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success");
     },
   });
   const error = qSave.error ? "An error has occurred" : null;
@@ -70,11 +69,10 @@ function FormSave({
 
   const validatePassword = (pass) => {
     const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-    if (regex.test(pass)) {
+    if (regex.test(pass)) 
       return true;
-    } else {
+    else 
       return false;
-    }
   };
 
   const validationSchema = object({
@@ -107,6 +105,7 @@ function FormSave({
   const onChangeType = (event) => {
     const newValue = event.target.value;
     setShowCompany(newValue !== "NORMAL" && newValue !== "SUPERADMIN")
+    setSelectedType(newValue);
   }
 
   const onSubmit = (values) => {
@@ -121,8 +120,10 @@ function FormSave({
 
     delete newValues.company;
 
-    if (validationSchema.validate({ password }))
+    if (validationSchema.validate({ password })){
+      console.log(newValues)
       callSave(newValues)
+    }
     else
       return;
 
@@ -141,7 +142,9 @@ function FormSave({
     showCompany={showCompany}
     onChangeType={onChangeType}
     showPassword={showPassword}
+    selectedType={selectedType}
     showPassConfirm={showPassConfirm}
+    setSelectedType={setSelectedType}
     validationSchema={validationSchema}
     setPasswordConfirm={setPasswordConfirm}
     handlePasswordChange={handlePasswordChange}

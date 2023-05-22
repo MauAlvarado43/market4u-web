@@ -16,7 +16,7 @@ const NavView = ({
     <nav
       className="navbar navbar-expand-lg navbar-light bg-light bg-white"
       style={{
-        height: "20vh",
+        height: "15vh",
         marginLeft: "0vw",
         marginBottom: "1vh",
       }}
