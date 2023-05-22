@@ -8,7 +8,6 @@ import Signup from "components/auth/Signup";
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
-import Cart from "components/cart/Cart";
 import FinalizarCompra from "components/cart/PurchaseCompleted";
 import Main from "components/main/Main"
 import { FilterProvider } from "components/helpers/FilterContext";
@@ -40,7 +39,6 @@ const AppView = () =>
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
         <Route path="/main" component={Main} />
-        <Route path="/products" component={Products} />
         <Route path="/sales" component={Sales} />
         <Route path="/superadmin/category" component={CategorySA} />
         <Route path="/superadmin/opinion" component={OpinionSA} />
@@ -49,7 +47,6 @@ const AppView = () =>
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
         <Route path="/users" component={Users} />
-        <Route path="/cart" component={Cart} />
         <Route path="/finalizar" component={FinalizarCompra} />
         <Route path="/" component={Home} />
         <Redirect to="/" />

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { Range } from "react-range";
 import Filters from "components/nav/Filter";
 
-const NavView = ({ 
-  user, 
-  showFilterIcon, 
-  showModal, 
+const NavView = ({
+  user,
+  showFilterIcon,
+  showModal,
   handleModalToggle,
   handleChange,
-  values 
+  values
 }) => (
   <>
     <nav
@@ -75,13 +75,15 @@ const NavView = ({
         <Link to={`/wishlist`}>
           <span
             className="mr-3 mt-1"
-            style={{ fontSize: "25px", cursor: "pointer", color:"red"}}
+            style={{ fontSize: "25px", cursor: "pointer", color: "red" }}
           >
             <i className="fas fa-heart"></i>
           </span>
         </Link>
         <span class="mr-3 mt-1" style={{ fontSize: "25px", cursor: "pointer" }}>
-          <i class="fas fa-shopping-cart"></i>
+          <Link to="/cart">
+            <i class="fas fa-shopping-cart"></i>
+          </Link>
         </span>
 
         <ul className="navbar-nav">
@@ -105,7 +107,7 @@ const NavView = ({
         user={user}
         values={values}
         handleChange={handleChange}
-        handleModalToggle={handleModalToggle}/>
+        handleModalToggle={handleModalToggle} />
     )}
   </>
 );

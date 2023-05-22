@@ -15,7 +15,8 @@ const DetailView = ({
   selectedOptions,
   stock,
   rate,
-  exist
+  exist,
+  onAddCart
 }) =>
   <div class="px-6" style={{overflowY: "auto", overflowX: "hidden", maxHeight: "95vh"}}>
 
@@ -157,7 +158,7 @@ const DetailView = ({
       <div className="col-md-2 px-3">
         <div className="d-flex flex-column align-items-center justify-content-center">
 
-          <button className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3" disabled={!exist || stock == 0}>
+          <button className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3" disabled={!exist || stock == 0} onClick={onAddCart}>
             <i className="fas fa-shopping-cart mr-3 fa-lg"></i> Agregar al carrito
           </button>
           

@@ -11,6 +11,7 @@ import Products from "components/products/Products";
 import History from "components/history/History";
 import ProductDetail from "components/products/Detail";
 import WishList from "components/wishlist/WishList";
+import Cart from "components/cart/Main";
 
 const HomeView = () =>
   <BrowserRouter>
@@ -28,6 +29,7 @@ const HomeView = () =>
             <Route path="/products" component={Products} />
             <Route path="/history" component={History} />
             <Route path="/product/:productId(\d+)" component={ProductDetail} />
+            <Route path="/cart" component={Cart} />
             <Redirect to="/home" />
           </Switch>
 
