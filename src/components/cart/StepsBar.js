@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './CartStyle.css'
 
 const Steps = (props) => {
   const {activeDiv, setActiveDiv} = props

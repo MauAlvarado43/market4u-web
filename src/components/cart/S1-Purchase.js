@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import AddRemoveBtn from './S1-AddRemoveBtns'
-import './CartStyle.css'
 
 const PurchaseCard = (props) => {
 

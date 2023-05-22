@@ -5,7 +5,7 @@ import { Formik, Field, Form } from "formik";
 import { ScriptTag } from "seed/helpers";
 
 const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, error }) => (
-  <div style={{ height: "100vh", overflow: "auto" }}>
+  <div>
     <main id="content" role="main" class="main pl-0">
       <div class="container py-5 py-sm-7">
 

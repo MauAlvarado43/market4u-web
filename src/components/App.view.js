@@ -44,11 +44,8 @@ const AppView = () =>
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
         <Route path="/users" component={Users} />
-<<<<<<< HEAD
-=======
         <Route path="/cart" component={Cart} />
         <Route path="/finalizar" component={FinalizarCompra} />
->>>>>>> 914237e9eebd951a2e9c08ca1983b006e3dc7eaa
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

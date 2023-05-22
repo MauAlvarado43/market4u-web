@@ -4,7 +4,6 @@ import CarritoCompras from "./Step1-CarritoCompras";
 import DetallesEntrega from "./Step2-DetallesEntrega";
 import MetodoPago from "./Step3-MetodoPago";
 import ResumenPedido from "./Step4-ResumenPedido";
-import "./CartStyle.css"
 import PropTypes from "prop-types";
 
 
