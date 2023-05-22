@@ -11,6 +11,8 @@ import Products from "components/products/Products";
 import History from "components/history/History";
 import ProductDetail from "components/products/Detail";
 import WishList from "components/wishlist/WishList";
+import orders from "./companyOrders/Manage Orders/Manage orders.view";
+import detailsorder from "./companyOrders/Orders Detalis/details.view";
 
 const HomeView = () =>
   <BrowserRouter>
@@ -27,6 +29,8 @@ const HomeView = () =>
             <Route path="/sales" component={Sales} />
             <Route path="/products" component={Products} />
             <Route path="/history" component={History} />
+            <Route path="/orders" component={orders} />
+            <Route path="/detorders" component={detailsorder} />
             <Route path="/product/:productId(\d+)" component={ProductDetail} />
             <Redirect to="/home" />
           </Switch>
