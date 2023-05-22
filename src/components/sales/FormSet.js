@@ -12,14 +12,15 @@ import { Loading } from "seed/helpers";
 import View from "components/sales/Form.view";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
+import { usePost } from "seed/api";
 
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null }) {
     //const history = useHistory();
     const qSale = useDetail(SALE, saleId);
     const qUsers = useQuery(`{ users { } }`);
     const [callSet, qSet] = useSet(SET_SALE, {
-        onCompleted: () =>{
-            onCompleted();
+        onCompleted: () => {
+            //onCompleted();
         }
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
@@ -31,7 +32,15 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
-    const userId = sessionStorage.getItem("id");
+
+    const [callSetNull, qSetNull] = usePost("/products/update_product_null", {
+        onCompleted: () => {
+            console.log("se ha actualizado de manera exitosa el producto");
+            //onCompleted();
+        },
+    });
+
+    const companyId = sessionStorage.getItem("company");
 
     let qProducts = useQuery(`{ 
         products {
@@ -39,7 +48,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
             name
             sale {}
         } 
-    }`, "user.id=" + userId);
+    }`, "company.id=" + companyId);
 
 
 
@@ -52,9 +61,6 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         else
             return false;
     })
-    //console.log(filteredProducts)
-
-
 
 
     if (qSale.loading) return <Loading />;
@@ -69,23 +75,39 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
+      
+        //if(values.disscount < 1 || values.disscount > 100){
+          if(values.disscount < 1 || values.disscount > 100) {
+            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
+            return;
+        }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
-        values.user = parseInt(sessionStorage.getItem("id"));
+
+        //if(values.startDate > values.endDate){
+         if(values.startDate > values.endDate) {
+            alert("Fechas ingresadas incorrectas.")
+            return
+        }
+        values.company = parseInt(sessionStorage.getItem("company"));
 
         // values.products.id - ---nuevos
         // anteriores ---
-        //console.log(values.products)
-        if (values.products != undefined) {
 
+        for (let i = 0; i < filteredProducts.length; i++) {
+            
+            let newValues = JSON.parse(JSON.stringify(filteredProducts[i]));
+            newValues.product_id = newValues.id;
+            delete newValues.id;
+
+            console.log(newValues);
+            callSetNull(newValues)
+        }
+
+        if (values.products != undefined) {
             //--------------------This thing doesnt work, null problem.
-            for (let i = 0; i < filteredProducts.length; i++) {
-                let newProductValuesEdit = {
-                    id: parseInt(filteredProducts[i].id),
-                    sale: undefined
-                };
-                callSetProducts(newProductValuesEdit)
-            }
+            console.log(filteredProducts)
+            
             //---------------------------------------------
 
             for (let i = 0; i < values.products.id.length; i++) {
@@ -112,10 +134,11 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         //     callSet(newProductValues)
 
         // }
-        console.log(values)
+        //console.log(values)
         callSet(values);
+        onCompleted();
     };
-    
+
     const onCancel = () => {
         //history.goBack();
         onCompleted();

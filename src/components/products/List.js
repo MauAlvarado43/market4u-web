@@ -6,7 +6,6 @@ import View from "components/products/List.view";
 const ProductList = forwardRef(function ProductList(props, ref){
 
   const companyId = sessionStorage.getItem('company');
-  const userId = sessionStorage.getItem('id');
   const pageSize = 15;
   const [pageNum, setPageNum] = useState(1);
   const reqProducts = usePagination(`
@@ -14,13 +13,12 @@ const ProductList = forwardRef(function ProductList(props, ref){
       productPagination {
         totalPages
         products {
+          sku
           name
+          company { name }
           shortDescription
           description
           createdAt
-          user { 
-            company { }
-          }
           sale { name }
           category { name }
           variants {
@@ -40,7 +38,7 @@ const ProductList = forwardRef(function ProductList(props, ref){
     }`, 
     pageNum, 
     pageSize,
-    companyId ? "(user.company.id=" + companyId + ")" : "(user.id=" + userId + ")", 
+    "(company.id=" + companyId + ")", 
     { orderBy: "-id" }
   );
 

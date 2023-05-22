@@ -20,6 +20,7 @@ function ProductList() {
       products {
         name
         shortDescription
+        sku
         description
         createdAt
         company { }

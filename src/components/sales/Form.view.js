@@ -28,7 +28,7 @@ const SaleFormView = ({
                 {sale.id ? "Editar oferta" : "Nueva oferta"}
             </h1>
         </div>
-
+        
         {/* Body */}
         <div class="card-body">
             <div class="row">
@@ -52,7 +52,8 @@ const SaleFormView = ({
                                                 <Field
                                                     type="text"
                                                     name="name"
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                     required
                                                     value={values.name || ''}
@@ -72,10 +73,11 @@ const SaleFormView = ({
                                                 <Field
                                                     type="number"
                                                     name="disscount"
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                     required
-                                                    value={values.disscount || ''}
+                                                    value={values.disscount}
                                                 />
                                                 <span class="input__label">
                                                     Descuento %
@@ -92,7 +94,8 @@ const SaleFormView = ({
                                                 <Field
                                                     type="date"
                                                     name="startDate"
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                     required
                                                     value={values.startDate || ''}
@@ -112,7 +115,8 @@ const SaleFormView = ({
                                                 <Field
                                                     type="date"
                                                     name="endDate"
-                                                    class="form-control input__field"
+                                                    className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
                                                     required
                                                     value={values.endDate || ''}
@@ -190,7 +194,6 @@ const SaleFormView = ({
 
 SaleFormView.propTypes = {
     sale: PropTypes.object,
-    users: PropTypes.array,
     onSubmit: PropTypes.func.isRequired,
     error: PropTypes.string
 };

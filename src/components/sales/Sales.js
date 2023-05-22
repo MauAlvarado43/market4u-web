@@ -4,9 +4,8 @@ import View from "components/sales/Sales.view";
 
 function Sales() {
     const listRef = useRef(null);
-  const refetchQuery = () => listRef.current.refetchQuery();
 
-  return <View listRef={listRef} refetchQuery={refetchQuery}/>;
+  return <View listRef={listRef} />;
 }
 
 Sales.propTypes = {};
