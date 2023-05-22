@@ -9,6 +9,8 @@ import Products from "components/products/Products"
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
+import Cart from "components/cart/Cart";
+import FinalizarCompra from "components/cart/PurchaseCompleted";
 import Main from "components/main/Main"
 import { FilterProvider } from "components/helpers/FilterContext";
 import Sales from "components/sales/Sales";
@@ -42,6 +44,11 @@ const AppView = () =>
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
         <Route path="/users" component={Users} />
+<<<<<<< HEAD
+=======
+        <Route path="/cart" component={Cart} />
+        <Route path="/finalizar" component={FinalizarCompra} />
+>>>>>>> 914237e9eebd951a2e9c08ca1983b006e3dc7eaa
         <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>
