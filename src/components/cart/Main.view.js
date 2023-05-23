@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Steps from "components/cart/StepsBar";
 import Cart from "components/cart/Cart"
 import Delivery from "components/cart/Delivery";
+import Payment from "components/cart/Payment";
 
 // import CarritoCompras from "./Step1-CarritoCompras";
 // import DetallesEntrega from "./Step2-DetallesEntrega";
@@ -11,7 +12,7 @@ import Delivery from "components/cart/Delivery";
 import "./CartStyle.css"
 
 
-const MainView = ({ products, setProducts, activeStep, setActiveStep }) => (
+const MainView = ({ user, setData, products, setProducts, activeStep, setActiveStep }) => (
 
   <div className="cart-content">
     <div className="step-bar-try">
@@ -25,6 +26,7 @@ const MainView = ({ products, setProducts, activeStep, setActiveStep }) => (
 
       <div className={activeStep === 1 ? 'step-div active' : 'step-div'}>
         <Cart
+          setData={setData}
           products={products}
           setProducts={setProducts}
           setActiveStep={setActiveStep}
@@ -33,16 +35,19 @@ const MainView = ({ products, setProducts, activeStep, setActiveStep }) => (
 
       <div className={activeStep === 2 ? 'step-div active' : 'step-div'}>
         <Delivery
+          user={user}
+          setData={setData}
           products={products}
           setActiveStep={setActiveStep}
-        // cart = {cart}
-        // shipments = {shipments}
-        // activeDiv= {activeDiv}
-        // setActiveDiv={setActiveDiv}
-        // finalAmount={finalAmount}
-        // setFinalAmount={setFinalAmount}
-        // totalCost={totalCost}
-        // setTotalCost={setTotalCost}
+        />
+      </div>
+
+      <div className={activeStep === 3 ? 'step-div active' : 'step-div'}>
+        <Payment
+          user={user}
+          setData={setData}
+          products={products}
+          setActiveStep={setActiveStep}
         />
       </div>
 

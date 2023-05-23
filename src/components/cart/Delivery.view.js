@@ -27,7 +27,7 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
               <div class="row">
                 <div class="col-md-6">
                   <label className="input">
-                    <Field type="text" name="phone" className="form-control input__field" placeholder=" " />
+                    <Field type="text" name="telephone" className="form-control input__field" placeholder=" " />
                     <span class="input__label">
                       Teléfono <span className='text-danger fw-bold'>*</span>
                     </span>
@@ -60,7 +60,7 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
 
                 <div class="col-md-6">
                   <label className="input">
-                    <Field type="email" name="colony" className="form-control input__field" placeholder=" " />
+                    <Field type="email" name="cologn" className="form-control input__field" placeholder=" " />
                     <span class="input__label">
                       Colonia <span className='text-danger fw-bold'>*</span>
                     </span>
@@ -97,7 +97,41 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
             <div class="form-group my-4">
 
               <label className="input">
-                <Field type="text" name="state" className="form-control input__field" placeholder=" " />
+                <Field as="select" name="state" className="form-control input__field" placeholder=" ">
+                  <option value="">Selecciona un estado</option>
+                  <option value="AGUASCALIENTES">Aguascalientes</option>
+                  <option value="BAJA CALIFORNIA">Baja california</option>
+                  <option value="BAJA CALIFORNIA SUR">Baja california sur</option>
+                  <option value="CAMPECHE">Campeche</option>
+                  <option value="COAHUILA">Coahuila</option>
+                  <option value="COLIMA">Colima</option>
+                  <option value="CHIAPAS">Chiapas</option>
+                  <option value="CHIHUAHUA">Chihuahua</option>
+                  <option value="DURANGO">Durango</option>
+                  <option value="CIUDAD DE MEXICO">Ciudad de México</option>
+                  <option value="GUANAJUATO">Guanajuato</option>
+                  <option value="GUERRERO">Guerrero</option>
+                  <option value="HIDALGO">Hidalgo</option>
+                  <option value="JALISCO">Jalisco</option>
+                  <option value="MEXICO">Estado de México</option>
+                  <option value="MICHOACAN">Michoacán</option>
+                  <option value="MORELOS">Morelos</option>
+                  <option value="NAYARIT">Nayarit</option>
+                  <option value="NUEVO LEON">Nuevo león</option>
+                  <option value="OAXACA">Oaxaca</option>
+                  <option value="PUEBLA">Puebla</option>
+                  <option value="QUERETARO">Querétaro</option>
+                  <option value="QUINTANA ROO">Quintana roo</option>
+                  <option value="SAN LUIS POTOSI">San Luis Potosí</option>
+                  <option value="SINALOA">Sinaloa</option>
+                  <option value="SONORA">Sonora</option>
+                  <option value="TABASCO">Tabasco</option>
+                  <option value="TAMAULIPAS">Tamaulipas</option>
+                  <option value="TLAXCALA">Tlaxcala</option>
+                  <option value="VERACRUZ">Veracruz</option>
+                  <option value="YUCATAN">Yucatán</option>
+                  <option value="ZACATECAS">Zacatecas</option>
+                </Field>
                 <span class="input__label">
                   Estado <span className='text-danger fw-bold'>*</span>
                 </span>
