@@ -60,6 +60,7 @@ function Main() {
   return (
     <View
       user={user}
+      data={data}
       setData={setData}
       products={products}
       setProducts={setProducts}

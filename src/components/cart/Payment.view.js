@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Sumary from "components/cart/Sumary";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
-const PaymentView = ({ user, products, onSubmit }) => (
+const PaymentView = ({ user, formikRef, products, onSubmit }) => (
   <div className='row'>
 
     <div className='col-md-6 text-left p-4' style={{ backgroundColor: "#F5F5F5", borderRadius: "10px" }}>
@@ -16,6 +16,7 @@ const PaymentView = ({ user, products, onSubmit }) => (
       <div className="mt-3">
         <h3>Agregar tarjeta de crédito/débito</h3>
         <Formik
+          innerRef={formikRef}
           initialValues={{}}
           onSubmit={onSubmit}
         >

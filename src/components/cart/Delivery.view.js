@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import './CartStyle.css'
 import Sumary from "components/cart/Sumary";
+import { states, getStateName } from "components/utils/constants";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 
-const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
+const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
 
   <div className='row'>
 
@@ -16,6 +17,7 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
       </div>
 
       <Formik
+        innerRef={formikRef}
         initialValues={user}
         onSubmit={onSubmit}
       >
@@ -99,38 +101,11 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
               <label className="input">
                 <Field as="select" name="state" className="form-control input__field" placeholder=" ">
                   <option value="">Selecciona un estado</option>
-                  <option value="AGUASCALIENTES">Aguascalientes</option>
-                  <option value="BAJA CALIFORNIA">Baja california</option>
-                  <option value="BAJA CALIFORNIA SUR">Baja california sur</option>
-                  <option value="CAMPECHE">Campeche</option>
-                  <option value="COAHUILA">Coahuila</option>
-                  <option value="COLIMA">Colima</option>
-                  <option value="CHIAPAS">Chiapas</option>
-                  <option value="CHIHUAHUA">Chihuahua</option>
-                  <option value="DURANGO">Durango</option>
-                  <option value="CIUDAD DE MEXICO">Ciudad de México</option>
-                  <option value="GUANAJUATO">Guanajuato</option>
-                  <option value="GUERRERO">Guerrero</option>
-                  <option value="HIDALGO">Hidalgo</option>
-                  <option value="JALISCO">Jalisco</option>
-                  <option value="MEXICO">Estado de México</option>
-                  <option value="MICHOACAN">Michoacán</option>
-                  <option value="MORELOS">Morelos</option>
-                  <option value="NAYARIT">Nayarit</option>
-                  <option value="NUEVO LEON">Nuevo león</option>
-                  <option value="OAXACA">Oaxaca</option>
-                  <option value="PUEBLA">Puebla</option>
-                  <option value="QUERETARO">Querétaro</option>
-                  <option value="QUINTANA ROO">Quintana roo</option>
-                  <option value="SAN LUIS POTOSI">San Luis Potosí</option>
-                  <option value="SINALOA">Sinaloa</option>
-                  <option value="SONORA">Sonora</option>
-                  <option value="TABASCO">Tabasco</option>
-                  <option value="TAMAULIPAS">Tamaulipas</option>
-                  <option value="TLAXCALA">Tlaxcala</option>
-                  <option value="VERACRUZ">Veracruz</option>
-                  <option value="YUCATAN">Yucatán</option>
-                  <option value="ZACATECAS">Zacatecas</option>
+                  {
+                    states.map((state, idx) => {
+                      <option key={idx} value={state}>{getStateName(state)}</option>
+                    })
+                  }
                 </Field>
                 <span class="input__label">
                   Estado <span className='text-danger fw-bold'>*</span>
@@ -149,82 +124,6 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
               </label>
 
             </div>
-
-            {/* <div className='delivery-table'>
-            <table>
-              <tr>
-                <td>
-                  <label className='delivery-label'>Celular <span className='required'>*</span></label><br />
-                  <Field className='fields-formik' name='phone' type='text' required autoComplete="off" />
-                </td>
-                <td>
-                  <label className='delivery-label'>E-mail <span className='required'>*</span></label><br />
-                  <Field className='fields-formik' name='email' type='email' required autoComplete="off" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label className='delivery-label'>Calle y número <span className='required'>*</span></label><br />
-                  <Field className='fields-formik' name='calleNum' type='text' required autoComplete="off" />
-                </td>
-                <td>
-                  <label className='delivery-label'>Colonia <span className='required'>*</span></label><br />
-                  <Field className='fields-formik' name='colonia' type='text' required autoComplete="off" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label className='delivery-label'>CP <span className='required'>*</span></label><br />
-                  <Field className='fields-formik' name='cp' type='text' required maxLength="5" autoComplete="off" />
-                </td>
-                <td>
-                  <label className='delivery-label'>Ciudad <span className='required'>*</span></label><br />
-                  <Field className='fields-formik' name='city' type='text' required autoComplete="off" />
-                </td>
-              </tr>
-              {/* <tr>
-                <td>
-                  <label className='delivery-label'>Estado <span className='required'>*</span></label><br />
-                  <Field component="select" name="estado">
-                    <option value="">Selecciona una opción</option>
-                    {states.map((state, index) => (
-                      <option value={index}>{state}</option>
-                    ))}
-                  </Field>
-                  <ErrorMessage name="estado" component="div" className='required' />
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <label className='delivery-label'>Referencias <span className='required'>*</span></label><br />
-                  <Field className='fields-formik' name='referencias' type='text' required autoComplete="off" />
-                </td>
-              </tr> 
-            </table>
-          </div> */}
-
-            {/* <div className='delivery-summary'>
-            <h1>Resumen de compra</h1>
-            <table className='summary-table'>
-              <tr>
-                <td>Subtotal ({finalAmount} productos):</td>
-                <td>$ {totalCost.toFixed(2)}</td>
-              </tr>
-              <tr>
-                <td>Envío:</td>
-                <td>$ 99.00</td>
-              </tr>
-              <tr>
-                <td>Total:</td>
-                <td>$ {(totalCost + 99).toFixed(2)}</td>
-              </tr>
-            </table>
-            <div className='buttons'>
-              <button type='submit' disabled={totalCost == 0} className="buttonShopping" style={{ "--bg-color-shop": '#FC4B08', "--bg-color-hover": '#fb8332', "--bg-color-active": '#c85000' }}>Continuar</button>
-              <button type='reset' onClick={(e) => e.preventDefault && setActiveDiv(1)} className="buttonShopping" style={{ "--bg-color-shop": '#519EA4', "--bg-color-hover": '#6ad2d9', "--bg-color-active": '#366a6e' }}>Regresar</button>
-            </div>
-          </div> */}
 
           </Form>
         }

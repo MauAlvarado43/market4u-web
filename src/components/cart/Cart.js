@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import View from "components/cart/Cart.view";
 
 function Cart({ setData, products, setProducts, setActiveStep }) {
-
 
   const onSubmit = () => {
     setData((prevData) => {
