@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const ProductCardView = ({ product }) =>
+const ProductCardView = ({ 
+  product,
+  handleSetWishlist
+}) =>
   <div
     key={product.id}
     className="mb-4 border border-dark card mx-auto"
@@ -17,6 +20,7 @@ const ProductCardView = ({ product }) =>
     <div className='row'>
       <div className='col-md-12 d-flex justify-content-end'>
         <button
+          onClick={() => { handleSetWishlist(product.id) }}
           className="btn">
           <i className="far fa-heart"></i>
         </button>

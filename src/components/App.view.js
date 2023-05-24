@@ -11,7 +11,6 @@ import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
 import Cart from "components/cart/Cart";
 import FinalizarCompra from "components/cart/PurchaseCompleted";
-import Main from "components/main/Main"
 import { FilterProvider } from "components/helpers/FilterContext";
 import Sales from "components/sales/Sales";
 import CategorySA from "components/superadmin/category/CategorySA";
@@ -23,7 +22,9 @@ import CompaniesSA from "components/superadmin/companies/CompaniesSA"
 import Users from "components/users/Users"
 
 
-const AppView = () =>
+const AppView = ({
+  user_type
+}) =>
 <FilterProvider>
   <div class="module">
     <BrowserRouter>
@@ -34,7 +35,6 @@ const AppView = () =>
         <Route path="/verify_email/:token" component={VerifyEmail} />
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
-        <Route path="/main" component={Main} />
         <Route path="/products" component={Products} />
         <Route path="/sales" component={Sales} />
         <Route path="/superadmin/category" component={CategorySA} />
@@ -47,7 +47,7 @@ const AppView = () =>
         <Route path="/cart" component={Cart} />
         <Route path="/finalizar" component={FinalizarCompra} />
         <Route path="/" component={Home} />
-        <Redirect to="/" />
+        <Redirect to="/home" />
       </Switch>
     </BrowserRouter>
   </div>

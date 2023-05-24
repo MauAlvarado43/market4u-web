@@ -7,6 +7,7 @@ export const FilterProvider = ({ children }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedCompanies, setSelectedCompanies] = useState([]);
   const [priceRange, setPriceRange] = useState([]);
+  const [saleId, setSaleId] = useState("");
 
   return (
     <FilterContext.Provider
@@ -19,6 +20,8 @@ export const FilterProvider = ({ children }) => {
         setPriceRange,
         selectedPriceFilter,
         setSelectedPriceFilter,
+        setSaleId,
+        saleId
       }}
     >
       {children}
