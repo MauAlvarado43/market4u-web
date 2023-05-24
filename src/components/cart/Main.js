@@ -32,6 +32,7 @@ function Main() {
       municipality
       state
       cologn
+      telephone
     }
   }`, userId);
 
@@ -46,9 +47,6 @@ function Main() {
   if (reqUser.error) return "Error";
 
   const { user = {} } = reqUser.data;
-
-  console.log("user", user)
-
 
   return (
     <View

@@ -15,6 +15,7 @@ function Delivery({ user, products, setActiveStep }) {
     setActiveStep(3);
   }
 
+  console.log("user", user)
 
   return <View user={user} products={products} onSubmit={onSubmit} states={states} />;
 }

@@ -11,7 +11,7 @@ import Delivery from "components/cart/Delivery";
 import "./CartStyle.css"
 
 
-const MainView = ({ products, setProducts, activeStep, setActiveStep }) => (
+const MainView = ({ user, products, setProducts, activeStep, setActiveStep }) => (
 
   <div className="cart-content">
     <div className="step-bar-try">
@@ -33,6 +33,7 @@ const MainView = ({ products, setProducts, activeStep, setActiveStep }) => (
 
       <div className={activeStep === 2 ? 'step-div active' : 'step-div'}>
         <Delivery
+          user={user}
           products={products}
           setActiveStep={setActiveStep}
         // cart = {cart}

@@ -27,7 +27,7 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
               <div class="row">
                 <div class="col-md-6">
                   <label className="input">
-                    <Field type="text" name="phone" className="form-control input__field" placeholder=" " />
+                    <Field type="text" name="telephone" className="form-control input__field" placeholder=" " />
                     <span class="input__label">
                       Teléfono <span className='text-danger fw-bold'>*</span>
                     </span>
@@ -60,7 +60,7 @@ const DeliveryView = ({ user = {}, products, onSubmit, states }) => (
 
                 <div class="col-md-6">
                   <label className="input">
-                    <Field type="email" name="colony" className="form-control input__field" placeholder=" " />
+                    <Field type="email" name="cologn" className="form-control input__field" placeholder=" " />
                     <span class="input__label">
                       Colonia <span className='text-danger fw-bold'>*</span>
                     </span>
