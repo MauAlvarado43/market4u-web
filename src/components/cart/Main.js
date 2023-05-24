@@ -11,6 +11,7 @@ function Main() {
   const [activeStep, setActiveStep] = useState(1);
   const [products, setProducts] = useState([]);
   const cart = sessionStorage.getItem("cart");
+  const [data, setData] = useState({});
 
   const [callProducts, reqProducts] = usePost("/carts/active_products", {
     onCompleted: (data) => {
@@ -31,8 +32,15 @@ function Main() {
       cp
       municipality
       state
+      telephone
       cologn
       telephone
+      payments {
+        cardNumber
+        expireDate
+        address
+        bank
+      }
     }
   }`, userId);
 
@@ -48,9 +56,13 @@ function Main() {
 
   const { user = {} } = reqUser.data;
 
+  console.log(data);
+
   return (
     <View
       user={user}
+      data={data}
+      setData={setData}
       products={products}
       setProducts={setProducts}
       activeStep={activeStep}

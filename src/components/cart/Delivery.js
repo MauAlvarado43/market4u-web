@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { useDetail } from "seed/gql";
 import View from "components/cart/Delivery.view";
 
-function Delivery({ user, products, setActiveStep }) {
+function Delivery({ user, setData, products, setActiveStep }) {
 
-  const states = ['Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Coahuila',
-    'Colima', 'Chiapas', 'Chihuahua', 'Durango', 'Ciudad de México', 'Guanajuato', 'Guerrero',
-    'Hidalgo', 'Jalisco', 'Estado de México', 'Michoacán', 'Morelos', 'Nayarit', 'Nuevo León',
-    'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa, Sonora', 'Tabasco',
-    'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas']
+  const formikRef = useRef(null);
 
-  const onSubmit = (values) => {
+  const onSubmit = () => {
+    const values = formikRef.current.values;
+    console.log("values: ", values)
+    setData((prevData) => {
+      const newData = {...prevData};
+      newData.delivery = values;
+      return newData;
+    })
     setActiveStep(3);
   }
 
-  console.log("user", user)
+  return <View formikRef={formikRef} user={user} products={products} onSubmit={onSubmit} />;
 
-  return <View user={user} products={products} onSubmit={onSubmit} states={states} />;
 }
 
 Delivery.propTypes = {};
