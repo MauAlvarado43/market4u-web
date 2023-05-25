@@ -18,6 +18,8 @@ function Delivery({ user, setData, products, setActiveStep }) {
     setActiveStep(3);
   }
 
+  console.log("user", user);
+
   return <View formikRef={formikRef} user={user} products={products} onSubmit={onSubmit} />;
 
 }

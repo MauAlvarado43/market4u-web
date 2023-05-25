@@ -102,9 +102,9 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                 <Field as="select" name="state" className="form-control input__field" placeholder=" ">
                   <option value="">Selecciona un estado</option>
                   {
-                    states.map((state, idx) => {
+                    states.map((state, idx) => (
                       <option key={idx} value={state}>{getStateName(state)}</option>
-                    })
+                    ))
                   }
                 </Field>
                 <span class="input__label">
