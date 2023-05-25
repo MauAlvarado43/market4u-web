@@ -10,7 +10,7 @@ function Nav() {
   const showFilterIcon = location.pathname.includes("/home");
   const [showModal, setShowModal] = useState(false);
   const [values, setValues] = useState([1000, 15000]);
-
+  
   const handleChange = (newValues) => {
     setValues(newValues);
   };

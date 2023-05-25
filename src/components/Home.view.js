@@ -12,13 +12,13 @@ import History from "components/history/History";
 import ProductDetail from "components/products/Detail";
 import WishList from "components/wishlist/WishList";
 
-const HomeView = () =>
+const HomeView = ({
+  user_type
+}) =>
   <BrowserRouter>
     <Switch>
       <div>
-
         <Nav/>
-
         <div id="content">
           <Switch>
             <Route path="/wishlist" component={WishList} />
@@ -30,7 +30,6 @@ const HomeView = () =>
             <Route path="/product/:productId(\d+)" component={ProductDetail} />
             <Redirect to="/home" />
           </Switch>
-
         </div>
 
       </div>

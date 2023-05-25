@@ -7,6 +7,7 @@ const InfoCards = ({
     onClickDelete 
 }) => (
   <div className="col-md-9 ml-1">
+    
     <div
       className="card mt-5 col-md-11 mx-auto"
       style={{

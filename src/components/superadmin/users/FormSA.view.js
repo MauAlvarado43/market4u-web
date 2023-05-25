@@ -19,7 +19,9 @@ const FormView = (
         handlePasswordChange,
         showCompany,
         changeType,
-        userType
+        userType,
+        setSelectedType,
+        selectedType
     }
 ) => (
     <div class="card">
@@ -97,186 +99,11 @@ const FormView = (
                                                         value={values.email || ''}
                                                         required
                                                         class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0"
+                                                        border-right-0 border-bottom-5 border-dark rounded-0 mb-3"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
                                                         Correo eléctronico
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="telephone"
-                                                        value={values.telephone || ''}
-                                                        required
-                                                        class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0 mb-4"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Teléfono
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span className="h4">Dirección</span>
-                                    <div class="mb-3 mt-2">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="street"
-                                                        value={values.street || ''}
-                                                        required
-                                                        class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Calle
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="cologn"
-                                                        value={values.cologn || ''}
-                                                        required
-                                                        class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Colonia
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="city"
-                                                        value={values.city || ''}
-                                                        required
-                                                        class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Ciudad
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="number"
-                                                        name="cp"
-                                                        required
-                                                        value={values.cp || ''}
-                                                        class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Codigo postal
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3 row">
-                                            <div class="form-group col-md-6">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="municipality"
-                                                        value={values.municipality || ''}
-                                                        required
-                                                        class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Municipio
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <div class="form-group col-md-6 mt-1">
-                                                <label class="input">
-                                                    <Field
-                                                        as="select"
-                                                        name="state"
-                                                        class="form-control input__field border-dark mb-4"
-                                                        required
-                                                    >
-                                                        <option value="">Seleccione una opción</option>
-                                                        <option value="AGUASCALIENTES">AGUASCALIENTES</option>
-                                                        <option value="BAJA_CALIFORNIA">BAJA CALIFORNIA</option>
-                                                        <option value="BAJA_CALIFORNIA_SUR">BAJA CALIFORNIA SUR</option>
-                                                        <option value="CAMPECHE">CAMPECHE</option>
-                                                        <option value="COAHUILA">COAHUILA</option>
-                                                        <option value="COLIMA">COLIMA</option>
-                                                        <option value="CHIAPAS">CHIAPAS</option>
-                                                        <option value="CHIHUAHUA">CHIHUAHUA</option>
-                                                        <option value="DURANGO">DURANGO</option>
-                                                        <option value="CIUDAD_DE_MEXICO">CIUDAD DE MEXICO</option>
-                                                        <option value="GUANAJUATO">GUANAJUATO</option>
-                                                        <option value="GUERRERO">GUERRERO</option>
-                                                        <option value="HIDALGO">HIDALGO</option>
-                                                        <option value="JALISCO">JALISCO</option>
-                                                        <option value="MEXICO">MEXICO</option>
-                                                        <option value="MICHOACAN">MICHOACAN</option>
-                                                        <option value="MORELOS">MORELOS</option>
-                                                        <option value="NAYARIT">NAYARIT</option>
-                                                        <option value="NUEVO_LEON">NUEVO LEON</option>
-                                                        <option value="OAXACA">OAXACA</option>
-                                                        <option value="PUEBLA">PUEBLA</option>
-                                                        <option value="QUERETARO">QUERETARO</option>
-                                                        <option value="QUINTANA_ROO">QUINTANA ROO</option>
-                                                        <option value="SAN_LUIS_POTOSI">SAN LUIS POTOSI</option>
-                                                        <option value="SINALOA">SINALOA</option>
-                                                        <option value="SONORA">SONORA</option>
-                                                        <option value="TABASCO">TABASCO</option>
-                                                        <option value="TAMAULIPAS">TAMAULIPAS</option>
-                                                        <option value="TLAXCALA">TLAXCALA</option>
-                                                        <option value="VERACRUZ">VERACRUZ</option>
-                                                        <option value="YUCATAN">YUCATAN</option>
-                                                        <option value="ZACATECAS">ZACATECAS</option>
-                                                    </Field>
-                                                    <span class="input__label">
-                                                        Estado
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
@@ -361,7 +188,8 @@ const FormView = (
                                                             name="company.id"
                                                             class="form-control input__field border-dark"
                                                             placeholder=" "
-                                                            required
+                                                            required={selectedType !== 'NORMAL' && 
+                                                                selectedType !== 'SUPERADMIN' ? 'required' : ''}
                                                         >
                                                             <option value="">Seleccione una opción</option>
                                                             {companies.map((e, idx) =>

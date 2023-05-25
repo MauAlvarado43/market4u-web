@@ -57,7 +57,7 @@ const InfoUserView = ({
                               required
                             />
                             <span class="input__label">
-                              Nombre{" "}
+                              Nombre
                               <span className="text-danger fw-bold">*</span>
                             </span>
                           </>
@@ -92,7 +92,7 @@ const InfoUserView = ({
                               required
                             />
                             <span class="input__label">
-                              Apellidos {" "}
+                              Apellidos
                               <span className="text-danger fw-bold">*</span>
                             </span>
                           </>
@@ -121,11 +121,9 @@ const InfoUserView = ({
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                             placeholder=" "
-                            required
                           />
                           <span class="input__label">
                             Teléfono
-                            <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
                       </div>
@@ -156,11 +154,9 @@ const InfoUserView = ({
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                             placeholder=" "
-                            required
                           />
                           <span class="input__label">
                             Calle y número{" "}
-                            <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
                       </div>
@@ -172,11 +168,9 @@ const InfoUserView = ({
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                             placeholder=" "
-                            required
                           />
                           <span class="input__label">
                             Colonia{" "}
-                            <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
                       </div>
@@ -188,10 +182,9 @@ const InfoUserView = ({
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                             placeholder=" "
-                            required
                           />
                           <span class="input__label">
-                            CP<span className="text-danger fw-bold">*</span>
+                            CP
                           </span>
                         </label>
                       </div>
@@ -203,11 +196,9 @@ const InfoUserView = ({
                             className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                             placeholder=" "
-                            required
                           />
                           <span class="input__label">
-                            Ciudad{" "}
-                            <span className="text-danger fw-bold">*</span>
+                            Ciudad
                           </span>
                         </label>
                       </div>
@@ -219,7 +210,6 @@ const InfoUserView = ({
                               as="select"
                               name={user.type !== "ADMIN" ? "state" : "company.state"}
                               className="form-control input__field border-dark"
-                              required
                             >
                               <option value="NS">Seleccionar estado</option>
                               <option value="AGUASCALIENTES">
@@ -266,8 +256,7 @@ const InfoUserView = ({
                               <option value="ZACATECAS">Zacatecas</option>
                             </Field>
                             <span class="input__label">
-                              Estado{" "}
-                              <span className="text-danger fw-bold">*</span>
+                              Estado
                             </span>
                           </label>
                         </div>
@@ -279,11 +268,9 @@ const InfoUserView = ({
                               className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                               placeholder=" "
-                              required
                             />
                             <span class="input__label">
                               Alcaldía o Municipio
-                              <span className="text-danger fw-bold">*</span>
                             </span>
                           </label>
                         </div>
@@ -325,7 +312,6 @@ const InfoUserView = ({
                             </Field>
                             <span class="input__label">
                               Actualizar contraseña
-                              <span className="text-danger fw-bold">*</span>
                               <button
                                 type="button"
                                 onClick={togglePasswordVisibility}
@@ -367,7 +353,6 @@ const InfoUserView = ({
                             </Field>
                             <span class="input__label">
                               Confirmar contraseña
-                              <span className="text-danger fw-bold">*</span>
                               <button
                                 type="button"
                                 onClick={togglePasswordVisibilityConfirm}

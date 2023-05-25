@@ -17,7 +17,7 @@ const DetailView = ({
   rate,
   exist
 }) =>
-  <div class="px-6" style={{overflowY: "auto", overflowX: "hidden", maxHeight: "95vh"}}>
+  <div class="px-6" style={{overflowY: "auto", overflowX: "hidden"}}>
 
     <div className="row">
       <div className="col-md-1">
@@ -157,17 +157,17 @@ const DetailView = ({
       <div className="col-md-2 px-3">
         <div className="d-flex flex-column align-items-center justify-content-center">
 
-          <button className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3" disabled={!exist || stock == 0}>
+          <button className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3" disabled={!exist || stock == 0 || Object.keys(selectedOptions).length != Object.keys(variantOptions).length }>
             <i className="fas fa-shopping-cart mr-3 fa-lg"></i> Agregar al carrito
           </button>
           
-          <button className="btn btn-secondary btn-sm rounded-pill p-2 w-100 px-3 mt-3" disabled={!exist || stock == 0}>
+          <button className="btn btn-secondary btn-sm rounded-pill p-2 w-100 px-3 mt-3" disabled={!exist || stock == 0 || Object.keys(selectedOptions).length != Object.keys(variantOptions).length}>
             <i className="fas fa-check mr-3 fa-lg"></i> Comprar ahora
           </button>
 
           {
-            (!exist || stock == 0) && <div className="">
-                <div className="alert alert-danger mt-3 p-2" role="alert">
+            (Object.keys(selectedOptions).length > 0 && !exist || stock == 0) && <div className="">
+                <div className="alert alert-danger mt-3 p-2 w-100" role="alert">
                   { exist && stock == 0 ? "No hay stock disponible" : "" }
                   { !exist ? "Este producto no existe" : ""}
               </div>
