@@ -55,6 +55,7 @@ const ShippingFormView = ({ shipping= {}, users= [], carts= [], onSubmit, error 
               <option value="CREATED">CREATED</option>
               <option value="SENT">SENT</option>
               <option value="COMPLETED">COMPLETED</option>
+              <option value="CANCELED">CANCELED</option>
             </Field>
             </div>
             {/* Seller */}
