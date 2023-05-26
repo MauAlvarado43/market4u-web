@@ -1,15 +1,23 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import swal from "sweetalert";
 import View from "components/cart/Cart.view";
 
-function Cart({ setData, products, setProducts, setActiveStep }) {
+function Cart({ setDeliveryStep, setData, products, setProducts, setActiveStep }) {
 
   const onSubmit = () => {
+
+    if (products.length == 0) {
+      swal("Sin productos!", "No tienes productos en tu carrito, date una vuelta y agrega algunos ahora mismo", "error");
+      return;
+    }
+
     setData((prevData) => {
-      let newData = {...prevData};
+      let newData = { ...prevData };
       newData.products = products;
       return newData;
     })
+    setDeliveryStep(true);
     setActiveStep(2);
   }
 
@@ -78,7 +86,15 @@ function Cart({ setData, products, setProducts, setActiveStep }) {
 
   }
 
-  return <View products={products} onSubmit={onSubmit} onDeleteProduct={onDeleteProduct} onAddAmount={onAddAmount} onRemoveAmount={onRemoveAmount} />;
+  return (
+    <View
+      products={products}
+      onSubmit={onSubmit}
+      onDeleteProduct={onDeleteProduct}
+      onAddAmount={onAddAmount}
+      onRemoveAmount={onRemoveAmount}
+    />
+  );
 }
 
 Cart.propTypes = {};

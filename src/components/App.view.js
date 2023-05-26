@@ -5,11 +5,9 @@ import Home from "components/Home";
 import Login from "components/auth/Login";
 import Logout from "components/auth/Logout";
 import Signup from "components/auth/Signup";
-import Products from "components/products/Products"
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
-import FinalizarCompra from "components/cart/PurchaseCompleted";
 import { FilterProvider } from "components/helpers/FilterContext";
 import Sales from "components/sales/Sales";
 import CategorySA from "components/superadmin/category/CategorySA";
@@ -34,7 +32,6 @@ const AppView = ({
         <Route path="/verify_email/:token" component={VerifyEmail} />
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
-        <Route path="/main" component={Main} />
         <Route path="/sales" component={Sales} />
         <Route path="/superadmin/category" component={CategorySA} />
         <Route path="/superadmin/opinion" component={OpinionSA} />
@@ -43,8 +40,7 @@ const AppView = ({
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
         <Route path="/users" component={Users} />
-        <Route path="/finalizar" component={FinalizarCompra} />
-        <Route path="/" component={Home} />
+        <Route path="/home" component={Home} />
         <Redirect to="/home" />
       </Switch>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 const GQL_CART_ = {
     buyer:  { id: 1},
-    payment:  { id: 1},
+    payment: "",
     shippings: [ { id: 1} ],
 }
 export const GQL_CART = {
@@ -21,7 +21,7 @@ export const GQL_CART_PAGINATION = {
 
 export const API_CART = {
     buyer_id:  1,
-    payment_id:  1,
+    payment: "",
     shipping_ids: [1],
 }
 export const API_CARTS = [API_CART]
@@ -311,8 +311,9 @@ const GQL_SHIPPING_ = {
     folio: "",
     address: "",
     status: "CREATED",
-    seller:  { id: 1},
     cart:  { id: 1},
+    buyer:  { id: 1},
+    company:  { id: 1},
 }
 export const GQL_SHIPPING = {
     shipping: GQL_SHIPPING_
@@ -335,8 +336,9 @@ export const API_SHIPPING = {
     folio: "",
     address: "",
     status: "CREATED",
-    seller_id:  1,
     cart_id:  1,
+    buyer_id:  1,
+    company_id:  1,
 }
 export const API_SHIPPINGS = [API_SHIPPING]
 

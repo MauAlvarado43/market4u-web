@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import View from "components/Home.view";
-import { useDetail } from "seed/gql";
+import { useGetCall } from "seed/api";
 
 function Home() {
   const [isAuth, setIsAuth] = useState(false)

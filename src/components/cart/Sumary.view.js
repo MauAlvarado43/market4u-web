@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./CartStyle.css"
 
 const getTotal = (products) => {
   let total = 0;

@@ -13,23 +13,26 @@ import View from "seed/examples/components/shippings/Form.view";
 
 function ShippingFormSave({ onCompleted = () => null, onError = () => null }) {
   
-  const qUsers = useQuery(`{ users { } }`);
   const qCarts = useQuery(`{ carts { } }`);
+  const qUsers = useQuery(`{ users { } }`);
+  const qCompanies = useQuery(`{ companies { } }`);
   const [callSave, qSave] = useSave(SAVE_SHIPPING, {
     onCompleted: () =>
       onCompleted()
       //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
   });
-  const { users = [] } = qUsers.data;
   const { carts = [] } = qCarts.data;
+  const { users = [] } = qUsers.data;
+  const { companies = [] } = qCompanies.data;
   const error = qSave.error ? "An error has occurred" : null;
 
   const onSubmit = (values) =>
     callSave(values);
 
   return <View
-    users={users}
     carts={carts}
+    users={users}
+    companies={companies}
     error={error}
     onSubmit={onSubmit}
   />;

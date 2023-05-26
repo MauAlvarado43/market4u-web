@@ -6,7 +6,7 @@ import { states, getStateName } from "components/utils/constants";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 
-const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
+const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit, handleSubmit }) => (
 
   <div className='row'>
 
@@ -18,6 +18,7 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
 
       <Formik
         innerRef={formikRef}
+        validationSchema={deliverySchema}
         initialValues={user}
         onSubmit={onSubmit}
       >
@@ -34,6 +35,13 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                       Teléfono <span className='text-danger fw-bold'>*</span>
                     </span>
                   </label>
+                  {
+                    errors.telephone && (touched.telephone || submitCount > 0)
+                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        {errors.telephone}
+                      </div>
+                      : null
+                  }
                 </div>
 
                 <div class="col-md-6">
@@ -43,6 +51,13 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                       Correo electrónico <span className='text-danger fw-bold'>*</span>
                     </span>
                   </label>
+                  {
+                    errors.email && (touched.email || submitCount > 0)
+                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        {errors.email}
+                      </div>
+                      : null
+                  }
                 </div>
               </div>
 
@@ -58,15 +73,29 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                       Calle y número <span className='text-danger fw-bold'>*</span>
                     </span>
                   </label>
+                  {
+                    errors.street && (touched.street || submitCount > 0)
+                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        {errors.street}
+                      </div>
+                      : null
+                  }
                 </div>
 
                 <div class="col-md-6">
                   <label className="input">
-                    <Field type="email" name="cologn" className="form-control input__field" placeholder=" " />
+                    <Field type="text" name="cologn" className="form-control input__field" placeholder=" " />
                     <span class="input__label">
                       Colonia <span className='text-danger fw-bold'>*</span>
                     </span>
                   </label>
+                  {
+                    errors.cologn && (touched.cologn || submitCount > 0)
+                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        {errors.cologn}
+                      </div>
+                      : null
+                  }
                 </div>
               </div>
 
@@ -82,6 +111,13 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                       C.P. <span className='text-danger fw-bold'>*</span>
                     </span>
                   </label>
+                  {
+                    errors.cp && (touched.cp || submitCount > 0)
+                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        {errors.cp}
+                      </div>
+                      : null
+                  }
                 </div>
 
                 <div class="col-md-6">
@@ -91,6 +127,13 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                       Ciudad <span className='text-danger fw-bold'>*</span>
                     </span>
                   </label>
+                  {
+                    errors.city && (touched.city || submitCount > 0)
+                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        {errors.city}
+                      </div>
+                      : null
+                  }
                 </div>
               </div>
 
@@ -111,7 +154,13 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                   Estado <span className='text-danger fw-bold'>*</span>
                 </span>
               </label>
-
+              {
+                errors.state && (touched.state || submitCount > 0)
+                  ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                    {errors.state}
+                  </div>
+                  : null
+              }
             </div>
 
             <div class="form-group my-4">
@@ -122,9 +171,15 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
                   Referencias <span className='text-danger fw-bold'>*</span>
                 </span>
               </label>
-
+              {
+                errors.references && (touched.references || submitCount > 0)
+                  ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                    {errors.references}
+                  </div>
+                  : null
+              }
             </div>
-
+            
           </Form>
         }
       </Formik>
@@ -134,7 +189,7 @@ const DeliveryView = ({ user = {}, formikRef, products, onSubmit }) => (
     <div className="col-md-1"></div>
 
     <div className="col-md-5 mt-5">
-      <Sumary products={products} onSubmit={onSubmit} />
+      <Sumary products={products} onSubmit={handleSubmit} />
     </div>
 
   </div>

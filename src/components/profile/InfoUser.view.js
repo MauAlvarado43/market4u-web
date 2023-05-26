@@ -45,6 +45,7 @@ const InfoUserView = ({
                     <Form>
                       <div class="mb-2 mt-2">
                         {/*BASIC FIELDS*/}
+
                         <div class="form-group">
                           <label className="input">
                             {user.type !== "ADMIN" ? (
@@ -80,6 +81,7 @@ const InfoUserView = ({
                             )}
                           </label>
                         </div>
+
                         <div class="form-group">
                           <label className="input">
                             {user.type !== "ADMIN" ?
@@ -114,21 +116,7 @@ const InfoUserView = ({
                               </>}
                           </label>
                         </div>
-                        <div class="form-group">
-                          <label className="input">
-                            <Field
-                              type="number"
-                              name={user.type !== "ADMIN" ? "telephone" : "company.phone"}
-                              className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                              placeholder=" "
-                              required
-                            />
-                            <span class="input__label">
-                              Teléfono<span className="text-danger fw-bold">*</span>
-                            </span>
-                          </label>
-                        </div>
+
                         <div class="form-group">
                           <label className="input">
                             <Field
@@ -145,9 +133,27 @@ const InfoUserView = ({
                             </span>
                           </label>
                         </div>
+
+                        <div class="form-group">
+                          <label className="input">
+                            <Field
+                              type="number"
+                              name={user.type !== "ADMIN" ? "telephone" : "company.phone"}
+                              className="form-control input__field border-top-0 border-left-0
+                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                              placeholder=" "
+                              required
+                            />
+                            <span class="input__label">
+                              Teléfono<span className="text-danger fw-bold">*</span>
+                            </span>
+                          </label>
+                        </div>
+
                         <div class="form-group text-left">
                           <h4>Dirección</h4>
                         </div>
+
                         <div class="form-group">
                           <label className="input">
                             <Field
@@ -164,6 +170,7 @@ const InfoUserView = ({
                             </span>
                           </label>
                         </div>
+
                         <div class="form-group">
                           <label className="input">
                             <Field
@@ -178,155 +185,9 @@ const InfoUserView = ({
                               Colonia{" "}
                               <span className="text-danger fw-bold">*</span>
                             </span>
-                          </>}
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <label className="input">
-                          <Field
-                            type="number"
-                            name={user.type !== "ADMIN" ? "telephone" : "company.phone"}
-                            className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                            placeholder=" "
-                          />
-                          <span class="input__label">
-                            Teléfono
-                          </span>
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <label className="input">
-                          <Field
-                            type="email"
-                            name={user.type !== "ADMIN" ? "email" : "company.email"}
-                            className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                            placeholder=" "
-                            required
-                          />
-                          <span class="input__label">
-                            e-mail{" "}
-                            <span className="text-danger fw-bold">*</span>
-                          </span>
-                        </label>
-                      </div>
-                      <div class="form-group text-left">
-                        <h4>Dirección</h4>
-                      </div>
-                      <div class="form-group">
-                        <label className="input">
-                          <Field
-                            type="text"
-                            name={user.type !== "ADMIN" ? "street" : "company.street"}
-                            className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                            placeholder=" "
-                          />
-                          <span class="input__label">
-                            Calle y número{" "}
-                          </span>
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <label className="input">
-                          <Field
-                            type="text"
-                            name={user.type !== "ADMIN" ? "cologn" : "company.cologn"}
-                            className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                            placeholder=" "
-                          />
-                          <span class="input__label">
-                            Colonia{" "}
-                          </span>
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <label className="input">
-                          <Field
-                            type="number"
-                            name={user.type !== "ADMIN" ? "cp" : "company.cp"}
-                            className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                            placeholder=" "
-                          />
-                          <span class="input__label">
-                            CP
-                          </span>
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <label className="input">
-                          <Field
-                            type="text"
-                            name={user.type !== "ADMIN" ? "city" : "company.city"}
-                            className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                            placeholder=" "
-                          />
-                          <span class="input__label">
-                            Ciudad
-                          </span>
-                        </label>
-                      </div>
-
-                      <div className="d-flex mb-3">
-                        <div className="form-group col-md-6">
-                          <label className="input">
-                            <Field
-                              as="select"
-                              name={user.type !== "ADMIN" ? "state" : "company.state"}
-                              className="form-control input__field border-dark"
-                            >
-                              <option value="NS">Seleccionar estado</option>
-                              <option value="AGUASCALIENTES">
-                                Aguascalientes
-                              </option>
-                              <option value="BAJA_CALIFORNIA">
-                                Baja California
-                              </option>
-                              <option value="BAJA_CALIFORNIA_SUR">
-                                Baja California Sur
-                              </option>
-                              <option value="CAMPECHE">Campeche</option>
-                              <option value="COAHUILA">Coahuila</option>
-                              <option value="COLIMA">Colima</option>
-                              <option value="CHIAPAS">Chiapas</option>
-                              <option value="CHIHUAHUA">Chihuahua</option>
-                              <option value="CIUDAD_DE_MEXICO">
-                                Ciudad de México
-                              </option>
-                              <option value="DURANGO">Durango</option>
-                              <option value="GUANAJUATO">Guanajuato</option>
-                              <option value="GUERRERO">Guerrero</option>
-                              <option value="HIDALGO">Hidalgo</option>
-                              <option value="JALISCO">Jalisco</option>
-                              <option value="MEXICO">México</option>
-                              <option value="MICHOACAN">Michoacán</option>
-                              <option value="MORELOS">Morelos</option>
-                              <option value="NAYARIT">Nayarit</option>
-                              <option value="NUEVO_LEON">Nuevo León</option>
-                              <option value="OAXACA">Oaxaca</option>
-                              <option value="PUEBLA">Puebla</option>
-                              <option value="QUERETARO">Querétaro</option>
-                              <option value="QUINTANA_ROO">Quintana Roo</option>
-                              <option value="SAN_LUIS_POTOSI">
-                                San Luis Potosí
-                              </option>
-                              <option value="SINALOA">Sinaloa</option>
-                              <option value="SONORA">Sonora</option>
-                              <option value="TABASCO">Tabasco</option>
-                              <option value="TAMAULIPAS">Tamaulipas</option>
-                              <option value="TLAXCALA">Tlaxcala</option>
-                              <option value="VERACRUZ">Veracruz</option>
-                              <option value="YUCATAN">Yucatán</option>
-                              <option value="ZACATECAS">Zacatecas</option>
-                            </Field>
-                            <span class="input__label">
-                              Estado
                           </label>
                         </div>
+
                         <div class="form-group">
                           <label className="input">
                             <Field
@@ -335,13 +196,13 @@ const InfoUserView = ({
                               className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                               placeholder=" "
-                              required
                             />
                             <span class="input__label">
-                              CP<span className="text-danger fw-bold">*</span>
+                              CP
                             </span>
                           </label>
                         </div>
+
                         <div class="form-group">
                           <label className="input">
                             <Field
@@ -352,54 +213,7 @@ const InfoUserView = ({
                               placeholder=" "
                             />
                             <span class="input__label">
-                              Alcaldía o Municipio
-                            </span>
-                          </label>
-                        </div>
-                      </div>
-                      {user.type !== "ADMIN" ? null : (
-                      <div class="form-group">
-                        <label className="input">
-                          <Field
-                            type="text"
-                            name="company.rfc"
-                            disabled
-                            className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                            placeholder=" "
-                            required
-                          />
-                          <span class="input__label">
-                            RFC 
-                            <span className="text-danger fw-bold">*</span>
-                          </span>
-                        </label>
-                      </div>
-                      )}
-                      <div class="form-group text-left mb-auto">
-                        <h4>Contraseña</h4>
-                      </div>
-                      <br/><br/>
-                      <div className="d-flex mb-5 mt-auto">
-                        <div className="form-group col-md-6">
-                          <label className="input">
-                            <Field
-                              id="pass"
-                              name="password"
-                              type={showPassword ? "text" : "password"}
-                              className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                              onChange={handlePasswordChange}
-                            >
-                            </Field>
-                            <span class="input__label">
-                              Actualizar contraseña
-                              <button
-                                type="button"
-                                onClick={togglePasswordVisibility}
-                                className="btn btn-outline-secondary bg-transparent border-0"
-                              Ciudad{" "}
-                              <span className="text-danger fw-bold">*</span>
+                              Ciudad
                             </span>
                           </label>
                         </div>
@@ -411,38 +225,88 @@ const InfoUserView = ({
                                 as="select"
                                 name={user.type !== "ADMIN" ? "state" : "company.state"}
                                 className="form-control input__field border-dark"
-                                required
                               >
                                 <option value="NS">Seleccionar estado</option>
-                                {
-                                  states.map((state, idx) => (
-                                    <option key={idx} value={state}>{getStateName(state)}</option>
-                                  ))
-                                }
+                                <option value="AGUASCALIENTES">
+                                  Aguascalientes
+                                </option>
+                                <option value="BAJA_CALIFORNIA">
+                                  Baja California
+                                </option>
+                                <option value="BAJA_CALIFORNIA_SUR">
+                                  Baja California Sur
+                                </option>
+                                <option value="CAMPECHE">Campeche</option>
+                                <option value="COAHUILA">Coahuila</option>
+                                <option value="COLIMA">Colima</option>
+                                <option value="CHIAPAS">Chiapas</option>
+                                <option value="CHIHUAHUA">Chihuahua</option>
+                                <option value="CIUDAD_DE_MEXICO">
+                                  Ciudad de México
+                                </option>
+                                <option value="DURANGO">Durango</option>
+                                <option value="GUANAJUATO">Guanajuato</option>
+                                <option value="GUERRERO">Guerrero</option>
+                                <option value="HIDALGO">Hidalgo</option>
+                                <option value="JALISCO">Jalisco</option>
+                                <option value="MEXICO">México</option>
+                                <option value="MICHOACAN">Michoacán</option>
+                                <option value="MORELOS">Morelos</option>
+                                <option value="NAYARIT">Nayarit</option>
+                                <option value="NUEVO_LEON">Nuevo León</option>
+                                <option value="OAXACA">Oaxaca</option>
+                                <option value="PUEBLA">Puebla</option>
+                                <option value="QUERETARO">Querétaro</option>
+                                <option value="QUINTANA_ROO">Quintana Roo</option>
+                                <option value="SAN_LUIS_POTOSI">
+                                  San Luis Potosí
+                                </option>
+                                <option value="SINALOA">Sinaloa</option>
+                                <option value="SONORA">Sonora</option>
+                                <option value="TABASCO">Tabasco</option>
+                                <option value="TAMAULIPAS">Tamaulipas</option>
+                                <option value="TLAXCALA">Tlaxcala</option>
+                                <option value="VERACRUZ">Veracruz</option>
+                                <option value="YUCATAN">Yucatán</option>
+                                <option value="ZACATECAS">Zacatecas</option>
                               </Field>
                               <span class="input__label">
-                                Estado{" "}
-                                <span className="text-danger fw-bold">*</span>
+                                Estado
                               </span>
                             </label>
                           </div>
-                          <div className="form-group col-md-6">
+
+                          <div class="form-group">
                             <label className="input">
                               <Field
-                                type="text"
-                                name={user.type !== "ADMIN" ? "municipality" : "company.municipality"}
+                                type="number"
+                                name={user.type !== "ADMIN" ? "cp" : "company.cp"}
                                 className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                 placeholder=" "
                                 required
                               />
                               <span class="input__label">
+                                CP<span className="text-danger fw-bold">*</span>
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label className="input">
+                              <Field
+                                type="text"
+                                name={user.type !== "ADMIN" ? "city" : "company.city"}
+                                className="form-control input__field border-top-0 border-left-0
+                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                placeholder=" "
+                              />
+                              <span class="input__label">
                                 Alcaldía o Municipio
-                                <span className="text-danger fw-bold">*</span>
                               </span>
                             </label>
                           </div>
                         </div>
+
                         {user.type !== "ADMIN" ? null : (
                           <div class="form-group">
                             <label className="input">
@@ -462,11 +326,15 @@ const InfoUserView = ({
                             </label>
                           </div>
                         )}
+
                         <div class="form-group text-left mb-auto">
                           <h4>Contraseña</h4>
                         </div>
+
                         <br /><br />
+
                         <div className="d-flex mb-5 mt-auto">
+
                           <div className="form-group col-md-6">
                             <label className="input">
                               <Field
@@ -480,35 +348,25 @@ const InfoUserView = ({
                               </Field>
                               <span class="input__label">
                                 Actualizar contraseña
-                                <span className="text-danger fw-bold">*</span>
                                 <button
                                   type="button"
                                   onClick={togglePasswordVisibility}
-                                  className="btn btn-outline-secondary bg-transparent border-0"
-                                >
-                                  <i
-                                    className={
-                                      showPassword
-                                        ? "fas fa-eye"
-                                        : "fas fa-eye-slash"
-                                    }
-                                  />
-                                </button>
+                                  className="btn btn-outline-secondary bg-transparent border-0"></button>
+                                <span className="text-danger fw-bold">*</span>
                               </span>
                             </label>
-                            <ErrorMessage
-                              name="passwordConfirm"
-                              component="div"
-                              className="text-danger"
-                            />
                           </div>
+
                           <div className="form-group col-md-6">
                             <label className="text-left">
                               En caso de no querer realizar modificaciones en tu contraseña, omite estos campos.
                             </label>
                           </div>
+
                         </div>
+
                         <div className="d-flex mb-5 mt-auto">
+
                           <div className="form-group col-md-6">
                             <label className="input">
                               <Field
@@ -517,18 +375,10 @@ const InfoUserView = ({
                                 type={showPassConfirm ? "text" : "password"}
                                 className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                              onChange={(ev) => setPasswordConfirm(ev.target.value)}
-                            >
-                            </Field>
-                            <span class="input__label">
-                              Confirmar contraseña
-                              <button
-                                type="button"
-                                onClick={togglePasswordVisibilityConfirm}
-                                className="btn btn-outline-secondary bg-transparent border-0"
                                 onChange={(ev) => setPasswordConfirm(ev.target.value)}
                               >
                               </Field>
+
                               <span class="input__label">
                                 Confirmar contraseña
                                 <span className="text-danger fw-bold">*</span>
@@ -561,7 +411,10 @@ const InfoUserView = ({
                               por ejemplo: &?!@&#41;.
                             </label>
                           </div>
+
+
                         </div>
+
                         <div class="form-group">
                           <div className="d-flex justify-content-center">
                             <div className="d-flex justify-content-center align-items-center pt-2">

@@ -14,8 +14,9 @@ import View from "seed/examples/components/shippings/Form.view";
 function ShippingFormSet({ shippingId, onCompleted = () => null, onError = () => null  }) {
 
   const qShipping = useDetail(SHIPPING, shippingId);
-  const qUsers = useQuery(`{ users { } }`);
   const qCarts = useQuery(`{ carts { } }`);
+  const qUsers = useQuery(`{ users { } }`);
+  const qCompanies = useQuery(`{ companies { } }`);
   const [callSet, qSet] = useSet(SET_SHIPPING, {
     onCompleted: () =>
       onCompleted()
@@ -25,8 +26,9 @@ function ShippingFormSet({ shippingId, onCompleted = () => null, onError = () =>
   if (qShipping.loading) return <Loading />;
 
   const { shipping = {} } = qShipping.data;
-  const { users = [] } = qUsers.data;
   const { carts = [] } = qCarts.data;
+  const { users = [] } = qUsers.data;
+  const { companies = [] } = qCompanies.data;
   const error = qSet.error ? "An error has occurred" : null;
 
   const onSubmit = (values) => {
@@ -36,8 +38,9 @@ function ShippingFormSet({ shippingId, onCompleted = () => null, onError = () =>
 
   return <View
     shipping={shipping}
-    users={users}
     carts={carts}
+    users={users}
+    companies={companies}
     error={error}
     onSubmit={onSubmit}
   />;
