@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Sumary from "components/cart/Sumary";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
-const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
+const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, onSubmit, onSelectCard, handleSubmit, paymentSchema }) => (
   <div className='row'>
 
     <div className='col-md-6 text-left p-4' style={{ backgroundColor: "#F5F5F5", borderRadius: "10px" }}>
@@ -16,6 +16,7 @@ const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
       <div className="mt-3">
         <h3>Agregar tarjeta de crédito/débito</h3>
         <Formik
+          validationSchema={paymentSchema}
           innerRef={formikRef}
           initialValues={{}}
           onSubmit={onSubmit}
@@ -30,6 +31,13 @@ const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
                     Nombre que aparece en la tarjeta <span className='text-danger fw-bold'>*</span>
                   </span>
                 </label>
+                {
+                  errors.name && (touched.name || submitCount > 0)
+                    ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      {errors.name}
+                    </div>
+                    : null
+                }
               </div>
 
               <div class="form-group my-4">
@@ -43,6 +51,13 @@ const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
                         Número de la tarjeta <span className='text-danger fw-bold'>*</span>
                       </span>
                     </label>
+                    {
+                      errors.cardNumber && (touched.cardNumber || submitCount > 0)
+                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                          {errors.cardNumber}
+                        </div>
+                        : null
+                    }
                   </div>
 
                   <div className="col-md-3">
@@ -52,6 +67,13 @@ const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
                         Vencimiento <span className='text-danger fw-bold'>*</span>
                       </span>
                     </label>
+                    {
+                      errors.expireDate && (touched.expireDate || submitCount > 0)
+                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                          {errors.expireDate}
+                        </div>
+                        : null
+                    }
                   </div>
 
                   <div className="col-md-3">
@@ -61,6 +83,13 @@ const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
                         CVV <span className='text-danger fw-bold'>*</span>
                       </span>
                     </label>
+                    {
+                      errors.cvv && (touched.cvv || submitCount > 0)
+                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                          {errors.cvv}
+                        </div>
+                        : null
+                    }
                   </div>
 
                 </div>
@@ -68,23 +97,75 @@ const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
               </div>
 
               <div class="form-group my-4">
+
+                <div class="row">
+
+                  <div className="col-md-6">
+                    <label className="input">
+                      <Field as="select" name="bank" className="form-control input__field" placeholder=" " >
+                        <option value="">Selecciona un banco</option>
+                        <option value="BBVA">BBVA Bancomer</option>
+                        <option value="Banamex">Citi Banamex</option>
+                        <option value="HSBC">HSBC</option>
+                        <option value="Santander">Santander</option>
+                      </Field>
+                      <span class="input__label">
+                        Banco de la tarjeta <span className='text-danger fw-bold'>*</span>
+                      </span>
+                    </label>
+                    {
+                      errors.bank && (touched.bank || submitCount > 0)
+                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                          {errors.bank}
+                        </div>
+                        : null
+                    }
+                  </div>
+
+                  <div className="col-md-6">
+                    <label className="input">
+                      <Field as="select" name="type" className="form-control input__field" placeholder=" " >
+                        <option value="">Selecciona un tipo</option>
+                        <option value="DEBIT">Débito</option>
+                        <option value="CREDIT">Crédito</option>
+                      </Field>
+                      <span class="input__label">
+                        Tipo de tarjeta <span className='text-danger fw-bold'>*</span>
+                      </span>
+                    </label>
+                    {
+                      errors.type && (touched.type || submitCount > 0)
+                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                          {errors.type}
+                        </div>
+                        : null
+                    }
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group my-4">
+
                 <label className="input">
-                  <Field as="select" name="bank" className="form-control input__field" placeholder=" " >
-                    <option value="">Selecciona un banco</option>
-                    <option value="BBVA">BBVA Bancomer</option>
-                    <option value="Banamex">Citi Banamex</option>
-                    <option value="HSBC">HSBC</option>
-                    <option value="Santander">Santander</option>
-                  </Field>
+                  <Field type="text" name="address" className="form-control input__field" placeholder=" " />
                   <span class="input__label">
-                    Banco de la tarjeta <span className='text-danger fw-bold'>*</span>
+                    Dirección de la tarjeta <span className='text-danger fw-bold'>*</span>
                   </span>
                 </label>
+                {
+                  errors.address && (touched.address || submitCount > 0)
+                    ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      {errors.address}
+                    </div>
+                    : null
+                }
+
               </div>
 
               <div class="form-group my-4">
                 <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                  <input type="checkbox" class="custom-control-input" id="savePayment" />
+                  <input type="checkbox" class="custom-control-input" id="savePayment" checked={savePayment} onChange={() => setSavePayment(!savePayment)} />
                   <label class="custom-control-label" for="savePayment">Guardar tarjeta para futuras compras</label>
                 </div>
               </div>
@@ -166,7 +247,7 @@ const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
     <div className="col-md-1"></div>
 
     <div className="col-md-5 mt-5">
-      <Sumary products={products} onSubmit={onSubmit} />
+      <Sumary products={products} onSubmit={handleSubmit} />
     </div>
 
   </div>

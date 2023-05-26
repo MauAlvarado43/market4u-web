@@ -13,6 +13,11 @@ function Main() {
   const cart = sessionStorage.getItem("cart");
   const [data, setData] = useState({});
 
+  const [cartStep, setCartStep] = useState(true);
+  const [deliveryStep, setDeliveryStep] = useState(false);
+  const [paymentStep, setPaymentStep] = useState(false);
+  const [purchaseStep, setPurchaseStep] = useState(false);
+
   const [callProducts, reqProducts] = usePost("/carts/active_products", {
     onCompleted: (data) => {
       setProducts(data);
@@ -40,6 +45,8 @@ function Main() {
         expireDate
         address
         bank
+        name
+        type
       }
     }
   }`, userId);
@@ -56,10 +63,18 @@ function Main() {
 
   const { user = {} } = reqUser.data;
 
-  console.log(data);
-
   return (
     <View
+      cartStep={cartStep}
+      deliveryStep={deliveryStep}
+      paymentStep={paymentStep}
+      purchaseStep={purchaseStep}
+
+      setCartStep={setCartStep}
+      setDeliveryStep={setDeliveryStep}
+      setPaymentStep={setPaymentStep}
+      setPurchaseStep={setPurchaseStep}
+
       user={user}
       data={data}
       setData={setData}

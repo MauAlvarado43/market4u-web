@@ -15,7 +15,6 @@ function CartFormSet({ cartId, onCompleted = () => null, onError = () => null  }
 
   const qCart = useDetail(CART, cartId);
   const qUsers = useQuery(`{ users { } }`);
-  const qPayments = useQuery(`{ payments { } }`);
   const [callSet, qSet] = useSet(SET_CART, {
     onCompleted: () =>
       onCompleted()
@@ -26,7 +25,6 @@ function CartFormSet({ cartId, onCompleted = () => null, onError = () => null  }
 
   const { cart = {} } = qCart.data;
   const { users = [] } = qUsers.data;
-  const { payments = [] } = qPayments.data;
   const error = qSet.error ? "An error has occurred" : null;
 
   const onSubmit = (values) => {
@@ -37,7 +35,6 @@ function CartFormSet({ cartId, onCompleted = () => null, onError = () => null  }
   return <View
     cart={cart}
     users={users}
-    payments={payments}
     error={error}
     onSubmit={onSubmit}
   />;

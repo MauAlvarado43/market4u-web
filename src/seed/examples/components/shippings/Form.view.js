@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { MultiField, FileField } from "seed/helpers";
 
-const ShippingFormView = ({ shipping= {}, users= [], carts= [], onSubmit, error }) =>
+const ShippingFormView = ({ shipping= {}, carts= [], users= [], companies= [], onSubmit, error }) =>
   <div class="card">
 
     {/* Header */}
@@ -44,6 +44,7 @@ const ShippingFormView = ({ shipping= {}, users= [], carts= [], onSubmit, error 
             <div class="form-group">
             <label class="input-label">Address</label>
             <Field type="text" name="address"
+              as="textarea" rows="3"
               class="form-control" />
             </div>
             {/* Status */}
@@ -58,17 +59,6 @@ const ShippingFormView = ({ shipping= {}, users= [], carts= [], onSubmit, error 
               <option value="CANCELED">CANCELED</option>
             </Field>
             </div>
-            {/* Seller */}
-            <div class="form-group">
-            <div>
-            <label class="input-label">Seller</label>
-            <Field as="select" name="seller.id"
-              class="form-control"  >
-              <option value="">Select an option</option>
-              {users.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
-            </Field>
-            </div>
-            </div>
             {/* Cart */}
             <div class="form-group">
             <div>
@@ -77,6 +67,28 @@ const ShippingFormView = ({ shipping= {}, users= [], carts= [], onSubmit, error 
               class="form-control"  >
               <option value="">Select an option</option>
               {carts.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
+            </Field>
+            </div>
+            </div>
+            {/* Buyer */}
+            <div class="form-group">
+            <div>
+            <label class="input-label">Buyer</label>
+            <Field as="select" name="buyer.id"
+              class="form-control"  >
+              <option value="">Select an option</option>
+              {users.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
+            </Field>
+            </div>
+            </div>
+            {/* Company */}
+            <div class="form-group">
+            <div>
+            <label class="input-label">Company</label>
+            <Field as="select" name="company.id"
+              class="form-control"  >
+              <option value="">Select an option</option>
+              {companies.map((e, idx) => <option key={idx} value={e.id}>{e.id}</option>) }
             </Field>
             </div>
             </div>
@@ -93,8 +105,9 @@ const ShippingFormView = ({ shipping= {}, users= [], carts= [], onSubmit, error 
 
 ShippingFormView.propTypes = {
   shipping: PropTypes.object,
-  users: PropTypes.array,
   carts: PropTypes.array,
+  users: PropTypes.array,
+  companies: PropTypes.array,
   onSubmit: PropTypes.func.isRequired,
   error: PropTypes.string
 };

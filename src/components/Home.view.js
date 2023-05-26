@@ -24,7 +24,7 @@ const HomeView = ({
   <BrowserRouter>
     <Switch>
       <div>
-        <Nav/>
+        <Nav />
         <div id="content">
           <Switch>
             <Route path="/superadmin/categorySA" component={CategorySA} />
@@ -34,7 +34,7 @@ const HomeView = ({
             <Route path="/superadmin/users" component={UsersSA} />
             <Route path="/superadmin/companies" component={CompaniesSA} />
             <Route path="/wishlist" component={WishList} />
-            <Route path="/home" component={Main}/>
+            <Route path="/home" component={Main} />
             <Route path="/profile" component={Profile} />
             <Route path="/sales" component={Sales} />
             <Route path="/products" component={Products} />

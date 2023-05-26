@@ -5,7 +5,6 @@ import Home from "components/Home";
 import Login from "components/auth/Login";
 import Logout from "components/auth/Logout";
 import Signup from "components/auth/Signup";
-import Products from "components/products/Products"
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
@@ -23,30 +22,30 @@ import Users from "components/users/Users"
 const AppView = ({
   user_type
 }) =>
-  <FilterProvider>
-    <div class="module">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/verify_email/:token" component={VerifyEmail} />
-          <Route path="/recover_password" component={RecoverPassword} />
-          <Route path="/restore_password/:token" component={RestorePassword} />
-          <Route path="/sales" component={Sales} />
-          <Route path="/superadmin/category" component={CategorySA} />
-          <Route path="/superadmin/opinion" component={OpinionSA} />
-          <Route path="/superadmin/sales" component={SalesSA} />
-          <Route path="/superadmin/products" component={productsSA} />
-          <Route path="/superadmin/users" component={UsersSA} />
-          <Route path="/superadmin/companies" component={CompaniesSA} />
-          <Route path="/users" component={Users} />
-          <Route path="/home" component={Home} />
-          <Redirect to="/home" />
-        </Switch>
-      </BrowserRouter>
-    </div>
-  </FilterProvider>;
+<FilterProvider>
+  <div class="module">
+    <BrowserRouter>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/verify_email/:token" component={VerifyEmail} />
+        <Route path="/recover_password" component={RecoverPassword} />
+        <Route path="/restore_password/:token" component={RestorePassword} />
+        <Route path="/sales" component={Sales} />
+        <Route path="/superadmin/category" component={CategorySA} />
+        <Route path="/superadmin/opinion" component={OpinionSA} />
+        <Route path="/superadmin/sales" component={SalesSA} />
+        <Route path="/superadmin/products" component={productsSA} />
+        <Route path="/superadmin/users" component={UsersSA} />
+        <Route path="/superadmin/companies" component={CompaniesSA} />
+        <Route path="/users" component={Users} />
+        <Route path="/home" component={Home} />
+        <Redirect to="/home" />
+      </Switch>
+    </BrowserRouter>
+  </div>
+</FilterProvider>;
 
 AppView.propTypes = {};
 

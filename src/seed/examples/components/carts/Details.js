@@ -16,9 +16,9 @@ function CartDetails({ cartId, onCompleted = () => null, onError = () => null })
   const reqCart = useDetail(`
   {
     cart {
+      payment
       createdAt
       buyer { }
-      payment { }
       shippings { }
     }
   }`, cartId);

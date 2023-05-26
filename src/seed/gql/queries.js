@@ -8,10 +8,8 @@ export const CART = `
 {
   cart {
     id
+    payment
     buyer {
-      id
-    }
-    payment {
       id
     }
   }
@@ -21,8 +19,8 @@ export const CART = `
 export const SET_CART = `
 mutation Set(
   $id: Int!,
+  $payment: String,
   $buyer: Int,
-  $payment: Int,
 )
 {
   setCart(
@@ -32,10 +30,8 @@ mutation Set(
   ) {
     cart {
       id
+      payment
       buyer {
-        id
-      }
-      payment {
         id
       }
     }
@@ -45,8 +41,8 @@ mutation Set(
 
 export const SAVE_CART = `
 mutation Save(
+  $payment: String!,
   $buyer: Int!,
-  $payment: Int!,
 )
 {
   saveCart(
@@ -776,10 +772,13 @@ export const SHIPPING = `
     folio
     address
     status
-    seller {
+    cart {
       id
     }
-    cart {
+    buyer {
+      id
+    }
+    company {
       id
     }
   }
@@ -793,8 +792,9 @@ mutation Set(
   $folio: String,
   $address: String,
   $status: String,
-  $seller: Int,
   $cart: Int,
+  $buyer: Int,
+  $company: Int,
 )
 {
   setShipping(
@@ -803,8 +803,9 @@ mutation Set(
     folio: $folio,
     address: $address,
     status: $status,
-    seller: $seller,
     cart: $cart,
+    buyer: $buyer,
+    company: $company,
   ) {
     shipping {
       id
@@ -812,10 +813,13 @@ mutation Set(
       folio
       address
       status
-      seller {
+      cart {
         id
       }
-      cart {
+      buyer {
+        id
+      }
+      company {
         id
       }
     }
@@ -829,8 +833,9 @@ mutation Save(
   $folio: String!,
   $address: String!,
   $status: String!,
-  $seller: Int!,
   $cart: Int!,
+  $buyer: Int,
+  $company: Int,
 )
 {
   saveShipping(
@@ -838,8 +843,9 @@ mutation Save(
     folio: $folio,
     address: $address,
     status: $status,
-    seller: $seller,
     cart: $cart,
+    buyer: $buyer,
+    company: $company,
   ) {
     shipping {
       id
