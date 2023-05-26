@@ -11,9 +11,9 @@ function App() {
   const user_type = user.type;
 
   useEffect(() => { initGA(); });
-  return <View 
-          user_type={user_type}
-        />;
+  return <View
+    user_type={user_type}
+  />;
 
 }
 App.propTypes = {};
