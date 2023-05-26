@@ -421,6 +421,7 @@ export const PAYMENT = `
     type
     address
     bank
+    name
     user {
       id
     }
@@ -436,6 +437,7 @@ mutation Set(
   $type: String,
   $address: String,
   $bank: String,
+  $name: String,
   $user: Int,
 )
 {
@@ -447,6 +449,7 @@ mutation Set(
     user: $user,
     address: $address,
     bank: $bank,
+    name: $name,
   ) {
     payment {
       id
@@ -455,6 +458,7 @@ mutation Set(
       type
       address
       bank
+      name
       user {
         id
       }
@@ -470,6 +474,7 @@ mutation Save(
   $type: String!,
   $address: String!,
   $bank: String!,
+  $name: String!,
   $user: Int!,
 )
 {
@@ -480,6 +485,7 @@ mutation Save(
     user: $user,
     address: $address,
     bank: $bank,
+    name: $name,
   ) {
     payment {
       id
@@ -900,7 +906,7 @@ mutation Set(
   $type: String,
   $street: String,
   $city: String,
-  $cp: Int,
+  $cp: String,
   $municipality: String,
   $state: String,
   $cologn: String,
@@ -982,7 +988,7 @@ mutation Save(
   $type: String!,
   $street: String!,
   $city: String!,
-  $cp: Int!,
+  $cp: String!,
   $municipality: String!,
   $state: String!,
   $cologn: String!,

@@ -171,6 +171,7 @@ const GQL_PAYMENT_ = {
     user:  { id: 1},
     address: "",
     bank: "",
+    name: "",
 }
 export const GQL_PAYMENT = {
     payment: GQL_PAYMENT_
@@ -195,6 +196,7 @@ export const API_PAYMENT = {
     user_id:  1,
     address: "",
     bank: "",
+    name: "",
 }
 export const API_PAYMENTS = [API_PAYMENT]
 
@@ -351,7 +353,7 @@ const GQL_USER_ = {
     company:  { id: 1},
     street: "",
     city: "",
-    cp: 128,
+    cp: "",
     municipality: "",
     state: "NS",
     cologn: "",
@@ -392,7 +394,7 @@ export const API_USER = {
     company_id:  1,
     street: "",
     city: "",
-    cp: 128,
+    cp: "",
     municipality: "",
     state: "NS",
     cologn: "",

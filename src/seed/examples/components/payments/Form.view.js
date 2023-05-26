@@ -72,6 +72,12 @@ const PaymentFormView = ({ payment= {}, users= [], onSubmit, error }) =>
             <Field type="text" name="bank"
               class="form-control" />
             </div>
+            {/* Name */}
+            <div class="form-group">
+            <label class="input-label">Name</label>
+            <Field type="text" name="name"
+              class="form-control" />
+            </div>
             </div>
             {error ? <div class="alert alert-soft-danger">{error}</div> : null}
             <button type="submit" class="btn btn-block btn-primary">Send</button>

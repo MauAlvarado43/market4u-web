@@ -21,6 +21,7 @@ function PaymentDetails({ paymentId, onCompleted = () => null, onError = () => n
       type
       address
       bank
+      name
       createdAt
       user { }
     }
