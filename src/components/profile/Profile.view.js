@@ -13,7 +13,7 @@ const ProfileView = ({
 }) => (
   <BrowserRouter basename="/profile">
     {users && users.map((user) => (
-      <div key={user.id}>
+      <div key={user.id} style = {{overflowX:"hidden"}}>
         <div className="row justify-content-center">
           <div className="col-md-2">
             <h3 className="ml-3 display-4">
@@ -86,7 +86,7 @@ const ProfileView = ({
                     />
                     <div
                       style={{cursor:"pointer"}} 
-                      onClick={() => { window.location.href = "/wishlist" }}>
+                      onClick={() => { window.location.replace("/wishlist")}}>
                       <ProfileButton
                         text={"Wishlist"}
                         icon_left={"fas fa-star col-md-2 col-sm-1"}
@@ -95,78 +95,6 @@ const ProfileView = ({
                   </>
                   :
                   null}
-                {user?.type === "ADMIN" ?
-                  <>
-                    <ProfileButton
-                      text={"Datos generales"}
-                      icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Ofertas"}
-                      icon_left={"fas fa-percent col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Productos"}
-                      icon_left={"fas fa-stream col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Ventas"}
-                      icon_left={"fas fa-clipboard col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Usuarios"}
-                      icon_left={"fas fa-user-friends col-md-2 col-sm-1"}
-                    />
-                  </>
-                  : null}
-                {user?.type === "SELLER" ?
-                  <>
-                    <Link to="/info">
-                      <ProfileButton
-                        text={"Mis datos personales"}
-                        icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
-                      />
-                    </Link>
-                    <ProfileButton
-                      text={"Ofertas"}
-                      icon_left={"fas fa-percent col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Productos"}
-                      icon_left={"fas fa-stream col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Ventas"}
-                      icon_left={"fas fa-clipboard col-md-2 col-sm-1"}
-                    />
-                  </>
-                  : null}
-                {user?.type === "SUPERADMIN" ?
-                  <>
-                    <Link to="/info">
-                      <ProfileButton
-                        text={"Mis datos personales"}
-                        icon_left={"fas fa-user-alt col-md-2 col-sm-1"}
-                      />
-                    </Link>
-                    <ProfileButton
-                      text={"Empresas"}
-                      icon_left={"fas fa-building col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Productos"}
-                      icon_left={"fas fa-stream col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Usuarios"}
-                      icon_left={"fas fa-user-friends col-md-2 col-sm-1"}
-                    />
-                    <ProfileButton
-                      text={"Ofertas"}
-                      icon_left={"fas fa-percent col-md-2 col-sm-1"}
-                    />
-                  </>
-                  : null}
               </div>
             </div>
           </div>

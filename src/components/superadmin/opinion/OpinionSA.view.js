@@ -8,7 +8,7 @@ import Details from "components/superadmin/opinion/DetailsSA";
 import Censor from "components/superadmin/opinion/CensorSA";
 
 const View = ({ listRef, refetchQuery }) =>
-    <BrowserRouter basename="/categorySA">
+    <BrowserRouter>
         <div class="content container-fluid mt-3">
 
             <List ref={listRef} />

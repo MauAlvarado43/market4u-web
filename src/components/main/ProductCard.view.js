@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 
 const ProductCardView = ({ 
   product,
-  handleSetWishlist
+  handleSetWishlist,
+  isProductInWishlist
 }) =>
   <div
     key={product.id}
@@ -22,7 +23,7 @@ const ProductCardView = ({
         <button
           onClick={() => { handleSetWishlist(product.id) }}
           className="btn">
-          <i className="far fa-heart"></i>
+          <i className={isProductInWishlist ? 'fas fa-heart text-danger' : 'far fa-heart'}></i>
         </button>
       </div>
     </div>

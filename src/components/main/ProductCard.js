@@ -4,6 +4,7 @@ import View from "components/main/ProductCard.view";
 import { usePost } from "seed/api";
 import swal from "sweetalert";
 import { useDetail } from "seed/gql";
+import { isTouchEvent } from "react-range/lib/utils";
 
 function ProductCard({ product }) {
 
@@ -34,7 +35,11 @@ function ProductCard({ product }) {
     callSetWishlist(values);
   };
 
+  const { user=[] } = qUser.data;
+  const isProductInWishlist = user.wishlist && user.wishlist.some(item => item.name === product.name);
+
   return <View 
+          isProductInWishlist={isProductInWishlist}
           handleSetWishlist={handleSetWishlist}
           product={product} 
         />;

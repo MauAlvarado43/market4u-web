@@ -91,7 +91,7 @@ function InfoUser() {
       test(value, context) {
         if(!validatePassword(password) && (password))
           return context.createError({
-            message: "La contraseña debe de tener al menos 8 caracteres, un caracter especial y un número."
+            message: "La contraseña no cumple con los requisitos mínimos."
           });
 
         return true;
@@ -102,7 +102,7 @@ function InfoUser() {
       test(value, context) {
         if (passwordConfirm !== password) {
           return context.createError({
-            message: "Las contraseñas no coinciden",
+            message: "Las contraseñas no coinciden.",
           });
         }
        

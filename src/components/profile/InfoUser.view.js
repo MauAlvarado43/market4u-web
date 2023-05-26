@@ -142,10 +142,9 @@ const InfoUserView = ({
                               className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                               placeholder=" "
-                              required
                             />
                             <span class="input__label">
-                              Teléfono<span className="text-danger fw-bold">*</span>
+                              Teléfono
                             </span>
                           </label>
                         </div>
@@ -162,11 +161,9 @@ const InfoUserView = ({
                               className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                               placeholder=" "
-                              required
                             />
                             <span class="input__label">
                               Calle y número{" "}
-                              <span className="text-danger fw-bold">*</span>
                             </span>
                           </label>
                         </div>
@@ -179,11 +176,9 @@ const InfoUserView = ({
                               className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                               placeholder=" "
-                              required
                             />
                             <span class="input__label">
-                              Colonia{" "}
-                              <span className="text-danger fw-bold">*</span>
+                              Colonia
                             </span>
                           </label>
                         </div>
@@ -191,7 +186,7 @@ const InfoUserView = ({
                         <div class="form-group">
                           <label className="input">
                             <Field
-                              type="number"
+                              type="text"
                               name={user.type !== "ADMIN" ? "cp" : "company.cp"}
                               className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
@@ -276,22 +271,7 @@ const InfoUserView = ({
                             </label>
                           </div>
 
-                          <div class="form-group">
-                            <label className="input">
-                              <Field
-                                type="number"
-                                name={user.type !== "ADMIN" ? "cp" : "company.cp"}
-                                className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                placeholder=" "
-                                required
-                              />
-                              <span class="input__label">
-                                CP<span className="text-danger fw-bold">*</span>
-                              </span>
-                            </label>
-                          </div>
-                          <div class="form-group">
+                          <div class="form-group col-md-6">
                             <label className="input">
                               <Field
                                 type="text"
@@ -317,7 +297,6 @@ const InfoUserView = ({
                                 className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                 placeholder=" "
-                                required
                               />
                               <span class="input__label">
                                 RFC
@@ -352,7 +331,6 @@ const InfoUserView = ({
                                   type="button"
                                   onClick={togglePasswordVisibility}
                                   className="btn btn-outline-secondary bg-transparent border-0"></button>
-                                <span className="text-danger fw-bold">*</span>
                               </span>
                             </label>
                           </div>
@@ -381,7 +359,6 @@ const InfoUserView = ({
 
                               <span class="input__label">
                                 Confirmar contraseña
-                                <span className="text-danger fw-bold">*</span>
                                 <button
                                   type="button"
                                   onClick={togglePasswordVisibilityConfirm}

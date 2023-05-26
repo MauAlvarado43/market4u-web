@@ -5,6 +5,10 @@ import { useDetail } from "seed/gql";
 
 function Home() {
   const [isAuth, setIsAuth] = useState(false)
+  const user_id = sessionStorage.getItem("id");
+  const reqInfo = useDetail(`{ user { type } }`, user_id);
+  const { user = {} } = reqInfo.data;
+  const user_type = user.type;
   const [callAuth, reqCall] = useGetCall("/auth/user", "", {
     onCompleted: (data) => setIsAuth(true),
     onError: (error) => {
@@ -20,7 +24,9 @@ function Home() {
     callAuth();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   if (!isAuth) return null;
-  return <View />;
+  return <View 
+          user_type={user_type}
+        />;
 }
 
 Home.propTypes = {};
