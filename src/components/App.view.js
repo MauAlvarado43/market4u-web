@@ -26,7 +26,7 @@ const AppView = () =>
         <Route path="/restore_password/:token" component={RestorePassword} />
         <Route path="/sales" component={Sales} />
         <Route path="/users" component={Users} />
-        <Route path="/home" component={Home} />
+        <Route path="/" component={Home} />
         <Redirect to="/home"/>
       </Switch>
     </BrowserRouter>
