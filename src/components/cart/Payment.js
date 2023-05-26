@@ -16,7 +16,15 @@ function Payment({ user, setData, products, setActiveStep }) {
     setActiveStep(4);
   }
 
-  return <View user={user} formikRef={formikRef} products={products} onSubmit={onSubmit}/>;
+  const onSelectCard = (id) => {
+    const payments = user.payments;
+    const card = payments.find((item) => item.id == id);
+    if (!card) return;
+    formikRef.current.setValues(card);
+    console.log(card);
+  }
+
+  return <View user={user} formikRef={formikRef} products={products} onSubmit={onSubmit} onSelectCard={onSelectCard}/>;
 }
 
 Payment.propTypes = {};

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Sumary from "components/cart/Sumary";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
-const PaymentView = ({ user, formikRef, products, onSubmit }) => (
+const PaymentView = ({ user, formikRef, products, onSubmit, onSelectCard }) => (
   <div className='row'>
 
     <div className='col-md-6 text-left p-4' style={{ backgroundColor: "#F5F5F5", borderRadius: "10px" }}>
@@ -38,7 +38,7 @@ const PaymentView = ({ user, formikRef, products, onSubmit }) => (
 
                   <div className="col-md-6">
                     <label className="input">
-                      <Field type="text" name="card_number" className="form-control input__field" placeholder=" " />
+                      <Field type="text" name="cardNumber" className="form-control input__field" placeholder=" " />
                       <span class="input__label">
                         Número de la tarjeta <span className='text-danger fw-bold'>*</span>
                       </span>
@@ -47,7 +47,7 @@ const PaymentView = ({ user, formikRef, products, onSubmit }) => (
 
                   <div className="col-md-3">
                     <label className="input">
-                      <Field type="text" name="expire_date" className="form-control input__field" placeholder=" " />
+                      <Field type="text" name="expireDate" className="form-control input__field" placeholder=" " />
                       <span class="input__label">
                         Vencimiento <span className='text-danger fw-bold'>*</span>
                       </span>
@@ -140,8 +140,12 @@ const PaymentView = ({ user, formikRef, products, onSubmit }) => (
                     </div>
                     <div className="col-md-7 d-flex flex-column">
                       <div>Terminada en {payment?.cardNumber.slice(-4)}</div>
-                      <div>{payment?.bank}</div>
-                      <div>{payment?.expireDate}</div>
+                      <div>Banco {payment?.bank}</div>
+                      <div>Vencimiento {payment?.expireDate}</div>
+                    </div>
+                    <div className="col-md-3">
+                      <h5 className="text-center" style={{ color: "#519EA4", cursor: "pointer" }}
+                        onClick={() => onSelectCard(payment.id)}>Usar</h5>
                     </div>
                   </div>
                   <hr />
