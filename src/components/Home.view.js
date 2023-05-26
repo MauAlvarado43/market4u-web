@@ -35,13 +35,13 @@ const HomeView = ({
             <Route path="/superadmin/companies" component={CompaniesSA} />
             <Route path="/wishlist" component={WishList} />
             <Route path="/home" component={Main} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/profile/info" component={Profile} />
             <Route path="/sales" component={Sales} />
             <Route path="/products" component={Products} />
             <Route path="/history" component={History} />
             <Route path="/product/:productId(\d+)" component={ProductDetail} />
             <Route path="/cart" component={Cart} />
-            {user_type == "SUPERADMIN" && <Redirect to="/profile/info"/>}
+            {user_type == "SUPERADMIN" && <Redirect to="/profile/info" component = {Profile}/> }
             {user_type == "NORMAL" && <Redirect to="/home"/>}
           </Switch>
         </div>

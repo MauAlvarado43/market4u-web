@@ -5,15 +5,8 @@ import { useDetail } from "seed/gql";
 
 function App() {
 
-  const user_id = sessionStorage.getItem("id");
-  const reqInfo = useDetail(`{ user { type } }`, user_id);
-  const { user = {} } = reqInfo.data;
-  const user_type = user.type;
-
   useEffect(() => { initGA(); });
-  return <View
-    user_type={user_type}
-  />;
+  return <View/>;
 
 }
 App.propTypes = {};
