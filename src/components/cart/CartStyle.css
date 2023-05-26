@@ -1,0 +1,173 @@
+.steps-content {
+    position:relative;
+    padding: 5%;
+}
+
+.step-div {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    transition: all 0.5s ease-out;
+}
+
+.step-div.active {
+    opacity: 1;
+    position: relative;
+}
+
+.steps-bar {
+    position: relative;
+    display: grid;
+    grid-template-columns: [line1] 22% [line2] 5% [line3] 22% [line4] 5% [line5] 22% [line6] 5% [line7] 22% ;
+    grid-template-rows: [row1] auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: sticky;
+    top:50px;
+    background-color: #ffffff;
+}
+
+.first-step-bar {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    width: auto;
+    cursor: default;
+}
+
+.div-transition {
+    /* opacity: 0; */
+    background-color: rgb(146, 146, 146);
+    transform: scale(0.9);
+    border-radius: 15px;
+    padding: 3%;
+    margin-left: 2%;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #ffffff;
+}
+
+.div-transition-text {
+    /* opacity: 0; */
+    transform: scale(0.9);
+    border-radius: 15px;
+    padding: 3%;
+    margin-left: 2%;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: rgb(146, 146, 146);
+}
+
+.div-transition.active {
+    /* opacity: 1; */
+    background-color: #519EA4;
+    transform: scale(1);
+    font-weight: bold;
+    font-size: 1.1vw;
+}
+
+.div-transition {
+    transition: all 0.5s ease;
+}
+
+.second-step-bar {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    width: auto;
+    cursor: default;
+}
+
+.third-step-bar {
+    grid-column-start: 5;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    width: auto;
+    cursor: default;
+}
+
+.fourth-step-bar {
+    grid-column-start: 7;
+    grid-column-end: 8;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    width: auto;
+    cursor: default;
+}
+
+.line {
+    display: flex;
+    cursor: auto;
+    height: 1px;
+    background: black;
+    align-self: center;
+}
+
+.summary-table {
+    width: 70%;
+    margin: 5% auto 5% auto;
+    text-align: left;
+}
+
+.buttonShopping {
+    background-clip: padding-box;
+    background-color: var(--bg-color-shop);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    object-fit: contain;
+    width: 40%;
+    margin: 5% auto 5% auto;
+    max-width: 300px;
+}
+
+.buttons {
+    display: inline-block;
+    width: 100%;
+    margin: 5% auto 5% auto;    
+}
+
+.buttonShopping:hover,
+.buttonShopping:focus {
+    background-color: var(--bg-color-hover);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.buttonShopping:hover {
+    transform: translateY(-1px);
+}
+
+.buttonShopping:active {
+    background-color: var(--bg-color-active);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+}
+
+.buttonShopping:disabled {
+    background-color: #9b9b9b;
+}

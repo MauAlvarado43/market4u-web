@@ -21,8 +21,9 @@ function ShippingDetails({ shippingId, onCompleted = () => null, onError = () =>
       address
       status
       createdAt
-      seller { }
       cart { }
+      buyer { }
+      company { }
     }
   }`, shippingId);
   

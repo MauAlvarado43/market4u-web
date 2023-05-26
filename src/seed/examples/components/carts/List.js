@@ -18,9 +18,9 @@ function CartList() {
     cartPagination {
       totalPages
       carts {
+        payment
         createdAt
         buyer { }
-        payment { }
         shippings { }
       }
     }

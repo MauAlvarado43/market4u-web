@@ -23,8 +23,9 @@ function ShippingList() {
         address
         status
         createdAt
-        seller { }
         cart { }
+        buyer { }
+        company { }
       }
     }
   }`, pageNum, pageSize);

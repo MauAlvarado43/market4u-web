@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDetail } from "seed/gql";
 import View from "components/products/Detail.view";
+import swal from "sweetalert";
 import PropTypes from "prop-types";
 
 function Detail({ match }) {
@@ -116,8 +117,6 @@ function Detail({ match }) {
   let rate = product.opinions.reduce((acc, opinion) => acc + opinion.rate, 0);
   if (product.opinions.length > 0) rate = rate / product.opinions.length;
 
-  console.log("selectedOptions", selectedOptions)
-
   const onAddCart = () => {
     const rawCart = sessionStorage.getItem('cart');
 
@@ -137,7 +136,7 @@ function Detail({ match }) {
     });
 
     if (!selectedVariant) {
-      alert("Debe seleccionar una variante válida");
+      swal("Error de variante", "Debe seleccionar una variante válida", "error");
       return;
     }
 
@@ -157,7 +156,7 @@ function Detail({ match }) {
       const prevProduct = cart.find((item) => item.product == product.id && item.variant == selectedVariant.id);
 
       if (prevProduct) {
-        alert("Ya tiene esta variante de producto en carrito");
+        swal("Error", "Ya tiene esta variante de este producto en carrito", "error");
         return;
       }
 
@@ -170,7 +169,7 @@ function Detail({ match }) {
       sessionStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    alert("Producto añadido a carrito correctamente");
+    swal("¡Producto añadido!", "Producto añadido a carrito correctamente, ve y compra ahora mismo", "success");
 
   }
 

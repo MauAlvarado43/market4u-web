@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import './CartStyle.css'
 import Sumary from "components/cart/Sumary";
 
-const CartView = ({ products, onSubmit, onDeleteProduct, onAddAmount, onRemoveAmount }) => (
+const CartView = ({ 
+  products, 
+  onSubmit, 
+  onDeleteProduct, 
+  onAddAmount, 
+  onRemoveAmount 
+}) => (
   <div className='row'>
 
     <div className='col-md-6 text-left'>
@@ -30,7 +36,7 @@ const CartView = ({ products, onSubmit, onDeleteProduct, onAddAmount, onRemoveAm
                   }()
                 }
                 <div class="d-flex justify-content-center align-items-center"
-                  style={{ backgroundColor: "#519EA4", borderRadius: "50%", width: "40px", height: "40px", color: "white", position: "absolute", top: "80%", left: "0" }}>
+                  style={{ backgroundColor: "#519EA4", borderRadius: "50%", width: "40px", height: "40px", color: "white", position: "absolute", bottom: "0", right: "0" }}>
                   <p style={{ paddingTop: "15px" }}>{product?.amount}</p>
                 </div>
               </div>

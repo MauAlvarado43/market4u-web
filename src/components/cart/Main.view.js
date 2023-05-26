@@ -1,23 +1,38 @@
-import React, { useState, useEffect, createContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Steps from "components/cart/StepsBar";
 import Cart from "components/cart/Cart"
 import Delivery from "components/cart/Delivery";
 import Payment from "components/cart/Payment";
 import Purchase from "components/cart/Purchase";
-
-// import CarritoCompras from "./Step1-CarritoCompras";
-// import DetallesEntrega from "./Step2-DetallesEntrega";
-// import MetodoPago from "./Step3-MetodoPago";
-// import ResumenPedido from "./Step4-ResumenPedido";
 import "./CartStyle.css"
 
 
-const MainView = ({ user, data, setData, products, setProducts, activeStep, setActiveStep }) => (
+const MainView = ({
+  user,
+  data,
+  setData,
+  products,
+  setProducts,
+  activeStep,
+  setActiveStep,
+  cartStep,
+  deliveryStep,
+  paymentStep,
+  purchaseStep,
+  setCartStep,
+  setDeliveryStep,
+  setPaymentStep,
+  setPurchaseStep,
+}) => (
 
-  <div className="cart-content">
-    <div className="step-bar-try">
+  <div className="p-5">
+    <div>
       <Steps
+        cartStep={cartStep}
+        deliveryStep={deliveryStep}
+        paymentStep={paymentStep}
+        purchaseStep={purchaseStep}
         activeStep={activeStep}
         setActiveStep={setActiveStep}
       />
@@ -31,6 +46,7 @@ const MainView = ({ user, data, setData, products, setProducts, activeStep, setA
           products={products}
           setProducts={setProducts}
           setActiveStep={setActiveStep}
+          setDeliveryStep={setDeliveryStep}
         />
       </div>
 
@@ -40,6 +56,7 @@ const MainView = ({ user, data, setData, products, setProducts, activeStep, setA
           setData={setData}
           products={products}
           setActiveStep={setActiveStep}
+          setPaymentStep={setPaymentStep}
         />
       </div>
 
@@ -49,6 +66,7 @@ const MainView = ({ user, data, setData, products, setProducts, activeStep, setA
           setData={setData}
           products={products}
           setActiveStep={setActiveStep}
+          setPurchaseStep={setPurchaseStep}
         />
       </div>
 
