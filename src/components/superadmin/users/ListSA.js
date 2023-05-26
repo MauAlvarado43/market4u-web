@@ -4,7 +4,7 @@ import { Loading } from "seed/helpers";
 import View from "components/superadmin/users/ListSA.view";
 const List = forwardRef(
     function List(props, ref) {
-        const pageSize = 6;
+        const pageSize = 8;
         const [pageNum, setPageNum] = useState(1);
         const reqItems = usePagination(
             `

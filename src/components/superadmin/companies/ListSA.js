@@ -7,7 +7,7 @@ import View from "components/superadmin/companies/ListSA.view";
 const List = forwardRef(
     function List(props, ref) {
 
-        const pageSize = 6;
+        const pageSize = 8;
         const [pageNum, setPageNum] = useState(1);
         const reqCompanies = usePagination(
             `
