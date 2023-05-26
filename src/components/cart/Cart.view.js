@@ -1,104 +1,106 @@
-import React, { useState, useEffect, createContext } from "react";
-import Steps from "./StepsBar";
-import CarritoCompras from "./Step1-CarritoCompras";
-import DetallesEntrega from "./Step2-DetallesEntrega";
-import MetodoPago from "./Step3-MetodoPago";
-import ResumenPedido from "./Step4-ResumenPedido";
+import React from "react";
 import PropTypes from "prop-types";
+import './CartStyle.css'
+import Sumary from "components/cart/Sumary";
 
+const CartView = ({ products, onSubmit, onDeleteProduct, onAddAmount, onRemoveAmount }) => (
+  <div className='row'>
 
-const CartView = (props) =>{
+    <div className='col-md-6 text-left'>
+      <h2>Productos agregados ({products.length})</h2>
+      <hr style={{ border: "1px solid black" }} />
+      <div>
+        {
+          products.map((product, idx) => (
+            <div className="row my-5" key={idx}>
 
-  const { cart } = props
-  
-  const [activeDiv, setActiveDiv] = useState(1);
+              <div className="col-md-3">
+                {
+                  function () {
+                    const variant = product.variant;
+                    if (variant.photos.length > 0) {
+                      return (
+                        <img className="img-fluid" style={{ maxHeight: "10rem" }} src={variant.photos[0].url} alt="Variant image" />
+                      )
+                    } else {
+                      return (
+                        <i className="fas fa-image fa-10x text-muted"></i>
+                      )
+                    }
+                  }()
+                }
+                <div class="d-flex justify-content-center align-items-center"
+                  style={{ backgroundColor: "#519EA4", borderRadius: "50%", width: "40px", height: "40px", color: "white", position: "absolute", top: "80%", left: "0" }}>
+                  <p style={{ paddingTop: "15px" }}>{product?.amount}</p>
+                </div>
+              </div>
 
-  useEffect(() => {
-    setActiveDiv(activeDiv);
-  }, [activeDiv]);
+              <div className="col-md-6">
+                <h3>{product?.name}</h3>
+                <h6>SKU: {product?.sku}</h6>
+                <h6>{product?.category?.name}</h6>
+                <div className="row mt-3">
+                  <div className="col-md-4">
 
-  let shipments = cart.users[0].buyerCarts[0].shippings.filter(shipment => shipment.status === "CREATED");
+                  </div>
+                  <div className="col-md-8">
+                    <h3><b>${product?.variant?.price.toFixed(2)}</b></h3>
+                  </div>
+                </div>
+              </div>
 
-  const [finalAmount, setFinalAmount] = useState(((shipments[0].purchases).reduce((acc, curr) => acc + (curr.amount), 0)))
+              <div className="col-md-3">
+                <div className="row">
+                  <div className="col-md-4">
 
-  const [totalCost, setTotalCost] = useState(((shipments[0].purchases).reduce((acc, curr) => acc + ((JSON.parse(curr.product)).price * curr.amount), 0)))
+                    <div className="d-flex justify-content-center align-items-center" onClick={() => onAddAmount(product.id)}
+                      style={{ width: "40px", height: "40px", border: "4px #081856 solid", borderRadius: "50%", color: "#081856", cursor: "pointer" }}>
+                      <i class="fas fa-plus"></i>
+                    </div>
 
-  const [prodAmounts, setProdAmounts] = useState(shipments[0].purchases.map((purchase) => purchase.amount));
-  
-  
-  return (
-      
-    <div className="cart-content">
-      <div className="step-bar-try">
-        <Steps
-          activeDiv= {activeDiv}
-          setActiveDiv={setActiveDiv}
-        />
+                  </div>
+
+                  <div className="col-md-4 text-center">
+                    <h1>{product?.amount}</h1>
+                  </div>
+
+                  <div className="col-md-4">
+
+                    <div className="d-flex justify-content-center align-items-center" onClick={() => onRemoveAmount(product.id)}
+                      style={{ width: "40px", height: "40px", border: "4px #081856 solid", borderRadius: "50%", color: "#081856", cursor: "pointer" }}>
+                      <i class="fas fa-minus"></i>
+                    </div>
+
+                  </div>
+                </div>
+                <div className="text-center mt-2">
+                  <a
+                    type="button"
+                    onClick={() => onDeleteProduct(product.id)}
+                    className="btn btn-sm rounded-pill"
+                    style={{ backgroundColor: "#FC4B08", color: "white" }}
+                  >
+                    <i class="fas fa-trash mr-2"></i> Eliminar
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          ))
+        }
       </div>
 
-      <div className="steps-content">
-
-        <div className={activeDiv === 1 ? 'step-div active' : 'step-div'}>
-          {<CarritoCompras
-            cart = {cart}
-            shipments = {shipments}
-            activeDiv= {activeDiv}
-            setActiveDiv={setActiveDiv}
-            finalAmount={finalAmount}
-            setFinalAmount={setFinalAmount}
-            totalCost={totalCost}
-            setTotalCost={setTotalCost}
-            prodAmounts={prodAmounts}
-            setProdAmounts={setProdAmounts}
-          />}
-        </div>
-
-        <div className={activeDiv === 2 ? 'step-div active' : 'step-div'}>
-          <DetallesEntrega
-            cart = {cart}
-            shipments = {shipments}
-            activeDiv= {activeDiv}
-            setActiveDiv={setActiveDiv}
-            finalAmount={finalAmount}
-            setFinalAmount={setFinalAmount}
-            totalCost={totalCost}
-            setTotalCost={setTotalCost}
-          />
-        </div>
-
-        <div className={activeDiv === 3 ? 'step-div active' : 'step-div'}>
-          <MetodoPago
-            cart = {cart}
-            shipments = {shipments}
-            activeDiv= {activeDiv}
-            setActiveDiv={setActiveDiv}
-            finalAmount={finalAmount}
-            setFinalAmount={setFinalAmount}
-            totalCost={totalCost}
-            setTotalCost={setTotalCost}
-            prodAmounts={prodAmounts}
-          />
-        </div>
-
-        <div className={activeDiv === 4 ? 'step-div active' : 'step-div'}>
-          <ResumenPedido
-            cart = {cart}
-            shipments = {shipments}
-            activeDiv= {activeDiv}
-            setActiveDiv={setActiveDiv}
-            finalAmount={finalAmount}
-            setFinalAmount={setFinalAmount}
-            totalCost={totalCost}
-            setTotalCost={setTotalCost}
-            prodAmounts={prodAmounts}
-          />
-        </div>
-
-      </div>    
-
     </div>
-  
-  );}
+
+    <div className="col-md-1"></div>
+
+    <div className='col-md-5 mt-5'>
+      <Sumary products={products} onSubmit={onSubmit} />
+    </div>
+
+
+  </div>
+);
 
 CartView.propTypes = {};
 
