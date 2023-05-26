@@ -23,6 +23,7 @@ function FormSet({
 
   const [callSet, qSet] = usePost("/users/update_user_superadmin", {
     onCompleted: () => {
+      onCompleted();
       swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success");
     },
   });
@@ -30,13 +31,6 @@ function FormSet({
   useEffect(() => {
     setUserType(user.type);
   }, [user.type]);
-
-  const qUsers = useQuery(`{ 
-        users {
-            id
-            email
-        } 
-    }`);
 
   const qCompanies = useQuery(`{ 
         companies {
@@ -112,20 +106,19 @@ function FormSet({
 
   const onSubmit = (values) => {
 
+    console.log(values)
+
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
     newValues.password = password;
 
-    if (values.type !== "NORMAL" && values.type !== "SUPERADMIN")
-      if (values.company == null)
-        newValues.company_id = document.getElementById(document.getElementById("company").value);
-      else
-        newValues.company_id = values?.company?.id;
-    else
-      newValues.company_id = null;
-
     delete newValues.id;
     delete newValues.company;
+
+    if (values.type !== "NORMAL" && values.type !== "SUPERADMIN")
+      newValues.company_id = values?.company?.id;
+    else
+      newValues.company_id = null;
 
     callSet(newValues);
   };

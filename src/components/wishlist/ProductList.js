@@ -7,22 +7,22 @@ import View from "components/wishlist/ProductList.view";
 function ProductList({ selectedCategory, selectedPriceFilter }) {
   const reqWishlist = useQuery(
     `{
-            users{
-                wishlist{
-                    name
-                    shortDescription
-                    variants{
-                        price
-                        photos{
-                            url
-                        }
-                    }
-                    category{
-                        name
-                    }
-                }
-            }
-        }`,
+      users{
+          wishlist{
+              name
+              shortDescription
+              variants{
+                  price
+                  photos{
+                      url
+                  }
+              }
+              category{
+                  name
+              }
+          }
+      }
+    }`,
     "id = " + sessionStorage.getItem("id")
   );
 

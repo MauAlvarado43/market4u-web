@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './CartStyle.css'
 import { Divider } from '@material-ui/core'
 
 const PaymentCard = (props) => {

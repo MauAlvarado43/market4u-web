@@ -5,29 +5,25 @@ import Home from "components/Home";
 import Login from "components/auth/Login";
 import Logout from "components/auth/Logout";
 import Signup from "components/auth/Signup";
+import Products from "components/products/Products"
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
 import FinalizarCompra from "components/cart/PurchaseCompleted";
-import Main from "components/main/Main"
 import { FilterProvider } from "components/helpers/FilterContext";
-
 import Sales from "components/sales/Sales";
-
 import CategorySA from "components/superadmin/category/CategorySA";
 import OpinionSA from "components/superadmin/opinion/OpinionSA"
 import SalesSA from "components/superadmin/sales/SalesSA"
 import productsSA from "components/superadmin/products/productsSA"
-
-
-
 import UsersSA from "components/superadmin/users/UsersSA"
 import CompaniesSA from "components/superadmin/companies/CompaniesSA"
-
 import Users from "components/users/Users"
 
 
-const AppView = () =>
+const AppView = ({
+  user_type
+}) =>
 <FilterProvider>
   <div class="module">
     <BrowserRouter>
@@ -49,7 +45,7 @@ const AppView = () =>
         <Route path="/users" component={Users} />
         <Route path="/finalizar" component={FinalizarCompra} />
         <Route path="/" component={Home} />
-        <Redirect to="/" />
+        <Redirect to="/home" />
       </Switch>
     </BrowserRouter>
   </div>

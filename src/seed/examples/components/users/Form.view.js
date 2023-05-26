@@ -78,7 +78,7 @@ const UserFormView = ({ user= {}, companies= [], products= [], onSubmit, error }
             {/* Cp */}
             <div class="form-group">
             <label class="input-label">Cp</label>
-            <Field type="number" name="cp"
+            <Field type="text" name="cp"
               class="form-control" />
             </div>
             {/* Municipality */}

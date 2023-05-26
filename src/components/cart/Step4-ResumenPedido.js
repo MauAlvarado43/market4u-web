@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react'
-import './CartStyle.css'
 import { Divider } from '@material-ui/core'
 import PurchaseCard from './S1-Purchase'
 import PaymentCard from './S4-PaymentCard'

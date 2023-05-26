@@ -23,6 +23,7 @@ function PaymentList() {
         type
         address
         bank
+        name
         createdAt
         user { }
       }

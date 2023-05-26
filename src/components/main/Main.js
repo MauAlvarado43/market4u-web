@@ -9,7 +9,7 @@ function Main() {
   
   const pageSize = 20;
   const [pageNum, setPageNum] = useState(1);
-  const { selectedCategories, selectedCompanies, priceRange, selectedPriceFilter } = useContext(FilterContext);
+  const { selectedCategories, selectedCompanies, priceRange, selectedPriceFilter, setSaleId, saleId } = useContext(FilterContext);
 
   const reqProducts = usePagination(
     `{
@@ -19,6 +19,9 @@ function Main() {
           id
           name
           shortDescription
+          sale {
+            name
+          }
           variants {
             price
             photos {
@@ -45,11 +48,16 @@ function Main() {
   const { products = [], totalPages = 0 } = reqProducts.data.productPagination;
 
   const filteredProducts = products.filter(product => {
-    const { category, company, variants } = product;
+    const { category, company, variants, sale } = product;
     const productCategory = category ? category.name : '';
     const productCompany = company ? product.company.commonName : '';
     const productPrice = variants.length > 0 ? variants[0].price : 0;
+    const productSaleId = sale ? sale.id : '';
     
+    if (saleId && saleId !== productSaleId) {
+      return false;
+    }
+
     if (selectedCategories.length > 0 && !selectedCategories.includes(productCategory)) {
       return false;
     }

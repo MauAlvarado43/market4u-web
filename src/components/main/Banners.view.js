@@ -1,47 +1,37 @@
 import React from 'react';
 import PropTypes from "prop-types";
-// import "styles/css/carrusel.css";
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-const BannersView = ({ sales, activeIndex, handlePrevClick, handleNextClick }) => (
+const BannersView = ({ 
+  sales, 
+  activeIndex, 
+  settings,
+  setSaleId
+}) => (
+<div className="banner-carousel-container" style = {{overflowX:"hidden", overflowY:"hidden"}}>
+  <Slider {...settings}>
+    {sales.map((sale, index) => (
+      <div
+        key={sale.id}
+        className={`banner-image ${index === activeIndex ? 'active' : ''}`}
+      >
+        <img
+          onClick={() => setSaleId(sale.id)} 
+          style={{ width: '100%', height:"45vh" }} 
+          src={sale?.banner?.url} alt={sale?.banner?.name} />
+        <div className="banner-name">{sale.banner.name}</div>
+      </div>
+    ))}
+  </Slider>
 
-  <div className="banner-carousel-container">
-    {/* <link rel="stylesheet" style={{width: "100%"}} href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"  /> */}
-    <div className="banner-carousel">
-      {sales.map((sale, index) => (
-        <div
-          key={sale.id}
-          className={`banner-image ${index === activeIndex ? 'active' : ''}`}
-        >
-          <img style={{width: "100%"}} src={sale?.banner?.url} alt={sale?.banner?.name} />
-          {/*<div className="banner-name">{sale.banner.name}</div>*/}
-          {/*BOTON VER PRODUCTOS*/}
-
-          {/* <button className="view-products" onClick={() => console.log("Ver productos")}>
-            Ver productos
-          </button> */}
-
-        </div>
-      ))}
-
-    </div>
-    {/* <button className="prev-button" onClick={handlePrevClick}>
-      <span className="material-symbols-outlined">
-        arrow_forward_ios
-      </span>
-    </button>
-    <button className="next-button" onClick={handleNextClick}>
-      <span className="material-symbols-outlined">
-        arrow_back_ios_new
-      </span>
-    </button> */}
+  <div className="banner-carousel-controls">
+    <button className="border-0"/>
   </div>
-
+</div>
 );
 
 BannersView.propTypes = {};
 
 export default BannersView;
-
-
-
-

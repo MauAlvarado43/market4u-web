@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './CartStyle.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { Divider } from '@material-ui/core'
 import PurchaseCard from './S1-Purchase'

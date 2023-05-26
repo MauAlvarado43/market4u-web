@@ -9,10 +9,16 @@ function Detail({ match }) {
   const [selectedOptions, setSelectedOptions] = useState({});
   const variantOptions = {};
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [prevProductId, setPrevProductId] = useState(0);
   let photos = [];
   let price = 0;
   let stock = 0;
   let exist = false;
+
+  if(prevProductId != productId) {
+    setSelectedOptions({});
+    setPrevProductId(productId);
+  }
 
   const qProduct = useDetail(`
     {

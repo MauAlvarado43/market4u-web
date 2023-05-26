@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './CartStyle.css'
 
 const AddRemoveBtn = (props) => {
   const {productAmount, updateAmount, setProductAmount, updateTotalCost, price, updateProdAmount, indexp } = props
