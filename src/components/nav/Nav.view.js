@@ -38,7 +38,7 @@ const NavView = ({
             ></i>
           </span>
         ) : null}
-        <Link to={`/home`}>
+        <Link to={user.type == "NORMAL" ? `/home` : user.type == "SUPERADMIN" ? `/profile/info` : null}>
           <a class="navbar-brand ml-2">
             <img src="/theme/img/market4u.png" alt="Logo" height="80" />
           </a>

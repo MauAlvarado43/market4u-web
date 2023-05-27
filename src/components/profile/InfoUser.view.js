@@ -45,7 +45,6 @@ const InfoUserView = ({
                     <Form>
                       <div class="mb-2 mt-2">
                         {/*BASIC FIELDS*/}
-
                         <div class="form-group">
                           <label className="input">
                             {user.type !== "ADMIN" ? (

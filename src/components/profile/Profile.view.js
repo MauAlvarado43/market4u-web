@@ -14,7 +14,7 @@ const ProfileView = ({
   <BrowserRouter basename="/profile">
     {users && users.map((user) => (
       <div key={user.id} style = {{overflowX:"hidden"}}>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center align-items-center">
           <div className="col-md-2">
             <h3 className="ml-3 display-4">
               <strong>MI CUENTA</strong>

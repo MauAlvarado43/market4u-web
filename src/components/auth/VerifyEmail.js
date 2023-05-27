@@ -4,6 +4,7 @@ import View from "components/auth/VerifyEmail.view";
 import { usePost } from "seed/api";
 import { Loading } from "seed/helpers";
 import { object, string } from "yup";
+import swal from "sweetalert";
 
 function VerifyEmail(props) {
 
@@ -29,8 +30,10 @@ function VerifyEmail(props) {
 
   const [callVerify, reqVerify] = usePost("/users/registry_verify", {
     onCompleted: () => {
+      swal("¡Cuenta verificada!", "Ya puedes iniciar sesión", "success").then(() => {
+        window.location.href="/login";
+      });
       setError(null);
-      setMessage("Correo verificado exitosamente, ahora puedes iniciar sesión");
       setVerified(true);
     },
     onError: (error) => {
