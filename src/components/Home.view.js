@@ -17,6 +17,7 @@ import SalesSA from "components/superadmin/sales/SalesSA";
 import productsSA from "components/superadmin/products/productsSA";
 import UsersSA from "components/superadmin/users/UsersSA";
 import CompaniesSA from "components/superadmin/companies/CompaniesSA";
+import Chatbot from "components/chatbot/Chatbot";
 
 const HomeView = ({
   user_type
@@ -25,6 +26,7 @@ const HomeView = ({
     <Switch>
       <div>
         <Nav />
+        <Chatbot />
         <div id="content">
           <Switch>
             <Route path="/superadmin/categorySA" component={CategorySA} />
