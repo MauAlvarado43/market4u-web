@@ -16,14 +16,14 @@ const FilterView = ({
   <>
     <div
       className="card position-absolute rounded-0"
-      tabIndex="-1"
+      tabIndex="1"
       role="dialog"
       style={{
-        overflowY: "auto",
+        overflowY: "hidden",
         backgroundColor: "white",
         top: 0,
         left: 0,
-        height: "100vh",
+        height: "100%",
         width: "23vw",
         zIndex: 9999,
       }}
@@ -149,8 +149,8 @@ const FilterView = ({
       </div>
     </div>
     <div className="card position-absolute rounded-0"
-        style={{width:"77vw", 
-                height:"100vh", 
+        style={{width:"76.5vw", 
+                height:"100%", 
                 margin:0,
                 top:"0",
                 right:"0",

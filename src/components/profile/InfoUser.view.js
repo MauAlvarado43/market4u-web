@@ -381,14 +381,6 @@ const InfoUserView = ({
                                 : null
                             }
                           </div>
-                          <div className="form-group col-md-6">
-                            <label className="text-left">
-                              Debe tener mínimo: 8 caracteres, un número, una mayúscula y un caracter especial &#40;
-                              por ejemplo: &?!@&#41;.
-                            </label>
-                          </div>
-
-
                         </div>
 
                         <div class="form-group">

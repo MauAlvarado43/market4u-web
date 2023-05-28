@@ -10,7 +10,7 @@ import Delete from "components/products/Delete";
 
 const ProductsView = ({ listRef, refetchQuery }) =>
   <BrowserRouter basename="/products">
-    <div class="content container-fluid mt-3">
+    <div class="content container-fluid mt-3" style = {{overflowY:"auto"}}>
 
     {/* Header */}
     <div class="row align-items-end mb-3">
@@ -25,7 +25,7 @@ const ProductsView = ({ listRef, refetchQuery }) =>
 
     </div>
 
-    <div className="pt-2" style={{ maxHeight: "80vh", overflowY: "auto", paddingBottom: "6em" }}>
+    <div className="pt-2" style={{ maxHeight: "80vh", overflowY: "hidden", paddingBottom: "6em" }}>
       <ProductList ref={listRef}/>
     </div>
 

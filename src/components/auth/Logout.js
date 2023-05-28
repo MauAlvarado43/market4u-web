@@ -7,12 +7,12 @@ function Logout({ history }) {
     onCompleted: () => {
       sessionStorage.clear();
       localStorage.clear();
-      history.replace("/");
+      history.replace("/login");
     },
     onError: () => {
       sessionStorage.clear();
       localStorage.clear();
-      history.replace("/");
+      history.replace("/login");
     },
   });
 

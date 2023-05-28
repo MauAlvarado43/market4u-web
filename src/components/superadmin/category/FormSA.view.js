@@ -13,8 +13,8 @@ const FormView = ({ category = {}, onSubmit, error, onCancel }) =>
             </h1>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col">
+            <div class="row justify-content-center">
+                <div class="col-md-11">
                     <Formik initialValues={{ ...category, }} onSubmit={onSubmit}>
                         {({
                             values,

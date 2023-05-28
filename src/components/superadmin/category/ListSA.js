@@ -5,7 +5,7 @@ import View from "components/superadmin/category/ListSA.view";
 
 const List = forwardRef(
     function SaList(props, ref) {
-        const pageSize = 8;
+        const pageSize = 9;
         const [pageNum, setPageNum] = useState(1);
         const reqCategories = usePagination(`
             {

@@ -1,9 +1,11 @@
-.active-link {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .active-link:hover {
-    background-color: #0056b3;
-  }
-  
+.active {
+  margin-top: 0;
+  border-bottom: 1px solid #000;
+  color: black !important;
+}
+
+.nav-link:hover {
+  color: black !important;
+  border-bottom: 2px solid #000;
+  font-size: 18px;
+}

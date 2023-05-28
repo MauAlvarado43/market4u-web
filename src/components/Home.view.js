@@ -17,6 +17,7 @@ import SalesSA from "components/superadmin/sales/SalesSA";
 import productsSA from "components/superadmin/products/productsSA";
 import UsersSA from "components/superadmin/users/UsersSA";
 import CompaniesSA from "components/superadmin/companies/CompaniesSA";
+import Logout from "components/auth/Logout";
 
 const HomeView = ({
   user_type
@@ -27,6 +28,7 @@ const HomeView = ({
         <Nav />
         <div id="content">
           <Switch>
+            <Route path="/logout" component={Logout} />
             <Route path="/superadmin/categorySA" component={CategorySA} />
             <Route path="/superadmin/opinions" component={OpinionSA} />
             <Route path="/superadmin/sales" component={SalesSA} />
@@ -41,7 +43,8 @@ const HomeView = ({
             <Route path="/history" component={History} />
             <Route path="/product/:productId(\d+)" component={ProductDetail} />
             <Route path="/cart" component={Cart} />
-            {user_type == "SUPERADMIN" && <Redirect to="/profile/info" component = {Profile}/> }
+            {(user_type == "SUPERADMIN" || user_type == "SELLER" || user_type == "ADMIN") 
+              && <Redirect to="/profile/info" component = {Profile}/> }
             {user_type == "NORMAL" && <Redirect to="/home"/>}
           </Switch>
         </div>

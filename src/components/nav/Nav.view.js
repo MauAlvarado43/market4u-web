@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import Filters from "components/nav/Filter";
 import { Typeahead } from "react-bootstrap-typeahead";
+import { Dropdown } from "react-bootstrap";
+import css from "styles/Navlink.scss";
 
 const NavView = ({
   user,
@@ -22,10 +24,11 @@ const NavView = ({
       style={{
         height: "15vh",
         marginLeft: "0vw",
+        marginTop: "-1vh",
         marginBottom: "1vh",
       }}
     >
-      <div class="container-fluid">
+      <div className="container-fluid">
         {(user?.type == "NORMAL") & showFilterIcon ? (
           <span
             className="mr-3 mt-1"
@@ -38,10 +41,17 @@ const NavView = ({
             ></i>
           </span>
         ) : null}
-        <Link to={user.type == "NORMAL" ? `/home` : user.type == "SUPERADMIN" ? `/profile/info` : null}>
-          <a class="navbar-brand ml-2">
-            <img src="/theme/img/market4u.png" alt="Logo" height="80" />
-          </a>
+        <Link
+          to={
+            user.type == "NORMAL"
+              ? `/home`
+              : user.type == "SUPERADMIN" || user.type == "ADMIN" || user.type == "SELLER"
+              ? `/profile/info`
+              : null
+          }
+          className="navbar-brand ml-2"
+        >
+          <img src="/theme/img/market4u.png" alt="Logo" height="80" />
         </Link>
         {user.type === "NORMAL" ? (
           <div className="d-flex flex-grow-1 justify-content-center text-center mb-3 mt-3">
@@ -57,7 +67,7 @@ const NavView = ({
                     : null
                 }
                 options={products}
-                maxResults={5}
+                maxResults={10}
                 className="row align-items-center"
               >
                 {search.length === 0 && (
@@ -93,83 +103,170 @@ const NavView = ({
               </span>
             </Link>
             <span
-              class="mr-3 mt-1"
+              className="mr-3 mt-1"
               style={{ fontSize: "25px", cursor: "pointer" }}
             >
               <Link to="/cart">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
               </Link>
             </span>
           </>
         ) : user.type == "SUPERADMIN" ? (
           <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
-            <div className="w-100 text-right col-md-8">
-              <div className="d-flex flex-wrap justify-content-end">
-                <NavLink
-                  to="/profile/info"
-                  activeClassName="active-link"
-                  className="btn btn-primary mx-2"
-                >
-                  Mi cuenta
-                </NavLink>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
                 <NavLink
                   to="/superadmin/categorySA"
-                  activeClassName="active-link"
-                  className="btn btn-primary mx-2"
+                  activeClassName="active"
+                  className="nav-link h3"
                 >
                   Categorías
                 </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink
                   to="/superadmin/companies"
-                  activeClassName="active-link"
-                  className="btn btn-primary mx-2"
+                  activeClassName="active"
+                  className="nav-link h3"
                 >
                   Compañías
                 </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink
                   to="/superadmin/opinions"
-                  activeClassName="active-link"
-                  className="btn btn-primary mx-2"
+                  activeClassName="active"
+                  className="nav-link h3"
                 >
                   Opiniones
                 </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink
                   to="/superadmin/products"
-                  activeClassName="active-link"
-                  className="btn btn-primary mx-2"
+                  activeClassName="active"
+                  className="nav-link h3"
                 >
                   Productos
                 </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink
                   to="/superadmin/sales"
-                  activeClassName="active-link"
-                  className="btn btn-primary mx-2"
+                  activeClassName="active"
+                  className="nav-link h3"
                 >
                   Ofertas
                 </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink
                   to="/superadmin/users"
-                  activeClassName="active-link"
-                  className="btn btn-primary mx-2"
+                  activeClassName="active"
+                  className="nav-link h3"
                 >
                   Usuarios
                 </NavLink>
-              </div>
-            </div>
+              </li>
+            </ul>
+          </div>
+        ) : user.type == "ADMIN" ? (
+          <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink
+                  to="/sales"
+                  activeClassName="active"
+                  className="nav-link h3"
+                >
+                  Ofertas
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/products"
+                  activeClassName="active"
+                  className="nav-link h3"
+                >
+                  Productos
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/users"
+                  activeClassName="active"
+                  className="nav-link h3"
+                >
+                  Usuarios
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/orders"
+                  activeClassName="active"
+                  className="nav-link h3"
+                >
+                  Pedidos
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        )
+        : user.type == "SELLER" ? (
+          <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink
+                  to="/products"
+                  activeClassName="active"
+                  className="nav-link h3"
+                >
+                  Productos
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/sales"
+                  activeClassName="active"
+                  className="nav-link h3"
+                >
+                  Ofertas
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/orders"
+                  activeClassName="active"
+                  className="nav-link h3"
+                >
+                  Pedidos
+                </NavLink>
+              </li>
+            </ul>
           </div>
         ) : null}
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link">
-              <Link to="/profile/info">
-                <img
-                  src={user?.photo?.url}
-                  alt="Foto de Perfil"
-                  class="rounded-circle"
-                  height="60"
-                />
-              </Link>
-            </a>
+            <Dropdown>
+              <Dropdown.Toggle variant="link" id="dropdown-menu">
+                <a className="navlink">
+                  <img
+                    src={user?.photo?.url}
+                    alt="Foto de Perfil"
+                    className="rounded-circle"
+                    height="60"
+                  />
+                </a>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to="/profile/info">
+                  Mi perfil
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/login">
+                  Cerrar Sesión
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </li>
         </ul>
       </div>
@@ -192,6 +289,10 @@ NavView.propTypes = {
   handleModalToggle: PropTypes.func,
   handleChange: PropTypes.func,
   values: PropTypes.array,
+  searchRef: PropTypes.object,
+  handleChangeSearch: PropTypes.func,
+  search: PropTypes.string,
+  products: PropTypes.array
 };
 
 export default NavView;

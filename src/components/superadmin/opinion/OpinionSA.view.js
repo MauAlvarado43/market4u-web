@@ -18,7 +18,7 @@ const View = ({ listRef, refetchQuery }) =>
                 component={Details}
                 refetchQuery={refetchQuery}
                 width="920"
-                height="700"
+                height="600"
             />
             <ModalRoute
                 path="/:opinionId(\d+)/censor"
