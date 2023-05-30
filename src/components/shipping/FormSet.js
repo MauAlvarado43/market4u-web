@@ -51,35 +51,28 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
     const { shipping = [] } = qShipping.data;
 
     let newAddress = {}
-    let allPurchases
-    
+
+    let allPurchasesInShipping = []
+
+
     for(let i = 0; i < shipping.purchases.length ; i ++ ){
         let individualPurchase = JSON.parse(JSON.parse(shipping.purchases[i].product))
-        allPurchases = individualPurchase
+        allPurchasesInShipping.push(individualPurchase)
+    }
+    let allVariants = []
+    let allProducts = []
+
+    for(let i = 0; i < allPurchasesInShipping.length; i++){
+        allProducts.push(allPurchasesInShipping[i].product)
+        allVariants.push(allPurchasesInShipping[i].variant)
     }
 
+    console.log("productos")
+    console.log(allProducts)
+    console.log("variantes")
+    console.log(allVariants)
 
-    newAddress = JSON.parse(shipping.address)
-
-    let variant = [allPurchases.variant]
-
-    let product2 = [allPurchases.product]
-
-
-    let products = [
-        {
-            id: 2,
-            url: "https://cdn.shopify.com/s/files/1/0442/7428/6753/products/2_1b1788bf-1fce-40ff-8a0a-3e428d286c84.jpg?v=1674577426",
-            name: "TOMMY HILFIGER TENIS LADDIN",
-            variant: {
-                price: 300
-            },
-            category: {
-                name: "zapatos"
-            }
-        },
-        
-    ]    
+    newAddress = JSON.parse(shipping.address)  
     
     const onSubmit = (values) => {
         delete values.seller
@@ -97,8 +90,8 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
     return <View
         newAddress={newAddress}
         shipping={shipping}
-        products={product2}
-        variant={variant}
+        products={allProducts}
+        variant={allVariants}
         onSubmit={onSubmit}
         onCancel={onCancel}
     />;
