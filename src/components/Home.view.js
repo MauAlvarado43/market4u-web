@@ -18,7 +18,6 @@ import productsSA from "components/superadmin/products/productsSA";
 import UsersSA from "components/superadmin/users/UsersSA";
 import CompaniesSA from "components/superadmin/companies/CompaniesSA";
 import Chatbot from "components/chatbot/Chatbot";
-import Logout from "components/logout/Logout";
 
 const HomeView = ({
   user_type
@@ -30,7 +29,6 @@ const HomeView = ({
         <Chatbot />
         <div id="content">
           <Switch>
-            <Route path="/logout" component={Logout} />
             <Route path="/superadmin/categorySA" component={CategorySA} />
             <Route path="/superadmin/opinions" component={OpinionSA} />
             <Route path="/superadmin/sales" component={SalesSA} />
