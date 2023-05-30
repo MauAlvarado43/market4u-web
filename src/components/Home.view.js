@@ -18,7 +18,8 @@ import productsSA from "components/superadmin/products/productsSA";
 import UsersSA from "components/superadmin/users/UsersSA";
 import CompaniesSA from "components/superadmin/companies/CompaniesSA";
 import Chatbot from "components/chatbot/Chatbot";
-import Logout from "components/logout/Logout";
+import Logout from "components/auth/Logout";
+
 
 const HomeView = ({
   user_type
@@ -45,6 +46,7 @@ const HomeView = ({
             <Route path="/history" component={History} />
             <Route path="/product/:productId(\d+)" component={ProductDetail} />
             <Route path="/cart" component={Cart} />
+            
             {(user_type == "SUPERADMIN" || user_type == "SELLER" || user_type == "ADMIN") 
               && <Redirect to="/profile/info" component = {Profile}/> }
             {user_type == "NORMAL" && <Redirect to="/home"/>}
