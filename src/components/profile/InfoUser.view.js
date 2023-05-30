@@ -14,6 +14,8 @@ const InfoUserView = ({
   setPasswordConfirm,
   showPassConfirm,
   handlePasswordChange,
+  setSelectedFile,
+  validateLetters,
 }) => (
   <div className="col-md-9 ml-1">
     {users.map((user) => (
@@ -41,7 +43,7 @@ const InfoUserView = ({
                   validationSchema={validationSchema}
                   onSubmit={onSubmit}
                 >
-                  {({ errors, touched, values, submitCount }) => (
+                  {({ errors, touched, values, submitCount, setFieldValue }) => (
                     <Form>
                       <div class="mb-2 mt-2">
                         {/*BASIC FIELDS*/}
@@ -56,6 +58,7 @@ const InfoUserView = ({
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                   placeholder=" "
                                   required
+                                  onKeyPress={(e) => validateLetters(e)}
                                 />
                                 <span class="input__label">
                                   Nombre{" "}
@@ -92,6 +95,7 @@ const InfoUserView = ({
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                   placeholder=" "
                                   required
+                                  onKeyPress={(e) => validateLetters(e)}
                                 />
                                 <span class="input__label">
                                   Apellidos {" "}
@@ -278,6 +282,7 @@ const InfoUserView = ({
                                 className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                 placeholder=" "
+                                onKeyPress={(e) => validateLetters(e)}
                               />
                               <span class="input__label">
                                 Alcaldía o Municipio
@@ -404,6 +409,19 @@ const InfoUserView = ({
                             </div>
                           </div>
                         </div>
+
+                        {/*<div class="form-group">
+                          <div className="d-flex justify-content-center">
+                            <Field
+                              type = "file"
+                              name = "image"
+                              className = "form-control"
+                              onChange = {(event) => {
+                                setSelectedFile("image", event.currentTarget.files[0]);
+                              }}
+                            />
+                          </div>
+                        </div>*/}
                       </div>
                     </Form>
                   )}

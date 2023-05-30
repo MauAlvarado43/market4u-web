@@ -21,12 +21,6 @@ const List = forwardRef(
                         lastName
                         email
                         type
-                        street
-                        city
-                        cp
-                        municipality
-                        state
-                        telephone
                         company { }
                     }
                 }
@@ -36,6 +30,8 @@ const List = forwardRef(
         const refetchQuery = () => {
             reqItems.refetch();
         };
+
+        console.log(reqItems)
 
         useImperativeHandle(ref, () => ({ refetchQuery }));
 

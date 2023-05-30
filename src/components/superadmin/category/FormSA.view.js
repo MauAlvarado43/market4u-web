@@ -1,15 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Formik, Field, Form } from "formik";
-import { MultiField, FileField } from "seed/helpers";
-import { DateTime } from 'luxon';
-import { Link, NavLink } from "react-router-dom";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import { validate } from "graphql";
 
-const FormView = ({ category = {}, onSubmit, error, onCancel }) =>
+const FormView = ({ 
+    category = {}, 
+    onSubmit, 
+    error, 
+    onCancel,
+    validateLetters
+}) =>
     <div class="card">
         <div class="card-header">
             <h1 class="card-header-title">
-                {category.id ? "Editar categoría" : "Nueva categoría"}
+                {category.id ? "Editar categor1ía" : "Nueva categoría"}
             </h1>
         </div>
         <div class="card-body">
@@ -18,7 +22,6 @@ const FormView = ({ category = {}, onSubmit, error, onCancel }) =>
                     <Formik initialValues={{ ...category, }} onSubmit={onSubmit}>
                         {({
                             values,
-                            setFieldValue
                         }) =>
                             <Form>
                                 <div class="mb-3">
@@ -33,6 +36,7 @@ const FormView = ({ category = {}, onSubmit, error, onCancel }) =>
                                                     placeholder=" "
                                                     required
                                                     value={values.name || ''}
+                                                    onKeyPress={(e) => {validateLetters(e)}}
                                                 />
                                                 <span class="input__label">
                                                     Nombre de la categoría

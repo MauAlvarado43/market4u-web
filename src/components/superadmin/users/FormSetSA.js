@@ -64,38 +64,43 @@ function FormSet({
   };
 
   const validatePassword = (pass) => {
-    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-    if (regex.test(pass)) {
-      return true;
-    } else {
+    if (pass.length < 8) 
       return false;
-    }
+    else
+      return true;
   };
+
+  const validateLetters = (e) => {
+    const keyCode = e.keyCode || e.which;
+    const keyValue = String.fromCharCode(keyCode);
+    const regex = /^[A-Za-z\s]+$/; 
+
+    if (!regex.test(keyValue)) 
+        e.preventDefault();
+  }
 
   const validationSchema = object({
     password: string().test({
       name: "password",
       test(value, context) {
-        if (!validatePassword(password) && (password))
+        if (!validatePassword(password) && password) {
           return context.createError({
-            message: "La contraseña debe de tener al menos 8 caracteres, un caracter especial y un número."
+            message: "La contraseña no cumple con los requisitos mínimos.",
           });
-
+        }
         return true;
-      }
+      },
     }),
     passwordConfirm: string().test({
-      id: "passConfirm",
+      name:"passwordConfirm",
       test(value, context) {
         if (passwordConfirm !== password) {
           return context.createError({
-            message: "Las contraseñas no coinciden",
+            message: "Las contraseñas no coinciden.",
           });
         }
-
         return true;
-
-      }
+      },
     })
   });
 
@@ -139,6 +144,7 @@ function FormSet({
     setPassword={setPassword}
     showPassword={showPassword}
     showPassConfirm={showPassConfirm}
+    validateLetters={validateLetters}
     validationSchema={validationSchema}
     setPasswordConfirm={setPasswordConfirm}
     handlePasswordChange={handlePasswordChange}

@@ -10,7 +10,7 @@ import Delete from "components/superadmin/category/DeleteSA";
 
 const View = ({ listRef, refetchQuery }) =>
     <BrowserRouter basename="/categorySA">
-        <div class="content container-fluid mt-3">
+        <div class="content container-fluid mt-2">
             <div class="row align-items-end mb-3">
                 <div class="col-sm"></div>
                 <div class="col-sm-auto">

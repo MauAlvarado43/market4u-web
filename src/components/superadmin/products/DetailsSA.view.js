@@ -47,7 +47,7 @@ const ProductFormView = ({
     </div>
 
     {/* Body */}
-    <div class="card-body">
+    <div class="card-body" style = {{overflowX:"hidden"}}>
       <div class="row justify-content-center">
         <div class="col-md-11">
           <Formik
@@ -227,7 +227,7 @@ const ProductFormView = ({
                             <a 
                               href="#"
                               onDoubleClick={() => setRename(index, true)}
-                              className={`d-flex align-items-center`}
+                              className="d-flex align-items-center"
                             >
 
                               {

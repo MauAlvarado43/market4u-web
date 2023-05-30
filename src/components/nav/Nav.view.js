@@ -29,7 +29,7 @@ const NavView = ({
       }}
     >
       <div className="container-fluid">
-        {(user?.type == "NORMAL") & showFilterIcon ? (
+        {(user?.type === "NORMAL") && showFilterIcon ? (
           <span
             className="mr-3 mt-1"
             style={{ fontSize: "45px" }}
@@ -43,9 +43,9 @@ const NavView = ({
         ) : null}
         <Link
           to={
-            user.type == "NORMAL"
+            user.type === "NORMAL"
               ? `/home`
-              : user.type == "SUPERADMIN" || user.type == "ADMIN" || user.type == "SELLER"
+              : user.type === "SUPERADMIN" || user.type === "ADMIN" || user.type === "SELLER"
               ? `/profile/info`
               : null
           }
@@ -111,9 +111,9 @@ const NavView = ({
               </Link>
             </span>
           </>
-        ) : user.type == "SUPERADMIN" ? (
+        ) : user.type === "SUPERADMIN" ? (
           <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink
                   to="/superadmin/categorySA"
@@ -170,9 +170,9 @@ const NavView = ({
               </li>
             </ul>
           </div>
-        ) : user.type == "ADMIN" ? (
+        ) : user.type === "ADMIN" ? (
           <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink
                   to="/sales"
@@ -212,9 +212,9 @@ const NavView = ({
             </ul>
           </div>
         )
-        : user.type == "SELLER" ? (
+        : user.type === "SELLER" ? (
           <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink
                   to="/products"

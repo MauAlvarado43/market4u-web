@@ -18,7 +18,7 @@ import productsSA from "components/superadmin/products/productsSA";
 import UsersSA from "components/superadmin/users/UsersSA";
 import CompaniesSA from "components/superadmin/companies/CompaniesSA";
 import Chatbot from "components/chatbot/Chatbot";
-import Logout from "components/logout/Logout";
+import Users from "components/users/Users";
 
 const HomeView = ({
   user_type
@@ -27,27 +27,40 @@ const HomeView = ({
     <Switch>
       <div>
         <Nav />
-        <Chatbot />
+        {user_type == "NORMAL" && <Chatbot /> }
         <div id="content">
           <Switch>
-            <Route path="/logout" component={Logout} />
-            <Route path="/superadmin/categorySA" component={CategorySA} />
-            <Route path="/superadmin/opinions" component={OpinionSA} />
-            <Route path="/superadmin/sales" component={SalesSA} />
-            <Route path="/superadmin/products" component={productsSA} />
-            <Route path="/superadmin/users" component={UsersSA} />
-            <Route path="/superadmin/companies" component={CompaniesSA} />
-            <Route path="/wishlist" component={WishList} />
-            <Route path="/home" component={Main} />
-            <Route path="/profile/info" component={Profile} />
-            <Route path="/sales" component={Sales} />
-            <Route path="/products" component={Products} />
-            <Route path="/history" component={History} />
-            <Route path="/product/:productId(\d+)" component={ProductDetail} />
-            <Route path="/cart" component={Cart} />
-            {(user_type == "SUPERADMIN" || user_type == "SELLER" || user_type == "ADMIN") 
-              && <Redirect to="/profile/info" component = {Profile}/> }
-            {user_type == "NORMAL" && <Redirect to="/home"/>}
+            {user_type == "SUPERADMIN" ? 
+            <>
+              <Route path="/superadmin/categorySA" component={CategorySA} />
+              <Route path="/superadmin/opinions" component={OpinionSA} />
+              <Route path="/superadmin/sales" component={SalesSA} />
+              <Route path="/superadmin/products" component={productsSA} />
+              <Route path="/superadmin/users" component={UsersSA} />
+              <Route path="/superadmin/companies" component={CompaniesSA} />
+              <Route path="/profile/info" component={Profile} />
+              <Redirect to="/profile/info" component = {Profile}/>
+            </>
+            : null}
+            {user_type == "NORMAL" ?
+            <>
+              <Route path="/home" component={Main} />
+              <Route path="/profile/info" component={Profile} />
+              <Route path="/product/:productId(\d+)" component={ProductDetail} />
+              <Route path="/wishlist" component={WishList} />
+              <Route path="/history" component={History} />
+              <Route path="/cart" component={Cart} />
+              <Redirect to="/home"/>
+            </>
+            : null}
+            {(user_type == "ADMIN" || user_type=="SELLER") &&
+            <>
+              <Redirect to="/profile/info" component = {Profile}/>
+              <Route path="/sales" component={Sales} />
+              <Route path="/products" component={Products} />
+              <Route path="/profile/info" component={Profile} />
+              <Route path="/users" component={Users} />
+            </>}
           </Switch>
         </div>
       </div>
@@ -55,7 +68,8 @@ const HomeView = ({
   </BrowserRouter>;
 
 HomeView.propTypes = {
-  filterValuesRef: PropTypes.object
+  filterValuesRef: PropTypes.object,
+  user_type: PropTypes.string
 };
 
 export default HomeView;

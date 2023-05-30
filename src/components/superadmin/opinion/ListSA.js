@@ -7,7 +7,7 @@ import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 const List = forwardRef(
   function SaList(props, ref) {
 
-    const pageSize = 9;
+    const pageSize = 10;
     const [pageNum, setPageNum] = useState(1);
     const reqOpinions = usePagination(`
         {

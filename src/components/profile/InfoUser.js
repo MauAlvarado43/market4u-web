@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import { object, string } from "yup";
 
 function InfoUser() {
+  const [selectedFile, setSelectedFile] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
@@ -77,23 +78,29 @@ function InfoUser() {
   };
 
   const validatePassword = (pass) => {
-    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-    if(regex.test(pass)) {
-      return true;
-    } else {
+    if(pass.length < 8) 
       return false;
-    }
+    else
+      return true;
   };
+
+  const validateLetters = (e) => {
+    const keyCode = e.keyCode || e.which;
+    const keyValue = String.fromCharCode(keyCode);
+    const regex = /^[A-Za-z\s]+$/; 
+
+    if (!regex.test(keyValue)) 
+        e.preventDefault();
+  }
 
   const validationSchema = object({
     password: string().test({
-      name: "password",
+      name: "passConfirm",
       test(value, context) {
         if(!validatePassword(password) && (password))
           return context.createError({
-            message: "La contraseña no cumple con los requisitos mínimos."
+            message: "La contraseña debe tener una longitud de 8 caracteres."
           });
-
         return true;
       }
     }),
@@ -105,9 +112,7 @@ function InfoUser() {
             message: "Las contraseñas no coinciden.",
           });
         }
-       
         return true;
-       
       }
     })
   });
@@ -136,6 +141,8 @@ function InfoUser() {
       setPassword={setPassword}
       showPassword={showPassword}
       showPassConfirm={showPassConfirm}
+      setSelectedFile={setSelectedFile}
+      validateLetters={validateLetters}
       validationSchema={validationSchema}
       setPasswordConfirm={setPasswordConfirm}
       handlePasswordChange={handlePasswordChange}

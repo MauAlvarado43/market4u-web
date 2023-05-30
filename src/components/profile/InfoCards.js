@@ -10,6 +10,7 @@ function InfoCard(){
     const reqPayments = useQuery(
         `{
             payments {
+                name
                 cardNumber
                 type
                 expireDate

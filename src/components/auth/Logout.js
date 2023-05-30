@@ -8,6 +8,7 @@ function Logout({ history }) {
       sessionStorage.clear();
       localStorage.clear();
       history.replace("/login");
+      window.reload();
     },
     onError: () => {
       sessionStorage.clear();
