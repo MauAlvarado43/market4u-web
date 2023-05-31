@@ -16,7 +16,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
 
     const onCancel = () => {
         onCompleted();
-        window.location.href = "/shipping";
+        window.location.href = "/orders";
     }
 
 
@@ -24,7 +24,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         onCompleted: () => {
             onCompleted();
             swal("¡Listo!", "Se ha actualizado la información de envío de manera exitosa.", "success");
-            window.location.href = "/shipping";
+            window.location.href = "/orders";
         },
     });
 
@@ -66,11 +66,6 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         allProducts.push(allPurchasesInShipping[i].product)
         allVariants.push(allPurchasesInShipping[i].variant)
     }
-
-    console.log("productos")
-    console.log(allProducts)
-    console.log("variantes")
-    console.log(allVariants)
 
     newAddress = JSON.parse(shipping.address)  
     

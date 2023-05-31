@@ -52,8 +52,7 @@ const List = forwardRef(
             if(newShipping.address != undefined)
                 newShipping.newAddress = JSON.parse(newShipping.address)
             newShippings.push(newShipping)
-            
-            console.log(newShippings)
+        
 
         }
 

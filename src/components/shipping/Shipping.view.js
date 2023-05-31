@@ -10,7 +10,7 @@ import FormSetShipping from "components/shipping/FormSet"
 import DetailShipping from "components/shipping/Details"
 
 const View = ({ listRef, refetchQuery }) =>
-    <BrowserRouter basename="/shipping">
+    <BrowserRouter basename="/orders">
         <Switch>
             <Route path="/:shippingId(\d+)/edit" component={FormSetShipping} />
             <Route path="/:shippingId(\d+)/details" component={DetailShipping} />

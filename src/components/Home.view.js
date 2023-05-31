@@ -19,6 +19,7 @@ import UsersSA from "components/superadmin/users/UsersSA";
 import CompaniesSA from "components/superadmin/companies/CompaniesSA";
 import Chatbot from "components/chatbot/Chatbot";
 import Users from "components/users/Users";
+import Shippings from "components/shipping/Shipping"
 
 const HomeView = ({
   user_type
@@ -61,6 +62,7 @@ const HomeView = ({
               <Route path="/products" component={Products} />
               <Route path="/profile/info" component={Profile} />
               <Route path="/users" component={Users} />
+              <Route path="/orders" component={Shippings} />
             </>}
 
           </Switch>
