@@ -30,6 +30,7 @@ const HomeView = ({
         {user_type == "NORMAL" && <Chatbot /> }
         <div id="content">
           <Switch>
+
             {user_type == "SUPERADMIN" ? 
             <>
               <Route path="/superadmin/categorySA" component={CategorySA} />
@@ -61,6 +62,7 @@ const HomeView = ({
               <Route path="/profile/info" component={Profile} />
               <Route path="/users" component={Users} />
             </>}
+
           </Switch>
         </div>
       </div>

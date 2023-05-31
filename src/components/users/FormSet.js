@@ -1,91 +1,163 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useSave, useSet, useQuery, useDetail } from "seed/gql";
+import { useQuery, useDetail } from "seed/gql";
 import { Loading } from "seed/helpers";
-import { DateTime } from "luxon";
-import { useHistory } from "react-router";
 import { usePost } from "seed/api";
-import { USER, SET_USER } from "seed/gql/queries";
+import { USER } from "seed/gql/queries";
 import View from "components/users/Form.view";
+import swal from "sweetalert";
+import { object, string } from "yup";
 
 function FormSet({
-    itemId,
-    onCompleted = () => null,
-    onError = () => null
+  itemId,
+  onCompleted = () => null,
 }) {
-    const qItem = useDetail(
-        USER,
-        itemId
-    );
 
-    const [callSet, qSet] = usePost("/users/update_user_normal", {
-        onCompleted: () => {
-            console.log("se ha actualizado de manera exitosa el usuario");
-            onCompleted();
-        },
-    });
-    const qUsers = useQuery(
-        `
-        { 
-            users {
-                id
-                email
-            } 
-        }
-        `
-    );
-    const { users = [] } = qUsers.data;
-    if (qItem.loading) return <Loading />;
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassConfirm, setShowPassConfirm] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [userType, setUserType] = useState("");
+  const qItem = useDetail(USER, itemId);
+  const { user = {} } = qItem.data;
 
-    const { user = {} } = qItem.data;
+  const [callSet, qSet] = usePost("/users/update_user_superadmin", {
+    onCompleted: () => {
+      onCompleted();
+      swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success");
+    },
+  });
 
+  useEffect(() => {
+    setUserType(user.type);
+  }, [user.type]);
 
-    const lastEmail = user.email;
-    const companyId = sessionStorage.getItem("company");
+  const qCompanies = useQuery(`{ 
+        companies {
+            id
+            name
+        } 
+    }`);
 
-    const error = qSet.error ? "Error" : null;
-    const onSubmit = (values) => {
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].email === values.email && users[i].email !== lastEmail) {
-                alert("Este correo ya ha sido utilizado");
-                return;
-            }
-        }
-        if (values.password !== values.password2) {
-            alert("Las contraseñas no coinciden");
-            return;
-        }
-        if (values.cp !== "") {
-            values.cp = parseInt(values.cp);
-        }
-        values.id = parseInt(itemId);
-        values.cp = parseInt(values.cp);
-        values.company = parseInt(companyId);
-        if (values.password == undefined)
-            values.password = ''
+  if (qItem.loading) return <Loading />;
 
-        let newValues = JSON.parse(JSON.stringify(values));
-        newValues.user_id = newValues.id;
-        delete newValues.id;
-        console.log(newValues);
-        callSet(newValues);
-    };
-    const onCancel = () => {
-        onCompleted();
+  const { companies = [] } = qCompanies.data;
+
+  const error = qSet.error ? "Error" : null;
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const togglePasswordVisibilityConfirm = () => {
+    setShowPassConfirm(!showPassConfirm);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    if (event.target.value !== "") {
+      document.getElementById("passConfirm").disabled = false;
+    } else {
+      document.getElementById("passConfirm").disabled = true;
+      document.getElementById("passConfirm").value = "";
     }
-    return <View
-        item={user}
-        error={error}
-        onSubmit={onSubmit}
-        onCancel={onCancel}
+  };
 
-    />;
+  const validatePassword = (pass) => {
+    if (pass.length < 8) 
+      return false;
+    else
+      return true;
+  };
+
+  const validateLetters = (e) => {
+    const keyCode = e.keyCode || e.which;
+    const keyValue = String.fromCharCode(keyCode);
+    const regex = /^[A-Za-z\s]+$/; 
+
+    if (!regex.test(keyValue)) 
+        e.preventDefault();
+  }
+
+  const validationSchema = object({
+    password: string().test({
+      name: "password",
+      test(value, context) {
+        if (!validatePassword(password) && password) {
+          return context.createError({
+            message: "La contraseña no cumple con los requisitos mínimos.",
+          });
+        }
+        return true;
+      },
+    }),
+    passwordConfirm: string().test({
+      name:"passwordConfirm",
+      test(value, context) {
+        if (passwordConfirm !== password) {
+          return context.createError({
+            message: "Las contraseñas no coinciden.",
+          });
+        }
+        return true;
+      },
+    })
+  });
+
+  const changeType = (event) => {
+    const selectedType = event.target.value;
+    setUserType(selectedType);
+  }
+
+  const companyId = sessionStorage.getItem("company");
+
+  const onSubmit = (values) => {
+
+    console.log(values)
+
+    let newValues = JSON.parse(JSON.stringify(values));
+    newValues.user_id = newValues.id;
+    newValues.password = password;
+    newValues.type = 'SELLER';
+
+    delete newValues.id;
+    delete newValues.company;
+
+    newValues.company_id = companyId;
+
+    callSet(newValues);
+  };
+
+  const onCancel = () => {
+    onCompleted();
+  }
+
+  return <View
+    item={user}
+    error={error}
+    password={password}
+    onSubmit={onSubmit}
+    onCancel={onCancel}
+    userType={userType}
+    companies={companies}
+    changeType={changeType}
+    setPassword={setPassword}
+    showPassword={showPassword}
+    showPassConfirm={showPassConfirm}
+    validateLetters={validateLetters}
+    validationSchema={validationSchema}
+    setPasswordConfirm={setPasswordConfirm}
+    handlePasswordChange={handlePasswordChange}
+    togglePasswordVisibility={togglePasswordVisibility}
+    togglePasswordVisibilityConfirm={togglePasswordVisibilityConfirm}
+  />;
+
 }
 
 FormSet.propTypes = {
-    itemId: PropTypes.number.isRequired,
-    onCompleted: PropTypes.func,
-    onError: PropTypes.func
+  itemId: PropTypes.number.isRequired,
+  onCompleted: PropTypes.func,
+  onError: PropTypes.func,
 };
 
 export default FormSet;
