@@ -6,6 +6,7 @@ const List = forwardRef(
     function List(props, ref) {
         const pageSize = 9;
         const [pageNum, setPageNum] = useState(1);
+        const userId = sessionStorage.getItem("id")
         const reqItems = usePagination(
             `
             {
@@ -24,7 +25,7 @@ const List = forwardRef(
             `, 
             pageNum, 
             pageSize,
-            "type = SELLER OR type = NORMAL OR type = ADMIN",
+            `(type = SELLER OR type = NORMAL OR type = ADMIN) AND id <> ${userId}`,
             {orderBy: "-id"}
         );
 
