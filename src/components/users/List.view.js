@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { PaginationFooter } from "seed/helpers"
-import ProductFormSave from "components/products/FormSave";
-import ProductFormSet from "components/products/FormSet";
-import { ModalRoute } from "seed/helpers";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 const View = ({
     items = [],

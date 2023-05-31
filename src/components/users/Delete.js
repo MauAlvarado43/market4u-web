@@ -5,15 +5,9 @@ import { Loading } from "seed/helpers";
 import View from "components/users/Delete.view";
 import { DELETE_USER } from "seed/gql/queries";
 
-function Delete({
-    itemId,
-    onCompleted = () => null,
-    onError = () => null,
-    refetchQuery
-}) {
+function Delete({ itemId, onCompleted = () => null, onError = () => null, }) {
     const [callDelete] = useDelete(DELETE_USER, {
         onCompleted: () => {
-            refetchQuery();
             onCompleted();
         }
     }
@@ -23,6 +17,7 @@ function Delete({
         const id = parseInt(itemId);
         callDelete({ id: id });
     }
+
     return <View
         onClose={onCompleted}
         onClickDelete={onClickDelete}

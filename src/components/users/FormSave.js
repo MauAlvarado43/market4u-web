@@ -1,80 +1,168 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useSave, useSet, useQuery, useDetail } from "seed/gql";
-import { Loading } from "seed/helpers";
+import { useQuery } from "seed/gql";
 import { usePost } from "seed/api";
-import { DateTime } from "luxon";
-import { useHistory } from "react-router";
-import { SAVE_USER } from "seed/gql/queries";
 import View from "components/users/Form.view";
 import swal from "sweetalert";
-import { object, string } from "yup";
+import { object, string, ref } from "yup";
+
 
 function FormSave({
-    onCompleted = () => null,
-    onError = () => null,
-    refetchQuery
+  onCompleted = () => null,
 }) {
-    const [callSave, qSave] = usePost("/users/create_user_company", {
-        onCompleted: () => {
-            swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success");
-            onCompleted();
-            refetchQuery();
-        },
-    });
-    const error = qSave.error ? "An error has occurred" : null;
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassConfirm, setShowPassConfirm] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [showCompany, setShowCompany] = useState(true);
+  const [selectedType, setSelectedType] = useState("ADMIN");
 
-    const qUsers = useQuery(
-        `
+  const qUsers = useQuery(
+    `
         { 
             users {
                 id
                 email
+                firstName
+                lastName
+                type
             } 
         }
         `
-    );
-    const { users = [] } = qUsers.data;
+  );
 
-
-    const companyId = sessionStorage.getItem("company");
-
-    const onSubmit = (values) => {
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].email === values.email) {
-                alert("Este correo ya ha sido utilizado");
-                return;
-            }
+  const qCompanies = useQuery(
+    `
+        { 
+            companies {
+                id
+                name
+            } 
         }
-        if (values.password !== values.password2) {
-            alert("Las contraseñas no coinciden");
-            return;
+        `
+  );
+  
+  const { companies = [] } = qCompanies.data;
+
+  const [callSave, qSave] = usePost("/users/create_user_superadmin", {
+    onCompleted: () => {
+      qUsers.refetch();      
+      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success");
+    },
+  });
+
+  const error = qSave.error ? "An error has occurred" : null;
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const togglePasswordVisibilityConfirm = () => {
+    setShowPassConfirm(!showPassConfirm);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    if (event.target.value !== "") {
+      document.getElementById("passConfirm").disabled = false;
+    } else {
+      document.getElementById("passConfirm").disabled = true;
+      document.getElementById("passConfirm").value = "";
+    }
+  };
+
+  const validatePassword = (pass) => {
+    if(pass.length < 8)
+      return false;
+    else
+      return true;
+  };
+
+  const validateLetters = (e) => {
+    const keyCode = e.keyCode || e.which;
+    const keyValue = String.fromCharCode(keyCode);
+    const regex = /^[A-Za-z\s]+$/; 
+
+    if (!regex.test(keyValue)) 
+        e.preventDefault();
+  }
+
+  const validationSchema = object({
+    password: string().test({
+      name: "password",
+      test(value, context) {
+        if (!validatePassword(password) && password) {
+          return context.createError({
+            message: "La contraseña no cumple con los requisitos mínimos.",
+          });
         }
-        let newValues = JSON.parse(JSON.stringify(values));
+        return true;
+      },
+    }),
+    passwordConfirm: string().test({
+      name:"passwordConfirm",
+      test(value, context) {
+        if (passwordConfirm !== password) {
+          return context.createError({
+            message: "Las contraseñas no coinciden.",
+          });
+        }
+        return true;
+      },
+    })
+  });
 
-        newValues.password = values.password;
-        newValues.type = values.type
-        if (newValues.type === "NORMAL" || newValues.type === "SUPERADMIN")
-            newValues.company_id = null;
-        else
-            newValues.company_id = parseInt(companyId);
-        delete newValues.company;
-        callSave(newValues)
-    }
+  const onChangeType = (event) => {
+    const newValue = event.target.value;
+    setShowCompany(newValue !== "NORMAL" && newValue !== "SUPERADMIN")
+    setSelectedType(newValue);
+  }
 
-    const onCancel = () => {
-        onCompleted();
+  const companyId = sessionStorage.getItem("company");
+
+  const onSubmit = (values) => {
+    let newValues = JSON.parse(JSON.stringify(values));
+
+    newValues.password = password;
+    newValues.type = 'SELLER';
+    
+      newValues.company_id = parseInt(companyId);
+
+    delete newValues.company;
+
+    if (validationSchema.validate({ password })){
+      callSave(newValues)
     }
-    return <View
-        error={error}
-        onSubmit={onSubmit}
-        onCancel={onCancel}
-    />;
+  }
+
+  const onCancel = () => {
+    onCompleted();
+  }
+
+  return <View
+    error={error}
+    onSubmit={onSubmit}
+    onCancel={onCancel}
+    companies={companies}
+    setPassword={setPassword}
+    showCompany={showCompany}
+    onChangeType={onChangeType}
+    showPassword={showPassword}
+    selectedType={selectedType}
+    showPassConfirm={showPassConfirm}
+    setSelectedType={setSelectedType}
+    validateLetters={validateLetters}
+    validationSchema={validationSchema}
+    setPasswordConfirm={setPasswordConfirm}
+    handlePasswordChange={handlePasswordChange}
+    togglePasswordVisibility={togglePasswordVisibility}
+    togglePasswordVisibilityConfirm={togglePasswordVisibilityConfirm}
+  />;
 }
 
 FormSave.propTypes = {
-    onCompleted: PropTypes.func,
-    onError: PropTypes.func
+  onCompleted: PropTypes.func,
+  onError: PropTypes.func
 };
 
 export default FormSave;
