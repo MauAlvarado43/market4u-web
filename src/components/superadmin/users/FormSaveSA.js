@@ -4,7 +4,7 @@ import { useQuery } from "seed/gql";
 import { usePost } from "seed/api";
 import View from "components/superadmin/users/FormSA.view";
 import swal from "sweetalert";
-import { object, string } from "yup";
+import { object, string, ref } from "yup";
 
 
 function FormSave({
@@ -23,6 +23,9 @@ function FormSave({
             users {
                 id
                 email
+                firstName
+                lastName
+                type
             } 
         }
         `
@@ -38,15 +41,16 @@ function FormSave({
         }
         `
   );
+  
   const { companies = [] } = qCompanies.data;
 
   const [callSave, qSave] = usePost("/users/create_user_superadmin", {
     onCompleted: () => {
-      onCompleted();
-      window.location.href = "/superadmin/users";
+      qUsers.refetch();      
       swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success");
     },
   });
+
   const error = qSave.error ? "An error has occurred" : null;
 
   const togglePasswordVisibility = () => {
@@ -68,37 +72,43 @@ function FormSave({
   };
 
   const validatePassword = (pass) => {
-    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-    if (regex.test(pass)) 
-      return true;
-    else 
+    if(pass.length < 8)
       return false;
+    else
+      return true;
   };
+
+  const validateLetters = (e) => {
+    const keyCode = e.keyCode || e.which;
+    const keyValue = String.fromCharCode(keyCode);
+    const regex = /^[A-Za-z\s]+$/; 
+
+    if (!regex.test(keyValue)) 
+        e.preventDefault();
+  }
 
   const validationSchema = object({
     password: string().test({
       name: "password",
       test(value, context) {
-        if (!validatePassword(password) && (password))
+        if (!validatePassword(password) && password) {
           return context.createError({
-            message: "La contraseña debe de tener al menos 8 caracteres, un caracter especial y un número."
+            message: "La contraseña no cumple con los requisitos mínimos.",
           });
-
+        }
         return true;
-      }
+      },
     }),
     passwordConfirm: string().test({
-      id: "passConfirm",
+      name:"passwordConfirm",
       test(value, context) {
         if (passwordConfirm !== password) {
           return context.createError({
-            message: "Las contraseñas no coinciden",
+            message: "Las contraseñas no coinciden.",
           });
         }
-
         return true;
-
-      }
+      },
     })
   });
 
@@ -121,12 +131,8 @@ function FormSave({
     delete newValues.company;
 
     if (validationSchema.validate({ password })){
-      console.log(newValues)
       callSave(newValues)
     }
-    else
-      return;
-
   }
 
   const onCancel = () => {
@@ -145,6 +151,7 @@ function FormSave({
     selectedType={selectedType}
     showPassConfirm={showPassConfirm}
     setSelectedType={setSelectedType}
+    validateLetters={validateLetters}
     validationSchema={validationSchema}
     setPasswordConfirm={setPasswordConfirm}
     handlePasswordChange={handlePasswordChange}

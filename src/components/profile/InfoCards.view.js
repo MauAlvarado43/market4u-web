@@ -23,15 +23,22 @@ const InfoCards = ({
         <h2 className="list-title">Mis tarjetas</h2>
       </p>
       <div className="card-body mt-2" style={{ overflowY: "auto" }}>
+        {payments.length == 0 ? (
+          <>
+            <h3 className = "text-center">No tienes tarjetas registradas.</h3>
+            <img
+              className="img-fluid rounded-circle d-flex mx-auto" 
+              src="https://img.freepik.com/vector-premium/producto-no-encontrado-ilustracion-plana_418302-105.jpg?w=2000"
+              style={{width: "400px", height: "400px"}}/>
+          </>
+        ) : null}
         {payments.map((payment) => (
           <div className="row" key={payment.id}>
             <div className="col-md-10 mx-auto">
               <div className="card d-flex border-0 bg-transparent shadow-none">
                 <div className="row">
                   <div className="col-md-2 justify-content-center align-items-center">
-                    {payment.length == 0 ? (
-                      <p>No tienes tarjetas registradas</p>
-                    ) : payment.bank == "BBVA" ||
+                    {payment.bank == "BBVA" ||
                       payment.bank == "BBVA Bancomer" ? (
                       <img
                         className="img-fluid rounded-circle d-flex"
@@ -64,9 +71,11 @@ const InfoCards = ({
                     ) : null}
                   </div>
                   <div className="col-md-7 d-flex flex-column">
-                    <div>Terminada en {payment.cardNumber.slice(-4)}</div>
-                    <div>{payment.bank}</div>
-                    <div>{payment.expireDate}</div>
+                    {payment.bank} - {payment.name}
+                    <div>Terminada en **{payment.cardNumber.slice(-4)}</div>
+                    <div>
+                      {payment.expireDate}
+                    </div>
                   </div>
                   <div className="col-md-2 d-flex justify-content-center align-items-center">
                     <Link to={`/payments/${payment.id}/delete`}

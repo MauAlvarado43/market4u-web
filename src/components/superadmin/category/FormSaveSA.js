@@ -7,6 +7,8 @@ import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 import { SAVE_CATEGORY } from "seed/gql/queries";
 import View from "components/superadmin/category/FormSA.view";
+import * as Yup from "yup";
+
 function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
     const [callSave, qSave] = useSave(SAVE_CATEGORY, {
         onCompleted: (data) => {
@@ -17,8 +19,17 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
 
     const error = qSave.error ? "An error has occurred" : null;
 
+    const validateLetters = (e) => {
+        const keyCode = e.keyCode || e.which;
+        const keyValue = String.fromCharCode(keyCode);
+        const regex = /^[A-Za-z\s]+$/; 
+    
+        if (!regex.test(keyValue)) 
+            e.preventDefault();
+    }
+
     const onSubmit = (values) => {
-        callSave(values);
+        callSave(values)
     }
 
     const onCancel = () => {
@@ -29,6 +40,7 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
         error={error}
         onSubmit={onSubmit}
         onCancel={onCancel}
+        validateLetters={validateLetters}
     />;
 }
 

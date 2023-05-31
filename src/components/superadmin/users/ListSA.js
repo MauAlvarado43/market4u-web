@@ -18,12 +18,6 @@ const List = forwardRef(
                         lastName
                         email
                         type
-                        street
-                        city
-                        cp
-                        municipality
-                        state
-                        telephone
                     }
                 }
             }
