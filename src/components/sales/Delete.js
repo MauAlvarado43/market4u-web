@@ -48,7 +48,7 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
         const newValues = {}
         newValues.sale_id = sale
         callSetNull(newValues)
-        //callDelete({ id: sale });
+        callDelete({ id: sale });
         onCompleted()
     }
         
