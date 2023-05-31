@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom"
 import Banners from "components/main/Banners";
-import ProductCard from "./ProductCard";
+import { PaginationFooter } from "seed/helpers";
+import ProductCard from "components/main/ProductCard";
 
 
 const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
@@ -29,6 +30,9 @@ const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
               )
             }
           </div>
+
+          <PaginationFooter totalPages={totalPages} pageNum={pageNum} onClickPage={onClickPage}/>
+
         </div>
 
       </div>

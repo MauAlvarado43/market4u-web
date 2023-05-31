@@ -124,7 +124,7 @@ const FilterView = ({
                 <input 
                     type="checkbox" 
                     name="category"
-                    value={category.name}
+                    value={category.id}
                     onChange={handleCategoryChange}
                 /> 
                 <h4 className="mt-2 ml-1">{category?.name}</h4>
@@ -139,7 +139,7 @@ const FilterView = ({
                 <input 
                   type="checkbox" 
                   name="category"
-                  value={company.commonName}
+                  value={company.id}
                   onChange={handleCompanyChange}
                 />
                 <h4 className="mt-2 ml-1">{company?.commonName}</h4>

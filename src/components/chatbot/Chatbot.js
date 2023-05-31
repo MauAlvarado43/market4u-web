@@ -8,25 +8,25 @@ import { usePost } from "seed/api";
 function Chatbot() {
 
     const chatRef = useRef(null);
-    const [showChatbot, setShowChatbot] = useState(true);
+    const [showChatbot, setShowChatbot] = useState(false);
     const [messageInput, setMessageInput] = useState("");
     const [messages, setMessages] = useState([
-        { 
-            isUser: false, 
-            message: "Hola, soy MarketBot, ¿en qué puedo ayudarte?", 
+        {
+            isUser: false,
+            message: "Hola, soy MarketBot, ¿en qué puedo ayudarte?",
             product: null
         },
     ]);
 
     const [callRecomendations, qRecomendations] = usePost("/products/get_chatbot_recomendations", {
         onCompleted: (data) => {
-            if(data.products.length === 0) {
+            if (data.products.length === 0) {
                 setMessages(
                     [
-                        ...messages, 
-                        { 
-                            isUser: false, 
-                            message: "No tengo recomendaciones para ti", 
+                        ...messages,
+                        {
+                            isUser: false,
+                            message: "No tengo recomendaciones para ti",
                             product: null
                         }
                     ]
@@ -35,10 +35,10 @@ function Chatbot() {
             else {
                 setMessages(
                     [
-                        ...messages, 
-                        { 
-                            isUser: false, 
-                            message: "Estos son los productos que te puedo recomendar", 
+                        ...messages,
+                        {
+                            isUser: false,
+                            message: "Estos son los productos que te puedo recomendar",
                             product: null
                         },
                         ...data.products.map((product) => ({
@@ -53,9 +53,9 @@ function Chatbot() {
         onError: (error) => {
             setMessages(
                 [
-                    ...messages, 
-                    { 
-                        isUser: false, 
+                    ...messages,
+                    {
+                        isUser: false,
                         message: "Ocurrió un error al obtener las recomendaciones, por favor intenta más tarde",
                         product: null
                     }
@@ -83,8 +83,8 @@ function Chatbot() {
 
     const handleSendMessage = (e) => {
 
-        if(!messageInput) return;
-        if(e.key && e.key !== "Enter") return;
+        if (!messageInput) return;
+        if (e.key && e.key !== "Enter") return;
 
         callRecomendations({ message: messageInput });
         setMessages([...messages, { isUser: true, message: messageInput, product: null }]);
@@ -93,12 +93,14 @@ function Chatbot() {
     }
 
     useEffect(() => {
-        chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000;
+        if (chatRef.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000;
+        }
     }, [messages]);
 
     const { user = {} } = reqUser.data;
 
-    return <View 
+    return <View
         setShowChatbot={setShowChatbot}
         showChatbot={showChatbot}
         messages={messages}

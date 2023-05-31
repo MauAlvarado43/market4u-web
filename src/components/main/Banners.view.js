@@ -19,7 +19,7 @@ const BannersView = ({
       >
         <img
           onClick={() => setSaleId(sale.id)} 
-          style={{ width: '100%', height:"45vh" }} 
+          style={{ width: '100%', height:"45vh", cursor: "pointer"}} 
           src={sale?.banner?.url} alt={sale?.banner?.name} />
         <div className="banner-name">{sale.banner.name}</div>
       </div>

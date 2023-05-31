@@ -167,7 +167,7 @@ const DetailView = ({
           </button>
 
           {
-            (Object.keys(selectedOptions).length > 0 && !exist || stock == 0) && <div className="">
+            (Object.keys(selectedOptions).length > 0 || !exist || stock == 0) && <div className="">
                 <div className="alert alert-danger mt-3 p-2 w-100" role="alert">
                   { exist && stock == 0 ? "No hay stock disponible" : "" }
                   { !exist ? "Este producto no existe" : ""}

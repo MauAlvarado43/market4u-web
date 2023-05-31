@@ -22,7 +22,6 @@ function Filter(props) {
   const reqCategory = useQuery(`{
     categories {
       name
-      id
     }
   }`);
 

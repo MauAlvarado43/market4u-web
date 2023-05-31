@@ -70,14 +70,20 @@ __Seed builder__
 .btn-primary {
   background-color: #519EA4 !important;
   border-color: #519EA4 !important; 
+  color: #fff !important;
 }
 
 .btn-secondary {
   background-color: #FC4B08 !important;
   border-color: #FC4B08 !important; 
+  color: #fff !important;
 }
 
 .btn-tertiary {
   background-color: #c9c9c9 !important;
-  border-color: #c9c9c9 !important; 
+  border-color: #c9c9c9 !important;
+}
+
+.page-link {
+  color: white !important; 
 }
