@@ -80,7 +80,7 @@ const ProductFormView = ({
 
                     {
                       errors.sku && (touched.sku || submitCount > 0)
-                        ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                             {errors.sku}
                           </div>
                         : null
@@ -107,7 +107,7 @@ const ProductFormView = ({
 
                     {
                       errors.name && (touched.name || submitCount > 0)
-                        ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                             {errors.name}
                           </div>
                         : null
@@ -135,7 +135,7 @@ const ProductFormView = ({
 
                     {
                       errors.short_description && (touched.short_description || submitCount > 0)
-                        ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                             {errors.short_description}
                           </div>
                         : null
@@ -207,7 +207,7 @@ const ProductFormView = ({
 
                   {
                     errors.description && (touched.description || submitCount > 0)
-                      ? <div class="mt-3 mb-4 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                           {errors.description}
                         </div>
                       : null
@@ -215,7 +215,7 @@ const ProductFormView = ({
 
                   {
                     errors["category.id"] && ((touched.category && touched.category.id) || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                           {errors["category.id"]}
                         </div>
                       : null

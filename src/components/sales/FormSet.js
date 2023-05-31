@@ -1,9 +1,3 @@
-/*historyhoB
-__Seed builder__
-  (Read_only) Example component
-  Be careful copying content
-*/
-
 import React from "react";
 import PropTypes from "prop-types";
 import { useSave, useSet, useQuery, useDetail } from "seed/gql";
@@ -13,30 +7,82 @@ import View from "components/sales/Form.view";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 import { usePost } from "seed/api";
+import swal from "sweetalert";
+import { object, string } from "yup";
 
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null }) {
-    //const history = useHistory();
     const qSale = useDetail(SALE, saleId);
     const qUsers = useQuery(`{ users { } }`);
+    let selectedStartDate;
+
+    const productSchema = object({
+        name: string().test({
+            name: "name",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese un nombre de la oferta" });
+
+                return true;
+
+            }
+        }),
+        disscount: string().test({
+            name: "disscount",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese el descuento de la oferta" });
+                if(value < 1 || value > 100)
+                    return context.createError({message: "La oferta no puede ser menor a 1 o mayor que 100"});
+
+                return true;
+
+            }
+        }),
+        startDate: string().test({
+            name: "startDate",
+            test(value, context) {
+                selectedStartDate = value
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Fechas de inicio ingresada incorrectamente" });
+
+                return true;
+
+            }
+        }),
+        endDate: string().test({
+            name: "endDate",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Fechas de fin ingresada incorrectamente" });
+
+                if(value < selectedStartDate)
+                    return context.createError({message: "La fecha de fin no puede ser menor que la fecha de inicio"})
+
+                return true;
+
+            }
+        }),
+    })
+
     const [callSet, qSet] = useSet(SET_SALE, {
         onCompleted: () => {
-            //onCompleted();
+            swal("¡Listo!", "Se ha actualizado la oferta de manera exitosa.", "success");
         }
-        //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
     const [callSetProducts, qSetProducts] = useSet(SET_PRODUCT, {
         onCompleted: () => {
-            //onCompleted();
         }
-        //Note: When the component is wrap in a ModalRoute it bind the event 'closeModal()'
     });
 
 
     const [callSetNull, qSetNull] = usePost("/products/update_product_null", {
         onCompleted: () => {
-            console.log("se ha actualizado de manera exitosa el producto");
-            //onCompleted();
+
         },
     });
 
@@ -75,24 +121,9 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
-      
-        //if(values.disscount < 1 || values.disscount > 100){
-          if(values.disscount < 1 || values.disscount > 100) {
-            alert("Por favor, ingrese un valor mayor a 1 y menor que 100 para el descuento.")
-            return;
-        }
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
-
-        //if(values.startDate > values.endDate){
-         if(values.startDate > values.endDate) {
-            alert("Fechas ingresadas incorrectas.")
-            return
-        }
         values.company = parseInt(sessionStorage.getItem("company"));
-
-        // values.products.id - ---nuevos
-        // anteriores ---
 
         for (let i = 0; i < filteredProducts.length; i++) {
             
@@ -100,15 +131,10 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
             newValues.product_id = newValues.id;
             delete newValues.id;
 
-            console.log(newValues);
             callSetNull(newValues)
         }
 
         if (values.products != undefined) {
-            //--------------------This thing doesnt work, null problem.
-            console.log(filteredProducts)
-            
-            //---------------------------------------------
 
             for (let i = 0; i < values.products.id.length; i++) {
                 let newProductValuesEdit = {
@@ -118,29 +144,12 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
                 callSetProducts(newProductValuesEdit)
             }
 
-            if (isNaN(values.banner)) {
-                alert("Favor de seleccionar un banner");
-                //console.log("adios")   
-                return;
-
-            }
-
         }
-        // for(let i=0;i<selectedProductsInt.length;i++){
-        //     var newProductValues = {
-        //         id: selectedProductsInt[i],
-        //         sale: data.saveSale.sale.id
-        //         };
-        //     callSet(newProductValues)
-
-        // }
-        //console.log(values)
         callSet(values);
         onCompleted();
     };
 
     const onCancel = () => {
-        //history.goBack();
         onCompleted();
     }
 
@@ -150,6 +159,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
         error={error}
         onSubmit={onSubmit}
         onCancel={onCancel}
+        productSchema={productSchema}
     />;
 }
 
