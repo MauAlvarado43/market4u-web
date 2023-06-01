@@ -772,6 +772,7 @@ export const SHIPPING = `
     folio
     address
     status
+    total
     cart {
       id
     }
@@ -792,6 +793,7 @@ mutation Set(
   $folio: String,
   $address: String,
   $status: String,
+  $total: Float,
   $cart: Int,
   $buyer: Int,
   $company: Int,
@@ -806,6 +808,7 @@ mutation Set(
     cart: $cart,
     buyer: $buyer,
     company: $company,
+    total: $total,
   ) {
     shipping {
       id
@@ -813,6 +816,7 @@ mutation Set(
       folio
       address
       status
+      total
       cart {
         id
       }
@@ -833,6 +837,7 @@ mutation Save(
   $folio: String!,
   $address: String!,
   $status: String!,
+  $total: Float!,
   $cart: Int!,
   $buyer: Int,
   $company: Int,
@@ -846,6 +851,7 @@ mutation Save(
     cart: $cart,
     buyer: $buyer,
     company: $company,
+    total: $total,
   ) {
     shipping {
       id

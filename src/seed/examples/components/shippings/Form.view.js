@@ -92,6 +92,12 @@ const ShippingFormView = ({ shipping= {}, carts= [], users= [], companies= [], o
             </Field>
             </div>
             </div>
+            {/* Total */}
+            <div class="form-group">
+            <label class="input-label">Total</label>
+            <Field type="number" name="total"
+              class="form-control" />
+            </div>
             </div>
             {error ? <div class="alert alert-soft-danger">{error}</div> : null}
             <button type="submit" class="btn btn-block btn-primary">Send</button>

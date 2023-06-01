@@ -28,7 +28,7 @@ const AppView = () =>
         <Route path="/users" component={Users} />
         <Route path="/shipping" component={Shippings} />
         <Route path="/" component={Home} />
-        <Redirect to="/home"/>
+        <Redirect to="/"/>
       </Switch>
     </BrowserRouter>
   </div>

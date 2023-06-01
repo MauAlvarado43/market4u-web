@@ -7,13 +7,12 @@ function Logout({ history }) {
     onCompleted: () => {
       sessionStorage.clear();
       localStorage.clear();
-      history.replace("/login");
-      window.reload();
+      window.location.href = "/login";
     },
     onError: () => {
       sessionStorage.clear();
       localStorage.clear();
-      history.replace("/login");
+      window.location.href = "/login";
     },
   });
 

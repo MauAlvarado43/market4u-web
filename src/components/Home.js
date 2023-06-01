@@ -24,9 +24,9 @@ function Home() {
     callAuth();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   if (!isAuth) return null;
-  return <View 
-          user_type={user_type}
-        />;
+  return <View
+    user_type={user_type}
+  />;
 }
 
 Home.propTypes = {};

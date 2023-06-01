@@ -20,6 +20,7 @@ function ShippingDetails({ shippingId, onCompleted = () => null, onError = () =>
       folio
       address
       status
+      total
       createdAt
       cart { }
       buyer { }

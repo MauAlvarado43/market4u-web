@@ -22,6 +22,7 @@ function ShippingList() {
         folio
         address
         status
+        total
         createdAt
         cart { }
         buyer { }

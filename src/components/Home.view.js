@@ -23,51 +23,45 @@ import Users from "components/users/Users";
 const HomeView = ({
   user_type
 }) =>
-  <BrowserRouter>
-    <Switch>
-      <div>
-        <Nav />
-        {user_type == "NORMAL" && <Chatbot /> }
-        <div id="content">
-          <Switch>
+  <div>
+    <Nav />
+    {user_type == "NORMAL" && <Chatbot />}
+    <div id="content">
 
-            {user_type == "SUPERADMIN" ? 
-            <>
-              <Route path="/superadmin/categorySA" component={CategorySA} />
-              <Route path="/superadmin/opinions" component={OpinionSA} />
-              <Route path="/superadmin/sales" component={SalesSA} />
-              <Route path="/superadmin/products" component={productsSA} />
-              <Route path="/superadmin/users" component={UsersSA} />
-              <Route path="/superadmin/companies" component={CompaniesSA} />
-              <Route path="/profile/info" component={Profile} />
-              <Redirect to="/profile/info" component = {Profile}/>
-            </>
-            : null}
-            {user_type == "NORMAL" ?
-            <>
-              <Route path="/home" component={Main} />
-              <Route path="/profile/info" component={Profile} />
-              <Route path="/product/:productId(\d+)" component={ProductDetail} />
-              <Route path="/wishlist" component={WishList} />
-              <Route path="/history" component={History} />
-              <Route path="/cart" component={Cart} />
-              <Redirect to="/home"/>
-            </>
-            : null}
-            {(user_type == "ADMIN" || user_type=="SELLER") &&
-            <>
-              <Redirect to="/profile/info" component = {Profile}/>
-              <Route path="/sales" component={Sales} />
-              <Route path="/products" component={Products} />
-              <Route path="/profile/info" component={Profile} />
-              <Route path="/users" component={Users} />
-            </>}
+      <Switch>
+        {user_type == "SUPERADMIN" &&
+          <>
+            <Route path="/superadmin/categorySA" component={CategorySA} />
+            <Route path="/superadmin/opinions" component={OpinionSA} />
+            <Route path="/superadmin/sales" component={SalesSA} />
+            <Route path="/superadmin/products" component={productsSA} />
+            <Route path="/superadmin/users" component={UsersSA} />
+            <Route path="/superadmin/companies" component={CompaniesSA} />
+            <Route path="/profile/info" component={Profile} />
+          </>}
 
-          </Switch>
-        </div>
-      </div>
-    </Switch>
-  </BrowserRouter>;
+        {user_type == "NORMAL" &&
+          <>
+            <Route path="/home" component={Main} />
+            <Route path="/profile/info" component={Profile} />
+            <Route path="/product/:productId(\d+)" component={ProductDetail} />
+            <Route path="/wishlist" component={WishList} />
+            <Route path="/history" component={History} />
+            <Route path="/cart" component={Cart} />
+            <Redirect to="/home" />
+          </>}
+
+        {(user_type == "ADMIN" || user_type == "SELLER") &&
+          <>
+            <Route path="/sales" component={Sales} />
+            <Route path="/products" component={Products} />
+            <Route path="/profile/info" component={Profile} />
+            <Route path="/users" component={Users} />
+          </>}
+
+      </Switch>
+    </div>
+  </div>;
 
 HomeView.propTypes = {
   filterValuesRef: PropTypes.object,

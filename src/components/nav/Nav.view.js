@@ -46,8 +46,8 @@ const NavView = ({
             user.type === "NORMAL"
               ? `/home`
               : user.type === "SUPERADMIN" || user.type === "ADMIN" || user.type === "SELLER"
-              ? `/profile/info`
-              : null
+                ? `/profile/info`
+                : null
           }
           className="navbar-brand ml-2"
         >
@@ -212,39 +212,39 @@ const NavView = ({
             </ul>
           </div>
         )
-        : user.type === "SELLER" ? (
-          <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <NavLink
-                  to="/products"
-                  activeClassName="active"
-                  className="nav-link h3"
-                >
-                  Productos
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/sales"
-                  activeClassName="active"
-                  className="nav-link h3"
-                >
-                  Ofertas
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/orders"
-                  activeClassName="active"
-                  className="nav-link h3"
-                >
-                  Pedidos
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        ) : null}
+          : user.type === "SELLER" ? (
+            <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <NavLink
+                    to="/products"
+                    activeClassName="active"
+                    className="nav-link h3"
+                  >
+                    Productos
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/sales"
+                    activeClassName="active"
+                    className="nav-link h3"
+                  >
+                    Ofertas
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/orders"
+                    activeClassName="active"
+                    className="nav-link h3"
+                  >
+                    Pedidos
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          ) : null}
         <ul className="navbar-nav">
           <li className="nav-item">
             <Dropdown>
@@ -262,7 +262,14 @@ const NavView = ({
                 <Dropdown.Item as={Link} to="/profile/info">
                   Mi perfil
                 </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/login">
+                {
+                  user.type == "NORMAL" && (
+                    <Dropdown.Item as={Link} to="/history">
+                      Mis compras
+                    </Dropdown.Item>
+                  )
+                }
+                <Dropdown.Item as={Link} to="/logout">
                   Cerrar Sesión
                 </Dropdown.Item>
               </Dropdown.Menu>

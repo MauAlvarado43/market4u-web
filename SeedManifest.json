@@ -474,6 +474,11 @@
           "is_fk": true,
           "name": "company",
           "type": "company"
+        },
+        {
+          "default": "0",
+          "name": "total",
+          "type": "float"
         }
       ],
       "name": "shipping"

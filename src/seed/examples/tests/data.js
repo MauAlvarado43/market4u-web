@@ -314,6 +314,7 @@ const GQL_SHIPPING_ = {
     cart:  { id: 1},
     buyer:  { id: 1},
     company:  { id: 1},
+    total: 128.0,
 }
 export const GQL_SHIPPING = {
     shipping: GQL_SHIPPING_
@@ -339,6 +340,7 @@ export const API_SHIPPING = {
     cart_id:  1,
     buyer_id:  1,
     company_id:  1,
+    total: 128.0,
 }
 export const API_SHIPPINGS = [API_SHIPPING]
 

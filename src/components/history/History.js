@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { usePagination } from "seed/gql";
+import { usePagination } from "seed/gql"
+import { useQuery } from "seed/gql";
 import { Loading } from "seed/helpers";
 import View from "components/history/History.view";
 
 function History() {
 
-  const userId = sessionStorage.getItem('id');
   const pageSize = 15;
+  const userId = sessionStorage.getItem('id');
   const [pageNum, setPageNum] = useState(1);
+
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState("");
 
   const reqShippings = usePagination(`{
     shippingPagination {
@@ -16,9 +19,13 @@ function History() {
       shippings {
         info
         folio
+        total
         address
         status
         createdAt
+        cart {
+          payment
+        }
         company {
           id
           name
@@ -42,7 +49,23 @@ function History() {
   console.log("shippings", shippings)
 
 
-  return <View shippings={shippings} pageNum={pageNum} totalPages={totalPages} onClickPage={onClickPage} />;
+  const handlePriceFilter = (filter) => {
+    setSelectedPriceFilter(filter);
+  };
+
+  // return <View shippings={shippings} pageNum={pageNum} totalPages={totalPages} onClickPage={onClickPage} handlePriceFilter={handlePriceFilter}/>;
+
+  return (
+    <View
+      shippings={shippings}
+      pageNum={pageNum}
+      totalPages={totalPages}
+      onClickPage={onClickPage}
+      selectedPriceFilter={selectedPriceFilter}
+      handlePriceFilter={handlePriceFilter}
+    />
+  );
+
 }
 
 History.propTypes = {};
