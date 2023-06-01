@@ -156,7 +156,7 @@ const FormView = (
                                             <div class="form-group">
                                                 <label class="input">
                                                     <Field
-                                                        type="text"
+                                                        type="number"
                                                         name="phone"
                                                         value={values.phone || ''}
                                                         required
