@@ -5,7 +5,7 @@ import { MultiField, FileField } from "seed/helpers";
 import { DateTime } from 'luxon';
 import { Link, NavLink } from "react-router-dom";
 
-const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onSubmit, error, onCancel }) => (
+const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onSubmit, error, onCancel,onDelivered }) => (
     <div class="content container-fluid mt-2">
 
         <div className="row" >
@@ -155,11 +155,22 @@ const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onS
                                 </button>
                                 <button
                                     type="submit"
-                                    className="btn btn-primary btn-sm rounded-pill px-5 ml-5"
+                                    className="btn btn-primary btn-sm rounded-pill px-5 mr-5"
                                 >
                                     <i className="fas fa-check mr-3 fa-lg"></i>
                                     Aceptar
                                 </button>
+                                {
+                                    shipping.status == 'SENT' ? 
+                                    <button
+                                    type="button"
+                                    className="btn btn-primary btn-sm rounded-pill px-5"
+                                    onClick={onDelivered}
+                                >
+                                    <i className="fas fa-box mr-3"></i>
+                                    Entregado
+                                </button> : <div></div>
+                                }
                             </div>
                         </Form>
                     }

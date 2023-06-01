@@ -4,7 +4,7 @@ import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 import { Loading } from "seed/helpers";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router";
-import { PRODUCT, SET_PRODUCT} from "seed/gql/queries";
+import { PRODUCT, SET_PRODUCT, SET_SHIPPING} from "seed/gql/queries";
 import View from "components/shipping/Form.view";
 import { parse } from "graphql";
 import { usePost } from "seed/api";
@@ -19,14 +19,25 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         window.location.href = "/orders";
     }
 
+    let shippingStatus = {
+        id:parseInt(shippingId),
+        status:'SENT'
+    }
+    
+
+    const [callSetStatus, qSetStatus] = useSet(SET_SHIPPING);
+
 
     const [callSet, qSet] = usePost("/users/add_info_shipping", {
         onCompleted: () => {
+            callSetStatus(shippingStatus)
             onCompleted();
             swal("¡Listo!", "Se ha actualizado la información de envío de manera exitosa.", "success");
             window.location.href = "/orders";
         },
     });
+
+    
 
     const qShipping = useDetail(
     `
@@ -42,6 +53,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
                 product
             }
             info
+            status
         }
     }
     `, shippingId);
@@ -49,9 +61,10 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
     if (qShipping.loading) return <Loading />;
     if (qShipping.error) return "Error";
     const { shipping = [] } = qShipping.data;
-
+    
+    let allVariants = []
+    let allProducts = []
     let newAddress = {}
-
     let allPurchasesInShipping = []
 
 
@@ -59,8 +72,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         let individualPurchase = JSON.parse(JSON.parse(shipping.purchases[i].product))
         allPurchasesInShipping.push(individualPurchase)
     }
-    let allVariants = []
-    let allProducts = []
+    
 
     for(let i = 0; i < allPurchasesInShipping.length; i++){
         allProducts.push(allPurchasesInShipping[i].product)
@@ -68,7 +80,10 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
     }
 
     newAddress = JSON.parse(shipping.address)  
-    
+
+    console.log(allProducts);
+    console.log(allVariants);
+
     const onSubmit = (values) => {
         delete values.seller
         delete values.address
@@ -77,10 +92,22 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         delete newValues.id 
         
         newValues.shipping_id = parseInt(newValues.shipping_id)
+
         
+        console.log(shippingStatus)
         
         callSet(newValues);
     };
+
+    const onDelivered = () => {
+        shippingStatus = {
+            id:parseInt(shippingId),
+            status:'COMPLETED'
+        };
+        callSetStatus(shippingStatus);
+        onCompleted();
+        window.location.href = "/orders";
+    }
 
     return <View
         newAddress={newAddress}
@@ -89,6 +116,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         variant={allVariants}
         onSubmit={onSubmit}
         onCancel={onCancel}
+        onDelivered={onDelivered}
     />;
 
 }

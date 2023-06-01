@@ -5,7 +5,7 @@ import { MultiField, FileField } from "seed/helpers";
 import { DateTime } from 'luxon';
 import { Link, NavLink } from "react-router-dom";
 
-const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onSubmit, error, onCancel }) => (
+const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onCancel }) => (
     <div class="content container-fluid mt-2">
 
         <div className="row" >
@@ -58,7 +58,7 @@ const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onS
                 <div className="list-title">
                     <h2>Detalles del pedido</h2>
                 </div>
-                <Formik initialValues={{ ...newAddress,...shipping, }} onSubmit={onSubmit}>
+                <Formik initialValues={{ ...newAddress,...shipping, }}>
                     {({
                         values,
                         setFieldValue
@@ -136,7 +136,7 @@ const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onS
                                             className="form-control input__field border-5 border-dark rounded-4 mb-3"
                                             placeholder=" "
                                             rows="6"
-                                            readonly = ' '
+                                            readonly = " "
                                             value={values.info || ''}
                                         />
                                         <span class="input__label">
