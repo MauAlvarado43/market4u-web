@@ -158,19 +158,30 @@ const DetailView = ({
       <div className="col-md-2 px-3">
         <div className="d-flex flex-column align-items-center justify-content-center">
 
-          <button className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3" disabled={!exist || stock == 0 || Object.keys(selectedOptions).length != Object.keys(variantOptions).length} onClick={onAddCart}>
+          <button 
+            className="btn btn-primary btn-sm rounded-pill p-2 w-100 px-3" 
+            disabled={
+              (!exist && Object.keys(selectedOptions).length > 0) || stock == 0 || (Object.keys(selectedOptions).length != Object.keys(variantOptions).length)
+            }
+            onClick={onAddCart}
+          >
             <i className="fas fa-shopping-cart mr-3 fa-lg"></i> Agregar al carrito
           </button>
           
-          <button className="btn btn-secondary btn-sm rounded-pill p-2 w-100 px-3 mt-3" disabled={!exist || stock == 0 || Object.keys(selectedOptions).length != Object.keys(variantOptions).length}>
+          <button 
+            className="btn btn-secondary btn-sm rounded-pill p-2 w-100 px-3 mt-3" 
+            disabled={
+              (!exist && Object.keys(selectedOptions).length > 0) || stock == 0 || (Object.keys(selectedOptions).length != Object.keys(variantOptions).length)
+            }
+          >
             <i className="fas fa-check mr-3 fa-lg"></i> Comprar ahora
           </button>
 
           {
-            (Object.keys(selectedOptions).length > 0 || !exist || stock == 0) && <div className="">
+            ((Object.keys(selectedOptions).length == Object.keys(variantOptions).length && !exist) || stock == 0) && <div className="">
                 <div className="alert alert-danger mt-3 p-2 w-100" role="alert">
-                  { exist && stock == 0 ? "No hay stock disponible" : "" }
-                  { !exist ? "Este producto no existe" : ""}
+                  { (exist && Object.keys(selectedOptions).length > 0) && stock == 0 ? "No hay stock disponible" : "" }
+                  { (!exist && Object.keys(selectedOptions).length > 0) ? "Este producto no existe" : ""}
               </div>
             </div>
           }

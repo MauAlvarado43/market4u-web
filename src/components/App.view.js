@@ -5,6 +5,7 @@ import Home from "components/Home";
 import Login from "components/auth/Login";
 import Logout from "components/auth/Logout";
 import Signup from "components/auth/Signup";
+import SignupCompany from "components/auth/company/SignupCompany";
 import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
@@ -19,6 +20,7 @@ const AppView = () =>
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/signup_company" component={SignupCompany} />
         <Route path="/logout" component={Logout} />
         <Route path="/verify_email/:token" component={VerifyEmail} />
         <Route path="/recover_password" component={RecoverPassword} />

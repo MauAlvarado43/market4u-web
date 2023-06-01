@@ -1,17 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import 
 import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 
-const SignupView = ({
-  passwordField,
-  confirmPasswordField,
-  onClickShowPassword,
-  onClickShowConfirmPassword,
-  error,
-  onSubmit,
-  signupSchema
-}) => (
+const SignupCompanyView = ({ activeStep }) => (
   <div style={{ height: "100vh", overflow: "auto" }}>
     <main id="content" role="main" class="main pl-0">
       <div class="container py-5 py-sm-7">
@@ -21,19 +14,73 @@ const SignupView = ({
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-md-7 col-lg-5">
+          <div class="col-md-8">
             <div class="card card-lg mb-1">
               <div class="card-body" style={{ border: "0.2rem solid #519FA5", borderRadius: "10px" }}>
+
+
+                <div className="text-center mb-5">
+                  <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>
+                    Crear cuenta empresarial
+                  </h1>
+                </div>
+
+                <div className="p-3">
+                  <ul className="js-step-progress step step-sm step-icon-sm step step-inline step-item-between mb-3 mb-md-5">
+
+                    <li class="step-item active">
+                      <a class="step-content-wrapper">
+                        <span class="step-icon step-icon-soft-dark">1</span>
+                        <div class="step-content">
+                          <span class="step-title">Registro empresa</span>
+                        </div>
+                      </a>
+                    </li>
+
+                    <li class="step-item">
+                      <a class="step-content-wrapper">
+                        <span class="step-icon step-icon-soft-dark">2</span>
+                        <div class="step-content">
+                          <span class="step-title">Registro administrador</span>
+                        </div>
+                      </a>
+                    </li>
+
+                    <li class="step-item">
+                      <a class="step-content-wrapper">
+                        <span class="step-icon step-icon-soft-dark">3</span>
+                        <div class="step-content">
+                          <span class="step-title">Validación de FIEL</span>
+                        </div>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+
+                {activeStep == 1 && (
+                  <div>
+
+                  </div>
+                )}
+
+                {activeStep == 2 && (
+                  <div>
+
+                  </div>
+                )}
+
+                {activeStep == 3 && (
+                  <div>
+
+                  </div>
+                )}
+
                 <Formik
-                  validationSchema={signupSchema}
                   initialValues={{}}
-                  onSubmit={onSubmit}>
+                  onSubmit={() => { }}>
                   {({ errors, touched, submitCount }) =>
                     <Form>
-
-                      <div className="text-center mb-5">
-                        <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>Crear cuenta</h1>
-                      </div>
 
                       {/* First name */}
                       <div class="form-group">
@@ -100,37 +147,37 @@ const SignupView = ({
                       {/* Password */}
                       <div class="form-group">
 
-                        <div class="input-group input-group-merge">
-                          <label className="input">
-                            <Field
-                              id="pass"
-                              name="password"
-                              type={passwordField ? "text" : "password"}
-                              className="form-control input__field"
-                              placeholder=" "
-                            >
-                            </Field>
-                            <span class="input__label">
-                              Contraseña
-                              <span className="text-danger fw-bold">*</span>
-                            </span>
-                          </label>
-                          <div class="input-group-append">
-                            <a
-                              type="button"
-                              onClick={() => onClickShowPassword(!passwordField)}
-                              className="btn"
-                            >
-                              <i
-                                className={
-                                  passwordField
-                                    ? "fas fa-eye"
-                                    : "fas fa-eye-slash"
-                                }
-                              />
-                            </a>
-                          </div>
+                        {/* <div class="input-group input-group-merge">
+                        <label className="input">
+                          <Field
+                            id="pass"
+                            name="password"
+                            type={passwordField ? "text" : "password"}
+                            className="form-control input__field"
+                            placeholder=" "
+                          >
+                          </Field>
+                          <span class="input__label">
+                            Contraseña
+                            <span className="text-danger fw-bold">*</span>
+                          </span>
+                        </label>
+                        <div class="input-group-append">
+                          <a
+                            type="button"
+                            onClick={() => onClickShowPassword(!passwordField)}
+                            className="btn"
+                          >
+                            <i
+                              className={
+                                passwordField
+                                  ? "fas fa-eye"
+                                  : "fas fa-eye-slash"
+                              }
+                            />
+                          </a>
                         </div>
+                      </div> */}
 
                         {
                           errors.password && (touched.password || submitCount > 0)
@@ -145,37 +192,37 @@ const SignupView = ({
                       {/* Password */}
                       <div class="form-group">
 
-                        <div class="input-group input-group-merge">
-                          <label className="input">
-                            <Field
-                              id="confirm_pass"
-                              name="confirmPassword"
-                              type={confirmPasswordField ? "text" : "password"}
-                              className="form-control input__field"
-                              placeholder=" "
-                            >
-                            </Field>
-                            <span class="input__label">
-                              Volver a escribir la contraseña
-                              <span className="text-danger fw-bold">*</span>
-                            </span>
-                          </label>
-                          <div class="input-group-append">
-                            <a
-                              type="button"
-                              onClick={() => onClickShowConfirmPassword(!confirmPasswordField)}
-                              className="btn"
-                            >
-                              <i
-                                className={
-                                  confirmPasswordField
-                                    ? "fas fa-eye"
-                                    : "fas fa-eye-slash"
-                                }
-                              />
-                            </a>
-                          </div>
+                        {/* <div class="input-group input-group-merge">
+                        <label className="input">
+                          <Field
+                            id="confirm_pass"
+                            name="confirmPassword"
+                            type={confirmPasswordField ? "text" : "password"}
+                            className="form-control input__field"
+                            placeholder=" "
+                          >
+                          </Field>
+                          <span class="input__label">
+                            Volver a escribir la contraseña
+                            <span className="text-danger fw-bold">*</span>
+                          </span>
+                        </label>
+                        <div class="input-group-append">
+                          <a
+                            type="button"
+                            onClick={() => onClickShowConfirmPassword(!confirmPasswordField)}
+                            className="btn"
+                          >
+                            <i
+                              className={
+                                confirmPasswordField
+                                  ? "fas fa-eye"
+                                  : "fas fa-eye-slash"
+                              }
+                            />
+                          </a>
                         </div>
+                      </div> */}
 
                         {
                           errors.confirmPassword && (touched.confirmPassword || submitCount > 0)
@@ -187,7 +234,7 @@ const SignupView = ({
 
                       </div>
 
-                      {error && <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div>}
+                      {/* {error && <div class="mb-4 alert alert-soft-danger" role="alert"> {error} </div>} */}
 
                       <button
                         type="submit"
@@ -199,13 +246,9 @@ const SignupView = ({
 
                     </Form>}
                 </Formik>
-              </div>
-            </div>
 
-            <div className="text-center mt-4">
-              <span className="font-size-1">
-                ¿Eres una marca oficial? <Link to="/signup_company">Registrate aquí</Link>.
-              </span>
+
+              </div>
             </div>
 
           </div>
@@ -226,15 +269,6 @@ const SignupView = ({
   </div>
 );
 
-SignupView.propTypes = {
-  error: PropTypes.string,
-  passwordField: PropTypes.bool,
-  confirmPasswordField: PropTypes.bool,
-  onClickpasswordField: PropTypes.func,
-  onClickShowConfirmPassword: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired,
-  signupSchema: PropTypes.object.isRequired,
-  onClickShowPassword: PropTypes.func,
-};
+SignupCompanyView.propTypes = {};
 
-export default SignupView;
+export default SignupCompanyView;

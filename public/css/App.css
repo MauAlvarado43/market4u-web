@@ -87,3 +87,19 @@ __Seed builder__
 .page-link {
   color: white !important; 
 }
+
+.step-item {
+  border: none !important;
+}
+
+.step-item.active {
+  border: none !important;
+}
+
+.step-item.active .step-icon {
+  background-color: #519ea4 !important;
+  color: white !important;
+}
+.step-item.active .step-content {
+  color: #519ea4 !important;
+}
