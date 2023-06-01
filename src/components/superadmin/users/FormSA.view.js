@@ -51,13 +51,20 @@ const FormView = ({
                           class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                           placeholder=" "
-                          onKeyPress={(e) => {validateLetters(e)}}
+                          onKeyPress={(e) => { validateLetters(e) }}
                         />
                         <span class="input__label ">
                           Nombre(s)
                           <span className="text-danger fw-bold">*</span>
                         </span>
                       </label>
+                      {
+                        errors.firstName && (touched.firstName || submitCount > 0)
+                          ? <div class="mt-2 text-danger" role="alert">
+                            {errors.firstName}
+                          </div>
+                          : null
+                      }
                     </div>
                   </div>
                 </div>
@@ -73,13 +80,20 @@ const FormView = ({
                           class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                           placeholder=" "
-                          onKeyPress={(e) => {validateLetters(e)}}
+                          onKeyPress={(e) => { validateLetters(e) }}
                         />
                         <span class="input__label">
                           Apellido(s)
                           <span className="text-danger fw-bold">*</span>
                         </span>
                       </label>
+                      {
+                        errors.lastName && (touched.lastName || submitCount > 0)
+                          ? <div class="mt-2 text-danger" role="alert">
+                            {errors.lastName}
+                          </div>
+                          : null
+                      }
                     </div>
                   </div>
                 </div>
@@ -101,6 +115,13 @@ const FormView = ({
                           <span className="text-danger fw-bold">*</span>
                         </span>
                       </label>
+                      {
+                        errors.email && (touched.email || submitCount > 0)
+                          ? <div class="mt-2 text-danger" role="alert">
+                            {errors.email}
+                          </div>
+                          : null
+                      }
                     </div>
                   </div>
                 </div>
@@ -186,7 +207,7 @@ const FormView = ({
                             placeholder=" "
                             required={
                               selectedType !== "NORMAL" &&
-                              selectedType !== "SUPERADMIN"
+                                selectedType !== "SUPERADMIN"
                                 ? "required"
                                 : ""
                             }
@@ -212,7 +233,7 @@ const FormView = ({
                 </div>
                 <br />
                 <br />
-                
+
                 <div className="d-flex mb-5 mt-auto">
                   <div className="form-group col-md-6">
                     <label className="input">
@@ -249,11 +270,11 @@ const FormView = ({
 
                   <div className="form-group col-md-6">
                     <label className="text-left">
-                      {item.id ? ( 
+                      {item.id ? (
                         "En caso de no querer realizar modificaciones en tu contraseña, omite estos campos."
-                        ) : (
+                      ) : (
                         "La contraseña debe tener una longitud mínima de 8 caracteres"
-                        )}
+                      )}
                     </label>
                   </div>
                 </div>
@@ -290,14 +311,14 @@ const FormView = ({
                         </button>
                       </span>
                       <ErrorMessage
-                            name="passwordConfirm"
-                            component="div"
-                            className="text-danger"
-                        />
+                        name="passwordConfirm"
+                        component="div"
+                        className="text-danger"
+                      />
                     </label>
                     {errors.password &&
-                    (touched.password || submitCount >= 0) ? (
-                      <div class="mt-3 alert alert-soft-danger" role="alert">
+                      (touched.password || submitCount >= 0) ? (
+                      <div class="mt-2 text-danger" role="alert">
                         {errors.password}
                       </div>
                     ) : null}

@@ -6,6 +6,7 @@ import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 import { CATEGORY, SET_CATEGORY } from "seed/gql/queries";
 import View from "components/superadmin/category/FormSA.view";
+import { object, string } from "yup";
 function FormSet({ categoryId, onCompleted = () => null, onError = () => null }) {
 
     const qCategory = useDetail(CATEGORY,
@@ -19,6 +20,20 @@ function FormSet({ categoryId, onCompleted = () => null, onError = () => null })
     });
 
     if (qCategory.loading) return <Loading />;
+    
+    const productSchema = object({
+        name: string().test({
+            name: "name",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese un nombre a la categoría" });
+
+                return true;
+
+            }
+        }),
+    })
 
     const { category = {} } = qCategory.data;
 
@@ -38,6 +53,7 @@ function FormSet({ categoryId, onCompleted = () => null, onError = () => null })
         error={error}
         onSubmit={onSubmit}
         onCancel={onCancel}
+        productSchema={productSchema}
     />;
 }
 
