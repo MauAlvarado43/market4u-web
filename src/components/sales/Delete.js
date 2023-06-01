@@ -15,7 +15,6 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
 
     let qProducts = useQuery(`{ 
         products {
-            id
             name
             sale {}
         } 
@@ -30,17 +29,6 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
             onCompleted();
         },
     });
-    
-    
-
-
-    const [callDelete] = useDelete(DELETE_SALE, {
-        onCompleted: () => {
-            onCompleted();
-        }
-    });
-
-
 
     const onClickDelete = () =>{
         console.log(products)
@@ -48,7 +36,6 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
         const newValues = {}
         newValues.sale_id = sale
         callSetNull(newValues)
-        callDelete({ id: sale });
         onCompleted()
     }
         

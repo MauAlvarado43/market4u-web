@@ -32,8 +32,9 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         onCompleted: () => {
             callSetStatus(shippingStatus)
             onCompleted();
-            swal("¡Listo!", "Se ha actualizado la información de envío de manera exitosa.", "success");
-            window.location.href = "/orders";
+            swal("¡Listo!", "Se ha actualizado la información de envío de manera exitosa.", "success").then(() => {
+                window.location.href = "/orders";
+            });
         },
     });
 
