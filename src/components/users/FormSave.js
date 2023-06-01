@@ -109,7 +109,39 @@ function FormSave({
         }
         return true;
       },
-    })
+    }), firstName: string().test({
+      name: "firstName",
+      test(value, context) {
+
+        if (!value || value.length === 0)
+          return context.createError({ message: "Ingrese un nombre al usuario" });
+
+        return true;
+
+      }
+    }),
+    lastName: string().test({
+      name: "lastName",
+      test(value, context) {
+
+        if (!value || value.length === 0)
+          return context.createError({ message: "Ingrese un apellido al usuario" });
+
+        return true;
+
+      }
+    }),
+    email: string().test({
+      name: "email",
+      test(value, context) {
+
+        if (!value || value.length === 0)
+          return context.createError({ message: "Ingrese un correo electrónico al usuario" });
+
+        return true;
+
+      }
+    }),
   });
 
   const onChangeType = (event) => {
