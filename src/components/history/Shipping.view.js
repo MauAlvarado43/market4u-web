@@ -130,7 +130,7 @@ const ShippingView = ({ shipping, purchases }) => (
       <button type="button" className="btn btn-secondary mb-3">
         <i className="fas fa-times mr-2"></i>Cancelar pedido
       </button>
-      <Link to={`/${shipping.id}/opinion`} className="btn btn-primary">
+      <Link to={`/history/${shipping.id}/opinion`} className="btn btn-primary">
         <i className="fas fa-pen mr-2"></i>Escribir opinión
       </Link>
     </div>

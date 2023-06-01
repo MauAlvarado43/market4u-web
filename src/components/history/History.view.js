@@ -60,7 +60,7 @@ const HistoryView = ({
     </div>
 
     <ModalRoute
-      path="/:shippingId(\d+)/opinion"
+      path="/history/:shippingId(\d+)/opinion"
       component={Opinion}
       width="800"
       height="700"

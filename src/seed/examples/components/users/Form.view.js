@@ -112,7 +112,7 @@ const UserFormView = ({ user= {}, companies= [], products= [], onSubmit, error }
               <option value="MICHOACAN">MICHOACAN</option>
               <option value="MORELOS">MORELOS</option>
               <option value="NAYARIT">NAYARIT</option>
-              <option value="NUEVO LEON">NUEVO LEON</option>
+              <option value="NUEVO_LEON">NUEVO_LEON</option>
               <option value="OAXACA">OAXACA</option>
               <option value="PUEBLA">PUEBLA</option>
               <option value="QUERETARO">QUERETARO</option>
