@@ -16,7 +16,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
 
     const onCancel = () => {
         onCompleted();
-        window.location.href = "/shipping";
+        window.location.href = "/orders";
     }
 
 
@@ -24,7 +24,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         onCompleted: () => {
             onCompleted();
             swal("¡Listo!", "Se ha actualizado la información de envío de manera exitosa.", "success");
-            window.location.href = "/shipping";
+            window.location.href = "/orders";
         },
     });
 

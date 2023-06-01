@@ -19,6 +19,7 @@ import UsersSA from "components/superadmin/users/UsersSA";
 import CompaniesSA from "components/superadmin/companies/CompaniesSA";
 import Chatbot from "components/chatbot/Chatbot";
 import Users from "components/users/Users";
+import Shippings from "components/shipping/Shipping"
 
 const HomeView = ({
   user_type
@@ -29,7 +30,7 @@ const HomeView = ({
     <div id="content">
 
       <Switch>
-        {user_type == "SUPERADMIN" &&
+        {user_type == "SUPERADMIN" ?
           <>
             <Route path="/superadmin/categorySA" component={CategorySA} />
             <Route path="/superadmin/opinions" component={OpinionSA} />
@@ -38,9 +39,10 @@ const HomeView = ({
             <Route path="/superadmin/users" component={UsersSA} />
             <Route path="/superadmin/companies" component={CompaniesSA} />
             <Route path="/profile/info" component={Profile} />
-          </>}
-
-        {user_type == "NORMAL" &&
+            <Redirect to="/profile/info" />
+          </>
+          : null}
+        {user_type == "NORMAL" ?
           <>
             <Route path="/home" component={Main} />
             <Route path="/profile/info" component={Profile} />
@@ -49,16 +51,18 @@ const HomeView = ({
             <Route path="/history" component={History} />
             <Route path="/cart" component={Cart} />
             <Redirect to="/home" />
-          </>}
-
+          </>
+          : null}
         {(user_type == "ADMIN" || user_type == "SELLER") &&
           <>
+            <Redirect to="/profile/info" component={Profile} />
             <Route path="/sales" component={Sales} />
             <Route path="/products" component={Products} />
             <Route path="/profile/info" component={Profile} />
             <Route path="/users" component={Users} />
+            <Route path="/orders" component={Shippings} />
+            <Redirect to="/profile/info" />
           </>}
-
       </Switch>
     </div>
   </div>;
