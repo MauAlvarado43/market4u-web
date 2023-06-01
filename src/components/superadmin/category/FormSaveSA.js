@@ -7,7 +7,7 @@ import { DateTime } from "luxon";
 import { useHistory } from "react-router";
 import { SAVE_CATEGORY } from "seed/gql/queries";
 import View from "components/superadmin/category/FormSA.view";
-import * as Yup from "yup";
+import { object, string } from "yup";
 
 function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
     const [callSave, qSave] = useSave(SAVE_CATEGORY, {
@@ -18,6 +18,20 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
     });
 
     const error = qSave.error ? "An error has occurred" : null;
+
+    const productSchema = object({
+        name: string().test({
+            name: "name",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese un nombre a la categoría" });
+
+                return true;
+
+            }
+        }),
+    })
 
     const validateLetters = (e) => {
         const keyCode = e.keyCode || e.which;
@@ -41,6 +55,7 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
         onSubmit={onSubmit}
         onCancel={onCancel}
         validateLetters={validateLetters}
+        productSchema={productSchema}
     />;
 }
 

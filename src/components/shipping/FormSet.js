@@ -82,8 +82,6 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
 
     newAddress = JSON.parse(shipping.address)  
 
-    console.log(allProducts);
-    console.log(allVariants);
 
     const onSubmit = (values) => {
         delete values.seller

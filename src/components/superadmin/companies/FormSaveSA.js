@@ -21,6 +21,7 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
     }
     );
 
+
     const productSchema = object({
         name: string().test({
             name: "name",
@@ -51,6 +52,10 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el rfc de la empresa" });
 
+                if(value.length < 9 || value.length > 13){
+                    return context.createError({ message: "El RFC no es válido" });
+                }
+
                 return true;
 
             }
@@ -72,6 +77,10 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el teléfono de la empresa" });
+
+                    if(value.length != 10){
+                        return context.createError({ message: "El número de teléfono no es válido" });
+                    }
 
                 return true;
 
@@ -156,6 +165,7 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
         }
         values.photo = parseInt(values.photo_id);
         values.active = false
+        values.phone = String(values.phone)
         callSave(values);
     }
 

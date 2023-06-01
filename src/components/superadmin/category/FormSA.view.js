@@ -8,7 +8,8 @@ const FormView = ({
     onSubmit, 
     error, 
     onCancel,
-    validateLetters
+    validateLetters,
+    productSchema
 }) =>
     <div class="card">
         <div class="card-header">
@@ -19,9 +20,12 @@ const FormView = ({
         <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-md-11">
-                    <Formik initialValues={{ ...category, }} onSubmit={onSubmit}>
+                    <Formik initialValues={{ ...category, }} onSubmit={onSubmit} validationSchema={productSchema}>
                         {({
                             values,
+                            errors,
+                            touched, 
+                            submitCount,
                         }) =>
                             <Form>
                                 <div class="mb-3">
@@ -43,6 +47,13 @@ const FormView = ({
                                                     <span className='text-danger fw-bold'>*</span>
                                                 </span>
                                             </label>
+                                            {
+                                                errors.name && (touched.name || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.name}
+                                                    </div>
+                                                    : null
+                                            }
                                         </div>
                                     </div>
                                 </div>

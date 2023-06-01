@@ -53,6 +53,10 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el rfc de la empresa" });
+                
+                    if(value.length < 9 || value.length > 13){
+                        return context.createError({ message: "El RFC no es válido" });
+                    }
 
                 return true;
 
@@ -75,6 +79,10 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el teléfono de la empresa" });
+
+                if(value.length != 10){
+                    return context.createError({ message: "El número de teléfono no es válido" });
+                }
 
                 return true;
 
@@ -159,6 +167,7 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
         values.id = parseInt(itemId);
         values.cp = parseInt(values.cp)
         values.photo = parseInt(values.photo.id);
+        values.phone = String(values.phone)
         callSet(values);
     };
 

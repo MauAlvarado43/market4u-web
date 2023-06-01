@@ -47,9 +47,9 @@ const SignupView = ({
 
                         {
                           errors.firstname && (touched.firstname || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
-                              {errors.firstname}
-                            </div>
+                            ? <div class="mt-2 text-danger" role="alert">
+                                {errors.firstname}
+                              </div>
                             : null
                         }
 
@@ -67,9 +67,9 @@ const SignupView = ({
 
                         {
                           errors.lastname && (touched.lastname || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
-                              {errors.lastname}
-                            </div>
+                            ? <div class="mt-2 text-danger" role="alert">
+                                {errors.lastname}
+                              </div>
                             : null
                         }
 
@@ -89,9 +89,9 @@ const SignupView = ({
 
                         {
                           errors.email && (touched.email || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
-                              {errors.email}
-                            </div>
+                            ? <div class="mt-2 text-danger" role="alert">
+                                {errors.email}
+                              </div>
                             : null
                         }
 
@@ -134,9 +134,9 @@ const SignupView = ({
 
                         {
                           errors.password && (touched.password || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
-                              {errors.password}
-                            </div>
+                            ? <div class="mt-2 text-danger" role="alert">
+                                {errors.password}
+                              </div>
                             : null
                         }
 
@@ -179,9 +179,9 @@ const SignupView = ({
 
                         {
                           errors.confirmPassword && (touched.confirmPassword || submitCount > 0)
-                            ? <div class="mt-3 alert alert-soft-danger" role="alert">
-                              {errors.confirmPassword}
-                            </div>
+                            ? <div class="mt-2 text-danger" role="alert">
+                                {errors.confirmPassword}
+                              </div>
                             : null
                         }
 
