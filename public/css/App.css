@@ -103,3 +103,15 @@ __Seed builder__
 .step-item.active .step-content {
   color: #519ea4 !important;
 }
+
+.step-item.active .step-title {
+  color: #519EA4 !important;
+}
+
+.step-item .step-title::after {
+  border-top: 0.2rem solid #9c9c9c !important;
+}
+.step-item .step-icon {
+  background-color: #969696 !important;
+  color: white !important;
+}
