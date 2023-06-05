@@ -10,8 +10,6 @@ import VerifyEmail from "components/auth/VerifyEmail";
 import RecoverPassword from "components/auth/RecoverPassword";
 import RestorePassword from "components/auth/RestorePassword";
 import { FilterProvider } from "components/helpers/FilterContext";
-import Sales from "components/sales/Sales";
-import Users from "components/users/Users"
 
 const AppView = () =>
 <FilterProvider>
@@ -25,8 +23,6 @@ const AppView = () =>
         <Route path="/verify_email/:token" component={VerifyEmail} />
         <Route path="/recover_password" component={RecoverPassword} />
         <Route path="/restore_password/:token" component={RestorePassword} />
-        <Route path="/sales" component={Sales} />
-        <Route path="/users" component={Users} />
         <Route path="/" component={Home} />
         <Redirect to="/"/>
       </Switch>
