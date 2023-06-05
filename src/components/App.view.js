@@ -16,7 +16,7 @@ import Users from "components/users/Users"
 const AppView = () =>
 <FilterProvider>
   <div class="module">
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

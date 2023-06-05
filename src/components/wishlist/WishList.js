@@ -9,6 +9,9 @@ function WishList() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPriceFilter, setSelectedPriceFilter] = useState("");
 
+  const type = sessionStorage.getItem("type");
+  if (type != "NORMAL") window.location.replace("/home");
+
   const reqCategories = useQuery(
     `{
       categories{

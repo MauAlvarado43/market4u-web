@@ -10,8 +10,10 @@ function History() {
   const pageSize = 15;
   const userId = sessionStorage.getItem('id');
   const [pageNum, setPageNum] = useState(1);
-
   const [selectedPriceFilter, setSelectedPriceFilter] = useState("");
+
+  const type = sessionStorage.getItem("type");
+  if (type != "NORMAL") window.location.replace("/home");
 
   const reqShippings = usePagination(`{
     shippingPagination {

@@ -40,6 +40,7 @@ function Login({ history }) {
       sessionStorage.setItem("token", data.key);
       sessionStorage.setItem("id", data.user);
       sessionStorage.setItem("company", data.company);
+      sessionStorage.setItem("type", data.type);
       history.replace("/");
     },
     onError: () => {

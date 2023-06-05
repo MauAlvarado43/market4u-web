@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Switch, Redirect, BrowserRouter } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 import { Route } from "seed/helpers"
 import Nav from "components/nav/Nav";
 import Main from "components/main/Main";
@@ -30,40 +30,63 @@ const HomeView = ({
     <div id="content">
 
       <Switch>
-        {user_type == "SUPERADMIN" ?
-          <>
-            <Route path="/superadmin/categorySA" component={CategorySA} />
-            <Route path="/superadmin/opinions" component={OpinionSA} />
-            <Route path="/superadmin/sales" component={SalesSA} />
-            <Route path="/superadmin/products" component={productsSA} />
-            <Route path="/superadmin/users" component={UsersSA} />
-            <Route path="/superadmin/companies" component={CompaniesSA} />
-            <Route path="/profile/info" component={Profile} />
-            <Redirect to="/profile/info" />
-          </>
-          : null}
-        {user_type == "NORMAL" ?
-          <>
-            <Route path="/home" component={Main} />
-            <Route path="/profile/info" component={Profile} />
-            <Route path="/product/:productId(\d+)" component={ProductDetail} />
-            <Route path="/wishlist" component={WishList} />
-            <Route path="/history" component={History} />
-            <Route path="/cart" component={Cart} />
-            <Redirect to="/home" />
-          </>
-          : null}
-        {(user_type == "ADMIN" || user_type == "SELLER") &&
-          <>
-            <Redirect to="/profile/info" component={Profile} />
-            <Route path="/sales" component={Sales} />
-            <Route path="/products" component={Products} />
-            <Route path="/profile/info" component={Profile} />
-            <Route path="/users" component={Users} />
-            <Route path="/orders" component={Shippings} />
-            <Redirect to="/profile/info" />
-          </>}
+
+        <Route path="/superadmin/categorySA" component={CategorySA} />
+        <Route path="/superadmin/opinions" component={OpinionSA} />
+        <Route path="/superadmin/sales" component={SalesSA} />
+        <Route path="/superadmin/products" component={productsSA} />
+        <Route path="/superadmin/users" component={UsersSA} />
+        <Route path="/superadmin/companies" component={CompaniesSA} />
+
+        <Route path="/profile/info" component={Profile} />
+
+        <Route path="/home" component={Main} />
+        <Route path="/product/:productId(\d+)" component={ProductDetail} />
+        <Route path="/wishlist" component={WishList} />
+        <Route path="/history" component={History} />
+        <Route path="/cart" component={Cart} />
+
+        <Route path="/sales" component={Sales} />
+        <Route path="/products" component={Products} />
+        <Route path="/users" component={Users} />
+        <Route path="/orders" component={Shippings} />
+
+        {/* {user_type == "SUPERADMIN" ?
+            <>
+              <Route path="/superadmin/categorySA" component={CategorySA} />
+              <Route path="/superadmin/opinions" component={OpinionSA} />
+              <Route path="/superadmin/sales" component={SalesSA} />
+              <Route path="/superadmin/products" component={productsSA} />
+              <Route path="/superadmin/users" component={UsersSA} />
+              <Route path="/superadmin/companies" component={CompaniesSA} />
+              <Route path="/profile/info" component={Profile} />
+              <Redirect to="/profile/info" />
+            </>
+            : null}
+          {user_type == "NORMAL" ?
+            <>
+              <Route path="/home" component={Main} />
+              <Route path="/profile/info" component={Profile} />
+              <Route path="/product/:productId(\d+)" component={ProductDetail} />
+              <Route path="/wishlist" component={WishList} />
+              <Route path="/history" component={History} />
+              <Route path="/cart" component={Cart} />
+              <Redirect to="/home" />
+            </>
+            : null}
+          {(user_type == "ADMIN" || user_type == "SELLER") &&
+            <>
+              <Route to="/profile/info" component={Profile} />
+              <Route path="/sales" component={Sales} />
+              <Route path="/products" component={Products} />
+              <Route path="/profile/info" component={Profile} />
+              <Route path="/users" component={Users} />
+              <Route path="/orders" component={Shippings} />
+              <Redirect to="/profile/info" />
+            </>} */}
+
       </Switch>
+
     </div>
   </div>;
 

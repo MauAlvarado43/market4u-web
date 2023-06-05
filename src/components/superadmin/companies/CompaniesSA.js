@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import View from "components/superadmin/companies/CompaniesSA.view";
 
 function Element() {
+
+    const type = sessionStorage.getItem("type");
+    if (type != "SUPERADMIN") window.location.replace("/profile/info");
+
     const listRef = useRef(null);
     const refetchQuery = () => {
         listRef.current.refetchQuery();

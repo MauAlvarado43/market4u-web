@@ -4,6 +4,9 @@ import View from "components/superadmin/products/productsSA.view";
 
 function Products() {
   
+  const type = sessionStorage.getItem("type");
+  if (type != "SUPERADMIN") window.location.replace("/profile/info");
+
   const listRef = useRef(null);
   const refetchQuery = () => listRef.current.refetchQuery();
 

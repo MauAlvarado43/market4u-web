@@ -7,15 +7,18 @@ import View from "components/cart/Purchase.view";
 function Purchase({ user, data, setData, products, setActiveStep }) {
 
   const [callSave, reqSave] = usePost('/carts/purchase', {
-    onCompleted: () => {
+    onCompleted: (response) => {
 
-      sessionStorage.removeItem("cart");
-      swal("¡Todo listo!", "Compraste con éxito, ahora puedes ver el estatus de tu pedido en tu sesión", "success")
-      .then((respuesta) => {
-        if (respuesta) {
-          window.location.href = "/home";
-        }
-      });
+      if (response == "") {
+        sessionStorage.removeItem("cart");
+        swal("¡Todo listo!", "Compraste con éxito, ahora puedes ver el estatus de tu pedido en tu sesión", "success")
+        .then((respuesta) => {
+            window.location.href = "/home";
+        });
+  
+      } else {
+        swal("¡Sin stock!", `No tenemos suficiente stock del producto con sku ${response}`, "error");
+      }
 
     },
     onError: (error) => {
@@ -24,8 +27,6 @@ function Purchase({ user, data, setData, products, setActiveStep }) {
   })
 
   const onSubmit = () => {
-    console.log("data", data);
-
     callSave({
       user: parseInt(sessionStorage.getItem('id')),
       products: data.products,

@@ -18,6 +18,9 @@ function Main() {
   const [paymentStep, setPaymentStep] = useState(false);
   const [purchaseStep, setPurchaseStep] = useState(false);
 
+  const type = sessionStorage.getItem("type");
+  if (type != "NORMAL") window.location.replace("/home");
+
   const [callProducts, reqProducts] = usePost("/carts/active_products", {
     onCompleted: (data) => {
       setProducts(data);

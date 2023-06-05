@@ -16,6 +16,9 @@ function Detail({ match }) {
   let stock = 0;
   let exist = false;
 
+  const type = sessionStorage.getItem("type");
+  if (type != "NORMAL") window.location.replace("/home");
+
   if(prevProductId != productId) {
     setSelectedOptions({});
     setPrevProductId(productId);

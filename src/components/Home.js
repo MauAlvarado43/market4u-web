@@ -4,11 +4,12 @@ import { useGetCall } from "seed/api";
 import { useDetail } from "seed/gql";
 
 function Home() {
-  const [isAuth, setIsAuth] = useState(false)
+  
+  const [isAuth, setIsAuth] = useState(false);
+
+  const user_type = sessionStorage.getItem("type");
   const user_id = sessionStorage.getItem("id");
-  const reqInfo = useDetail(`{ user { type } }`, user_id);
-  const { user = {} } = reqInfo.data;
-  const user_type = user.type;
+  
   const [callAuth, reqCall] = useGetCall("/auth/user", "", {
     onCompleted: (data) => setIsAuth(true),
     onError: (error) => {
@@ -20,13 +21,17 @@ function Home() {
     if (localStorage.getItem("id") != null) { //Preload data from localStorage
       sessionStorage.setItem("token", localStorage.getItem("token"));
       sessionStorage.setItem("id", localStorage.getItem("id"));
+      sessionStorage.setItem("type", localStorage.getItem("type"));
     }
     callAuth();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  
   if (!isAuth) return null;
+
   return <View
     user_type={user_type}
   />;
+
 }
 
 Home.propTypes = {};

@@ -12,6 +12,9 @@ function Main() {
   const [pageNum, setPageNum] = useState(1);
   const { selectedCategories, selectedCompanies, priceRange, selectedPriceFilter, saleId } = useContext(FilterContext);
 
+  const type = sessionStorage.getItem("type");
+  if (type != "NORMAL") window.location.replace("/home");
+
   const filters = getProductsFilters({
     companies: selectedCompanies,
     categories: selectedCategories,
