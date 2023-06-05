@@ -58,13 +58,13 @@ const FormView = ({
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {
+                                            {/* {
                                                 errors.firstName && (touched.firstName || submitCount > 0)
                                                     ? <div class="mt-2 text-danger" role="alert">
                                                         {errors.firstName}
                                                     </div>
                                                     : null
-                                            }
+                                            } */}
                                         </div>
                                     </div>
                                 </div>
@@ -87,13 +87,13 @@ const FormView = ({
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {
+                                            {/* {
                                                 errors.lastName && (touched.lastName || submitCount > 0)
                                                     ? <div class="mt-2 text-danger" role="alert">
                                                         {errors.lastName}
                                                     </div>
                                                     : null
-                                            }
+                                            } */}
                                         </div>
                                     </div>
                                 </div>
@@ -115,13 +115,13 @@ const FormView = ({
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {
+                                            {/* {
                                                 errors.email && (touched.email || submitCount > 0)
                                                     ? <div class="mt-2 text-danger" role="alert">
                                                         {errors.email}
                                                     </div>
                                                     : null
-                                            }
+                                            } */}
                                         </div>
                                     </div>
                                 </div>
