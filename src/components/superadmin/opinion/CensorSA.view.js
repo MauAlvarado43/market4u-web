@@ -33,7 +33,7 @@ const DeleteView = ({ onClickCensor = () => null, onClose = () => null }) =>
                         className="btn btn-primary btn-sm rounded-pill px-4 ml-5"
                     >
                         <i className="fas fa-check mr-3 fa-lg"></i>
-                        Eliminar
+                        Censurar
                     </button>
                 </div>
             </div>
