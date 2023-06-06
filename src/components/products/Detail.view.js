@@ -61,7 +61,7 @@ const DetailView = ({
           className="d-flex justify-content-center align-items-center p-6"
         >
           {
-            photos.length > 1
+            photos.length > 0
               ? <img
                 src={photos[photoIndex].url}
                 className="img-fluid"

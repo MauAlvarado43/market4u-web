@@ -25,8 +25,8 @@ const MainView = ({
   setPaymentStep,
   setPurchaseStep,
 }) => (
-
-  <div className="p-5">
+<>
+  <div className="p-5 mt-1">
     <div>
       <Steps
         cartStep={cartStep}
@@ -83,7 +83,7 @@ const MainView = ({
     </div>
 
   </div>
-
+</>
 )
 
 MainView.propTypes = {};

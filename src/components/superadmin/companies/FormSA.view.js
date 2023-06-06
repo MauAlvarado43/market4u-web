@@ -47,9 +47,8 @@ const FormView = (
                                                         type="text"
                                                         name="name"
                                                         value={values.name || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -75,9 +74,8 @@ const FormView = (
                                                         type="text"
                                                         name="commonName"
                                                         value={values.commonName || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -103,9 +101,8 @@ const FormView = (
                                                         type="text"
                                                         name="rfc"
                                                         value={values.rfc || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -131,9 +128,8 @@ const FormView = (
                                                         type="text"
                                                         name="cp"
                                                         value={values.cp || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -159,9 +155,8 @@ const FormView = (
                                                         type="number"
                                                         name="phone"
                                                         value={values.phone || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -187,9 +182,8 @@ const FormView = (
                                                         type="text"
                                                         name="email"
                                                         value={values.email || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -230,9 +224,8 @@ const FormView = (
                                                         type="text"
                                                         name="municipality"
                                                         value={values.municipality || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -262,7 +255,7 @@ const FormView = (
                                                         class="form-control input__field border-dark mb-4"
                                                         placeholder=" "
                                                     >
-                                                        <option value="NS">NS</option>
+                                                        <option value="">Seleccione una opción</option>
                                                         <option value="AGUASCALIENTES">AGUASCALIENTES</option>
                                                         <option value="BAJA CALIFORNIA">BAJA CALIFORNIA</option>
                                                         <option value="BAJA CALIFORNIA SUR">BAJA CALIFORNIA SUR</option>
@@ -312,9 +305,8 @@ const FormView = (
                                                         type="text"
                                                         name="cologn"
                                                         value={values.cologn || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -340,9 +332,8 @@ const FormView = (
                                                         type="text"
                                                         name="website"
                                                         value={values.website || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -368,9 +359,8 @@ const FormView = (
                                                         type="text"
                                                         name="street"
                                                         value={values.street || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
@@ -396,9 +386,8 @@ const FormView = (
                                                         type="text"
                                                         name="city"
                                                         value={values.city || ''}
-                                                        required
                                                         className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0"
                                                         placeholder=" "
                                                     />
                                                     <span class="input__label">
