@@ -136,6 +136,7 @@ const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onS
                                             className="form-control input__field border-5 border-dark rounded-4 mb-3"
                                             placeholder=" "
                                             rows="6"
+                                            required
                                             value={values.info || ''}
                                         />
                                         <span class="input__label">
