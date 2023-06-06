@@ -46,8 +46,9 @@ function FormSave({
 
   const [callSave, qSave] = usePost("/users/create_user_superadmin", {
     onCompleted: () => {
-      qUsers.refetch();      
+      qUsers.refetch(); 
       swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success");
+      onCompleted();
     },
   });
 
@@ -109,40 +110,39 @@ function FormSave({
         }
         return true;
       },
+    }),firstName: string().test({
+      name: "firstName",
+      test(value, context) {
+        if (!value || value.length === 0)
+          return context.createError({
+            message: "Ingrese un nombre para el usuario",
+          });
+
+        return true;
+      },
     }),
-    //  firstName: string().test({
-    //   name: "firstName",
-    //   test(value, context) {
+    lastName: string().test({
+      name: "lastName",
+      test(value, context) {
+        if (!value || value.length === 0)
+          return context.createError({
+            message: "Ingrese un apellido para el usuario",
+          });
 
-    //     if (!value || value.length === 0)
-    //       return context.createError({ message: "Ingrese un nombre al usuario" });
+        return true;
+      },
+    }),
+    email: string().test({
+      name: "email",
+      test(value, context) {
+        if (!value || value.length === 0)
+          return context.createError({
+            message: "Ingrese un correo electrónico al usuario",
+          });
 
-    //     return true;
-
-    //   }
-    // }),
-    // lastName: string().test({
-    //   name: "lastName",
-    //   test(value, context) {
-
-    //     if (!value || value.length === 0)
-    //       return context.createError({ message: "Ingrese un apellido al usuario" });
-
-    //     return true;
-
-    //   }
-    // }),
-    // email: string().test({
-    //   name: "email",
-    //   test(value, context) {
-
-    //     if (!value || value.length === 0)
-    //       return context.createError({ message: "Ingrese un correo electrónico al usuario" });
-
-    //     return true;
-
-    //   }
-    // }),
+        return true;
+      },
+    }),
   });
 
   const onChangeType = (event) => {
@@ -163,9 +163,8 @@ function FormSave({
 
     delete newValues.company;
 
-    if (validationSchema.validate({ password })){
-      callSave(newValues)
-    }
+    callSave(newValues)
+    
   }
 
   const onCancel = () => {

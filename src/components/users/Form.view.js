@@ -47,7 +47,6 @@ const FormView = ({
                                                     type="text"
                                                     name="firstName"
                                                     value={values.firstName || ""}
-                                                    required
                                                     class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
@@ -58,13 +57,12 @@ const FormView = ({
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {/* {
-                                                errors.firstName && (touched.firstName || submitCount > 0)
-                                                    ? <div class="mt-2 text-danger" role="alert">
-                                                        {errors.firstName}
-                                                    </div>
-                                                    : null
-                                            } */}
+                                            {errors.firstName && (touched.firstName || submitCount > 0) ? (
+                                                <div class="text-danger mt-2" role="alert">
+                                                    {errors.firstName}
+                                                </div>
+                                            ) : null}
+
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +74,6 @@ const FormView = ({
                                                     type="text"
                                                     name="lastName"
                                                     value={values.lastName || ""}
-                                                    required
                                                     class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
@@ -87,13 +84,11 @@ const FormView = ({
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {/* {
-                                                errors.lastName && (touched.lastName || submitCount > 0)
-                                                    ? <div class="mt-2 text-danger" role="alert">
-                                                        {errors.lastName}
-                                                    </div>
-                                                    : null
-                                            } */}
+                                            {errors.lastName && (touched.lastName || submitCount > 0) ? (
+                                                <div class="text-danger mt-2" role="alert">
+                                                    {errors.lastName}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +100,6 @@ const FormView = ({
                                                     type="email"
                                                     name="email"
                                                     value={values.email || ""}
-                                                    required
                                                     class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0 mb-3"
                                                     placeholder=" "
@@ -115,13 +109,11 @@ const FormView = ({
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {/* {
-                                                errors.email && (touched.email || submitCount > 0)
-                                                    ? <div class="mt-2 text-danger" role="alert">
-                                                        {errors.email}
-                                                    </div>
-                                                    : null
-                                            } */}
+                                            {errors.email && (touched.email || submitCount > 0) ? (
+                                                <div class="text-danger mt-2" role="alert">
+                                                    {errors.email}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
                                 </div>
