@@ -9,15 +9,14 @@ function Purchase({ user, data, setData, products, setActiveStep }) {
   const [callSave, reqSave] = usePost('/carts/purchase', {
     onCompleted: (response) => {
 
-      if (response == "") {
+      if (response.sku !== undefined && response.sku !== null) {
+        swal("¡Sin stock!", `No tenemos suficiente stock del producto con sku ${response.sku}`, "error");
+      } else {
         sessionStorage.removeItem("cart");
         swal("¡Todo listo!", "Compraste con éxito, ahora puedes ver el estatus de tu pedido en tu sesión", "success")
-        .then((respuesta) => {
+          .then(() => {
             window.location.href = "/home";
-        });
-  
-      } else {
-        swal("¡Sin stock!", `No tenemos suficiente stock del producto con sku ${response}`, "error");
+          });
       }
 
     },

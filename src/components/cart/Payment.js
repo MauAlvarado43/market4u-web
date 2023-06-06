@@ -24,8 +24,17 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
       name: "cardNumber",
       test(value, context) {
 
+        const visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+        const mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese el número de la tarjeta" });
+
+        if (value.length !== 16)
+          return context.createError({ message: "El número de tarjeta debe tener 16 dígitos" });
+
+        if (!visaRegEx.test(value) && !mastercardRegEx.test(value)) 
+          return context.createError({ message: "El número de tarjeta es inválido" });
 
         return true;
 
@@ -38,6 +47,9 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese la fecha de expiración" });
 
+        if (!/^(0[1-9]|1[0-2])\/?([0-9]{2})$/.test(value))
+          return context.createError({ message: "El formato de vencimiento debe ser MM/AA" });
+
         return true;
 
       }
@@ -48,6 +60,9 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
 
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese el cvv" });
+        
+        if (value.length !== 3)
+          return context.createError({ message: "El CVV debe tener 3 dígitos" });
 
         return true;
 

@@ -16,7 +16,7 @@ const SignupCompanyView = ({
       <div class="container py-5 py-sm-7">
 
         <div className="d-flex justify-content-center mb-5">
-          <img className="z-index-2" src="https://i.ibb.co/Rb2DkqH/Logo.jpg" alt="Logo" style={{ width: "10rem" }} />
+          <img className="z-index-2" src="/theme/img/market4u.png" alt="Logo" style={{ width: "15rem" }} />
         </div>
 
         <div class="row justify-content-center">
@@ -34,7 +34,7 @@ const SignupCompanyView = ({
                 <div className="p-3">
                   <ul className="js-step-progress step step-sm step-icon-sm step step-inline step-item-between mb-3 mb-md-5">
 
-                    <li class={`step-item ${activeStep == 1 ? "active" : ""}`} style={{ cursor: "pointer" }} onClick={() => setActiveStep(1)}>
+                    <li class={`step-item ${activeStep == 1 ? "active" : ""}`} style={{ cursor: "pointer" }}>
                       <a class="step-content-wrapper">
                         <span class="step-icon step-icon-soft-dark">1</span>
                         <div class="step-content">
@@ -43,7 +43,7 @@ const SignupCompanyView = ({
                       </a>
                     </li>
 
-                    <li class={`step-item ${activeStep == 2 ? "active" : ""}`} style={{ cursor: "pointer" }} onClick={() => setActiveStep(2)}>
+                    <li class={`step-item ${activeStep == 2 ? "active" : ""}`} style={{ cursor: "pointer" }}>
                       <a class="step-content-wrapper">
                         <span class="step-icon step-icon-soft-dark">2</span>
                         <div class="step-content">
@@ -52,7 +52,7 @@ const SignupCompanyView = ({
                       </a>
                     </li>
 
-                    <li class={`step-item ${activeStep == 3 ? "active" : ""}`} style={{ cursor: "pointer" }} onClick={() => setActiveStep(3)}>
+                    <li class={`step-item ${activeStep == 3 ? "active" : ""}`} style={{ cursor: "pointer" }}>
                       <a class="step-content-wrapper">
                         <span class="step-icon step-icon-soft-dark">3</span>
                         <div class="step-content">

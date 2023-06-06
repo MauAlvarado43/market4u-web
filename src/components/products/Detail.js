@@ -11,6 +11,7 @@ function Detail({ match }) {
   const variantOptions = {};
   const [photoIndex, setPhotoIndex] = useState(0);
   const [prevProductId, setPrevProductId] = useState(0);
+  const [selectedAmount, setSelectedAmount] = useState(0);
   let photos = [];
   let price = 0;
   let stock = 0;
@@ -159,14 +160,14 @@ function Detail({ match }) {
       const prevProduct = cart.find((item) => item.product == product.id && item.variant == selectedVariant.id);
 
       if (prevProduct) {
-        swal("Error", "Ya tiene esta variante de este producto en carrito", "error");
+        swal("Error", "Ya tiene esta variante de este producto en tu carrito, ve y modifica su cantidad", "error");
         return;
       }
 
       cart.push({
         product: product.id,
         variant: selectedVariant.id,
-        amount: 1
+        amount: parseInt(selectedAmount)
       })
 
       sessionStorage.setItem('cart', JSON.stringify(cart));
@@ -175,6 +176,8 @@ function Detail({ match }) {
     swal("¡Producto añadido!", "Producto añadido a carrito correctamente, ve y compra ahora mismo", "success");
 
   }
+
+  const onChangeAmount = (event) => setSelectedAmount(event.target.value)
 
   return <View
     product={product}
@@ -189,6 +192,7 @@ function Detail({ match }) {
     rate={rate}
     exist={exist}
     onAddCart={onAddCart}
+    onChangeAmount={onChangeAmount}
   />;
 
 }

@@ -18,9 +18,12 @@ function VerifyEmail(props) {
     code: string().test({
       name: "code",
       test(value, context) {
-        
-        if(!value || value.length === 0) 
+
+        if (!value || value.length === 0)
           return context.createError({ message: "Ingrese el código de verificación" });
+
+        if (!/^\d+$/.test(value))
+          return context.createError({ message: "El código consta solamente de números" });
 
         return true;
 
@@ -30,21 +33,29 @@ function VerifyEmail(props) {
 
   const [callVerify, reqVerify] = usePost("/users/registry_verify", {
     onCompleted: () => {
-      swal("¡Cuenta verificada!", "Ya puedes iniciar sesión", "success").then(() => {
-        window.location.href="/login";
+      swal({
+        title: "¡Cuenta verificada!",
+        icon: "success",
+        text: "Ya puedes iniciar sesión",
+        buttons: {
+          confirm: {
+            text: "Iniciar sesión",
+            className: "swal-button btn-primary",
+            visible: true,
+          },
+
+        },
+      }).then((respuesta) => {
+        if (respuesta) {
+          window.location.replace("/login");
+        }
       });
-      setError(null);
-      setVerified(true);
     },
     onError: (error) => {
-      setMessage(null);
-      switch (error.status) {
-        case 421:
-          setError("El link ya no es válido, han pasado mas de 20 minutos desde que se generó");
-          break;
-        default:
-          setError("Error");
-          break;
+      if (error.status == 421) {
+        swal("Código inválido", "Código inválido, por favor intente otra vez", "error");
+      } else {
+        swal("Error inesperado", "Error interno del servidor, por favor intente mas tarde", "error");
       }
     },
     includeAuth: false,
@@ -52,24 +63,15 @@ function VerifyEmail(props) {
 
   const [callGenerate, reqGenerate] = usePost("/users/registry_generate", {
     onCompleted: () => {
-      setError(null);
-      setMessage("Link enviado nuevamente, asegurate de verificarlo en los próximos 20 minutos");
+      swal("Código reenviado", "Código enviado nuevamente, asegúrate de verificarlo", "success")
     },
     onError: (data) => {
-      setMessage(null);
-      if(data.status == 400) {
-        setError("Error");
+      if (data.status == 500) {
+        swal("Error inesperado", "Error interno del servidor, por favor intente mas tarde", "error");
       }
     },
     includeAuth: false,
   });
-
-  useEffect(() => {
-    // callVerify({ token: token });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (reqVerify.loading) return <Loading />;
 
   const onSubmit = (values) =>
     callVerify({ token: token, code: values.code });
@@ -77,9 +79,9 @@ function VerifyEmail(props) {
   const onClickGenerate = () => callGenerate({ token: token });
 
   return (
-    <View 
-      error={error} 
-      message={message} 
+    <View
+      error={error}
+      message={message}
       onClickGenerate={onClickGenerate}
       onSubmit={onSubmit}
       verifyEmailSchema={verifyEmailSchema}

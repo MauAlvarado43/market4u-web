@@ -10,7 +10,7 @@ const LoginView = ({ loginSchema, passwordField, onClickShowPassword, onSubmit, 
       <div class="container py-5 py-sm-7">
 
         <div className="d-flex justify-content-center mb-5">
-          <img className="z-index-2" src="https://i.ibb.co/Rb2DkqH/Logo.jpg" alt="Logo" style={{ width: "10rem" }} />
+          <img className="z-index-2" src="/theme/img/market4u.png" alt="Logo" style={{ width: "15rem" }} />
         </div>
 
         <div class="row justify-content-center">

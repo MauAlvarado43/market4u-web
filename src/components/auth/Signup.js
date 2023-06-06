@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import View from "components/auth/Signup.view";
 import { usePost } from "seed/api";
+import swal from "sweetalert";
 import { object, string } from "yup";
 
 function Signup({ history }) {
@@ -15,10 +16,10 @@ function Signup({ history }) {
       name: "firstname",
       test(value, context) {
 
-        if(!value || value.length === 0) 
+        if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un nombre" });
 
-        if(value.length < 3)
+        if (value.length < 3)
           return context.createError({ message: "El nombre debe tener al menos 3 caracteres" });
 
         return true;
@@ -29,24 +30,24 @@ function Signup({ history }) {
       name: "lastname",
       test(value, context) {
 
-        if(!value || value.length === 0) 
+        if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un apellido" });
 
-        if(value.length < 3)
+        if (value.length < 3)
           return context.createError({ message: "El apellido debe tener al menos 3 caracteres" });
 
-          return true;
+        return true;
 
       }
     }),
     email: string().test({
       name: "email",
       test(value, context) {
-        
-        if(!value || value.length === 0) 
+
+        if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un correo electrónico" });
-        
-        if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) 
+
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
           return context.createError({ message: "Ingrese un correo electrónico válido" });
 
         return true;
@@ -57,10 +58,10 @@ function Signup({ history }) {
       name: "password",
       test(value, context) {
 
-        if(!value || value.length === 0)
+        if (!value || value.length === 0)
           return context.createError({ message: "Ingrese una contraseña" });
 
-        if(value.length < 8)
+        if (value.length < 8)
           return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
 
         return true;
@@ -70,35 +71,55 @@ function Signup({ history }) {
     confirmPassword: string().test({
       name: "confirmPassword",
       test(value, context) {
-          
-        if(!value || value.length === 0) 
+
+        if (!value || value.length === 0)
           return context.createError({ message: "Confirme la contraseña" });
 
-        if(value.length < 8) 
+        if (value.length < 8)
           return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
 
-        if(value != context.parent.password)
+        if (value != context.parent.password)
           return context.createError({ message: "Las contraseñas no coinciden" });
 
         return true;
-  
+
       }
     })
   })
 
   const [callSignup, reqSignup] = usePost("/users/signup", {
     onCompleted: (data) => {
-      window.location.href = `/verify_email/${data.token}`
+      window.location.replace(`/verify_email/${data.token}`)
     },
-    onError: (data) => {
+    onError: (error) => {
       setLoading(false);
-      switch (data.status) {
-        case 401:
-          setError("El correo ingresado ya se encuentra registrado");
-          break;
-        default:
-          setError("Error");
-          break;
+      if (error.status == 401) {
+
+        swal({
+          title: "Usuario ya registrado",
+          icon: "error",
+          text: "El correo ingresado ya se encuentra registrado, si eres tú por favor inicia sesión, de lo contrario ingrese otro correo",
+          buttons: {
+            cancel: {
+              text: "Continuar registro",
+              className: "swal-button btn-primary",
+              closeModal: true,
+              visible: true,
+            },
+            confirm: {
+              text: "Iniciar sesión",
+              className: "swal-button btn-secondary",
+              visible: true,
+            },
+          },
+        }).then((respuesta) => {
+          if (respuesta) {
+            window.location.replace("/login");
+          }
+        });
+
+      } else {
+        swal("Error inesperado", "Error interno del servidor, por favor intente mas tarde", "error");
       }
     },
     includeAuth: false

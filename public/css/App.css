@@ -42,7 +42,12 @@ __Seed builder__
   display: block !important;
   width: 100% !important;
   padding: 10px 15px !important;
-  background: transparent !important; 
+  background: transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 2px solid black !important; 
+  border-radius: 0px !important;
 }
 
 .input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
@@ -115,3 +120,4 @@ __Seed builder__
   background-color: #969696 !important;
   color: white !important;
 }
+

@@ -8,7 +8,7 @@ function Cart({ setDeliveryStep, setData, products, setProducts, setActiveStep }
   const onSubmit = () => {
 
     if (products.length == 0) {
-      swal("Sin productos!", "No tienes productos en tu carrito, date una vuelta y agrega algunos ahora mismo", "error");
+      swal("¡Sin productos!", "No tienes productos en tu carrito, date una vuelta y agrega algunos ahora mismo", "error");
       return;
     }
 
@@ -67,7 +67,7 @@ function Cart({ setDeliveryStep, setData, products, setProducts, setActiveStep }
     for (let i = 0; i < newProducts.length; i++) {
       if (newProducts[i].id == id) {
         if (newProducts[i].amount == 1) {
-          alert("Si desea quitar el producto, de click en el boton");
+          swal("Cantidad inválida", "Si deseas quitar el producto, de click en el botón eliminar", "error");
         } else {
           newProducts[i].amount -= 1;
         }

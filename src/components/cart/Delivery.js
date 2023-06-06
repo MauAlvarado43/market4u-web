@@ -16,6 +16,9 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un teléfono" });
 
+        if (value.length !== 10)
+          return context.createError({ message: "El teléfono debe tener 10 caracteres" });
+
         return true;
 
       }
@@ -26,6 +29,9 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
 
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un correo" });
+
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
+          return context.createError({ message: "Ingrese un correo electrónico válido" });
 
         return true;
 
@@ -59,6 +65,9 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
 
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un código postal" });
+        
+        if (value.length !== 5)
+          return context.createError({ message: "El código postal debe tener 5 dígitos" });
 
         return true;
 
