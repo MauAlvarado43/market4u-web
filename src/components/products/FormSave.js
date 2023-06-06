@@ -9,7 +9,12 @@ import { object, string } from "yup";
 function ProductFormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
   
   const history = useHistory();
-  const qSales = useQuery(`{ sales { name } }`);
+  const qSales = useQuery(`{ sales 
+    { 
+      name 
+    } 
+  }`,
+  "id =" + sessionStorage.getItem("company"));
   const qCategories = useQuery(`{ categories { name } }`);
   const [callSave, qSave] = usePost("/products/create_product", {
     onCompleted: () => {

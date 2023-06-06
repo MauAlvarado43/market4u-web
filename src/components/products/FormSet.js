@@ -36,7 +36,12 @@ function ProductFormSet({ productId, onCompleted = () => null, onError = () => n
       }
     }
   `, productId);
-  const qSales = useQuery(`{ sales { name } }`);
+  const qSales = useQuery(`{ sales 
+    { 
+      name 
+    } 
+  }`,
+  "id =" + sessionStorage.getItem("company"));
   const qCategories = useQuery(`{ categories { name } }`);
   const [callSet, qSet] = usePost("/products/update_product", {
     onCompleted: () => {

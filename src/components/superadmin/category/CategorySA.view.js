@@ -28,14 +28,14 @@ const View = ({ listRef, refetchQuery }) =>
                 component={FormSave}
                 refetchQuery={refetchQuery}
                 width="920"
-                height="700"
+                height="300"
             />
             <ModalRoute
                 path="/:categoryId(\d+)/edit"
                 component={FormEdit}
                 refetchQuery={refetchQuery}
                 width="920"
-                height="700"
+                height="300"
             />
             <ModalRoute
                 path="/:categoryId(\d+)/delete"

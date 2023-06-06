@@ -14,61 +14,66 @@ const WishListView = ({
 }) => (
   <BrowserRouter baseName="/wishlist">
     <div className="container" style={{ width: "100%", overflowY:"auto", maxHeight:"75vh"}}>
-      <div class="d-flex justify-content-end" style={{ margin: "15px" }}>
-
-        <div class="dropdown">
-          <button
-            class="btn btn-light dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Ordenar por
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div class="dropdown-item" onClick={() => handlePriceFilter("all")}>
-                Sin ordenar
-            </div>
-            <div class="dropdown-item" onClick={() => handlePriceFilter("highest")}>
-              Mayor precio
-            </div>
-            <div class="dropdown-item" onClick={() => handlePriceFilter("lowest")}>
-              Menor precio
-            </div>
-          </div>
+      <div className = "d-flex row align-items-center">
+        <div className="wishlist-title col-md-6">
+          <h1>Mi lista de deseos</h1>
         </div>
-        <div>
-          <div className="dropdown">
+        <div class="d-flex justify-content-end col-md-5" style={{ margin: "15px" }}>
+
+          <div class="dropdown">
             <button
-              className="btn btn-light dropdown-toggle"
+              class="btn btn-light dropdown-toggle"
               type="button"
-              id="dropdownMenu2"
+              id="dropdownMenuButton"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Filtrar por categoría
+              Ordenar por
             </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <button className="dropdown-item" type="button" onClick={() => handleCategoryFilter("all")}>
-                Todas las categorías
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div class="dropdown-item" onClick={() => handlePriceFilter("all")}>
+                  Sin ordenar
+              </div>
+              <div class="dropdown-item" onClick={() => handlePriceFilter("highest")}>
+                Mayor precio
+              </div>
+              <div class="dropdown-item" onClick={() => handlePriceFilter("lowest")}>
+                Menor precio
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="dropdown">
+              <button
+                className="btn btn-light dropdown-toggle"
+                type="button"
+                id="dropdownMenu2"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Filtrar por categoría
               </button>
-              {categories.map((category) => (
-              <button className="dropdown-item" 
-                type="button" 
-                key={category.id}
-                onClick={() => handleCategoryFilter(category.name)}>
-                {category.name}
-              </button>
-              ))}
+              <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button className="dropdown-item" type="button" onClick={() => handleCategoryFilter("all")}>
+                  Todas las categorías
+                </button>
+                {categories.map((category) => (
+                <button className="dropdown-item" 
+                  type="button" 
+                  key={category.id}
+                  onClick={() => handleCategoryFilter(category.name)}>
+                  {category.name}
+                </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div>
+      <div className = "mt-4">
         <ProductList
           selectedCategory={selectedCategory}
           selectedPriceFilter={selectedPriceFilter}

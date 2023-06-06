@@ -50,41 +50,8 @@ const HomeView = ({
         <Route path="/products" component={Products} />
         <Route path="/users" component={Users} />
         <Route path="/orders" component={Shippings} />
-
-        {/* {user_type == "SUPERADMIN" ?
-            <>
-              <Route path="/superadmin/categorySA" component={CategorySA} />
-              <Route path="/superadmin/opinions" component={OpinionSA} />
-              <Route path="/superadmin/sales" component={SalesSA} />
-              <Route path="/superadmin/products" component={productsSA} />
-              <Route path="/superadmin/users" component={UsersSA} />
-              <Route path="/superadmin/companies" component={CompaniesSA} />
-              <Route path="/profile/info" component={Profile} />
-              <Redirect to="/profile/info" />
-            </>
-            : null}
-          {user_type == "NORMAL" ?
-            <>
-              <Route path="/home" component={Main} />
-              <Route path="/profile/info" component={Profile} />
-              <Route path="/product/:productId(\d+)" component={ProductDetail} />
-              <Route path="/wishlist" component={WishList} />
-              <Route path="/history" component={History} />
-              <Route path="/cart" component={Cart} />
-              <Redirect to="/home" />
-            </>
-            : null}
-          {(user_type == "ADMIN" || user_type == "SELLER") &&
-            <>
-              <Route to="/profile/info" component={Profile} />
-              <Route path="/sales" component={Sales} />
-              <Route path="/products" component={Products} />
-              <Route path="/profile/info" component={Profile} />
-              <Route path="/users" component={Users} />
-              <Route path="/orders" component={Shippings} />
-              <Redirect to="/profile/info" />
-            </>} */}
-
+        {user_type == "NORMAL" ? 
+          <Redirect to="/home"/> : <Redirect to="/profile/info"/>}
       </Switch>
 
     </div>

@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { useSave, useSet, useQuery, useDetail } from "seed/gql";
-import { Loading } from "seed/helpers";
-import { usePost } from "seed/api";
-import { DateTime } from "luxon";
-import { useHistory } from "react-router";
+import { useSave, useQuery } from "seed/gql";
 import { SAVE_CATEGORY } from "seed/gql/queries";
 import View from "components/superadmin/category/FormSA.view";
 import { object, string } from "yup";
+import swal from "sweetalert";
 
-function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
+function FormSave({ onCompleted = () => null }) {
+    
+    const reqCategories = useQuery(`{ categories { name } }`);
     const [callSave, qSave] = useSave(SAVE_CATEGORY, {
         onCompleted: (data) => {
-            refetchQuery();
             onCompleted();
+            reqCategories.refetch();
         }
     });
 
@@ -34,16 +33,23 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
     })
 
     const validateLetters = (e) => {
-        const keyCode = e.keyCode || e.which;
-        const keyValue = String.fromCharCode(keyCode);
-        const regex = /^[A-Za-z\s]+$/; 
+        const key = e.key;
+        const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
     
-        if (!regex.test(keyValue)) 
+        if (!regex.test(key))
             e.preventDefault();
     }
 
     const onSubmit = (values) => {
-        callSave(values)
+        const existingCategory = reqCategories.data.categories.find(
+            (category) => category.name.toLowerCase() === values.name.toLowerCase()
+        );
+    
+        if (existingCategory) {
+            swal("¡Error!", "Ya existe una categoría con ese nombre", "error")
+        } else {
+        callSave(values);
+        }
     }
 
     const onCancel = () => {

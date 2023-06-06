@@ -21,7 +21,7 @@ const FormView = ({
   userType,
   setSelectedType,
   selectedType,
-  validateLetters
+  validateLetters,
 }) => (
   <div class="card">
     <div class="card-header">
@@ -47,24 +47,24 @@ const FormView = ({
                           type="text"
                           name="firstName"
                           value={values.firstName || ""}
-                          required
                           class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                           placeholder=" "
-                          onKeyPress={(e) => { validateLetters(e) }}
+                          onKeyPress={(e) => {
+                            validateLetters(e);
+                          }}
                         />
                         <span class="input__label ">
                           Nombre(s)
                           <span className="text-danger fw-bold">*</span>
                         </span>
                       </label>
-                      {/* {
-                        errors.firstName && (touched.firstName || submitCount > 0)
-                          ? <div class="mt-2 text-danger" role="alert">
-                            {errors.firstName}
-                          </div>
-                          : null
-                      } */}
+                      {errors.firstName &&
+                      (touched.firstName || submitCount > 0) ? (
+                        <div class="mt-2 text-danger" role="alert">
+                          {errors.firstName}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -76,24 +76,24 @@ const FormView = ({
                           type="text"
                           name="lastName"
                           value={values.lastName || ""}
-                          required
                           class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                           placeholder=" "
-                          onKeyPress={(e) => { validateLetters(e) }}
+                          onKeyPress={(e) => {
+                            validateLetters(e);
+                          }}
                         />
                         <span class="input__label">
                           Apellido(s)
                           <span className="text-danger fw-bold">*</span>
                         </span>
                       </label>
-                      {/* {
-                        errors.lastName && (touched.lastName || submitCount > 0)
-                          ? <div class="mt-2 text-danger" role="alert">
-                            {errors.lastName}
-                          </div>
-                          : null
-                      } */}
+                      {errors.lastName &&
+                      (touched.lastName || submitCount > 0) ? (
+                        <div class="mt-2 text-danger" role="alert">
+                          {errors.lastName}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -105,9 +105,8 @@ const FormView = ({
                           type="email"
                           name="email"
                           value={values.email || ""}
-                          required
                           class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0 mb-3"
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                           placeholder=" "
                         />
                         <span class="input__label">
@@ -115,44 +114,45 @@ const FormView = ({
                           <span className="text-danger fw-bold">*</span>
                         </span>
                       </label>
-                      {/* {
-                        errors.email && (touched.email || submitCount > 0)
-                          ? <div class="mt-2 text-danger" role="alert">
-                            {errors.email}
-                          </div>
-                          : null
-                      } */}
+                      {errors.email && (touched.email || submitCount > 0) ? (
+                        <div class="text-danger mt-2" role="alert">
+                          {errors.email}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
-                <div class="mb-3 mt-4">
-                  <div class="mb-3 row">
-                    <div class="form-group col-md-6">
+                <div className="mb-3 mt-5">
+                  <div className="mb-3 row">
+                    <div className="form-group col-md-6">
                       {item.id ? (
-                        <label class="input" onChange={(e) => changeType(e)}>
+                        <label
+                          className="input"
+                          onChange={(e) => changeType(e)}
+                        >
                           <Field
                             id="typeS"
                             as="select"
                             name="type"
-                            class="form-control input__field border-dark"
+                            className="form-control input__field border-dark"
                           >
                             <option value="ADMIN">ADMIN</option>
                             <option value="SELLER">SELLER</option>
                             <option value="NORMAL">NORMAL</option>
                             <option value="SUPERADMIN">SUPERADMIN</option>
                           </Field>
-                          <span class="input__label">
+                          <span className="input__label">
                             Tipo
                             <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
                       ) : (
-                        <label class="input">
+                        <label className="input">
                           <Field
                             id="type"
                             as="select"
                             name="type"
-                            class="form-control input__field border-dark"
+                            className="form-control input__field border-dark"
                             onChange={(e) => onChangeType(e)}
                           >
                             <option value="ADMIN">ADMIN</option>
@@ -160,21 +160,21 @@ const FormView = ({
                             <option value="NORMAL">NORMAL</option>
                             <option value="SUPERADMIN">SUPERADMIN</option>
                           </Field>
-                          <span class="input__label">
+                          <span className="input__label">
                             Tipo
                             <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
                       )}
                     </div>
-                    {userType == "ADMIN" || userType == "SELLER" ? (
-                      <div class="form-group col-md-6">
-                        <label class="input">
+                    {(userType === "ADMIN" || userType === "SELLER") ? (
+                      <div className="form-group col-md-6">
+                        <label className="input">
                           <Field
                             id="company"
                             as="select"
                             name="company.id"
-                            class="form-control input__field border-dark"
+                            className="form-control input__field border-dark"
                             placeholder=" "
                             initialValue=""
                             required
@@ -186,11 +186,16 @@ const FormView = ({
                               </option>
                             ))}
                           </Field>
-                          <span class="input__label">
+                          <span className="input__label">
                             Empresa
                             <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
+                        <ErrorMessage
+                          name="company.id"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     ) : null}
                     {!item.id ? (
@@ -207,7 +212,7 @@ const FormView = ({
                             placeholder=" "
                             required={
                               selectedType !== "NORMAL" &&
-                                selectedType !== "SUPERADMIN"
+                              selectedType !== "SUPERADMIN"
                                 ? "required"
                                 : ""
                             }
@@ -228,6 +233,7 @@ const FormView = ({
                     ) : null}
                   </div>
                 </div>
+
                 <div class="form-group text-left mb-auto">
                   <h4>Contraseña</h4>
                 </div>
@@ -244,7 +250,6 @@ const FormView = ({
                         className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                         onChange={handlePasswordChange}
-                        {...(item.id ? null : { required: true })}
                       ></Field>
                       <span class="input__label">
                         Escribe la contraseña
@@ -258,9 +263,7 @@ const FormView = ({
                         >
                           <i
                             className={
-                              showPassword
-                                ? "fas fa-eye"
-                                : "fas fa-eye-slash"
+                              showPassword ? "fas fa-eye" : "fas fa-eye-slash"
                             }
                           />
                         </button>
@@ -270,11 +273,9 @@ const FormView = ({
 
                   <div className="form-group col-md-6">
                     <label className="text-left">
-                      {item.id ? (
-                        "En caso de no querer realizar modificaciones en tu contraseña, omite estos campos."
-                      ) : (
-                        "La contraseña debe tener una longitud mínima de 8 caracteres"
-                      )}
+                      {item.id
+                        ? "En caso de no querer realizar modificaciones en la contraseña, omite estos campos."
+                        : "La contraseña debe tener una longitud mínima de 8 caracteres"}
                     </label>
                   </div>
                 </div>
@@ -289,7 +290,6 @@ const FormView = ({
                         className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                         onChange={(ev) => setPasswordConfirm(ev.target.value)}
-                        {...(item.id ? null : { required: true })}
                       ></Field>
                       <span class="input__label">
                         Confirmar contraseña
@@ -317,7 +317,7 @@ const FormView = ({
                       />
                     </label>
                     {errors.password &&
-                      (touched.password || submitCount >= 0) ? (
+                    (touched.password || submitCount >= 0) ? (
                       <div class="mt-2 text-danger" role="alert">
                         {errors.password}
                       </div>

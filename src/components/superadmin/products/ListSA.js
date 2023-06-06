@@ -5,8 +5,7 @@ import View from "components/superadmin/products/ListSA.view";
 
 const ProductList = forwardRef(function ProductList(props, ref){
 
-  const companyId = sessionStorage.getItem('company');
-  const pageSize = 10;
+  const pageSize = 9;
   const [pageNum, setPageNum] = useState(1);
   const reqProducts = usePagination(`
     {

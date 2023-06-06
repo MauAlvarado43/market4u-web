@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSave, useSet, useQuery, useDetail } from "seed/gql";
+import { useSet, useQuery, useDetail } from "seed/gql";
 import { Loading } from "seed/helpers";
-import { DateTime } from "luxon";
-import { useHistory } from "react-router";
 import { CATEGORY, SET_CATEGORY } from "seed/gql/queries";
 import View from "components/superadmin/category/FormSA.view";
 import { object, string } from "yup";
+import swal from "sweetalert";
 function FormSet({ categoryId, onCompleted = () => null, onError = () => null }) {
+    const reqCategories = useQuery(`{ categories { name } }`);
 
     const qCategory = useDetail(CATEGORY,
         categoryId
@@ -16,6 +16,7 @@ function FormSet({ categoryId, onCompleted = () => null, onError = () => null })
     const [callSet, qSet] = useSet(SET_CATEGORY, {
         onCompleted: () => {
             onCompleted();
+            reqCategories.refetch();
         }
     });
 
@@ -35,13 +36,29 @@ function FormSet({ categoryId, onCompleted = () => null, onError = () => null })
         }),
     })
 
+    const validateLetters = (e) => {
+        const key = e.key;
+        const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
+    
+        if (!regex.test(key))
+            e.preventDefault();
+    }
+
     const { category = {} } = qCategory.data;
 
     const error = qSet.error ? "Error" : null;
 
     const onSubmit = (values) => {
         values.id = parseInt(categoryId);
-        callSet(values);
+        const existingCategory = reqCategories.data.categories.find(
+            (category) => category.name.toLowerCase() === values.name.toLowerCase()
+        );
+    
+        if (existingCategory) {
+            swal("¡Error!", "Ya existe una categoría con ese nombre", "error")
+        } else {
+            callSet(values);
+        }
     };
 
     const onCancel = () => {
@@ -54,6 +71,7 @@ function FormSet({ categoryId, onCompleted = () => null, onError = () => null })
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
+        validateLetters={validateLetters}
     />;
 }
 

@@ -23,8 +23,9 @@ function FormSet({
 
   const [callSet, qSet] = usePost("/users/update_user_superadmin", {
     onCompleted: () => {
-      onCompleted();
-      swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success");
+      swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success").then(() => {
+        window.location.replace("/superadmin/users");
+      });
     },
   });
 
@@ -102,39 +103,45 @@ function FormSet({
         return true;
       },
     }),
-    // firstName: string().test({
-    //   name: "firstName",
-    //   test(value, context) {
+    firstName: string().test({
+      name: "firstName",
+      test(value, context) {
 
-    //     if (!value || value.length === 0)
-    //       return context.createError({ message: "Ingrese un nombre al usuario" });
+        if (!value || value.length === 0)
+          return context.createError({ 
+            message: "Ingrese un nombre al usuario" 
+          });
 
-    //     return true;
+        return true;
 
-    //   }
-    // }),
-    // lastName: string().test({
-    //   name: "lastName",
-    //   test(value, context) {
+      }
+    }),
+    lastName: string().test({
+      name: "lastName",
+      test(value, context) {
 
-    //     if (!value || value.length === 0)
-    //       return context.createError({ message: "Ingrese un apellido al usuario" });
+        if (!value || value.length === 0)
+          return context.createError({ 
+            message: "Ingrese un apellido al usuario" 
+          });
 
-    //     return true;
+        return true;
 
-    //   }
-    // }),
-    // email: string().test({
-    //   name: "email",
-    //   test(value, context) {
+      }
+    }),
+    email: string().test({
+      name: "email",
+      test(value, context) {
 
-    //     if (!value || value.length === 0)
-    //       return context.createError({ message: "Ingrese un correo electrónico al usuario" });
+        if (!value || value.length === 0)
+          return context.createError({ 
+            message: "Ingrese un correo electrónico al usuario" 
+          });
 
-    //     return true;
+        return true;
 
-    //   }
-    // }),
+      }
+    }),
   });
 
   const changeType = (event) => {

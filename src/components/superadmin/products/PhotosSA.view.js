@@ -25,7 +25,7 @@ const PhotosView = ({
         </div>
         <div className="card-body">
 
-          <div className="d-flex flex-nowrap justify-content-start" style={{ overflowX: "auto", width: "100%" }}>
+          <div className="d-flex flex-nowrap justify-content-center" style={{ overflowX: "auto", width: "100%" }}>
             {
               newPhotos.map((photo, index) =>
                 <div className="d-flex flex-nowrap" key={index}>

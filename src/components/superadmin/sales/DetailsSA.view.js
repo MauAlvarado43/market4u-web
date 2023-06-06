@@ -127,7 +127,10 @@ const FormView = (
                                         </label>
                                     </div>
                                     <div class="mb-3">
-                                        <div class="form-group">
+                                        <span className = "h4">
+                                            Banner
+                                        </span>
+                                        <div class="text-center form-group">
                                             <label class="input">
                                                 <img
                                                     src={values.banner ? values.banner.url : ''}

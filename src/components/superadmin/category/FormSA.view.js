@@ -14,7 +14,7 @@ const FormView = ({
     <div class="card">
         <div class="card-header">
             <h1 class="card-header-title">
-                {category.id ? "Editar categor1ía" : "Nueva categoría"}
+                {category.id ? "Editar categoría" : "Nueva categoría"}
             </h1>
         </div>
         <div class="card-body">
@@ -38,7 +38,6 @@ const FormView = ({
                                                     className="form-control input__field border-top-0 border-left-0
                                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
-                                                    required
                                                     value={values.name || ''}
                                                     onKeyPress={(e) => {validateLetters(e)}}
                                                 />
