@@ -5,7 +5,7 @@ import { MultiField, FileField } from "seed/helpers";
 import { DateTime } from 'luxon';
 import { Link, NavLink } from "react-router-dom";
 
-const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onSubmit, error, onCancel,onDelivered }) => (
+const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onSubmit, error, onCancel,onDelivered,productSchema }) => (
     <div class="content container-fluid mt-2">
 
         <div className="row" >
@@ -58,10 +58,13 @@ const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onS
                 <div className="list-title">
                     <h2>Detalles del pedido</h2>
                 </div>
-                <Formik initialValues={{ ...newAddress,...shipping, }} onSubmit={onSubmit}>
+                <Formik validationSchema={productSchema} initialValues={{ ...newAddress,...shipping, }} onSubmit={onSubmit}>
                     {({
                         values,
-                        setFieldValue
+                        setFieldValue,
+                        errors,
+                        touched, 
+                        submitCount,
                     }) =>
                         <Form>
                             <div class="mb-3">
@@ -143,6 +146,13 @@ const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onS
 
                                         </span>
                                     </label>
+                                    {
+                                                errors.info && (touched.info || submitCount > 0)
+                                                    ? <div class="mt-2 text-danger" role="alert">
+                                                        {errors.info}
+                                                    </div>
+                                                    : null
+                                            }
                                 </div>
                             </div>
                             <div className="d-flex justify-content-center align-items-center pt-2 pb-3">

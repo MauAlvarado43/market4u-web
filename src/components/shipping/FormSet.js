@@ -9,10 +9,24 @@ import View from "components/shipping/Form.view";
 import { parse } from "graphql";
 import { usePost } from "seed/api";
 import swal from "sweetalert";
-
+import { object, string } from "yup";
 function FormSet({ match, onCompleted = () => null, onError = () => null }) {
 
     const shippingId = parseInt(match?.params?.shippingId??0);
+
+    const productSchema = object({
+        info: string().test({
+            name: "info",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese información del pedido" });
+
+                return true;
+
+            }
+        }),
+    })
 
     const onCancel = () => {
         onCompleted();
@@ -116,6 +130,7 @@ function FormSet({ match, onCompleted = () => null, onError = () => null }) {
         onSubmit={onSubmit}
         onCancel={onCancel}
         onDelivered={onDelivered}
+        productSchema={productSchema}
     />;
 
 }
