@@ -52,7 +52,7 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el rfc de la empresa" });
 
-                if(value.length < 9 || value.length > 13){
+                if(value.length === 13){
                     return context.createError({ message: "El RFC no es válido" });
                 }
 
