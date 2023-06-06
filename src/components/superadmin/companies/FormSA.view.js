@@ -125,7 +125,7 @@ const FormView = (
                                             <div class="form-group">
                                                 <label class="input">
                                                     <Field
-                                                        type="text"
+                                                        type="number"
                                                         name="cp"
                                                         value={values.cp || ''}
                                                         className="form-control input__field border-top-0 border-left-0

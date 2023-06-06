@@ -70,6 +70,9 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el código postal de la empresa" });
+                
+                if(value.length != 5)
+                    return context.createError({ message: "El código postal debe de ser de 5 dígitos" });
 
                 return true;
 
@@ -83,7 +86,7 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
                     return context.createError({ message: "Ingrese el teléfono de la empresa" });
 
                 if(value.length != 10){
-                    return context.createError({ message: "El número de teléfono no es válido" });
+                    return context.createError({ message: "El número de teléfono debe de ser de 10 dígitos" });
                 }
 
                 return true;
