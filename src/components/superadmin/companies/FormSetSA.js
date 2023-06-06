@@ -11,6 +11,8 @@ import swal from "sweetalert";
 
 function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
+    const re = /^[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]$/;
+
     const qItem = useDetail(
         COMPANY,
         itemId
@@ -54,9 +56,9 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el rfc de la empresa" });
                 
-                    if(value.length === 13){
-                        return context.createError({ message: "El RFC no es válido" });
-                    }
+                if(!re.test(value)){
+                    return context.createError({ message: "El RFC no es válido" });
+                }
 
                 return true;
 

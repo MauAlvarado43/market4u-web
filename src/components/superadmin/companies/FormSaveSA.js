@@ -12,6 +12,8 @@ import swal from "sweetalert";
 
 function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
 
+    const re = /^[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]$/;
+
     const [callSave, qSave] = useSave(SAVE_COMPANY, {
         onCompleted: (data) => {
             refetchQuery();
@@ -49,10 +51,11 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
             name: "rfc",
             test(value, context) {
 
+                
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el rfc de la empresa" });
 
-                if(value.length === 13){
+                if(!re.test(value)){
                     return context.createError({ message: "El RFC no es válido" });
                 }
 
