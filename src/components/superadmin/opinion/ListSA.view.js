@@ -40,14 +40,18 @@ const View = ({
                                 {opinion.rate + " / 5"}
                             </td>
                             <td className="align-middle text-center">
-                                <Link
+                                {
+                                    opinion.description === "Esta opinión fue censurada porque no cumplía con los términos y condiciones de Market4U" ? <div></div> : 
+                                    <Link
                                     to={`/${opinion.id}/censor`}
                                     className="btn btn-secondary btn-sm rounded-pill px-3"
                                     onClick={() => onClickDelete(opinion.id)}
-                                >
+                                    >
                                     <i className="fas fa-eye-slash mr-3 fa-lg"></i>
                                     Censurar
-                                </Link>
+                                    </Link>
+                                }
+                                
                                 <Link
                                     to={`/${opinion.id}/details`}
                                     className="btn btn-primary btn-sm rounded-pill px-4 ml-3"
