@@ -12,9 +12,9 @@ function FormSave({ onCompleted = () => null }) {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showCompany, setShowCompany] = useState(true);
+  const [selectedCompany, setSelectedCompany] = useState("");	
   const [selectedType, setSelectedType] = useState("ADMIN");
 
-  const reqUsers = useQuery(`{ users { } }`);
   const qCompanies = useQuery(
     `
     { 
@@ -46,19 +46,8 @@ function FormSave({ onCompleted = () => null }) {
     setShowPassConfirm(!showPassConfirm);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    if (event.target.value !== "") {
-      document.getElementById("passConfirm").disabled = false;
-    } else {
-      document.getElementById("passConfirm").disabled = true;
-      document.getElementById("passConfirm").value = "";
-    }
-  };
-
-  const validatePassword = (pass) => {
-    if (pass.length < 8) return false;
-    else return true;
+  const onChangeCompany = (e) => {
+    setSelectedCompany(e.target.value);
   };
 
   const validateLetters = (e) => {
@@ -73,36 +62,32 @@ function FormSave({ onCompleted = () => null }) {
     password: string().test({
       name: "password",
       test(value, context) {
-        if (!validatePassword(password) && password) {
-          return context.createError({
-            message: "La contraseña no cumple con los requisitos mínimos.",
-          });
-        } 
-        if (password === "") {
-          return context.createError({
-            message: "Ingrese una contraseña.",
-          });
-        }
+
+        if (!value || value.length === 0)
+          return context.createError({ message: "Ingrese una contraseña" });
+
+        if (value.length < 8)
+          return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
 
         return true;
-      },
+
+      }
     }),
     passwordConfirm: string().test({
       name: "passwordConfirm",
       test(value, context) {
-        if (passwordConfirm !== password) {
-          return context.createError({
-            message: "Las contraseñas no coinciden.",
-          });
-        } 
-        if (passwordConfirm === "") {
-          return context.createError({
-            message: "Confirme la contraseña.",
-          });
-        }
+        if (!passwordConfirm || passwordConfirm.length === 0)
+          return context.createError({ message: "Confirme la contraseña" });
+
+        if (passwordConfirm.length < 8)
+          return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
+
+        if (passwordConfirm != context.parent.password)
+          return context.createError({ message: "Las contraseñas no coinciden" });
 
         return true;
-      },
+
+      }
     }),
     firstName: string().test({
       name: "firstName",
@@ -137,6 +122,19 @@ function FormSave({ onCompleted = () => null }) {
         return true;
       },
     }),
+    company: object().test({
+      name: "company.id",
+      test(value, context) {
+        if (selectedType !== "NORMAL" && selectedType !== "SUPERADMIN") {
+          if (!selectedCompany || selectedCompany.length === 0)
+            return context.createError({
+              message: "Seleccione una empresa para el usuario",
+            });
+        }
+
+        return true;
+      }
+    }),
   });
 
   const onChangeType = (event) => {
@@ -147,7 +145,6 @@ function FormSave({ onCompleted = () => null }) {
 
   const onSubmit = async (values) => {
     let newValues = JSON.parse(JSON.stringify(values));
-
     newValues.password = password;
     newValues.type = document.getElementById("type").value;
     if (newValues.type === "NORMAL" || newValues.type === "SUPERADMIN") {
@@ -155,6 +152,8 @@ function FormSave({ onCompleted = () => null }) {
     } else {
       newValues.company_id = parseInt(values.company.id);
     }
+
+    console.log(newValues.company_id)
 
     delete newValues.company;
     callSave(newValues);
@@ -175,12 +174,12 @@ function FormSave({ onCompleted = () => null }) {
       onChangeType={onChangeType}
       showPassword={showPassword}
       selectedType={selectedType}
+      onChangeCompany={onChangeCompany}
       showPassConfirm={showPassConfirm}
       setSelectedType={setSelectedType}
       validateLetters={validateLetters}
       validationSchema={validationSchema}
       setPasswordConfirm={setPasswordConfirm}
-      handlePasswordChange={handlePasswordChange}
       togglePasswordVisibility={togglePasswordVisibility}
       togglePasswordVisibilityConfirm={togglePasswordVisibilityConfirm}
     />

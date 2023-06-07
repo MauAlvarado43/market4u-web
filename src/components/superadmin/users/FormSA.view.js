@@ -14,6 +14,7 @@ const FormView = ({
   togglePasswordVisibility,
   togglePasswordVisibilityConfirm,
   setPasswordConfirm,
+  onChangeCompany,
   showPassConfirm,
   handlePasswordChange,
   showCompany,
@@ -167,7 +168,7 @@ const FormView = ({
                         </label>
                       )}
                     </div>
-                    {(userType === "ADMIN" || userType === "SELLER") ? (
+                    {(values.type === "ADMIN" || values.type === "SELLER") ? (
                       <div className="form-group col-md-6">
                         <label className="input">
                           <Field
@@ -177,7 +178,6 @@ const FormView = ({
                             className="form-control input__field border-dark"
                             placeholder=" "
                             initialValue=""
-                            required
                           >
                             <option value="">Seleccione una opción</option>
                             {companies.map((e, idx) => (
@@ -191,11 +191,12 @@ const FormView = ({
                             <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
-                        <ErrorMessage
-                          name="company.id"
-                          component="div"
-                          className="text-danger"
-                        />
+                        {errors.company_edit &&
+                          (touched.company_edit || submitCount > 0) ? (
+                            <div class="mt-2 text-danger" role="alert">
+                              {errors.company_edit}
+                            </div>
+                          ) : null}
                       </div>
                     ) : null}
                     {!item.id ? (
@@ -210,12 +211,7 @@ const FormView = ({
                             name="company.id"
                             class="form-control input__field border-dark"
                             placeholder=" "
-                            required={
-                              selectedType !== "NORMAL" &&
-                              selectedType !== "SUPERADMIN"
-                                ? "required"
-                                : ""
-                            }
+                            onChange = {(e) => onChangeCompany(e)}
                           >
                             <option value="">Seleccione una opción</option>
                             {companies.map((e, idx) => (
@@ -229,6 +225,12 @@ const FormView = ({
                             <span className="text-danger fw-bold">*</span>
                           </span>
                         </label>
+                        {errors.company &&
+                          (touched.company || submitCount > 0) ? (
+                            <div class="mt-2 text-danger" role="alert">
+                              {errors.company}
+                            </div>
+                          ) : null}
                       </div>
                     ) : null}
                   </div>
@@ -249,7 +251,6 @@ const FormView = ({
                         type={showPassword ? "text" : "password"}
                         className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                        onChange={handlePasswordChange}
                       ></Field>
                       <span class="input__label">
                         Escribe la contraseña
@@ -269,6 +270,12 @@ const FormView = ({
                         </button>
                       </span>
                     </label>
+                    {errors.password &&
+                      (touched.password || submitCount > 0) ? (
+                      <div class="mt-2 text-danger" role="alert">
+                        {errors.password}
+                      </div>
+                    ) : null}
                   </div>
 
                   <div className="form-group col-md-6">
@@ -284,7 +291,7 @@ const FormView = ({
                   <div className="form-group col-md-6">
                     <label className="input">
                       <Field
-                        id="passConfirm"
+                        id="passwordConfirm"
                         name="passwordConfirm"
                         type={showPassConfirm ? "text" : "password"}
                         className="form-control input__field border-top-0 border-left-0
@@ -310,18 +317,13 @@ const FormView = ({
                           />
                         </button>
                       </span>
-                      <ErrorMessage
-                        name="passwordConfirm"
-                        component="div"
-                        className="text-danger"
-                      />
                     </label>
-                    {errors.password &&
-                    (touched.password || submitCount >= 0) ? (
-                      <div class="mt-2 text-danger" role="alert">
-                        {errors.password}
-                      </div>
-                    ) : null}
+                    {errors.passwordConfirm &&
+                      (touched.passwordConfirm || submitCount >  0) ? (
+                        <div class="mt-2 text-danger" role="alert">
+                          {errors.passwordConfirm}
+                        </div>
+                      ) : null}
                   </div>
                 </div>
                 <div className="d-flex justify-content-center align-items-center pt-2">
