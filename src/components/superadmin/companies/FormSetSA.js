@@ -158,6 +158,16 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
                 return true;
 
             }
+        }),state: string().test({
+            name: "state",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese el estado de la empresa" });
+
+                return true;
+
+            }
         })
         
     })

@@ -158,7 +158,17 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
 
             }
         })
-        
+        ,state: string().test({
+            name: "state",
+            test(value, context) {
+
+                if (!value || value.length === 0)
+                    return context.createError({ message: "Ingrese el estado de la empresa" });
+
+                return true;
+
+            }
+        })
     })
 
     const error = qSave.error ? "An error has occurred" : null;

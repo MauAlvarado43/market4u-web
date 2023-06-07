@@ -251,35 +251,34 @@ const FormView = (
                                                         as="select"
                                                         name="state"
                                                         value={values.state || ''}
-                                                        required
                                                         class="form-control input__field border-dark mb-4"
                                                         placeholder=" "
                                                     >
                                                         <option value="">Seleccione una opción</option>
-                                                        <option value="AGUASCALIENTES">AGUASCALIENTES</option>
-                                                        <option value="BAJA CALIFORNIA">BAJA CALIFORNIA</option>
-                                                        <option value="BAJA CALIFORNIA SUR">BAJA CALIFORNIA SUR</option>
+                                                        <option value="AGUA_SCALIENTES">AGUASCALIENTES</option>
+                                                        <option value="BAJACALIFORNIA">BAJA CALIFORNIA</option>
+                                                        <option value="BAJA_CALIFORNIA_SUR">BAJA CALIFORNIA SUR</option>
                                                         <option value="CAMPECHE">CAMPECHE</option>
                                                         <option value="COAHUILA">COAHUILA</option>
                                                         <option value="COLIMA">COLIMA</option>
                                                         <option value="CHIAPAS">Chiapas</option>
                                                         <option value="CHIHUAHUA">CHIHUAHUA</option>
                                                         <option value="DURANGO">DURANGO</option>
-                                                        <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
+                                                        <option value="CIUDAD_DE_MEXICO">CIUDAD DE MEXICO</option>
                                                         <option value="GUANAJUATO">GUANAJUATO</option>
-                                                        <option value="GUERRERO" selected="">GUERRERO</option>
+                                                        <option value="GUERRERO">GUERRERO</option>
                                                         <option value="HIDALGO">HIDALGO</option>
                                                         <option value="JALISCO">JALISCO</option>
                                                         <option value="MEXICO">MEXICO</option>
                                                         <option value="MICHOACAN">MICHOACAN</option>
                                                         <option value="MORELOS">MORELOS</option>
                                                         <option value="NAYARIT">NAYARIT</option>
-                                                        <option value="NUEVO LEON">NUEVO LEON</option>
+                                                        <option value="NUEVO_LEON">NUEVO LEON</option>
                                                         <option value="OAXACA">OAXACA</option>
                                                         <option value="PUEBLA">PUEBLA</option>
                                                         <option value="QUERETARO">QUERETARO</option>
-                                                        <option value="QUINTANA ROO">QUINTANA ROO</option>
-                                                        <option value="SAN LUIS POTOSI">SAN LUIS POTOSI</option>
+                                                        <option value="QUINTANA_ROO">QUINTANA ROO</option>
+                                                        <option value="SAN_LUIS_POTOSI">SAN LUIS POTOSI</option>
                                                         <option value="SINALOA">SINALOA</option>
                                                         <option value="SONORA">SONORA</option>
                                                         <option value="TABASCO">TABASCO</option>
@@ -294,6 +293,13 @@ const FormView = (
                                                         <span className='text-danger fw-bold'>*</span>
                                                     </span>
                                                 </label>
+                                                {
+                                                errors.state && (touched.state || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.state}
+                                                    </div>
+                                                    : null
+                                            }
                                             </div>
                                         </div>
                                     </div>
