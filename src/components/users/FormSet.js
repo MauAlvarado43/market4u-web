@@ -120,21 +120,7 @@ function FormSet({
 
         return true;
       },
-    }),
-    company_edit: object().test({
-      name: "company.id",
-      test(value, context) {
-        console.log(userType)
-        if (userType !== "NORMAL" && userType !== "SUPERADMIN") {
-          if (!value.id || value.id.length === 0)
-            return context.createError({
-              message: "Seleccione una empresa para el usuario",
-            });
-        }
-
-        return true;
-      }
-    }),
+    })
   });
 
   const companyID = sessionStorage.getItem("company");
