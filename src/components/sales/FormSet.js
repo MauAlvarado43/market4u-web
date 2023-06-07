@@ -10,7 +10,7 @@ import { usePost } from "seed/api";
 import swal from "sweetalert";
 import { object, string } from "yup";
 
-function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null }) {
+function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery }) {
     const qSale = useDetail(SALE, saleId);
     const qUsers = useQuery(`{ users { } }`);
     let selectedStartDate;
@@ -70,8 +70,15 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
 
     const [callSet, qSet] = useSet(SET_SALE, {
         onCompleted: () => {
-            swal("¡Listo!", "Se ha actualizado la oferta de manera exitosa.", "success");
+            swal("¡Listo!", "Se ha actualizado la oferta de manera exitosa.", "success").then(() => {
+                window.location.replace("/sales");
+              });
+            onCompleted();
+            
+            //refetchQuery();
+            
         }
+        
     });
 
     const [callSetProducts, qSetProducts] = useSet(SET_PRODUCT, {
@@ -146,7 +153,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null })
 
         }
         callSet(values);
-        onCompleted();
+        //onCompleted();
     };
 
     const onCancel = () => {

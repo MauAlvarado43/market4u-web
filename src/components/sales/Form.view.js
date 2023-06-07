@@ -57,7 +57,6 @@ const SaleFormView = ({
                                                     className="form-control input__field border-top-0 border-left-0
                                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
-                                                    required
                                                     value={values.name || ''}
                                                 />
                                                 <span class="input__label">
@@ -84,7 +83,6 @@ const SaleFormView = ({
                                                     className="form-control input__field border-top-0 border-left-0
                                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
-                                                    required
                                                     value={values.disscount}
                                                 />
                                                 <span class="input__label">
@@ -112,7 +110,6 @@ const SaleFormView = ({
                                                     className="form-control input__field border-top-0 border-left-0
                                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
-                                                    required
                                                     value={values.startDate || ''}
                                                     //onChange={handleStartDateChange}
                                                 />
@@ -148,7 +145,6 @@ const SaleFormView = ({
                                                     className="form-control input__field border-top-0 border-left-0
                                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                     placeholder=" "
-                                                    required
                                                     value={values.endDate || ''} 
                                                     //onChange={(ev) => setSelectedEndDate(ev.target.value)}
                                                 />

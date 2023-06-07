@@ -16,11 +16,20 @@ import { useHistory } from "react-router";
 import { object, string } from "yup";
 import swal from "sweetalert";
 
-function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
+function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
 
     //const history = useHistory();
     const companyId = sessionStorage.getItem("company");
     const [selectedProducts, setSelectedProducts] = useState([])
+
+    const qSales = useQuery(`{ 
+        sales {
+            id
+            name
+            company {}
+        } 
+    }`, "company.id=" + companyId);
+    const { sales = [] } = qSales.data;
 
     let selectedStartDate;
 
@@ -32,6 +41,12 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese un nombre de la oferta" });
+
+                for(let i = 0; i < sales.length; i++){
+                    if(sales[i].name === value){
+                        return context.createError({ message: "El nombre de esta oferta ya existe" });
+                    }
+                }
 
                 return true;
 
@@ -86,13 +101,17 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
             sale {}
         } 
     }`, "company.id=" + companyId);
+    
     const { products = [] } = qProducts.data;
+    
     const [callSet, qSet] = useSet(SET_PRODUCT, {
         onCompleted: () => {
             //onCompleted()
         }
 
     });
+
+    
 
     const [callSave, qSave] = useSave(SAVE_SALE, {
         onCompleted: (data) => {
@@ -106,9 +125,10 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
                 callSet(newProductValues)
 
             }
-
+            swal("¡Listo!", "Se ha creado la oferta de manera exitosa.", "success").then(() => {
+                window.location.replace("/sales");
+            });
             onCompleted();
-            swal("¡Listo!", "Se ha creado la oferta de manera exitosa.", "success");
         }
 
     });
@@ -124,6 +144,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null }) {
     const error = qSave.error ? "An error has occurred" : null;
 
     const onSubmit = (values) => {
+
+        
 
         values.disscount = parseFloat(values.disscount);
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");

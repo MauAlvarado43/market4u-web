@@ -8,8 +8,14 @@ function Sales() {
   if (type != "ADMIN" && type != "SELLER") window.location.replace("/profile/info");
 
   const listRef = useRef(null);
+  const refetchQuery = () => {
+    listRef.current.refetchQuery();
+  };
 
-  return <View listRef={listRef} />;
+  return <View
+    listRef={listRef}
+    refetchQuery={refetchQuery}
+  />;
 }
 
 Sales.propTypes = {};
