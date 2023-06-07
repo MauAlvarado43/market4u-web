@@ -130,7 +130,7 @@ function FormSet({
 
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
-    newValues.password = password;
+    newValues.password = document.getElementById("password").value;
 
     newValues.type = 'SELLER';
     delete newValues.id;
