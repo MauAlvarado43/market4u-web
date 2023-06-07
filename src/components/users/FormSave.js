@@ -4,55 +4,39 @@ import { useQuery } from "seed/gql";
 import { usePost } from "seed/api";
 import View from "components/users/Form.view";
 import swal from "sweetalert";
-import { object, string, ref } from "yup";
+import { object, string } from "yup";
 
-
-function FormSave({
-  onCompleted = () => null,
-}) {
+function FormSave({ onCompleted = () => null }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showCompany, setShowCompany] = useState(true);
+  const [selectedCompany, setSelectedCompany] = useState("");	
   const [selectedType, setSelectedType] = useState("ADMIN");
-
-  const qUsers = useQuery(
-    `
-        { 
-            users {
-                id
-                email
-                firstName
-                lastName
-                type
-            } 
-        }
-        `
-  );
 
   const qCompanies = useQuery(
     `
-        { 
-            companies {
-                id
-                name
-            } 
-        }
-        `
+    { 
+      companies {
+        id
+        name
+      } 
+    }
+  `
   );
-  
+
   const { companies = [] } = qCompanies.data;
 
-  const [callSave, qSave] = usePost("/users/create_user_superadmin", {
+  const [callSave, qSave] = usePost("/users/create_user_company", {
     onCompleted: () => {
-      qUsers.refetch(); 
-      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success");
-      onCompleted();
+      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
+        window.location.replace("/users");
+      });
     },
   });
 
-  const error = qSave.error ? "An error has occurred" : null;
+  const error = qSave.error ? "Ha ocurrido un error" : null;
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -62,55 +46,50 @@ function FormSave({
     setShowPassConfirm(!showPassConfirm);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    if (event.target.value !== "") {
-      document.getElementById("passConfirm").disabled = false;
-    } else {
-      document.getElementById("passConfirm").disabled = true;
-      document.getElementById("passConfirm").value = "";
-    }
-  };
-
-  const validatePassword = (pass) => {
-    if(pass.length < 8)
-      return false;
-    else
-      return true;
+  const onChangeCompany = (e) => {
+    setSelectedCompany(e.target.value);
   };
 
   const validateLetters = (e) => {
     const keyCode = e.keyCode || e.which;
     const keyValue = String.fromCharCode(keyCode);
-    const regex = /^[A-Za-z\s]+$/; 
+    const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
 
-    if (!regex.test(keyValue)) 
-        e.preventDefault();
-  }
+    if (!regex.test(keyValue)) e.preventDefault();
+  };
 
   const validationSchema = object({
     password: string().test({
       name: "password",
       test(value, context) {
-        if (!validatePassword(password) && password) {
-          return context.createError({
-            message: "La contraseña no cumple con los requisitos mínimos.",
-          });
-        }
+
+        if (!value || value.length === 0)
+          return context.createError({ message: "Ingrese una contraseña" });
+
+        if (value.length < 8)
+          return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
+
         return true;
-      },
+
+      }
     }),
     passwordConfirm: string().test({
-      name:"passwordConfirm",
+      name: "passwordConfirm",
       test(value, context) {
-        if (passwordConfirm !== password) {
-          return context.createError({
-            message: "Las contraseñas no coinciden.",
-          });
-        }
+        if (!passwordConfirm || passwordConfirm.length === 0)
+          return context.createError({ message: "Confirme la contraseña" });
+
+        if (passwordConfirm.length < 8)
+          return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
+
+        if (passwordConfirm != context.parent.password)
+          return context.createError({ message: "Las contraseñas no coinciden" });
+
         return true;
-      },
-    }),firstName: string().test({
+
+      }
+    }),
+    firstName: string().test({
       name: "firstName",
       test(value, context) {
         if (!value || value.length === 0)
@@ -145,56 +124,50 @@ function FormSave({
     }),
   });
 
-  const onChangeType = (event) => {
-    const newValue = event.target.value;
-    setShowCompany(newValue !== "NORMAL" && newValue !== "SUPERADMIN")
-    setSelectedType(newValue);
-  }
+  const companyID = sessionStorage.getItem("company");
 
-  const companyId = sessionStorage.getItem("company");
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     let newValues = JSON.parse(JSON.stringify(values));
-
-    newValues.password = password;
     newValues.type = 'SELLER';
-    
-      newValues.company_id = parseInt(companyId);
+    newValues.password = document.getElementById("password").value;
+    newValues.company_id = parseInt(companyID);
+    console.log(newValues)
 
     delete newValues.company;
-
-    callSave(newValues)
-    
-  }
+    console.log(newValues)
+    callSave(newValues);
+  };
 
   const onCancel = () => {
     onCompleted();
-  }
+  };
 
-  return <View
-    error={error}
-    onSubmit={onSubmit}
-    onCancel={onCancel}
-    companies={companies}
-    setPassword={setPassword}
-    showCompany={showCompany}
-    onChangeType={onChangeType}
-    showPassword={showPassword}
-    selectedType={selectedType}
-    showPassConfirm={showPassConfirm}
-    setSelectedType={setSelectedType}
-    validateLetters={validateLetters}
-    validationSchema={validationSchema}
-    setPasswordConfirm={setPasswordConfirm}
-    handlePasswordChange={handlePasswordChange}
-    togglePasswordVisibility={togglePasswordVisibility}
-    togglePasswordVisibilityConfirm={togglePasswordVisibilityConfirm}
-  />;
+  return (
+    <View
+      error={error}
+      onSubmit={onSubmit}
+      onCancel={onCancel}
+      companies={companies}
+      setPassword={setPassword}
+      showCompany={showCompany}
+      showPassword={showPassword}
+      selectedType={selectedType}
+      onChangeCompany={onChangeCompany}
+      showPassConfirm={showPassConfirm}
+      setSelectedType={setSelectedType}
+      validateLetters={validateLetters}
+      validationSchema={validationSchema}
+      setPasswordConfirm={setPasswordConfirm}
+      togglePasswordVisibility={togglePasswordVisibility}
+      togglePasswordVisibilityConfirm={togglePasswordVisibilityConfirm}
+    />
+  );
 }
 
 FormSave.propTypes = {
   onCompleted: PropTypes.func,
-  onError: PropTypes.func
+  onError: PropTypes.func,
 };
 
 export default FormSave;

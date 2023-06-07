@@ -13,24 +13,26 @@ function FormSet({
   onCompleted = () => null,
 }) {
 
+  const qItem = useDetail(USER, itemId);
+  const { user = {} } = qItem.data;
+  
+  useEffect(() => {
+    setUserType(user.type);
+  }, [user.type]);
+
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [userType, setUserType] = useState("");
-  const qItem = useDetail(USER, itemId);
-  const { user = {} } = qItem.data;
+  const [userType, setUserType] = useState(user.type);
 
-  const [callSet, qSet] = usePost("/users/update_user_superadmin", {
+  const [callSet, qSet] = usePost("/users/update_user_normal", {
     onCompleted: () => {
-      swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success");
-      onCompleted();
+      swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success").then(() => {
+        window.location.replace("/users");
+      });
     },
   });
-
-  useEffect(() => {
-    setUserType(user.type);
-  }, [user.type]);
 
   const qCompanies = useQuery(`{ 
         companies {
@@ -53,23 +55,6 @@ function FormSet({
     setShowPassConfirm(!showPassConfirm);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    if (event.target.value !== "") {
-      document.getElementById("passConfirm").disabled = false;
-    } else {
-      document.getElementById("passConfirm").disabled = true;
-      document.getElementById("passConfirm").value = "";
-    }
-  };
-
-  const validatePassword = (pass) => {
-    if (pass.length < 8) 
-      return false;
-    else
-      return true;
-  };
-
   const validateLetters = (e) => {
     const keyCode = e.keyCode || e.which;
     const keyValue = String.fromCharCode(keyCode);
@@ -83,25 +68,27 @@ function FormSet({
     password: string().test({
       name: "password",
       test(value, context) {
-        if (!validatePassword(password) && password) {
-          return context.createError({
-            message: "La contraseña no cumple con los requisitos mínimos.",
-          });
-        }
+        if (password !== "" && password.length < 8)
+          return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
+
         return true;
-      },
+
+      }
     }),
     passwordConfirm: string().test({
-      name:"passwordConfirm",
+      name: "passwordConfirm",
       test(value, context) {
-        if (passwordConfirm !== password) {
-          return context.createError({
-            message: "Las contraseñas no coinciden.",
-          });
-        }
+        if ((passwordConfirm != context.parent.password) && password !== "")
+          return context.createError({ message: "Las contraseñas no coinciden" });
+
+        if(passwordConfirm.length === 0 && password !== "")
+          return context.createError({ message: "Confirme la contraseña" });
+
         return true;
-      },
-    }),firstName: string().test({
+
+      }
+    }),
+    firstName: string().test({
       name: "firstName",
       test(value, context) {
         if (!value || value.length === 0)
@@ -134,30 +121,40 @@ function FormSet({
         return true;
       },
     }),
+    company_edit: object().test({
+      name: "company.id",
+      test(value, context) {
+        console.log(userType)
+        if (userType !== "NORMAL" && userType !== "SUPERADMIN") {
+          if (!value.id || value.id.length === 0)
+            return context.createError({
+              message: "Seleccione una empresa para el usuario",
+            });
+        }
+
+        return true;
+      }
+    }),
   });
 
-  const changeType = (event) => {
-    const selectedType = event.target.value;
-    setUserType(selectedType);
-  }
+  const companyID = sessionStorage.getItem("company");
 
-  const companyId = sessionStorage.getItem("company");
 
   const onSubmit = (values) => {
-
-    console.log(values)
 
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
     newValues.password = password;
+
     newValues.type = 'SELLER';
-
     delete newValues.id;
-    delete newValues.company;
-
-    newValues.company_id = companyId;
-
+    
+    newValues.company_id = parseInt(companyID);
+    delete newValues.company
+    console.log(newValues)
     callSet(newValues);
+
+    
   };
 
   const onCancel = () => {
@@ -172,14 +169,12 @@ function FormSet({
     onCancel={onCancel}
     userType={userType}
     companies={companies}
-    changeType={changeType}
     setPassword={setPassword}
     showPassword={showPassword}
     showPassConfirm={showPassConfirm}
     validateLetters={validateLetters}
     validationSchema={validationSchema}
     setPasswordConfirm={setPasswordConfirm}
-    handlePasswordChange={handlePasswordChange}
     togglePasswordVisibility={togglePasswordVisibility}
     togglePasswordVisibilityConfirm={togglePasswordVisibilityConfirm}
   />;

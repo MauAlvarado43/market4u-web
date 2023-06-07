@@ -8,12 +8,12 @@ const FormView = ({
     onSubmit,
     onCancel,
     companies = [],
-    onChangeType,
     showPassword,
     validationSchema,
     togglePasswordVisibility,
     togglePasswordVisibilityConfirm,
     setPasswordConfirm,
+    onChangeCompany,
     showPassConfirm,
     handlePasswordChange,
     showCompany,
@@ -21,7 +21,7 @@ const FormView = ({
     userType,
     setSelectedType,
     selectedType,
-    validateLetters
+    validateLetters,
 }) => (
     <div class="card">
         <div class="card-header">
@@ -50,19 +50,21 @@ const FormView = ({
                                                     class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
-                                                    onKeyPress={(e) => { validateLetters(e) }}
+                                                    onKeyPress={(e) => {
+                                                        validateLetters(e);
+                                                    }}
                                                 />
                                                 <span class="input__label ">
                                                     Nombre(s)
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {errors.firstName && (touched.firstName || submitCount > 0) ? (
-                                                <div class="text-danger mt-2" role="alert">
+                                            {errors.firstName &&
+                                                (touched.firstName || submitCount > 0) ? (
+                                                <div class="mt-2 text-danger" role="alert">
                                                     {errors.firstName}
                                                 </div>
                                             ) : null}
-
                                         </div>
                                     </div>
                                 </div>
@@ -77,15 +79,18 @@ const FormView = ({
                                                     class="form-control input__field border-top-0 border-left-0
                                                         border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
-                                                    onKeyPress={(e) => { validateLetters(e) }}
+                                                    onKeyPress={(e) => {
+                                                        validateLetters(e);
+                                                    }}
                                                 />
                                                 <span class="input__label">
                                                     Apellido(s)
                                                     <span className="text-danger fw-bold">*</span>
                                                 </span>
                                             </label>
-                                            {errors.lastName && (touched.lastName || submitCount > 0) ? (
-                                                <div class="text-danger mt-2" role="alert">
+                                            {errors.lastName &&
+                                                (touched.lastName || submitCount > 0) ? (
+                                                <div class="mt-2 text-danger" role="alert">
                                                     {errors.lastName}
                                                 </div>
                                             ) : null}
@@ -101,7 +106,7 @@ const FormView = ({
                                                     name="email"
                                                     value={values.email || ""}
                                                     class="form-control input__field border-top-0 border-left-0
-                                                        border-right-0 border-bottom-5 border-dark rounded-0 mb-3"
+                                                        border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
                                                 />
                                                 <span class="input__label">
@@ -117,6 +122,7 @@ const FormView = ({
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="form-group text-left mb-auto">
                                     <h4>Contraseña</h4>
                                 </div>
@@ -127,13 +133,11 @@ const FormView = ({
                                     <div className="form-group col-md-6">
                                         <label className="input">
                                             <Field
-                                                id="pass"
+                                                id="password"
                                                 name="password"
                                                 type={showPassword ? "text" : "password"}
                                                 className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                                onChange={handlePasswordChange}
-                                                {...(item.id ? null : { required: true })}
                                             ></Field>
                                             <span class="input__label">
                                                 Escribe la contraseña
@@ -147,23 +151,25 @@ const FormView = ({
                                                 >
                                                     <i
                                                         className={
-                                                            showPassword
-                                                                ? "fas fa-eye"
-                                                                : "fas fa-eye-slash"
+                                                            showPassword ? "fas fa-eye" : "fas fa-eye-slash"
                                                         }
                                                     />
                                                 </button>
                                             </span>
                                         </label>
+                                        {errors.password &&
+                                            (touched.password || submitCount > 0) ? (
+                                            <div class="mt-2 text-danger" role="alert">
+                                                {errors.password}
+                                            </div>
+                                        ) : null}
                                     </div>
 
                                     <div className="form-group col-md-6">
                                         <label className="text-left">
-                                            {item.id ? (
-                                                "En caso de no querer realizar modificaciones en tu contraseña, omite estos campos."
-                                            ) : (
-                                                "La contraseña debe tener una longitud mínima de 8 caracteres"
-                                            )}
+                                            {item.id
+                                                ? "En caso de no querer realizar modificaciones en la contraseña, omite estos campos."
+                                                : "La contraseña debe tener una longitud mínima de 8 caracteres"}
                                         </label>
                                     </div>
                                 </div>
@@ -172,13 +178,12 @@ const FormView = ({
                                     <div className="form-group col-md-6">
                                         <label className="input">
                                             <Field
-                                                id="passConfirm"
+                                                id="passwordConfirm"
                                                 name="passwordConfirm"
                                                 type={showPassConfirm ? "text" : "password"}
                                                 className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                                 onChange={(ev) => setPasswordConfirm(ev.target.value)}
-                                                {...(item.id ? null : { required: true })}
                                             ></Field>
                                             <span class="input__label">
                                                 Confirmar contraseña
@@ -199,16 +204,11 @@ const FormView = ({
                                                     />
                                                 </button>
                                             </span>
-                                            <ErrorMessage
-                                                name="passwordConfirm"
-                                                component="div"
-                                                className="text-danger"
-                                            />
                                         </label>
-                                        {errors.password &&
-                                            (touched.password || submitCount >= 0) ? (
-                                            <div class="mt-3 alert alert-soft-danger" role="alert">
-                                                {errors.password}
+                                        {errors.passwordConfirm &&
+                                            (touched.passwordConfirm || submitCount > 0) ? (
+                                            <div class="mt-2 text-danger" role="alert">
+                                                {errors.passwordConfirm}
                                             </div>
                                         ) : null}
                                     </div>
