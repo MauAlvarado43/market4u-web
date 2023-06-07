@@ -12,6 +12,7 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null, re
         onCompleted: () => {
             console.log("se ha actualizado de manera exitosa el producto");
             onCompleted();
+            refetchQuery();
         },
     });
 
