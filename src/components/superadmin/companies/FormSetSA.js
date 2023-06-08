@@ -13,6 +13,18 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
     const re = /^[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]$/;
 
+    const qCompanies = useQuery(
+        `
+        {
+            companies {
+                name
+                rfc
+            }
+        }
+        `);
+
+    const { companies = [] } = qCompanies.data;
+
     const qItem = useDetail(
         COMPANY,
         itemId
@@ -33,6 +45,12 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el nombre fiscal de la empresa" });
+
+                for (let i = 0; i < companies.length; i++) {
+                    if(companies[i].id != itemId)
+                        if (companies[i].name === value)
+                            return context.createError({ message: "Este nombre fiscal ya está registrado por otra empresa" });
+                }
 
                 return true;
 
@@ -55,9 +73,15 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el rfc de la empresa" });
-                
-                if(!re.test(value)){
+
+                if (!re.test(value)) {
                     return context.createError({ message: "El RFC no es válido" });
+                }
+
+                for (let i = 0; i < companies.length; i++) {
+                    if(companies[i].id != itemId)
+                        if (companies[i].rfc === value)
+                            return context.createError({ message: "Este rfc ya está registrado por otra empresa" });
                 }
 
                 return true;
@@ -70,8 +94,8 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el código postal de la empresa" });
-                
-                if(value.length != 5)
+
+                if (value.length != 5)
                     return context.createError({ message: "El código postal debe de ser de 5 dígitos" });
 
                 return true;
@@ -85,7 +109,7 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el teléfono de la empresa" });
 
-                if(value.length != 10){
+                if (value.length != 10) {
                     return context.createError({ message: "El número de teléfono debe de ser de 10 dígitos" });
                 }
 
@@ -158,7 +182,7 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
                 return true;
 
             }
-        }),state: string().test({
+        }), state: string().test({
             name: "state",
             test(value, context) {
 
@@ -169,7 +193,7 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
 
             }
         })
-        
+
     })
 
     if (qItem.loading) return <Loading />;
@@ -194,7 +218,7 @@ function FormSet({ itemId, onCompleted = () => null, onError = () => null }) {
         error={error}
         onSubmit={onSubmit}
         onCancel={onCancel}
-        productSchema = {productSchema}
+        productSchema={productSchema}
     />;
 }
 

@@ -14,6 +14,18 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
 
     const re = /^[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]$/;
 
+    const qCompanies = useQuery(
+        `
+        {
+            companies {
+                name
+                rfc
+            }
+        }
+        `);
+    
+    const { companies = [] } = qCompanies.data;
+
     const [callSave, qSave] = useSave(SAVE_COMPANY, {
         onCompleted: (data) => {
             refetchQuery();
@@ -31,6 +43,11 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el nombre fiscal de la empresa" });
+
+                for(let i = 0; i < companies.length; i++){
+                    if(companies[i].name === value)
+                        return context.createError({ message: "Este nombre fiscal ya está registrado por otra empresa" });
+                }
 
                 return true;
 
@@ -57,6 +74,11 @@ function FormSave({ onCompleted = () => null, onError = () => null, refetchQuery
 
                 if(!re.test(value)){
                     return context.createError({ message: "El RFC no es válido" });
+                }
+
+                for(let i = 0; i < companies.length; i++){
+                    if(companies[i].rfc === value)
+                        return context.createError({ message: "Este rfc ya está registrado por otra empresa" });
                 }
 
                 return true;
