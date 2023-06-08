@@ -43,7 +43,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
                     return context.createError({ message: "Ingrese un nombre de la oferta" });
 
                 for(let i = 0; i < sales.length; i++){
-                    if(sales[i].name === value){
+                    if(sales[i].name.toLowerCase().replace(/\s/g, '') === value.toLowerCase().replace(/\s/g, '')){
                         return context.createError({ message: "El nombre de esta oferta ya existe" });
                     }
                 }
