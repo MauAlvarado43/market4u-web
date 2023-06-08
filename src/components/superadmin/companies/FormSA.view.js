@@ -192,7 +192,7 @@ const FormView = (
                                         </div>
                                     </div>
                                     <h4 className="mt-7">Datos fiscales</h4>
-                                    <div class="mb-3">
+                                    <div class="mt-4">
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label class="input">
@@ -220,7 +220,7 @@ const FormView = (
                                         </div>
                                     </div>
                                     <h4 className="mt-7">Dirección</h4>
-                                    <div class="mb-3">
+                                    <div class="mt-4">
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label class="input">
