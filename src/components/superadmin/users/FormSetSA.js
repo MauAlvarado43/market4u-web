@@ -15,23 +15,27 @@ function FormSet({
 
   const qItem = useDetail(USER, itemId);
   const { user = {} } = qItem.data;
-  let companyId = 0;
   
   useEffect(() => {
     setUserType(user.type);
   }, [user.type]);
+
+  useEffect(() => {
+    setSelectedCompany(user?.company != null ? user?.company?.id : 0);
+  }, [user.company]);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [userType, setUserType] = useState(user.type);
-  const [selectedCompany, setSelectedCompany] = useState(0);
+  const [selectedCompany, setSelectedCompany] = useState(user?.company != null ? user?.company?.id : 0);
 
   const [callSet, qSet] = usePost("/users/update_user_superadmin", {
     onCompleted: () => {
       swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success").then(() => {
-        window.location.replace("/superadmin/users");
+        onCompleted();
+        qItem.refetch();
       });
     },
   });
@@ -63,7 +67,6 @@ function FormSet({
   }
 
   const onChangeCompany = (event) => {
-    const companyId = event.target.value;
     if(event.target.value == "")
       setSelectedCompany(0)
     else
@@ -83,7 +86,7 @@ function FormSet({
     password: string().test({
       name: "password",
       test(value, context) {
-        if (value < 8 && value !== "")
+        if (password.length < 8 && password !== "")
           return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
 
         return true;
@@ -93,8 +96,15 @@ function FormSet({
     passwordConfirm: string().test({
       name: "passwordConfirm",
       test(value, context) {
-        if ((value === "") && context.password !== "")
-          return context.createError({ message: "Las contraseñas no coinciden"})
+        if(password !== "" && passwordConfirm === "")
+          return context.createError({ 
+            message: "Confrima la contraseña"
+          })
+
+        if(passwordConfirm !== password)
+          return context.createError({
+            message: "Las contraseñas no coinciden"
+          })
 
         return true;
 
@@ -152,15 +162,14 @@ function FormSet({
     newValues.user_id = newValues.id;
     newValues.password = password;
     delete newValues.id;
-    console.log(newValues)
     
     if (newValues.type === "NORMAL" || newValues.type === "SUPERADMIN") 
       newValues.company_id = null;
     else 
-      newValues.company_id = parseInt(document.getElementById("company").value);
+      newValues.company_id = selectedCompany;
 
     delete newValues.company
-    //callSet(newValues);
+    callSet(newValues);
   };
 
   const onCancel = () => {
@@ -177,9 +186,10 @@ function FormSet({
     companies={companies}
     changeType={changeType}
     setPassword={setPassword}
-    onChangeCompany={onChangeCompany}
     showPassword={showPassword}
+    onChangeCompany={onChangeCompany}
     showPassConfirm={showPassConfirm}
+    selectedCompany={selectedCompany}
     validateLetters={validateLetters}
     validationSchema={validationSchema}
     setPasswordConfirm={setPasswordConfirm}

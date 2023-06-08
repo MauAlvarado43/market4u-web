@@ -290,7 +290,6 @@ const NavView = ({
 );
 
 NavView.propTypes = {
-  user: PropTypes.array,
   showFilterIcon: PropTypes.bool,
   showModal: PropTypes.bool,
   handleModalToggle: PropTypes.func,

@@ -6,7 +6,7 @@ import View from "components/superadmin/users/FormSA.view";
 import swal from "sweetalert";
 import { object, string } from "yup";
 
-function FormSave({ onCompleted = () => null }) {
+function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
@@ -25,13 +25,13 @@ function FormSave({ onCompleted = () => null }) {
     }
   `
   );
-
   const { companies = [] } = qCompanies.data;
 
   const [callSave, qSave] = usePost("/users/create_user_superadmin", {
     onCompleted: () => {
       swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
-        window.location.replace("/superadmin/users");
+        onCompleted();
+        refetchQuery();
       });
     },
   });
@@ -63,10 +63,10 @@ function FormSave({ onCompleted = () => null }) {
       name: "password",
       test(value, context) {
 
-        if (!value || value.length === 0)
+        if (password === "")
           return context.createError({ message: "Ingrese una contraseña" });
 
-        if (value.length < 8)
+        if (password.length < 8)
           return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
 
         return true;
@@ -76,13 +76,10 @@ function FormSave({ onCompleted = () => null }) {
     passwordConfirm: string().test({
       name: "passwordConfirm",
       test(value, context) {
-        if (!passwordConfirm || passwordConfirm.length === 0)
+        if (passwordConfirm === "")
           return context.createError({ message: "Confirme la contraseña" });
 
-        if (passwordConfirm.length < 8)
-          return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
-
-        if (passwordConfirm != context.parent.password)
+        if (passwordConfirm != password)
           return context.createError({ message: "Las contraseñas no coinciden" });
 
         return true;
@@ -145,17 +142,17 @@ function FormSave({ onCompleted = () => null }) {
 
   const onSubmit = async (values) => {
     let newValues = JSON.parse(JSON.stringify(values));
+
     newValues.password = password;
     newValues.type = document.getElementById("type").value;
+    
     if (newValues.type === "NORMAL" || newValues.type === "SUPERADMIN") {
       newValues.company_id = null;
     } else {
-      newValues.company_id = parseInt(values.company.id);
+      newValues.company_id = parseInt(document.getElementById("company").value);
     }
-
-    console.log(newValues.company_id)
-
     delete newValues.company;
+    
     callSave(newValues);
   };
 

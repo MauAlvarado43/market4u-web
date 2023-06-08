@@ -16,9 +16,11 @@ const FormView = ({
   setPasswordConfirm,
   onChangeCompany,
   showPassConfirm,
+  setPassword,
   showCompany,
   changeType,
   validateLetters,
+  selectedCompany
 }) => (
   <div class="card">
     <div class="card-header">
@@ -174,6 +176,7 @@ const FormView = ({
                             className="form-control input__field border-dark"
                             placeholder=" "
                             onChange = {(e) => {onChangeCompany(e)}}
+                            value={selectedCompany}
                           >
                             <option value="">Seleccione una opción</option>
                             {companies.map((e, idx) => (
@@ -247,6 +250,7 @@ const FormView = ({
                         type={showPassword ? "text" : "password"}
                         className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                        onChange={(ev) => setPassword(ev.target.value)}
                       ></Field>
                       <span class="input__label">
                         Escribe la contraseña
