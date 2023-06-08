@@ -39,6 +39,7 @@ const FormView = (
                                 submitCount
                             }) => (
                                 <Form>
+                                    <h4 className="mt-2">Datos generales</h4>
                                     <div class="mb-3">
                                         <div class="mb-3">
                                             <div class="form-group">
@@ -98,60 +99,6 @@ const FormView = (
                                             <div class="form-group">
                                                 <label class="input">
                                                     <Field
-                                                        type="text"
-                                                        name="rfc"
-                                                        value={values.rfc || ''}
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        RFC
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                                {
-                                                errors.rfc && (touched.rfc || submitCount > 0)
-                                                    ? <div class="text-danger mt-2" role="alert">
-                                                        {errors.rfc}
-                                                    </div>
-                                                    : null
-                                            }
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="number"
-                                                        name="cp"
-                                                        value={values.cp || ''}
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Código Postal
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                                {
-                                                errors.cp && (touched.cp || submitCount > 0)
-                                                    ? <div class="text-danger mt-2" role="alert">
-                                                        {errors.cp}
-                                                    </div>
-                                                    : null
-                                            }
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
                                                         type="number"
                                                         name="phone"
                                                         value={values.phone || ''}
@@ -202,6 +149,34 @@ const FormView = (
                                         </div>
                                     </div>
                                     <div class="mb-3">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label class="input">
+                                                    <Field
+                                                        type="text"
+                                                        name="website"
+                                                        value={values.website || ''}
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
+                                                        placeholder=" "
+                                                    />
+                                                    <span class="input__label">
+                                                        Sitio web
+                                                        <span className='text-danger fw-bold'>*</span>
+                                                    </span>
+                                                </label>
+                                                {
+                                                errors.website && (touched.website || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.website}
+                                                    </div>
+                                                    : null
+                                            }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 className = "mt-7">Logo de la empresa</h4>
+                                    <div class="mb-3">
                                         <div class="custom-file form-field-style">
                                             <FileField
                                                 className="custom-file-input"
@@ -214,6 +189,62 @@ const FormView = (
                                                     <span className='text-danger fw-bold'>*</span>
                                                 </span>
                                             </label>
+                                        </div>
+                                    </div>
+                                    <h4 className="mt-7">Datos fiscales</h4>
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label class="input">
+                                                    <Field
+                                                        type="text"
+                                                        name="rfc"
+                                                        value={values.rfc || ''}
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
+                                                        placeholder=" "
+                                                    />
+                                                    <span class="input__label">
+                                                        RFC
+                                                        <span className='text-danger fw-bold'>*</span>
+                                                    </span>
+                                                </label>
+                                                {
+                                                errors.rfc && (touched.rfc || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.rfc}
+                                                    </div>
+                                                    : null
+                                            }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 className="mt-7">Dirección</h4>
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label class="input">
+                                                    <Field
+                                                        type="number"
+                                                        name="cp"
+                                                        value={values.cp || ''}
+                                                        className="form-control input__field border-top-0 border-left-0
+                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
+                                                        placeholder=" "
+                                                    />
+                                                    <span class="input__label">
+                                                        Código Postal
+                                                        <span className='text-danger fw-bold'>*</span>
+                                                    </span>
+                                                </label>
+                                                {
+                                                errors.cp && (touched.cp || submitCount > 0)
+                                                    ? <div class="text-danger mt-2" role="alert">
+                                                        {errors.cp}
+                                                    </div>
+                                                    : null
+                                            }
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -243,7 +274,7 @@ const FormView = (
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mt-6">
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label class="input">
@@ -251,7 +282,7 @@ const FormView = (
                                                         as="select"
                                                         name="state"
                                                         value={values.state || ''}
-                                                        class="form-control input__field border-dark mb-4"
+                                                        class="form-control input__field border-dark"
                                                         placeholder=" "
                                                     >
                                                         <option value="">Seleccione una opción</option>
@@ -324,33 +355,6 @@ const FormView = (
                                                 errors.cologn && (touched.cologn || submitCount > 0)
                                                     ? <div class="text-danger mt-2" role="alert">
                                                         {errors.cologn}
-                                                    </div>
-                                                    : null
-                                            }
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label class="input">
-                                                    <Field
-                                                        type="text"
-                                                        name="website"
-                                                        value={values.website || ''}
-                                                        className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mt-2"
-                                                        placeholder=" "
-                                                    />
-                                                    <span class="input__label">
-                                                        Sitio web
-                                                        <span className='text-danger fw-bold'>*</span>
-                                                    </span>
-                                                </label>
-                                                {
-                                                errors.website && (touched.website || submitCount > 0)
-                                                    ? <div class="text-danger mt-2" role="alert">
-                                                        {errors.website}
                                                     </div>
                                                     : null
                                             }
