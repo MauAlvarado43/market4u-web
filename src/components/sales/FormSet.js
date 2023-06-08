@@ -15,16 +15,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
     const qUsers = useQuery(`{ users { } }`);
     const companyId = sessionStorage.getItem("company");
 
-    let selectedStartDate;
-
-    const qSales = useQuery(`{ 
-        sales {
-            id
-            name
-            company {}
-        } 
-    }`, "company.id=" + companyId);
-    const { sales = [] } = qSales.data;
+    let selectedStartDate;;
 
     const productSchema = object({
         name: string().test({
@@ -34,12 +25,6 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese un nombre de la oferta" });
 
-                for (let i = 0; i < sales.length; i++) {
-                    if (sales[i].id != saleId)
-                        if (sales[i].name.toLowerCase().replace(/\s/g, '') === value.toLowerCase().replace(/\s/g, '')) {
-                            return context.createError({ message: "El nombre de esta oferta ya existe" });
-                        }
-                }
 
                 return true;
 
