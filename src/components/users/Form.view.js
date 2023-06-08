@@ -7,20 +7,13 @@ const FormView = ({
     item = {},
     onSubmit,
     onCancel,
-    companies = [],
     showPassword,
     validationSchema,
     togglePasswordVisibility,
     togglePasswordVisibilityConfirm,
     setPasswordConfirm,
-    onChangeCompany,
     showPassConfirm,
-    handlePasswordChange,
-    showCompany,
-    changeType,
-    userType,
-    setSelectedType,
-    selectedType,
+    setPassword,
     validateLetters,
 }) => (
     <div class="card">
@@ -122,6 +115,7 @@ const FormView = ({
                                         </div>
                                     </div>
                                 </div>
+                                
 
                                 <div class="form-group text-left mb-auto">
                                     <h4>Contraseña</h4>
@@ -133,11 +127,12 @@ const FormView = ({
                                     <div className="form-group col-md-6">
                                         <label className="input">
                                             <Field
-                                                id="password"
+                                                id="pass"
                                                 name="password"
                                                 type={showPassword ? "text" : "password"}
                                                 className="form-control input__field border-top-0 border-left-0
                                     border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                onChange={(ev) => setPassword(ev.target.value)}
                                             ></Field>
                                             <span class="input__label">
                                                 Escribe la contraseña
