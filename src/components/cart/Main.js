@@ -23,6 +23,7 @@ function Main() {
 
   const [callProducts, reqProducts] = usePost("/carts/active_products", {
     onCompleted: (data) => {
+      console.log(data);
       setProducts(data);
     },
     onError: (err) => {

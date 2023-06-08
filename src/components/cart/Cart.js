@@ -66,7 +66,7 @@ function Cart({ setDeliveryStep, setData, products, setProducts, setActiveStep }
 
     for (let i = 0; i < newProducts.length; i++) {
       if (newProducts[i].id == id) {
-        if (newProducts[i].amount == 1) {
+        if (newProducts[i].amount <= 1) {
           swal("Cantidad inválida", "Si deseas quitar el producto, de click en el botón eliminar", "error");
         } else {
           newProducts[i].amount -= 1;

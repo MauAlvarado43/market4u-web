@@ -5,7 +5,12 @@ import "./CartStyle.css"
 const getTotal = (products) => {
   let total = 0;
   for (let product of products) {
-    total += (product?.variant?.price * product?.amount)
+    const sale = product?.sale ?? null;
+    if (sale) {
+      total += (product?.variant?.price * (sale.disscount / 100)) * product?.amount;
+    } else {
+      total += (product?.variant?.price * product?.amount)
+    }
   }
   return total;
 }
@@ -27,7 +32,17 @@ const SumaryView = ({ products, onSubmit }) =>
               {
                 products.map((product) => (
                   <li key={product.id}>
-                    {product?.amount} x {product?.sku} = {(product?.amount * product?.variant?.price).toFixed(2)}
+                    {product?.amount} x {product?.sku} = ${" "}
+                    {
+                      function () {
+                        const sale = product?.sale ?? null;
+                        if (sale) {
+                          return (product?.amount * (product?.variant?.price * (sale.disscount / 100))).toFixed(2);
+                        } else {
+                          return (product?.amount * product?.variant?.price).toFixed(2);
+                        }
+                      }()
+                    }
                   </li>
                 ))
               }

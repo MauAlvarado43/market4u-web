@@ -3,12 +3,33 @@ import PropTypes from "prop-types";
 import './CartStyle.css'
 import Sumary from "components/cart/Sumary";
 
-const CartView = ({ 
-  products, 
-  onSubmit, 
-  onDeleteProduct, 
-  onAddAmount, 
-  onRemoveAmount 
+const getProductPrice = (product) => {
+  const sale = product?.sale ?? null;
+  const price = product?.variant?.price;
+  if (sale) {
+    const disscount = sale.disscount;
+    const newPrice = price * (disscount / 100);
+    return (
+      <div className="d-flex">
+        <div className="mr-3" style={{ textDecorationLine: "line-through" }}>
+          ${price.toFixed(2)}
+        </div>
+        <i class="fas fa-long-arrow-alt-right"></i>
+        <div className="ml-3">
+          ${newPrice.toFixed(2)}
+        </div>
+      </div>)
+
+  }
+  return (<>${price.toFixed(2)}</>)
+}
+
+const CartView = ({
+  products,
+  onSubmit,
+  onDeleteProduct,
+  onAddAmount,
+  onRemoveAmount
 }) => (
   <div className='row'>
 
@@ -44,13 +65,13 @@ const CartView = ({
               <div className="col-md-6">
                 <h3>{product?.name}</h3>
                 <h6>SKU: {product?.sku}</h6>
-                <h6>{product?.category?.name}</h6>
+                <h6>Categoría: {product?.category?.name}</h6>
                 <div className="row mt-3">
                   <div className="col-md-4">
 
                   </div>
                   <div className="col-md-8">
-                    <h3><b>${product?.variant?.price.toFixed(2)}</b></h3>
+                    <h3><b>{getProductPrice(product)}</b></h3>
                   </div>
                 </div>
               </div>
@@ -59,9 +80,9 @@ const CartView = ({
                 <div className="row">
                   <div className="col-md-4">
 
-                    <div className="d-flex justify-content-center align-items-center" onClick={() => onAddAmount(product.id)}
+                    <div className="d-flex justify-content-center align-items-center" onClick={() => onRemoveAmount(product.id)}
                       style={{ width: "40px", height: "40px", border: "4px #081856 solid", borderRadius: "50%", color: "#081856", cursor: "pointer" }}>
-                      <i class="fas fa-plus"></i>
+                      <i class="fas fa-minus"></i>
                     </div>
 
                   </div>
@@ -72,9 +93,9 @@ const CartView = ({
 
                   <div className="col-md-4">
 
-                    <div className="d-flex justify-content-center align-items-center" onClick={() => onRemoveAmount(product.id)}
+                    <div className="d-flex justify-content-center align-items-center" onClick={() => onAddAmount(product.id)}
                       style={{ width: "40px", height: "40px", border: "4px #081856 solid", borderRadius: "50%", color: "#081856", cursor: "pointer" }}>
-                      <i class="fas fa-minus"></i>
+                      <i class="fas fa-plus"></i>
                     </div>
 
                   </div>
