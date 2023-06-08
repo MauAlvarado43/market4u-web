@@ -15,7 +15,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
     const qUsers = useQuery(`{ users { } }`);
     const companyId = sessionStorage.getItem("company");
 
-    let selectedStartDate;;
+    let selectedStartDate;
 
     const productSchema = object({
         name: string().test({
