@@ -33,7 +33,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
                 </label>
                 {
                   errors.name && (touched.name || submitCount > 0)
-                    ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                    ? <div class="mt-2 text-danger" role="alert">
                       {errors.name}
                     </div>
                     : null
@@ -53,7 +53,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
                     </label>
                     {
                       errors.cardNumber && (touched.cardNumber || submitCount > 0)
-                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                           {errors.cardNumber}
                         </div>
                         : null
@@ -69,7 +69,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
                     </label>
                     {
                       errors.expireDate && (touched.expireDate || submitCount > 0)
-                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                           {errors.expireDate}
                         </div>
                         : null
@@ -85,7 +85,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
                     </label>
                     {
                       errors.cvv && (touched.cvv || submitCount > 0)
-                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                           {errors.cvv}
                         </div>
                         : null
@@ -115,7 +115,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
                     </label>
                     {
                       errors.bank && (touched.bank || submitCount > 0)
-                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                           {errors.bank}
                         </div>
                         : null
@@ -135,7 +135,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
                     </label>
                     {
                       errors.type && (touched.type || submitCount > 0)
-                        ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                        ? <div class="mt-2 text-danger" role="alert">
                           {errors.type}
                         </div>
                         : null
@@ -155,7 +155,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
                 </label>
                 {
                   errors.address && (touched.address || submitCount > 0)
-                    ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                    ? <div class="mt-2 text-danger" role="alert">
                       {errors.address}
                     </div>
                     : null

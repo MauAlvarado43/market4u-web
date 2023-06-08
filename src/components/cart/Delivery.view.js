@@ -37,7 +37,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
                   </label>
                   {
                     errors.telephone && (touched.telephone || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.telephone}
                       </div>
                       : null
@@ -53,7 +53,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
                   </label>
                   {
                     errors.email && (touched.email || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.email}
                       </div>
                       : null
@@ -75,7 +75,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
                   </label>
                   {
                     errors.street && (touched.street || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.street}
                       </div>
                       : null
@@ -91,7 +91,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
                   </label>
                   {
                     errors.cologn && (touched.cologn || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.cologn}
                       </div>
                       : null
@@ -113,7 +113,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
                   </label>
                   {
                     errors.cp && (touched.cp || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.cp}
                       </div>
                       : null
@@ -129,7 +129,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
                   </label>
                   {
                     errors.city && (touched.city || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.city}
                       </div>
                       : null
@@ -156,7 +156,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
               </label>
               {
                 errors.state && (touched.state || submitCount > 0)
-                  ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                  ? <div class="mt-2 text-danger" role="alert">
                     {errors.state}
                   </div>
                   : null
@@ -173,7 +173,7 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
               </label>
               {
                 errors.references && (touched.references || submitCount > 0)
-                  ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                  ? <div class="mt-2 text-danger" role="alert">
                     {errors.references}
                   </div>
                   : null
