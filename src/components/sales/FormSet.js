@@ -13,7 +13,18 @@ import { object, string } from "yup";
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery }) {
     const qSale = useDetail(SALE, saleId);
     const qUsers = useQuery(`{ users { } }`);
+    const companyId = sessionStorage.getItem("company");
+
     let selectedStartDate;
+
+    const qSales = useQuery(`{ 
+        sales {
+            id
+            name
+            company {}
+        } 
+    }`, "company.id=" + companyId);
+    const { sales = [] } = qSales.data;
 
     const productSchema = object({
         name: string().test({
@@ -22,6 +33,13 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese un nombre de la oferta" });
+
+                for (let i = 0; i < sales.length; i++) {
+                    if (sales[i].id != saleId)
+                        if (sales[i].name.toLowerCase().replace(/\s/g, '') === value.toLowerCase().replace(/\s/g, '')) {
+                            return context.createError({ message: "El nombre de esta oferta ya existe" });
+                        }
+                }
 
                 return true;
 
@@ -33,8 +51,8 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Ingrese el descuento de la oferta" });
-                if(value < 1 || value > 100)
-                    return context.createError({message: "La oferta no puede ser menor a 1 o mayor que 100"});
+                if (value < 1 || value > 100)
+                    return context.createError({ message: "La oferta no puede ser menor a 1 o mayor que 100" });
 
                 return true;
 
@@ -59,8 +77,8 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
                 if (!value || value.length === 0)
                     return context.createError({ message: "Fechas de fin ingresada incorrectamente" });
 
-                if(value < selectedStartDate)
-                    return context.createError({message: "La fecha de fin no puede ser menor que la fecha de inicio"})
+                if (value < selectedStartDate)
+                    return context.createError({ message: "La fecha de fin no puede ser menor que la fecha de inicio" })
 
                 return true;
 
@@ -72,13 +90,13 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
         onCompleted: () => {
             swal("¡Listo!", "Se ha actualizado la oferta de manera exitosa.", "success").then(() => {
                 window.location.replace("/sales");
-              });
+            });
             onCompleted();
-            
+
             //refetchQuery();
-            
+
         }
-        
+
     });
 
     const [callSetProducts, qSetProducts] = useSet(SET_PRODUCT, {
@@ -93,7 +111,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
         },
     });
 
-    const companyId = sessionStorage.getItem("company");
+
 
     let qProducts = useQuery(`{ 
         products {
@@ -133,7 +151,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
         values.company = parseInt(sessionStorage.getItem("company"));
 
         for (let i = 0; i < filteredProducts.length; i++) {
-            
+
             let newValues = JSON.parse(JSON.stringify(filteredProducts[i]));
             newValues.product_id = newValues.id;
             delete newValues.id;
