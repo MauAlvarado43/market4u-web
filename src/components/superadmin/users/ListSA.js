@@ -28,6 +28,7 @@ const List = forwardRef(
             `(type = SELLER OR type = NORMAL OR type = ADMIN) AND id <> ${userId}`,
             {orderBy: "-id"}
         );
+        reqItems.refetch();
 
         if (reqItems.loading) return <Loading />;
         if (reqItems.error) return "Error";

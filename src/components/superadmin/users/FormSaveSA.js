@@ -15,6 +15,7 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
   const [selectedCompany, setSelectedCompany] = useState("");	
   const [selectedType, setSelectedType] = useState("ADMIN");
 
+  const qUsers = useQuery(`{ users { id } }`);
   const qCompanies = useQuery(
     `
     { 
@@ -25,13 +26,13 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
     }
   `
   );
+
   const { companies = [] } = qCompanies.data;
 
   const [callSave, qSave] = usePost("/users/create_user_superadmin", {
     onCompleted: () => {
       swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
         onCompleted();
-        refetchQuery();
       });
     },
   });
