@@ -40,7 +40,7 @@ const FormView = (
                             }) => (
                                 <Form>
                                     <h4 className="mt-2">Datos generales</h4>
-                                    <div class="mb-3">
+                                    <div class="mt-4">
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label class="input">
