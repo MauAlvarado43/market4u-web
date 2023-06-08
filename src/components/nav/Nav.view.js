@@ -14,6 +14,7 @@ const NavView = ({
   showModal,
   searchRef,
   handleChange,
+  isSmallScreen,
   showFilterIcon,
   handleModalToggle,
   handleChangeSearch,
@@ -111,7 +112,7 @@ const NavView = ({
               </Link>
             </span>
           </>
-        ) : user.type === "SUPERADMIN" ? (
+        ) : user.type === "SUPERADMIN" && !isSmallScreen ? (
           <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -170,6 +171,34 @@ const NavView = ({
               </li>
             </ul>
           </div>
+        ) : user.type === "SUPERADMIN" && isSmallScreen ? (
+          <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
+          <Dropdown>
+            <Dropdown.Toggle variant="link" id="admin-dropdown">
+              <i className="fas fa-bars"></i>
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="custom-dropdown-menu">
+              <Dropdown.Item as={Link} to="/superadmin/categorySA" activeClassName="active">
+                Categorías
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/superadmin/companies" activeClassName="active">
+                Compañías
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/superadmin/opinions" activeClassName="active">
+                Opiniones
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/superadmin/products" activeClassName="active">
+                Productos
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/superadmin/sales" activeClassName="active">
+                Ofertas
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/superadmin/users" activeClassName="active">
+                Usuarios
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
         ) : user.type === "ADMIN" ? (
           <div className="d-flex flex-grow-1 justify-content-end align-items-center mb-3 mt-3">
             <ul className="navbar-nav">

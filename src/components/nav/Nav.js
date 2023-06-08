@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import View from "components/nav/Nav.view";
 import { useDetail } from "seed/gql";
@@ -13,7 +13,24 @@ function Nav() {
   const [showModal, setShowModal] = useState(false);
   const [values, setValues] = useState([1000, 15000]);
   const [search, setSearch] = useState("");
+  const [windowWidth, setWindowWidth] = useState(0);
 
+  useEffect(() => {
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const isSmallScreen = window.innerWidth < 1100;
+  
   const reqProducts = useQuery(`{
     products {
       name
@@ -62,6 +79,7 @@ function Nav() {
     showModal={showModal}
     searchRef={searchRef}
     handleChange={handleChange}
+    isSmallScreen={isSmallScreen}
     showFilterIcon={showFilterIcon}
     handleModalToggle={handleModalToggle}
     handleChangeSearch={handleChangeSearch}
