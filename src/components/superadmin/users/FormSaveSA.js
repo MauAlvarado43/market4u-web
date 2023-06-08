@@ -6,7 +6,7 @@ import View from "components/superadmin/users/FormSA.view";
 import swal from "sweetalert";
 import { object, string } from "yup";
 
-function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
+function FormSave({ onCompleted = () => null }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
@@ -15,7 +15,15 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
   const [selectedCompany, setSelectedCompany] = useState("");	
   const [selectedType, setSelectedType] = useState("ADMIN");
 
-  const qUsers = useQuery(`{ users { id } }`);
+  const [callSave, qSave] = usePost("/users/create_user_superadmin", {
+    onCompleted: () => {
+      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
+        onCompleted();
+      });
+    },
+  });
+
+  const qUsers = useQuery(`{ users { username } }`);
   const qCompanies = useQuery(
     `
     { 
@@ -28,14 +36,6 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
   );
 
   const { companies = [] } = qCompanies.data;
-
-  const [callSave, qSave] = usePost("/users/create_user_superadmin", {
-    onCompleted: () => {
-      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
-        onCompleted();
-      });
-    },
-  });
 
   const error = qSave.error ? "Ha ocurrido un error" : null;
 
@@ -57,6 +57,12 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
     const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
 
     if (!regex.test(keyValue)) e.preventDefault();
+  };
+
+  const onChangeType = (event) => {
+    const newValue = event.target.value;
+    setShowCompany(newValue !== "NORMAL" && newValue !== "SUPERADMIN");
+    setSelectedType(newValue);
   };
 
   const validationSchema = object({
@@ -143,15 +149,16 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
     }),
   });
 
-  const onChangeType = (event) => {
-    const newValue = event.target.value;
-    setShowCompany(newValue !== "NORMAL" && newValue !== "SUPERADMIN");
-    setSelectedType(newValue);
-  };
-
   const onSubmit = async (values) => {
-    let newValues = JSON.parse(JSON.stringify(values));
+    const existingUsername = qUsers.data.users.find(
+      (user) => user.username.toLowerCase() === values.email.toLowerCase()
+    );
 
+    if(existingUsername) 
+      return swal("¡Error!", "Ya existe un usuario con ese nombre de usuario", "error");
+    
+    let newValues = JSON.parse(JSON.stringify(values));
+    
     newValues.password = password;
     newValues.type = document.getElementById("type").value;
     

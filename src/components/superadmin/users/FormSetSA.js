@@ -40,6 +40,7 @@ function FormSet({
     },
   });
 
+  const qUsers = useQuery(`{ users { username } }`);
   const qCompanies = useQuery(`{ 
         companies {
             id
@@ -166,6 +167,13 @@ function FormSet({
   });
 
   const onSubmit = (values) => {
+    const existingUsername = qUsers.data.users.find(
+      (user) => user.username.toLowerCase() === values.email.toLowerCase()
+    );
+
+    if(existingUsername)
+      return swal("¡Error!", "El correo electrónico ya está en uso", "error");
+
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
     newValues.password = password;

@@ -10,7 +10,7 @@ function FormSave({ onCompleted = () => null }) {
     
     const reqCategories = useQuery(`{ categories { name } }`);
     const [callSave, qSave] = useSave(SAVE_CATEGORY, {
-        onCompleted: (data) => {
+        onCompleted: () => {
             onCompleted();
             reqCategories.refetch();
         }
