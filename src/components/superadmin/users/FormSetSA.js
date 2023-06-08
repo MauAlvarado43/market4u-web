@@ -15,6 +15,7 @@ function FormSet({
 
   const qItem = useDetail(USER, itemId);
   const { user = {} } = qItem.data;
+  let companyId = 0;
   
   useEffect(() => {
     setUserType(user.type);
@@ -25,6 +26,7 @@ function FormSet({
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [userType, setUserType] = useState(user.type);
+  const [selectedCompany, setSelectedCompany] = useState(0);
 
   const [callSet, qSet] = usePost("/users/update_user_superadmin", {
     onCompleted: () => {
@@ -55,6 +57,19 @@ function FormSet({
     setShowPassConfirm(!showPassConfirm);
   };
 
+  const changeType = (event) => {
+    const selectedType = event.target.value;
+    setUserType(selectedType);
+  }
+
+  const onChangeCompany = (event) => {
+    const companyId = event.target.value;
+    if(event.target.value == "")
+      setSelectedCompany(0)
+    else
+      setSelectedCompany(event.target.value)
+  }
+
   const validateLetters = (e) => {
     const keyCode = e.keyCode || e.which;
     const keyValue = String.fromCharCode(keyCode);
@@ -68,7 +83,7 @@ function FormSet({
     password: string().test({
       name: "password",
       test(value, context) {
-        if (password !== "" && password.length < 8)
+        if (value < 8 && value !== "")
           return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
 
         return true;
@@ -78,11 +93,8 @@ function FormSet({
     passwordConfirm: string().test({
       name: "passwordConfirm",
       test(value, context) {
-        if ((passwordConfirm != context.parent.password) && password !== "")
-          return context.createError({ message: "Las contraseñas no coinciden" });
-
-        if(passwordConfirm.length === 0 && password !== "")
-          return context.createError({ message: "Confirme la contraseña" });
+        if ((value === "") && context.password !== "")
+          return context.createError({ message: "Las contraseñas no coinciden"})
 
         return true;
 
@@ -115,7 +127,7 @@ function FormSet({
       test(value, context) {
         if (!value || value.length === 0)
           return context.createError({
-            message: "Ingrese un correo electrónico al usuario",
+            message: "Ingrese un correo electrónico para el usuario",
           });
 
         return true;
@@ -123,42 +135,32 @@ function FormSet({
     }),
     company_edit: object().test({
       name: "company.id",
-      test(value, context) {
-        console.log(userType)
-        if (userType !== "NORMAL" && userType !== "SUPERADMIN") {
-          if (!value.id || value.id.length === 0)
+      test(value, context){
+        if(userType == "ADMIN" || userType == "SELLER")
+          if(selectedCompany == 0 && (userType == "ADMIN" || userType == "SELLER"))
             return context.createError({
               message: "Seleccione una empresa para el usuario",
             });
-        }
 
         return true;
-      }
-    }),
+      },
+    })
   });
 
-  const changeType = (event) => {
-    const selectedType = event.target.value;
-    setUserType(selectedType);
-  }
-
   const onSubmit = (values) => {
-
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
     newValues.password = password;
-
     delete newValues.id;
     console.log(newValues)
     
-    if (userType === "NORMAL" || userType === "SUPERADMIN") {
+    if (newValues.type === "NORMAL" || newValues.type === "SUPERADMIN") 
       newValues.company_id = null;
-    } else {
-      newValues.company_id = document.getElementById("company").value;
-    }
+    else 
+      newValues.company_id = parseInt(document.getElementById("company").value);
+
     delete newValues.company
-    console.log(newValues)
-    callSet(newValues);
+    //callSet(newValues);
   };
 
   const onCancel = () => {
@@ -175,6 +177,7 @@ function FormSet({
     companies={companies}
     changeType={changeType}
     setPassword={setPassword}
+    onChangeCompany={onChangeCompany}
     showPassword={showPassword}
     showPassConfirm={showPassConfirm}
     validateLetters={validateLetters}

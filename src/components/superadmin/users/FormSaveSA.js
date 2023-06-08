@@ -116,7 +116,7 @@ function FormSave({ onCompleted = () => null }) {
       test(value, context) {
         if (!value || value.length === 0)
           return context.createError({
-            message: "Ingrese un correo electrónico al usuario",
+            message: "Ingrese un correo electrónico para el usuario",
           });
 
         return true;

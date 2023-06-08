@@ -16,12 +16,8 @@ const FormView = ({
   setPasswordConfirm,
   onChangeCompany,
   showPassConfirm,
-  handlePasswordChange,
   showCompany,
   changeType,
-  userType,
-  setSelectedType,
-  selectedType,
   validateLetters,
 }) => (
   <div class="card">
@@ -177,7 +173,7 @@ const FormView = ({
                             name="company.id"
                             className="form-control input__field border-dark"
                             placeholder=" "
-                            initialValue=""
+                            onChange = {(e) => {onChangeCompany(e)}}
                           >
                             <option value="">Seleccione una opción</option>
                             {companies.map((e, idx) => (
