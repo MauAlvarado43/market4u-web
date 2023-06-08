@@ -118,6 +118,11 @@ function FormSet({
             message: "Ingrese un nombre para el usuario",
           });
 
+        if (value.length < 3)
+          return context.createError({
+            message: "El nombre debe tener al menos 3 caracteres",
+          });
+
         return true;
       },
     }),
@@ -135,13 +140,16 @@ function FormSet({
     email: string().test({
       name: "email",
       test(value, context) {
+
         if (!value || value.length === 0)
-          return context.createError({
-            message: "Ingrese un correo electrónico para el usuario",
-          });
+          return context.createError({ message: "Ingrese un correo electrónico" });
+
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
+          return context.createError({ message: "Ingrese un correo electrónico válido" });
 
         return true;
-      },
+
+      }
     }),
     company_edit: object().test({
       name: "company.id",
