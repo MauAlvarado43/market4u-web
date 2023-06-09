@@ -26,7 +26,7 @@ const FilterView = ({
         backgroundColor: "white",
         top: 0,
         left: 0,
-        height: "100vh",
+        height: "100%",
         width: "23vw",
         zIndex: 9999,
       }}
@@ -43,6 +43,14 @@ const FilterView = ({
           <h2 className="card-title">Bienvenido, {user?.firstName}</h2>
         </div>
       </div>
+      <button className="mt-3 align-items-center" style={{background:"white", border:"none"}} onClick={handleFilterClear}>
+        <span className = "h2">Limpiar Filtros</span><span className="fa-stack">
+                                                        <i 
+                                                          style = {{zIndex: 100}}
+                                                          className="fas fa-times-circle fa-stack-1x text-danger ml-2 mt-1"></i>
+                                                        <i className="fas fa-filter fa-stack-2x"></i>
+                                                      </span>
+      </button>
       <div className="card-body ml-3 mt-2">
         <h3>ORDENAR POR:</h3>
         <ul style={{ color: "black" }}>
@@ -169,15 +177,12 @@ const FilterView = ({
               </label>
             ))}
         </div>
-        <button className="btn btn-primary mt-3 align-items-center" onClick={handleFilterClear}>
-          Limpiar Filtros
-        </button>
       </div>
     </div>
     <div className="card position-absolute rounded-0"
         onClick={handleModalToggle}
         style={{width:"76.5vw", 
-                height:"100vh", 
+                height:"100%", 
                 overflowY:"hidden",
                 margin:0,
                 top:"0",
