@@ -29,7 +29,8 @@ const List = forwardRef(
             `company.id=${companyID} AND id <> ${userId}`,
             {orderBy: "-id"}
         );
-        reqItems.refetch();
+        const refetchQuery = () => reqItems.refetch();
+        useImperativeHandle(ref,() => ({ refetchQuery }));
 
         if (reqItems.loading) return <Loading />;
         if (reqItems.error) return "Error";
