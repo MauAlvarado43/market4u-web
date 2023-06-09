@@ -9,7 +9,6 @@ const FormView = (
     {
         item = {},
         onSubmit,
-        error,
         onCancel,
         productSchema 
     }

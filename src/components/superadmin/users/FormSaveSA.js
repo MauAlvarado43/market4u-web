@@ -154,7 +154,7 @@ function FormSave({ onCompleted = () => null }) {
       (user) => user.username.toLowerCase() === values.email.toLowerCase()
     );
 
-    if(existingUsername) 
+    if(existingUsername)
       return swal("¡Error!", "Ya existe un usuario con ese nombre de usuario", "error");
     
     let newValues = JSON.parse(JSON.stringify(values));

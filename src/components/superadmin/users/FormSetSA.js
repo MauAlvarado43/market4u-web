@@ -149,7 +149,6 @@ function FormSet({
           return context.createError({ message: "Ingrese un correo electrónico válido" });
 
         return true;
-
       }
     }),
     company_edit: object().test({
@@ -168,7 +167,8 @@ function FormSet({
 
   const onSubmit = (values) => {
     const existingUsername = qUsers.data.users.find(
-      (user) => user.username.toLowerCase() === values.email.toLowerCase()
+      (user) => user.username.toLowerCase() === values.email.toLowerCase() &&
+        user.id != values.id
     );
 
     if(existingUsername)
