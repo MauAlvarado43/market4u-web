@@ -20,8 +20,8 @@ const FormView = (
             </h1>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col">
+            <div class="row justify-content-center">
+                <div class="col-md-11">
                     <Formik
                         validationSchema={productSchema}
                         initialValues={{
@@ -38,9 +38,9 @@ const FormView = (
                                 submitCount
                             }) => (
                                 <Form>
-                                    <h4 className="mt-2">Datos generales</h4>
+                                    <h4 className="mt-2" style = {{marginLeft:"-1vw"}}>Datos generales</h4>
                                     <div class="mt-4">
-                                        <div class="mb-3">
+                                        <div class="mx-auto">
                                             <div class="form-group">
                                                 <label class="input">
                                                     <Field
@@ -174,7 +174,7 @@ const FormView = (
                                             </div>
                                         </div>
                                     </div>
-                                    <h4 className = "mt-7">Logo de la empresa</h4>
+                                    <h4 className = "mt-7" style = {{marginLeft:"-1vw"}}>Logo de la empresa</h4>
                                     <div class="mb-3">
                                         <div class="custom-file form-field-style">
                                             <FileField
@@ -190,7 +190,7 @@ const FormView = (
                                             </label>
                                         </div>
                                     </div>
-                                    <h4 className="mt-7">Datos fiscales</h4>
+                                    <h4 className="mt-7" style = {{marginLeft:"-1vw"}}>Datos fiscales</h4>
                                     <div class="mt-4">
                                         <div class="mb-3">
                                             <div class="form-group">
@@ -218,7 +218,7 @@ const FormView = (
                                             </div>
                                         </div>
                                     </div>
-                                    <h4 className="mt-7">Dirección</h4>
+                                    <h4 className="mt-7" style = {{marginLeft:"-1vw"}}>Dirección</h4>
                                     <div class="mt-4">
                                         <div class="mb-3">
                                             <div class="form-group">

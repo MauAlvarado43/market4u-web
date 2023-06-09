@@ -131,9 +131,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
     const error = qSave.error ? "An error has occurred" : null;
 
     const onSubmit = (values) => {
-
         
-
         values.disscount = parseFloat(values.disscount);
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");

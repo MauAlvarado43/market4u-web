@@ -156,7 +156,7 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
     );
 
     if(existingUsername)
-      return swal("¡Error!", "Ya existe un usuario con ese nombre de usuario", "error");
+      return swal("¡Error!", "El correo que intentas registrar, ya está en uso", "error");
     
     let newValues = JSON.parse(JSON.stringify(values));
     
