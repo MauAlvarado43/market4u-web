@@ -35,6 +35,13 @@ const SaleList = forwardRef(function SaList(props, ref) {
     }`, "company.id=" + sessionStorage.getItem("company"));
     const { products = [] } = qProducts.data;
 
+<<<<<<< HEAD
+=======
+
+    const refetchQuery = () => reqSales.refetch();
+    useImperativeHandle(ref,() => ({ refetchQuery }));
+
+>>>>>>> 1c511d6e45d4c94fdce8f08090271ac231525152
     if (reqSales.loading) return <Loading />;
     if (reqSales.error) return "Error";
     const { sales = [], totalPages = 0 } = reqSales.data.salePagination;

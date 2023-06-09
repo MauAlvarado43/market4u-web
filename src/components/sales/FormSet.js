@@ -10,7 +10,7 @@ import { usePost } from "seed/api";
 import swal from "sweetalert";
 import { object, string } from "yup";
 
-function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery }) {
+function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery = () => null  }) {
     const qSale = useDetail(SALE, saleId);
     const qUsers = useQuery(`{ users { } }`);
     const companyId = sessionStorage.getItem("company");
@@ -74,7 +74,8 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
     const [callSet, qSet] = useSet(SET_SALE, {
         onCompleted: () => {
             swal("¡Listo!", "Se ha actualizado la oferta de manera exitosa.", "success").then(() => {
-                window.location.replace("/sales");
+                //window.location.replace("/sales");
+                refetchQuery();
             });
             onCompleted();
 

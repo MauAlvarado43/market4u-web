@@ -16,7 +16,7 @@ import { useHistory } from "react-router";
 import { object, string } from "yup";
 import swal from "sweetalert";
 
-function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery }) {
+function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery = () => null  }) {
 
     //const history = useHistory();
     const companyId = sessionStorage.getItem("company");
@@ -113,7 +113,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
             }
             swal("¡Listo!", "Se ha creado la oferta de manera exitosa.", "success").then(() => {
-                window.location.replace("/sales");
+                //window.location.replace("/sales");
+                refetchQuery();
             });
             onCompleted();
         }

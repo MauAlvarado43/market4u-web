@@ -11,6 +11,7 @@ import { object, string } from "yup";
 function FormSet({
   itemId,
   onCompleted = () => null,
+  refetchQuery = () => null 
 }) {
 
   const qItem = useDetail(USER, itemId);
@@ -26,7 +27,7 @@ function FormSet({
     onCompleted: () => {
       swal("¡Listo!", "Se ha actualizado el usuario de manera exitosa.", "success").then(() => {
         onCompleted();
-        qItem.refetch();
+        refetchQuery();
       });
     },
   });

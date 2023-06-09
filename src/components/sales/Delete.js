@@ -12,7 +12,7 @@ import { Loading } from "seed/helpers";
 import View from "components/sales/Delete.view";
 import { usePost } from "seed/api";
 import swal from "sweetalert";
-function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) {
+function SaleDelete({ saleId, onCompleted = () => null, onError = () => null, refetchQuery = () => null }) {
 
     let qProducts = useQuery(`{ 
         products {
@@ -27,7 +27,8 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null }) 
     const [callSetNull, qSetNull] = usePost("/products/nullable_products", {
         onCompleted: () => {
             swal("¡Listo!", "Se ha eliminado la oferta de manera exitosa.", "success").then(() => {
-                window.location.replace("/sales");
+                //window.location.replace("/sales");
+                refetchQuery();
             });
             onCompleted();
         },
