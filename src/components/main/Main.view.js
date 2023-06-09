@@ -7,7 +7,7 @@ import ProductCard from "components/main/ProductCard";
 
 
 const MainView = ({ products, onClickPage, pageNum, totalPages }) =>
-  <div className="container" style={{ width: "100vw",  overflow: "auto", paddingBottom: "200px" }}>
+  <div className="container" style={{ width: "100vw", height:"auto", overflow: "auto", paddingBottom: "200px" }}>
     <div className="container-main-visual">
       <div className="container-main">
         <div className="banner">

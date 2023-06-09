@@ -6,7 +6,7 @@ import View from "components/superadmin/users/FormSA.view";
 import swal from "sweetalert";
 import { object, string } from "yup";
 
-function FormSave({ onCompleted = () => null }) {
+function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
@@ -19,6 +19,7 @@ function FormSave({ onCompleted = () => null }) {
     onCompleted: () => {
       swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
         onCompleted();
+        refetchQuery();
       });
     },
   });
