@@ -33,6 +33,9 @@ function FormSet({
 
   const qUsers = useQuery(`{ users { username } }`);
 
+  if (qItem.loading) return <Loading />;
+
+
   const error = qSet.error ? "Error" : null;
 
   const togglePasswordVisibility = () => {
@@ -42,6 +45,7 @@ function FormSet({
   const togglePasswordVisibilityConfirm = () => {
     setShowPassConfirm(!showPassConfirm);
   };
+
 
 
   const validateLetters = (e) => {
@@ -119,16 +123,16 @@ function FormSet({
           return context.createError({ message: "Ingrese un correo electrónico válido" });
 
         return true;
-
       }
-    }),
+    })
   });
 
   const companyID = sessionStorage.getItem("company");
 
   const onSubmit = (values) => {
     const existingUsername = qUsers.data.users.find(
-      (user) => user.username.toLowerCase() === values.email.toLowerCase()
+      (user) => user.username.toLowerCase() === values.email.toLowerCase() &&
+        user.id != values.id
     );
 
     if(existingUsername)
@@ -137,13 +141,12 @@ function FormSet({
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
     newValues.password = password;
+    newValues.type = 'SELLER';
     delete newValues.id;
-    newValues.type = 'SELLER'
     
     newValues.company_id = parseInt(companyID);
 
     delete newValues.company
-    console.log(newValues);
     callSet(newValues);
   };
 

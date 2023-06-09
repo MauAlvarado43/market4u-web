@@ -42,7 +42,6 @@ function FormSave({ onCompleted = () => null }) {
   };
 
 
-
   const validationSchema = object({
     password: string().test({
       name: "password",
@@ -111,7 +110,7 @@ function FormSave({ onCompleted = () => null }) {
         return true;
 
       }
-    }),
+    })
   });
 
   const companyID = sessionStorage.getItem("company");
@@ -121,19 +120,18 @@ function FormSave({ onCompleted = () => null }) {
       (user) => user.username.toLowerCase() === values.email.toLowerCase()
     );
 
-    if(existingUsername) 
+    if(existingUsername)
       return swal("¡Error!", "Ya existe un usuario con ese nombre de usuario", "error");
     
     let newValues = JSON.parse(JSON.stringify(values));
     
     newValues.password = password;
-    newValues.type = 'SELLER'
-    
+    newValues.type = 'SELLER';
     
     newValues.company_id = parseInt(companyID);
+
     delete newValues.company;
     
-    console.log(newValues);
     callSave(newValues);
   };
 

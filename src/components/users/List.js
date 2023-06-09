@@ -6,7 +6,7 @@ const List = forwardRef(
     function List(props, ref) {
         const pageSize = 9;
         const [pageNum, setPageNum] = useState(1);
-        const userId = sessionStorage.getItem("id")
+        const userId = sessionStorage.getItem("id");
         const companyID = sessionStorage.getItem("company");
         const reqItems = usePagination(
             `
