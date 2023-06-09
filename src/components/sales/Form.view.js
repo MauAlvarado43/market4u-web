@@ -23,7 +23,7 @@ const SaleFormView = ({
         </div>
         
         <div class="card-body">
-            <div class="row justify-content-center mt-2">
+            <div class="row justify-content-center">
                 <div class="col-md-11">
                     <Formik
                         validationSchema={productSchema}

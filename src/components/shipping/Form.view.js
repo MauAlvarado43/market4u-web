@@ -6,10 +6,10 @@ import { DateTime } from 'luxon';
 import { Link, NavLink } from "react-router-dom";
 
 const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onSubmit, error, onCancel,onDelivered,productSchema }) => (
-    <div class="content container-fluid mt-2">
+    <div class="content container-fluid">
 
-        <div className="row" >
-            <div className="col-3 mr-5" style={{height:"600px", overflowY:"auto",maxWidth:"20%"}}>
+        <div className="row justify-content-center mt-7">
+            <div className="col-3 mr-5" style={{height:"70vh", overflowY:"auto",maxWidth:"20%"}}>
                 {
                     products.map((product, idx) =>
                         <div key={product.id} className="mb-3 border border-primary rounded-lg" style={{ width: "220px"}}>

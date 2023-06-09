@@ -30,7 +30,13 @@ const getProductsFilters = (filters) => {
         queries.push(`sale.id = ${filters.sale}`);
     }
 
-    return queries.join(" AND ");
+    if (queries.length == 0) {
+        return "";
+    } else {
+        return "(" + queries.join(" AND ") + ")";
+
+    }
+    
 };
 
 

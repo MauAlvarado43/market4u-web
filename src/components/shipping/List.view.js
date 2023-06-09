@@ -48,8 +48,6 @@ const View = ({
                                         Cancelar
                                     </Link>
                                     <Link
-                                    //to={`/product/${product.id}`}
-                                    //to={`/product/${product.id}`}
                                     to={`/${shipping.id}/edit`}
                                         className="btn btn-primary btn-sm rounded-pill px-4 ml-3      mr-3"
                                     >
