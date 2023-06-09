@@ -34,7 +34,7 @@ const SalesView = ({ listRef, refetchQuery })  =>
                 component={SaleFormSave}
                 refetchQuery={refetchQuery}
                 width="920"
-                height="700"
+                height="600"
             />
 
             <ModalRoute
@@ -42,7 +42,7 @@ const SalesView = ({ listRef, refetchQuery })  =>
                 component={SaleFormEdit}
                 refetchQuery={refetchQuery}
                 width="920"
-                height="700"
+                height="600"
             />
 
             <ModalRoute

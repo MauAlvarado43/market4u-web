@@ -9,13 +9,9 @@ const SaleFormView = ({
     sale = {},
     products = [],
     onSubmit,
-    error,
-    windowTitle,
     onCancel,
     productSchema,
-    setSelectedStartDate,
-    setSelectedEndDate,
-    handleStartDateChange
+    validateLetters
 }) =>
 
     <div class="card">
@@ -27,8 +23,8 @@ const SaleFormView = ({
         </div>
         
         <div class="card-body">
-            <div class="row">
-                <div class="col">
+            <div class="row justify-content-center mt-2">
+                <div class="col-md-11">
                     <Formik
                         validationSchema={productSchema}
                         initialValues={{
@@ -48,16 +44,17 @@ const SaleFormView = ({
                             <Form>
                                 <div class="mb-3">
 
-                                    <div class="mb-3">
+                                    <div class="mt-3">
                                         <div class="form-group">
                                             <label class="input">
                                                 <Field
                                                     type="text"
                                                     name="name"
                                                     className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
                                                     value={values.name || ''}
+                                                    onKeyPress={(e) => validateLetters(e)}
                                                 />
                                                 <span class="input__label">
                                                     Nombre de la oferta
@@ -74,14 +71,14 @@ const SaleFormView = ({
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mt-3">
                                         <div class="form-group">
                                             <label class="input">
                                                 <Field
                                                     type="number"
                                                     name="disscount"
                                                     className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
                                                     value={values.disscount}
                                                 />
@@ -100,7 +97,7 @@ const SaleFormView = ({
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mt-7">
                                         <div class="form-group">
                                             <label class="input">
                                                 <Field
@@ -108,10 +105,9 @@ const SaleFormView = ({
                                                     type="date"
                                                     name="startDate"
                                                     className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
                                                     value={values.startDate || ''}
-                                                    //onChange={handleStartDateChange}
                                                 />
                                                 <span class="input__label">
                                                     Fecha inicial
@@ -125,17 +121,10 @@ const SaleFormView = ({
                                                     </div>
                                                     : null
                                             }
-                                            {/* {
-                                                errors.selectedStartDate
-                                                    ? <div class="mt-2 text-danger" role="alert">
-                                                        {errors.selectedStartDate}
-                                                    </div>
-                                                    : null
-                                            } */}
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mt-7">
                                         <div class="form-group">
                                             <label class="input">
                                                 <Field
@@ -143,10 +132,9 @@ const SaleFormView = ({
                                                     type="date"
                                                     name="endDate"
                                                     className="form-control input__field border-top-0 border-left-0
-                                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                                    border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
                                                     value={values.endDate || ''} 
-                                                    //onChange={(ev) => setSelectedEndDate(ev.target.value)}
                                                 />
                                                 <span class="input__label">
                                                     Fecha de fin
@@ -163,7 +151,7 @@ const SaleFormView = ({
                                         </div>
                                     </div>
                                     
-                                    <div class="mb-3">
+                                    <div class="mt-3">
                                         <div class="custom-file form-field-style">
                                             <FileField
                                                 className="custom-file-input" name="banner" setFieldValue={setFieldValue}
@@ -184,7 +172,7 @@ const SaleFormView = ({
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group mt-7">
                                         <label className="input">
                                             <Field
                                                 as="select"

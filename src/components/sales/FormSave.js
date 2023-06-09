@@ -1,30 +1,18 @@
-/*
-__Seed builder__
-  (Read_only) Example component
-  Be careful copying content
-*/
-
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useSave, useSet, useQuery, useDetail } from "seed/gql";
+import { useSave, useSet, useQuery } from "seed/gql";
 import { SAVE_SALE, SET_PRODUCT } from "seed/gql/queries";
-import { Loading } from "seed/helpers";
 import View from "components/sales/Form.view";
-import { usePost } from "seed/api";
 import { DateTime } from "luxon";
-import { useHistory } from "react-router";
 import { object, string } from "yup";
 import swal from "sweetalert";
 
 function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery = () => null  }) {
 
-    //const history = useHistory();
     const companyId = sessionStorage.getItem("company");
     const [selectedProducts, setSelectedProducts] = useState([])
 
-
     let selectedStartDate;
-
 
     const productSchema = object({
         name: string().test({
@@ -80,6 +68,14 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         }),
     })
 
+    const validateLetters = (e) => {
+        const key = e.key;
+        const regex = /^[A-Za-záéíóúÁÉÍÓÚñ\s]+$/;
+    
+        if (!regex.test(key))
+            e.preventDefault();
+    }
+
     const qProducts = useQuery(`{ 
         products {
             id
@@ -113,7 +109,6 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
             }
             swal("¡Listo!", "Se ha creado la oferta de manera exitosa.", "success").then(() => {
-                //window.location.replace("/sales");
                 refetchQuery();
             });
             onCompleted();
@@ -121,13 +116,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
     });
 
-
-
-
     const filteredProducts = products.filter(product => !product.sale)
-
-
-
 
     const error = qSave.error ? "An error has occurred" : null;
 
@@ -165,6 +154,7 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
+        validateLetters={validateLetters}
     />;
 }
 

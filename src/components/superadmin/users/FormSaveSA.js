@@ -17,7 +17,7 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
 
   const [callSave, qSave] = usePost("/users/create_user_superadmin", {
     onCompleted: () => {
-      swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
+      swal("¡Listo!", "Se ha creado el usuario de manera exitosa", "success").then(() => {
         onCompleted();
         refetchQuery();
       });

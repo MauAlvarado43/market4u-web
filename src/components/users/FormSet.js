@@ -137,7 +137,7 @@ function FormSet({
     );
 
     if(existingUsername)
-      return swal("¡Error!", "El correo electrónico ya está en uso", "error");
+      return swal("¡Error!", "El correo que intentas modificar, ya está en uso", "error");
 
     let newValues = JSON.parse(JSON.stringify(values));
     newValues.user_id = newValues.id;
