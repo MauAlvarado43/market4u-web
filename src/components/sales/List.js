@@ -43,8 +43,8 @@ const SaleList = forwardRef(function SaList(props, ref) {
     const { products = [] } = qProducts.data;
 
 
-    // const refetchQuery = () => reqSales.refetch();
-    // useImperativeHandle(ref, () => ({ refetchQuery }));
+    const refetchQuery = () => reqSales.refetch();
+    useImperativeHandle(ref,() => ({ refetchQuery }));
 
     if (reqSales.loading) return <Loading />;
     if (reqSales.error) return "Error";
