@@ -5,6 +5,7 @@ import { Range } from "react-range";
 const FilterView = ({
     user,
     values,
+    handleFilterClear,
     handlePriceFilter,
     handlePriceChange,
     handleModalToggle,
@@ -12,6 +13,8 @@ const FilterView = ({
     companies,
     handleCategoryChange,
     handleCompanyChange,
+    selectedCategories, 
+    selectedCompanies,
 }) => (
   <>
     <div
@@ -19,11 +22,11 @@ const FilterView = ({
       tabIndex="1"
       role="dialog"
       style={{
-        overflowY: "hidden",
+        overflowY: "auto",
         backgroundColor: "white",
         top: 0,
         left: 0,
-        height: "100%",
+        height: "100vh",
         width: "23vw",
         zIndex: 9999,
       }}
@@ -121,12 +124,22 @@ const FilterView = ({
             <h3>CATEGORÍA:</h3>
             {categories.map((category) => (
               <label className="ml-4 d-flex" key={category.id}>
-                <input 
+                {selectedCategories.includes(""+category?.id) ? 
+                  <input 
+                      type="checkbox" 
+                      name="category"
+                      value={category.id}
+                      onChange={handleCategoryChange}
+                      checked
+                  /> 
+                :
+                  <input 
                     type="checkbox" 
                     name="category"
                     value={category.id}
                     onChange={handleCategoryChange}
-                /> 
+                  /> 
+                }
                 <h4 className="mt-2 ml-1">{category?.name}</h4>
               </label>
             ))}
@@ -136,23 +149,39 @@ const FilterView = ({
             <h3>MARCA:</h3>
             {companies.map((company) => (
               <label className="ml-4 d-flex" key={company.id}>
-                <input 
-                  type="checkbox" 
-                  name="category"
-                  value={company.id}
-                  onChange={handleCompanyChange}
-                />
+                {selectedCompanies.includes(""+company?.id) ?
+                  <input 
+                    type="checkbox" 
+                    name="category"
+                    value={company.id}
+                    onChange={handleCompanyChange}
+                    checked
+                  />
+                :
+                  <input
+                    type="checkbox"
+                    name="category"
+                    value={company.id}
+                    onChange={handleCompanyChange}
+                  />
+                }
                 <h4 className="mt-2 ml-1">{company?.commonName}</h4>
               </label>
             ))}
         </div>
+        <button className="btn btn-primary mt-3 align-items-center" onClick={handleFilterClear}>
+          Limpiar Filtros
+        </button>
       </div>
     </div>
     <div className="card position-absolute rounded-0"
+        onClick={handleModalToggle}
         style={{width:"76.5vw", 
-                height:"100%", 
+                height:"100vh", 
+                overflowY:"hidden",
                 margin:0,
                 top:"0",
+                cursor:"default",
                 right:"0",
                 backgroundColor: "rgb(0,0,0,0.3)",
                 zIndex:9999}}>

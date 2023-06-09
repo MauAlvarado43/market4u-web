@@ -309,6 +309,7 @@ const NavView = ({
     </nav>
     {showModal && (
       <Filters
+        style = {{zIndex: 1000, overflowY: "hidden", minWidth: "100vw"}}
         user={user}
         values={values}
         handleChange={handleChange}

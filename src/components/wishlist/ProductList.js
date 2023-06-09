@@ -11,6 +11,17 @@ function ProductList({ selectedCategory, selectedPriceFilter }) {
           wishlist{
               name
               shortDescription
+              opinions {
+                createdAt
+                title
+                description
+                rate
+                user { 
+                  firstName
+                  lastName
+                  photo { url }
+                }
+              }
               variants{
                   price
                   photos{
@@ -31,6 +42,30 @@ function ProductList({ selectedCategory, selectedPriceFilter }) {
 
   const { wishlist } = reqWishlist.data.users[0];
 
+  const RatingStars = ({ rating, showEmptyStars }) => {
+    const MAX_STARS = 5;
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    const emptyStars = MAX_STARS - fullStars - (hasHalfStar ? 1 : 0);
+    const stars = [];
+  
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<i key={i} className="fas fa-star text-warning"></i>);
+    }
+  
+    if (hasHalfStar) {
+      stars.push(<i key={fullStars} className="fas fa-star-half-alt"></i>);
+    }
+  
+    if (showEmptyStars) {
+      for (let i = 0; i < emptyStars; i++) {
+        stars.push(<i key={fullStars + i + 1} className="far fa-star"></i>);
+      }
+    }
+  
+    return <div className="rating-stars">{stars}</div>;
+  };
+
   let filteredWishlist = wishlist.map((product) => ({ ...product }));
   if (selectedCategory && selectedCategory !== "all") {
     filteredWishlist = filteredWishlist.filter(
@@ -50,14 +85,23 @@ function ProductList({ selectedCategory, selectedPriceFilter }) {
     }
   }
 
+  // Calcula el rating promedio para cada producto
+  filteredWishlist.forEach((product) => {
+    const totalRate = product.opinions.reduce((sum, opinion) => sum + opinion.rate, 0);
+    const averageRate = totalRate / product.opinions.length;
+    product.rating = averageRate;
+  });
+
   if (
     selectedPriceFilter !== "" ||
     selectedPriceFilter !== "all" ||
     selectedCategory !== "" ||
     selectedCategory !== "all"
   )
-    return <View wishlist={filteredWishlist} />;
-  else return <View wishlist={wishlist} />;
+    return <View wishlist={filteredWishlist} 
+              RatingStars={RatingStars}/>;
+  else return <View wishlist={wishlist} 
+                RatingStars={RatingStars}/>;
 }
 
 ProductList.propTypes = {

@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const ProductListView = ({ wishlist }) => (
+const ProductListView = ({ 
+  wishlist,
+  RatingStars
+ }) => (
   <div style={{ overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
     {wishlist.length === 0 ? (
       <div className="col-md-12 d-flex mt-2 justify-content-center align-items-center" style={{ flexDirection: 'column' }}>
@@ -27,7 +30,6 @@ const ProductListView = ({ wishlist }) => (
           width: "100%"
         }}
       >
-        {/* Imagen del producto */}
         <div className="col-md-3 d-flex justify-content-center align-items-center">
           <img
             style={{ maxHeight: "130px", maxWidth: "130px" }}
@@ -36,30 +38,23 @@ const ProductListView = ({ wishlist }) => (
           />
         </div>
 
-        {/* Nombre, categoría, precio del producto */}
-        <div
-          onClick={() => window.location.replace(`/product/${product.id}`)}
-          style={{ cursor: "pointer", flex: 1 }}
-        >
-          <div className="col-md-8">
+        <div style={{ cursor: "pointer", flex: 1 }}>
+          <div className="col-md-8" 
+            onClick={() => window.location.replace(`/product/${product.id}`)}>
             <div>
               <span className="h3">{product?.name}</span>
             </div>
-            <div className="d-flex">
-              <span className="h4">{product?.category?.name}</span>
-              <div className="ml-5">
-                <i className="far fa-star" style={{ color: "#000000" }}></i>
-                <i className="far fa-star" style={{ color: "#000000" }}></i>
-                <i className="far fa-star" style={{ color: "#000000" }}></i>
-                <i className="far fa-star" style={{ color: "#000000" }}></i>
-                <i className="far fa-star" style={{ color: "#000000" }}></i>
-              </div>
+            <div>
+              {product.opinions.length > 0 ? (
+                <RatingStars rating={product.rating} />
+              ) : (
+                <RatingStars rating={0} showEmptyStars={true} />
+              )}
             </div>
             <span className="h3">${product?.variants[0]?.price}</span>
           </div>
         </div>
 
-        {/* Botón de eliminar producto */}
         <div className="col-md-2 d-flex justify-content-center align-items-center">
           <div className="w-50">
             <Link to={`/wishlist/${product.id}/delete`}>
@@ -74,8 +69,6 @@ const ProductListView = ({ wishlist }) => (
     ))}
   </div>
 );
-
-
 
 ProductListView.propTypes = {
   wishlist: PropTypes.array

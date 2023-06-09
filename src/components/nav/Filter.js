@@ -84,6 +84,8 @@ function Filter(props) {
       handleModalToggle={handleModalToggle}
       handlePriceChange={handlePriceChange}
       handlePriceFilter={handlePriceFilter}
+      selectedCategories={selectedCategories}
+      selectedCompanies={selectedCompanies}
       handleCompanyChange={handleCompanyChange}
       handleCategoryChange={handleCategoryChange}
     />
