@@ -6,8 +6,8 @@ const List = forwardRef(
     function List(props, ref) {
         const pageSize = 9;
         const [pageNum, setPageNum] = useState(1);
-        const companyId = sessionStorage.getItem("company");
         const userId = sessionStorage.getItem("id")
+        const companyID = sessionStorage.getItem("company");
         const reqItems = usePagination(
             `
             {
@@ -20,16 +20,16 @@ const List = forwardRef(
                         lastName
                         email
                         type
-                        company {}
                     }
                 }
             }
             `, 
             pageNum, 
             pageSize,
-            `company.id=${companyId} AND id <> ${userId}`,
+            `company.id=${companyID} AND id <> ${userId}`,
             {orderBy: "-id"}
         );
+        reqItems.refetch();
 
         if (reqItems.loading) return <Loading />;
         if (reqItems.error) return "Error";

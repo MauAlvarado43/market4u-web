@@ -11,30 +11,16 @@ function FormSave({ onCompleted = () => null }) {
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [showCompany, setShowCompany] = useState(true);
-  const [selectedCompany, setSelectedCompany] = useState("");	
-  const [selectedType, setSelectedType] = useState("ADMIN");
-
-  const qCompanies = useQuery(
-    `
-    { 
-      companies {
-        id
-        name
-      } 
-    }
-  `
-  );
-
-  const { companies = [] } = qCompanies.data;
 
   const [callSave, qSave] = usePost("/users/create_user_company", {
     onCompleted: () => {
       swal("¡Listo!", "Se ha creado el usuario de manera exitosa.", "success").then(() => {
-        window.location.replace("/users");
+        onCompleted();
       });
     },
   });
+
+  const qUsers = useQuery(`{ users { username } }`);
 
   const error = qSave.error ? "Ha ocurrido un error" : null;
 
@@ -46,9 +32,6 @@ function FormSave({ onCompleted = () => null }) {
     setShowPassConfirm(!showPassConfirm);
   };
 
-  const onChangeCompany = (e) => {
-    setSelectedCompany(e.target.value);
-  };
 
   const validateLetters = (e) => {
     const keyCode = e.keyCode || e.which;
@@ -58,15 +41,17 @@ function FormSave({ onCompleted = () => null }) {
     if (!regex.test(keyValue)) e.preventDefault();
   };
 
+
+
   const validationSchema = object({
     password: string().test({
       name: "password",
       test(value, context) {
 
-        if (!value || value.length === 0)
+        if (password === "")
           return context.createError({ message: "Ingrese una contraseña" });
 
-        if (value.length < 8)
+        if (password.length < 8)
           return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
 
         return true;
@@ -76,13 +61,10 @@ function FormSave({ onCompleted = () => null }) {
     passwordConfirm: string().test({
       name: "passwordConfirm",
       test(value, context) {
-        if (!passwordConfirm || passwordConfirm.length === 0)
+        if (passwordConfirm === "")
           return context.createError({ message: "Confirme la contraseña" });
 
-        if (passwordConfirm.length < 8)
-          return context.createError({ message: "La contraseña debe tener al menos 8 caracteres" });
-
-        if (passwordConfirm != context.parent.password)
+        if (passwordConfirm != password)
           return context.createError({ message: "Las contraseñas no coinciden" });
 
         return true;
@@ -95,6 +77,11 @@ function FormSave({ onCompleted = () => null }) {
         if (!value || value.length === 0)
           return context.createError({
             message: "Ingrese un nombre para el usuario",
+          });
+
+        if (value.length < 3)
+          return context.createError({
+            message: "El nombre debe tener al menos 3 caracteres",
           });
 
         return true;
@@ -114,28 +101,39 @@ function FormSave({ onCompleted = () => null }) {
     email: string().test({
       name: "email",
       test(value, context) {
+
         if (!value || value.length === 0)
-          return context.createError({
-            message: "Ingrese un correo electrónico al usuario",
-          });
+          return context.createError({ message: "Ingrese un correo electrónico" });
+
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
+          return context.createError({ message: "Ingrese un correo electrónico válido" });
 
         return true;
-      },
+
+      }
     }),
   });
 
   const companyID = sessionStorage.getItem("company");
 
-
   const onSubmit = async (values) => {
-    let newValues = JSON.parse(JSON.stringify(values));
-    newValues.type = 'SELLER';
-    newValues.password = document.getElementById("password").value;
-    newValues.company_id = parseInt(companyID);
-    console.log(newValues)
+    const existingUsername = qUsers.data.users.find(
+      (user) => user.username.toLowerCase() === values.email.toLowerCase()
+    );
 
+    if(existingUsername) 
+      return swal("¡Error!", "Ya existe un usuario con ese nombre de usuario", "error");
+    
+    let newValues = JSON.parse(JSON.stringify(values));
+    
+    newValues.password = password;
+    newValues.type = 'SELLER'
+    
+    
+    newValues.company_id = parseInt(companyID);
     delete newValues.company;
-    console.log(newValues)
+    
+    console.log(newValues);
     callSave(newValues);
   };
 
@@ -148,14 +146,9 @@ function FormSave({ onCompleted = () => null }) {
       error={error}
       onSubmit={onSubmit}
       onCancel={onCancel}
-      companies={companies}
       setPassword={setPassword}
-      showCompany={showCompany}
       showPassword={showPassword}
-      selectedType={selectedType}
-      onChangeCompany={onChangeCompany}
       showPassConfirm={showPassConfirm}
-      setSelectedType={setSelectedType}
       validateLetters={validateLetters}
       validationSchema={validationSchema}
       setPasswordConfirm={setPasswordConfirm}
