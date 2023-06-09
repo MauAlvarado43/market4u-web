@@ -150,9 +150,18 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
             newValues.product_id = newValues.id;
             delete newValues.id;
 
-            callSetNull(newValues)
+            callSetNull(newValues);
+            if (values.products != undefined && i === filteredProducts.length-1){
+                forCallSetProducts(values);
+            }
         }
 
+        
+        callSet(values);
+        //onCompleted();
+    };
+
+    const forCallSetProducts = (values) =>{
         if (values.products != undefined) {
 
             for (let i = 0; i < values.products.id.length; i++) {
@@ -164,9 +173,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
             }
 
         }
-        callSet(values);
-        //onCompleted();
-    };
+    }
 
     const onCancel = () => {
         onCompleted();

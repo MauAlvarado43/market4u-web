@@ -27,8 +27,8 @@ function SaleDelete({ saleId, onCompleted = () => null, onError = () => null, re
     const [callSetNull, qSetNull] = usePost("/products/nullable_products", {
         onCompleted: () => {
             swal("¡Listo!", "Se ha eliminado la oferta de manera exitosa.", "success").then(() => {
-                window.location.replace("/sales");
-                //refetchQuery();
+                //window.location.replace("/sales");
+                refetchQuery();
             });
             onCompleted();
         },
