@@ -11,6 +11,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
     const companyId = sessionStorage.getItem("company");
     const [selectedProducts, setSelectedProducts] = useState([])
+    const today = new Date;
+    var todayDate = today.getFullYear() + "-" +((today.getMonth()+1).length != 2 ? "0" + (today.getMonth() + 1) : (today.getMonth()+1)) + "-" + (today.getDate().length != 2 ?"0" + today.getDate() : today.getDate());
 
     let selectedStartDate;
 
@@ -48,6 +50,10 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
                 if (!value || value.length === 0)
                     return context.createError({ message: "Fechas de inicio ingresada incorrectamente" });
 
+                if(value < todayDate){
+                    return context.createError({ message: "La fecha de inicio no puede ser anterior a la fecha actual" });
+                }
+
                 return true;
 
             }
@@ -84,6 +90,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
             sale {}
         } 
     }`, "company.id=" + companyId);
+
+    qProducts.refetch();
     
     const { products = [] } = qProducts.data;
     

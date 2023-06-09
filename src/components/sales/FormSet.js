@@ -10,12 +10,15 @@ import { usePost } from "seed/api";
 import swal from "sweetalert";
 import { object, string } from "yup";
 
-function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery = () => null  }) {
+function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery = () => null }) {
     const qSale = useDetail(SALE, saleId);
     const qUsers = useQuery(`{ users { } }`);
     const companyId = sessionStorage.getItem("company");
 
     let selectedStartDate;
+    const today = new Date;
+    var todayDate = today.getFullYear() + "-" + ((today.getMonth() + 1).length != 2 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1)) + "-" + (today.getDate().length != 2 ? "0" + today.getDate() : today.getDate());
+
 
     const productSchema = object({
         name: string().test({
@@ -50,6 +53,10 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
 
                 if (!value || value.length === 0)
                     return context.createError({ message: "Fechas de inicio ingresada incorrectamente" });
+
+                if (value < todayDate) {
+                    return context.createError({ message: "La fecha de inicio no puede ser anterior a la fecha actual" });
+                }
 
                 return true;
 
@@ -107,6 +114,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
         } 
     }`, "company.id=" + companyId);
 
+    qProducts.refetch();
 
 
     let { products = [] } = qProducts.data;
