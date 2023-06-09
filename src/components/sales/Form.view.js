@@ -10,8 +10,7 @@ const SaleFormView = ({
     products = [],
     onSubmit,
     onCancel,
-    productSchema,
-    validateLetters
+    productSchema
 }) =>
 
     <div class="card">
@@ -54,7 +53,6 @@ const SaleFormView = ({
                                                     border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
                                                     value={values.name || ''}
-                                                    onKeyPress={(e) => validateLetters(e)}
                                                 />
                                                 <span class="input__label">
                                                     Nombre de la oferta

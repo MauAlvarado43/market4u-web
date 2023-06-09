@@ -6,12 +6,24 @@ const InfoCards = ({
     payments,
     onClickDelete 
 }) => (
-  <div className="col-md-9 ml-1">
+  <div className="col-md-9 ml-1 mt-1">
     
+    <div class="row align-items-end mb-3">
+      <div class="col-sm"></div>
+      <div class="col-sm-auto">
+        <div class="btn-group" role="group">
+          <Link to="/create" className="btn btn-primary rounded-pill px-5">
+          <i class="text-white font-weight-bold tio-add mr-1"></i> Nueva tarjeta
+          </Link>
+        </div>
+      </div>
+
+    </div>
+
     <div
       className="card mt-5 col-md-11 mx-auto"
       style={{
-        minHeight: "70vh",
+        minHeight: "68vh",
         borderColor: "#519EA4",
         borderWidth: "4px",
       }}

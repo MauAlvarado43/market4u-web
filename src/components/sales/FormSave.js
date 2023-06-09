@@ -74,14 +74,6 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         }),
     })
 
-    const validateLetters = (e) => {
-        const key = e.key;
-        const regex = /^[A-Za-záéíóúÁÉÍÓÚñ\s]+$/;
-    
-        if (!regex.test(key))
-            e.preventDefault();
-    }
-
     const qProducts = useQuery(`{ 
         products {
             id
@@ -162,7 +154,6 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
-        validateLetters={validateLetters}
     />;
 }
 

@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
-import { MultiField, FileField } from "seed/helpers";
-import { DateTime } from 'luxon';
-import { Link, NavLink } from "react-router-dom";
 
 const FormView = ({newAddress = {}, shipping = {}, products = {},variant={}, onSubmit, error, onCancel,onDelivered,productSchema }) => (
     <div class="content container-fluid">

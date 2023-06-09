@@ -14,7 +14,7 @@ const FilterView = ({
     handleCategoryChange,
     handleCompanyChange,
     selectedCategories, 
-    selectedCompanies,
+    selectedCompanies
 }) => (
   <>
     <div

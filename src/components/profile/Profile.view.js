@@ -7,6 +7,7 @@ import InfoUser from "components/profile/InfoUser";
 import InfoCards from "components/profile/InfoCards";
 import ModalRoute from "components/helpers/ModalRoute";
 import DeleteCard from "components/profile/DeleteCard";
+import FormSaveCard from "components/profile/FormSaveCard";
 
 const ProfileView = ({
   users
@@ -101,6 +102,7 @@ const ProfileView = ({
           <Switch>
             <Route path="/info" component={InfoUser} />
             <Route path="/payments" component={InfoCards} />
+            <Route path="/payments/create" component={FormSaveCard}/>
           </Switch>
         </div>
       </div>

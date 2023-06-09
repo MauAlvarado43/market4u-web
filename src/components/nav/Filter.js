@@ -65,9 +65,19 @@ function Filter(props) {
     }
   };
 
+  const handleFilterClear = () => {
+    setSelectedCategories([]);
+    setSelectedCompanies([]);
+    setSelectedPriceFilter("all");
+    setPriceRange([0, 15000]);
+  };
+
   const handlePriceFilter = (filter) => {
     setSelectedPriceFilter(filter);
   };
+
+  console.log(selectedCompanies)
+  console.log(selectedCategories)
 
   const handlePriceChange = (newPriceRange) => {
     setPriceRange(newPriceRange);
@@ -84,6 +94,7 @@ function Filter(props) {
       handleModalToggle={handleModalToggle}
       handlePriceChange={handlePriceChange}
       handlePriceFilter={handlePriceFilter}
+      handleFilterClear={handleFilterClear}
       selectedCategories={selectedCategories}
       selectedCompanies={selectedCompanies}
       handleCompanyChange={handleCompanyChange}
