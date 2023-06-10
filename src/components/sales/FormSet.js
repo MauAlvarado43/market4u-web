@@ -16,9 +16,15 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
     const companyId = sessionStorage.getItem("company");
 
     let selectedStartDate;
-    const today = new Date;
-    var todayDate = today.getFullYear() + "-" + ((today.getMonth() + 1).length != 2 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1)) + "-" + (today.getDate().length != 2 ? "0" + today.getDate() : today.getDate());
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; 
+    let dd = today.getDate();
 
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    const todayDate = yyyy + '-' + mm + '-' + dd;
 
     const productSchema = object({
         name: string().test({
