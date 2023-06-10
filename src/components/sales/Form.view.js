@@ -185,7 +185,7 @@ const SaleFormView = ({
                                                 }
                                             </Field>
                                             <span class="input__label">
-                                                Productos con la oferta
+                                                Seleccione los productos a los que aplicar la promoción
                                             </span>
                                         </label>
                                     </div>
