@@ -57,6 +57,10 @@ function History() {
 
   // return <View shippings={shippings} pageNum={pageNum} totalPages={totalPages} onClickPage={onClickPage} handlePriceFilter={handlePriceFilter}/>;
 
+  const refetchQuery = () => {
+    reqShippings.refetch();
+  }
+
   return (
     <View
       shippings={shippings}
@@ -65,6 +69,7 @@ function History() {
       onClickPage={onClickPage}
       selectedPriceFilter={selectedPriceFilter}
       handlePriceFilter={handlePriceFilter}
+      refetchQuery={refetchQuery}
     />
   );
 

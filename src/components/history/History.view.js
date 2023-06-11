@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import Shipping from "components/history/Shipping";
 import { ModalRoute } from "seed/helpers";
 import Opinion from "components/history/Opinion";
+import Cancel from "components/history/Cancel";
 import { PaginationFooter } from "seed/helpers";
 
 const HistoryView = ({
@@ -13,6 +14,7 @@ const HistoryView = ({
   onClickPage,
   selectedPriceFilter,
   handlePriceFilter,
+  refetchQuery
 }) => (
 
   <BrowserRouter baseName="/history">
@@ -64,6 +66,13 @@ const HistoryView = ({
       component={Opinion}
       width="800"
       height="700"
+      style={{ position: "fixed", marginTop: "0", marginLeft: "0" }}
+    />
+
+    <ModalRoute
+      path="/history/:shippingId(\d+)/cancel"
+      component={Cancel}
+      refetchQuery={refetchQuery}
       style={{ position: "fixed", marginTop: "0", marginLeft: "0" }}
     />
 
