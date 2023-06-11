@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import PropTypes from "prop-types";
 import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 import { SALE, SET_SALE, SET_PRODUCT } from "seed/gql/queries";
@@ -11,7 +11,24 @@ import swal from "sweetalert";
 import { object, string } from "yup";
 
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery = () => null }) {
-    const qSale = useDetail(SALE, saleId);
+    const qSale = useDetail(`{
+        sale {
+          id
+          name
+          disscount
+          startDate
+          endDate
+          company {
+            id
+          }
+          banner {
+            id
+          }
+          products{
+            id
+          }
+        }
+      }`, saleId);    
     const qUsers = useQuery(`{ users { } }`);
     const companyId = sessionStorage.getItem("company");
 
@@ -133,60 +150,42 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
             return false;
     })
 
-    const originalProducts = products.filter(product => {
-        if (product.sale != null && product.sale.id == saleId)
-            return true;
-        else
-            return false;
-    })
 
-
+    const [selectedProductsCheckbox, setSelectedProductsCheckbox] = useState({});
+    //Object.keys(selectedProducts).filter((key) => selectedProducts[key]);
+    const [loaded, setLoaded] = useState(false);
     if (qSale.loading) return <Loading />;
 
     const { sale = {} } = qSale.data;
     const { users = [] } = qUsers.data;
     const error = qSet.error ? "An error has occurred" : null;
 
+    
+    if(sale.products.length > 0 && !loaded) {
+        
+        let x = {}
+        sale.products.forEach((product) => x[product.id] = true)
+        setSelectedProductsCheckbox(x)
+        setLoaded(true)
+    }
 
     const onSubmit = (values) => {
-
+    
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
         values.company = parseInt(sessionStorage.getItem("company"));
-
-        if ((values.products === undefined) && originalProducts.length != 0 ) {
-            swal("No ha seleccionado ningún producto, ¿Desea utilizar los que estaban previamente?", {
-                buttons: {
-                    cancel: "Continuar sin productos",
-                    si: true,
-                },
-                icon: "warning"
-            })
-                .then((value) => {
-                    switch (value) {
-
-                        case "si":
-                            break;
-
-                        default:
-                            deleteCreateProducts(values);
-                            break;
-                    }
-                    callSet(values);
-                });
-                
-        }
-        else if(values.products != undefined || originalProducts.length === 0){
-            deleteCreateProducts(values);
-            callSet(values);
-        }
-        //onCompleted();
+        
+        deleteCreateProducts(values)
+        delete values.products
+        callSet(values);
+        
     };
 
-    const deleteCreateProducts = (values) => {
+    const deleteCreateProducts = () => {
+        let checkboxProducts = Object.keys(selectedProductsCheckbox).filter((key) => selectedProductsCheckbox[key]);
         for (let i = 0; i < filteredProducts.length; i++) {
 
             let newValues = JSON.parse(JSON.stringify(filteredProducts[i]));
@@ -194,29 +193,23 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
             delete newValues.id;
 
             callSetNull(newValues);
-            if (values.products != undefined && i === filteredProducts.length - 1) {
-                forCallSetProducts(values);
+            
+            if (checkboxProducts.length > 0 && i === filteredProducts.length - 1) {
+                for(let j = 0; j < checkboxProducts.length ; j++){
+                    let newProductValuesEdit = {
+                        id: parseInt(checkboxProducts[j]),
+                        sale: parseInt(saleId)
+                    };
+                    callSetProducts(newProductValuesEdit)
+                }
             }
-        }
-    }
-
-    const forCallSetProducts = (values) => {
-        if (values.products != undefined) {
-
-            for (let i = 0; i < values.products.id.length; i++) {
-                let newProductValuesEdit = {
-                    id: parseInt(values.products.id[i]),
-                    sale: parseInt(saleId)
-                };
-                callSetProducts(newProductValuesEdit)
-            }
-
         }
     }
 
     const onCancel = () => {
         onCompleted();
     }
+
 
     return <View
         sale={sale}
@@ -225,6 +218,8 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
+        selectedProductsCheckbox={selectedProductsCheckbox}
+        setSelectedProductsCheckbox={setSelectedProductsCheckbox}
     />;
 }
 

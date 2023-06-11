@@ -8,9 +8,7 @@ import { object, string } from "yup";
 import swal from "sweetalert";
 
 function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery = () => null }) {
-
     const companyId = sessionStorage.getItem("company");
-    const [selectedProducts, setSelectedProducts] = useState([])
     const today = new Date();
     const yyyy = today.getFullYear();
     let mm = today.getMonth() + 1; 
@@ -106,16 +104,17 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
     const [callSave, qSave] = useSave(SAVE_SALE, {
         onCompleted: (data) => {
-            const selectedProductsInt = selectedProducts.map(str =>
-                parseInt(str, 10));
-            for (let i = 0; i < selectedProductsInt.length; i++) {
-                var newProductValues = {
-                    id: selectedProductsInt[i],
-                    sale: data.saveSale.sale.id
-                };
-                callSet(newProductValues)
+            let checkboxProducts = Object.keys(selectedProductsCheckbox).filter((key) => selectedProductsCheckbox[key]);
+            console.log(checkboxProducts)
 
+            for(let i = 0; i < checkboxProducts.length; i++){
+                    var newProductValues = {
+                        id: parseInt(checkboxProducts[i]),
+                        sale: data.saveSale.sale.id
+                    };
+                    callSet(newProductValues)
             }
+
             swal("¡Listo!", "Se ha creado la oferta de manera exitosa.", "success").then(() => {
                 refetchQuery();
             });
@@ -124,12 +123,15 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
     });
 
+    const [selectedProductsCheckbox, setSelectedProductsCheckbox] = useState({});
     const filteredProducts = products.filter(product => !product.sale)
 
+    
+
     const error = qSave.error ? "An error has occurred" : null;
-
+    
     const onSubmit = (values) => {
-
+        
         values.disscount = parseFloat(values.disscount);
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
@@ -141,8 +143,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
         values.company = parseInt(sessionStorage.getItem("company"));
 
-        if (values.products != undefined)
-            setSelectedProducts(values.products.id);
+        // if (values.products != undefined)
+        //     setSelectedProductsCheckbox(values.products.id);
 
 
 
@@ -162,6 +164,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
+        selectedProductsCheckbox={selectedProductsCheckbox}
+        setSelectedProductsCheckbox={setSelectedProductsCheckbox}
     />;
 }
 

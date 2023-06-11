@@ -4,13 +4,16 @@ import { Formik, Field, Form } from "formik";
 import { MultiField, FileField } from "seed/helpers";
 import { DateTime } from 'luxon';
 import { Link, NavLink } from "react-router-dom";
+import Fiel from "components/auth/company/Fiel";
 
 const SaleFormView = ({
     sale = {},
     products = [],
     onSubmit,
     onCancel,
-    productSchema
+    productSchema,
+    selectedProductsCheckbox,
+    setSelectedProductsCheckbox
 }) =>
 
     <div class="card">
@@ -170,7 +173,7 @@ const SaleFormView = ({
                                         </div>
                                     </div>
 
-                                    <div class="form-group mt-7">
+                                    {/* <div class="form-group mt-7">
                                         <label className="input">
                                             <Field
                                                 as="select"
@@ -188,8 +191,31 @@ const SaleFormView = ({
                                                 Seleccione los productos a los que aplicar la promoción
                                             </span>
                                         </label>
+                                    </div> */}
+
+                                    <div class="form-group mt-7 overflow-auto" style={{ maxHeight: "100px" }}>
+                                        <label className="input">
+                                            {
+                                                products.map((product) =>
+                                                    <div>
+                                                        <Field
+                                                            type="checkbox"
+                                                            name={product.name}
+                                                            checked={selectedProductsCheckbox[product.id]}
+                                                            onChange={() => {
+                                                                setSelectedProductsCheckbox({
+                                                                    ...selectedProductsCheckbox,
+                                                                    [product.id]: !selectedProductsCheckbox[product.id],
+                                                                });
+                                                            }}
+                                                        ></Field><span>{product.name}</span>
+                                                    </div>)
+                                            }
+                                        </label>
                                     </div>
                                 </div>
+
+
 
                                 <div className="d-flex justify-content-center align-items-center pt-2">
                                     <button
