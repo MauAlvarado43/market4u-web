@@ -20,7 +20,7 @@ const SaleFormView = ({
                 {sale.id ? "Editar oferta" : "Nueva oferta"}
             </h1>
         </div>
-        
+
         <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-md-11">
@@ -30,15 +30,15 @@ const SaleFormView = ({
                             ...sale,
                             startDate: sale.startDate ? DateTime.fromISO(sale.startDate).toFormat("yyyy-MM-dd") : "",
                             endDate: sale.endDate ? DateTime.fromISO(sale.endDate).toFormat("yyyy-MM-dd") : "",
-                            
+
                         }}
                         onSubmit={onSubmit}
-                        
+
                     >
-                        {({ values, 
+                        {({ values,
                             setFieldValue,
                             errors,
-                            touched, 
+                            touched,
                             submitCount, }) =>
                             <Form>
                                 <div class="mb-3">
@@ -99,7 +99,7 @@ const SaleFormView = ({
                                         <div class="form-group">
                                             <label class="input">
                                                 <Field
-                                                    id = "startDateValidation"
+                                                    id="startDateValidation"
                                                     type="date"
                                                     name="startDate"
                                                     className="form-control input__field border-top-0 border-left-0
@@ -126,13 +126,13 @@ const SaleFormView = ({
                                         <div class="form-group">
                                             <label class="input">
                                                 <Field
-                                                    id= "endDateValidation"
+                                                    id="endDateValidation"
                                                     type="date"
                                                     name="endDate"
                                                     className="form-control input__field border-top-0 border-left-0
                                                     border-right-0 border-bottom-5 border-dark rounded-0"
                                                     placeholder=" "
-                                                    value={values.endDate || ''} 
+                                                    value={values.endDate || ''}
                                                 />
                                                 <span class="input__label">
                                                     Fecha de fin
@@ -148,7 +148,7 @@ const SaleFormView = ({
                                             }
                                         </div>
                                     </div>
-                                    
+
                                     <div class="mt-3">
                                         <div class="custom-file form-field-style">
                                             <FileField

@@ -18,7 +18,7 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
     let selectedStartDate;
     const today = new Date();
     const yyyy = today.getFullYear();
-    let mm = today.getMonth() + 1; 
+    let mm = today.getMonth() + 1;
     let dd = today.getDate();
 
     if (dd < 10) dd = '0' + dd;
@@ -133,6 +133,13 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
             return false;
     })
 
+    const originalProducts = products.filter(product => {
+        if (product.sale != null && product.sale.id == saleId)
+            return true;
+        else
+            return false;
+    })
+
 
     if (qSale.loading) return <Loading />;
 
@@ -150,6 +157,36 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
         values.company = parseInt(sessionStorage.getItem("company"));
 
+        if ((values.products === undefined) && originalProducts.length != 0 ) {
+            swal("No ha seleccionado ningún producto, ¿Desea utilizar los que estaban previamente?", {
+                buttons: {
+                    cancel: "Continuar sin productos",
+                    si: true,
+                },
+                icon: "warning"
+            })
+                .then((value) => {
+                    switch (value) {
+
+                        case "si":
+                            break;
+
+                        default:
+                            deleteCreateProducts(values);
+                            break;
+                    }
+                    callSet(values);
+                });
+                
+        }
+        else if(values.products != undefined || originalProducts.length === 0){
+            deleteCreateProducts(values);
+            callSet(values);
+        }
+        //onCompleted();
+    };
+
+    const deleteCreateProducts = (values) => {
         for (let i = 0; i < filteredProducts.length; i++) {
 
             let newValues = JSON.parse(JSON.stringify(filteredProducts[i]));
@@ -157,17 +194,13 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
             delete newValues.id;
 
             callSetNull(newValues);
-            if (values.products != undefined && i === filteredProducts.length-1){
+            if (values.products != undefined && i === filteredProducts.length - 1) {
                 forCallSetProducts(values);
             }
         }
+    }
 
-        
-        callSet(values);
-        //onCompleted();
-    };
-
-    const forCallSetProducts = (values) =>{
+    const forCallSetProducts = (values) => {
         if (values.products != undefined) {
 
             for (let i = 0; i < values.products.id.length; i++) {
