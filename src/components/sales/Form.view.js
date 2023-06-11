@@ -152,7 +152,7 @@ const SaleFormView = ({
                                     <div class="mt-3">
                                         <div class="custom-file form-field-style">
                                             <FileField
-                                                className="custom-file-input" name="banner" setFieldValue={setFieldValue}
+                                                className="custom-file-input" name="banner" accept=".jpg,.gif,.png,.jpeg" setFieldValue={setFieldValue}
                                             />
                                             <label class="custom-file-label form-field-style" for="" data-browse="Seleccionar banner">
                                                 <span class="input__label">

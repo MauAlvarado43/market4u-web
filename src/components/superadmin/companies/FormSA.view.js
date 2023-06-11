@@ -181,6 +181,7 @@ const FormView = (
                                                 className="custom-file-input"
                                                 name="photo"
                                                 setFieldValue={setFieldValue}
+                                                accept=".jpg,.gif,.png,.jpeg"
                                             />
                                             <label class="custom-file-label form-field-style" for="" data-browse="Seleccionar banner">
                                                 <span class="input__label">
