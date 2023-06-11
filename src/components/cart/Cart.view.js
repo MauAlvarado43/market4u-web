@@ -14,7 +14,7 @@ const getProductPrice = (product) => {
         <div className="mr-3" style={{ textDecorationLine: "line-through" }}>
           ${price.toFixed(2)}
         </div>
-        <i class="fas fa-long-arrow-alt-right"></i>
+        <i class="fas fa-long-arrow-alt-right mt-1"></i>
         <div className="ml-3">
           ${newPrice.toFixed(2)}
         </div>

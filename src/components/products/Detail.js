@@ -11,7 +11,7 @@ function Detail({ match }) {
   const variantOptions = {};
   const [photoIndex, setPhotoIndex] = useState(0);
   const [prevProductId, setPrevProductId] = useState(0);
-  const [selectedAmount, setSelectedAmount] = useState(0);
+  const [selectedAmount, setSelectedAmount] = useState(1);
   let photos = [];
   let price = 0;
   let stock = 0;
@@ -149,7 +149,7 @@ function Detail({ match }) {
       const data = {
         product: product.id,
         variant: selectedVariant.id,
-        amount: 1
+        amount: parseInt(selectedAmount)
       }
       const newCart = [data];
       sessionStorage.setItem('cart', JSON.stringify(newCart));
