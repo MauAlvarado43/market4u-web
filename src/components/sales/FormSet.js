@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import PropTypes from "prop-types";
 import { useSave, useSet, useQuery, useDetail } from "seed/gql";
 import { SALE, SET_SALE, SET_PRODUCT } from "seed/gql/queries";
@@ -11,14 +11,37 @@ import swal from "sweetalert";
 import { object, string } from "yup";
 
 function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, refetchQuery = () => null }) {
-    const qSale = useDetail(SALE, saleId);
+    const qSale = useDetail(`{
+        sale {
+          id
+          name
+          disscount
+          startDate
+          endDate
+          company {
+            id
+          }
+          banner {
+            id
+          }
+          products{
+            id
+          }
+        }
+      }`, saleId);    
     const qUsers = useQuery(`{ users { } }`);
     const companyId = sessionStorage.getItem("company");
 
     let selectedStartDate;
-    const today = new Date;
-    var todayDate = today.getFullYear() + "-" + ((today.getMonth() + 1).length != 2 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1)) + "-" + (today.getDate().length != 2 ? "0" + today.getDate() : today.getDate());
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate();
 
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    const todayDate = yyyy + '-' + mm + '-' + dd;
 
     const productSchema = object({
         name: string().test({
@@ -128,22 +151,41 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
     })
 
 
+    const [selectedProductsCheckbox, setSelectedProductsCheckbox] = useState({});
+    //Object.keys(selectedProducts).filter((key) => selectedProducts[key]);
+    const [loaded, setLoaded] = useState(false);
     if (qSale.loading) return <Loading />;
 
     const { sale = {} } = qSale.data;
     const { users = [] } = qUsers.data;
     const error = qSet.error ? "An error has occurred" : null;
 
+    
+    if(sale.products.length > 0 && !loaded) {
+        
+        let x = {}
+        sale.products.forEach((product) => x[product.id] = true)
+        setSelectedProductsCheckbox(x)
+        setLoaded(true)
+    }
 
     const onSubmit = (values) => {
-
+    
         values.id = parseInt(saleId);
         values.banner = parseInt(values.banner.id);
         values.disscount = parseFloat(values.disscount);
         values.startDate = DateTime.fromFormat(values.startDate, "yyyy-MM-dd");
         values.endDate = DateTime.fromFormat(values.endDate, "yyyy-MM-dd");
         values.company = parseInt(sessionStorage.getItem("company"));
+        
+        deleteCreateProducts(values)
+        delete values.products
+        callSet(values);
+        
+    };
 
+    const deleteCreateProducts = () => {
+        let checkboxProducts = Object.keys(selectedProductsCheckbox).filter((key) => selectedProductsCheckbox[key]);
         for (let i = 0; i < filteredProducts.length; i++) {
 
             let newValues = JSON.parse(JSON.stringify(filteredProducts[i]));
@@ -151,33 +193,23 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
             delete newValues.id;
 
             callSetNull(newValues);
-            if (values.products != undefined && i === filteredProducts.length-1){
-                forCallSetProducts(values);
+            
+            if (checkboxProducts.length > 0 && i === filteredProducts.length - 1) {
+                for(let j = 0; j < checkboxProducts.length ; j++){
+                    let newProductValuesEdit = {
+                        id: parseInt(checkboxProducts[j]),
+                        sale: parseInt(saleId)
+                    };
+                    callSetProducts(newProductValuesEdit)
+                }
             }
-        }
-
-        
-        callSet(values);
-        //onCompleted();
-    };
-
-    const forCallSetProducts = (values) =>{
-        if (values.products != undefined) {
-
-            for (let i = 0; i < values.products.id.length; i++) {
-                let newProductValuesEdit = {
-                    id: parseInt(values.products.id[i]),
-                    sale: parseInt(saleId)
-                };
-                callSetProducts(newProductValuesEdit)
-            }
-
         }
     }
 
     const onCancel = () => {
         onCompleted();
     }
+
 
     return <View
         sale={sale}
@@ -186,6 +218,8 @@ function SaleFormSet({ saleId, onCompleted = () => null, onError = () => null, r
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
+        selectedProductsCheckbox={selectedProductsCheckbox}
+        setSelectedProductsCheckbox={setSelectedProductsCheckbox}
     />;
 }
 

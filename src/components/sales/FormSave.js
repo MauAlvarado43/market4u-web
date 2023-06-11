@@ -7,12 +7,17 @@ import { DateTime } from "luxon";
 import { object, string } from "yup";
 import swal from "sweetalert";
 
-function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery = () => null  }) {
-
+function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQuery = () => null }) {
     const companyId = sessionStorage.getItem("company");
-    const [selectedProducts, setSelectedProducts] = useState([])
-    const today = new Date;
-    var todayDate = today.getFullYear() + "-" +((today.getMonth()+1).length != 2 ? "0" + (today.getMonth() + 1) : (today.getMonth()+1)) + "-" + (today.getDate().length != 2 ?"0" + today.getDate() : today.getDate());
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; 
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    const todayDate = yyyy + '-' + mm + '-' + dd;
 
     let selectedStartDate;
 
@@ -50,7 +55,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
                 if (!value || value.length === 0)
                     return context.createError({ message: "Fechas de inicio ingresada incorrectamente" });
 
-                if(value < todayDate){
+
+                if (value < todayDate) {
                     return context.createError({ message: "La fecha de inicio no puede ser anterior a la fecha actual" });
                 }
 
@@ -84,9 +90,9 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
     }`, "company.id=" + companyId);
 
     qProducts.refetch();
-    
+
     const { products = [] } = qProducts.data;
-    
+
     const [callSet, qSet] = useSet(SET_PRODUCT, {
         onCompleted: () => {
             //onCompleted()
@@ -94,20 +100,21 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
     });
 
-    
+
 
     const [callSave, qSave] = useSave(SAVE_SALE, {
         onCompleted: (data) => {
-            const selectedProductsInt = selectedProducts.map(str =>
-                parseInt(str, 10));
-            for (let i = 0; i < selectedProductsInt.length; i++) {
-                var newProductValues = {
-                    id: selectedProductsInt[i],
-                    sale: data.saveSale.sale.id
-                };
-                callSet(newProductValues)
+            let checkboxProducts = Object.keys(selectedProductsCheckbox).filter((key) => selectedProductsCheckbox[key]);
+            console.log(checkboxProducts)
 
+            for(let i = 0; i < checkboxProducts.length; i++){
+                    var newProductValues = {
+                        id: parseInt(checkboxProducts[i]),
+                        sale: data.saveSale.sale.id
+                    };
+                    callSet(newProductValues)
             }
+
             swal("¡Listo!", "Se ha creado la oferta de manera exitosa.", "success").then(() => {
                 refetchQuery();
             });
@@ -116,10 +123,13 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
     });
 
+    const [selectedProductsCheckbox, setSelectedProductsCheckbox] = useState({});
     const filteredProducts = products.filter(product => !product.sale)
 
-    const error = qSave.error ? "An error has occurred" : null;
+    
 
+    const error = qSave.error ? "An error has occurred" : null;
+    
     const onSubmit = (values) => {
         
         values.disscount = parseFloat(values.disscount);
@@ -133,8 +143,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
 
         values.company = parseInt(sessionStorage.getItem("company"));
 
-        if (values.products != undefined)
-            setSelectedProducts(values.products.id);
+        // if (values.products != undefined)
+        //     setSelectedProductsCheckbox(values.products.id);
 
 
 
@@ -154,6 +164,8 @@ function SaleFormSave({ onCompleted = () => null, onError = () => null, refetchQ
         onSubmit={onSubmit}
         onCancel={onCancel}
         productSchema={productSchema}
+        selectedProductsCheckbox={selectedProductsCheckbox}
+        setSelectedProductsCheckbox={setSelectedProductsCheckbox}
     />;
 }
 
