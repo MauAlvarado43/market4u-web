@@ -7,7 +7,6 @@ import { getLongFotmatDate } from "components/utils/dates";
 
 const ShippingView = ({ shipping, purchases }) => (
   <div className="row border border-dark mb-5 p-3" style={{ borderRadius: "10px" }}>
-
     <div className="col-md-4">
       {
         purchases.map((purchase, idx) => (

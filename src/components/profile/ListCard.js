@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import View from "components/profile/InfoCards.view";
+import View from "components/profile/ListCard.view";
 import { useQuery, useDelete } from "seed/gql";
 import { Loading } from "seed/helpers";
 import { DELETE_PAYMENT } from "seed/gql/queries";

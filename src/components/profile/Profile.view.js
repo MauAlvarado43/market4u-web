@@ -4,15 +4,16 @@ import { BrowserRouter, Switch, Link } from "react-router-dom";
 import { Route, FileField } from "seed/helpers"
 import ProfileButton from "components/nav/ProfileButton";
 import InfoUser from "components/profile/InfoUser";
-import InfoCards from "components/profile/InfoCards";
+import InfoCards from "components/profile/ListCard";
 import ModalRoute from "components/helpers/ModalRoute";
 import DeleteCard from "components/profile/DeleteCard";
 import FormSaveCard from "components/profile/FormSaveCard";
+import FormSetCard from "components/profile/FormSetCard";
 
 const ProfileView = ({
   users
 }) => (
-  <BrowserRouter basename="/profile">
+  <BrowserRouter basename = "/profile">
     {users && users.map((user) => (
       <div key={user.id} style = {{overflowX:"hidden"}}>
         <div className="row justify-content-center align-items-center">
@@ -81,10 +82,14 @@ const ProfileView = ({
                         icon_left={"fas fa-credit-card col-md-2 col-sm-1"}
                       />
                     </Link>
-                    <ProfileButton
-                      text={"Mis compras"}
-                      icon_left={"fas fa-shopping-bag col-md-2 col-sm-1"}
-                    />
+                    <div
+                      style={{cursor:"pointer"}} 
+                      onClick={() => { window.location.replace("/history")}}>
+                        <ProfileButton
+                          text={"Mis compras"}
+                          icon_left={"fas fa-shopping-bag col-md-2 col-sm-1"}
+                        />
+                    </div>
                     <div
                       style={{cursor:"pointer"}} 
                       onClick={() => { window.location.replace("/wishlist")}}>
@@ -115,6 +120,20 @@ const ProfileView = ({
       width="400"
       height="400" 
       style = {{position:"fixed", marginTop:"0", marginLeft:"0"}}
+    />
+
+    <ModalRoute
+      path="/payments/create"
+      component={FormSaveCard}
+      width="920"
+      height="600"
+    />
+
+    <ModalRoute
+      path="/payments/:cardId(\d+)/edit"
+      component={FormSetCard}
+      width="920"
+      height="600"
     />
 
   </BrowserRouter>

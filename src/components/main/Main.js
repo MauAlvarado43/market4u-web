@@ -22,8 +22,6 @@ function Main() {
     sale: saleId
   })
 
-  console.log(filters)
-
   const reqProducts = usePagination(`{
     productPagination {
       totalPages

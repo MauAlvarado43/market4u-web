@@ -69,15 +69,12 @@ function Filter(props) {
     setSelectedCategories([]);
     setSelectedCompanies([]);
     setSelectedPriceFilter("all");
-    setPriceRange([0, 15000]);
+    setPriceRange([]);
   };
 
   const handlePriceFilter = (filter) => {
     setSelectedPriceFilter(filter);
   };
-
-  console.log(selectedCompanies)
-  console.log(selectedCategories)
 
   const handlePriceChange = (newPriceRange) => {
     setPriceRange(newPriceRange);
