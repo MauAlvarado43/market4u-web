@@ -76,7 +76,7 @@ const ProductFormView = ({
                           value={values.name || ''} 
                         />
                         <span class="input__label">
-                          Nombre del producto <span className='text-danger fw-bold'>*</span>
+                          Nombre del producto 
                         </span>
                       </label>
                     </div>
@@ -106,7 +106,7 @@ const ProductFormView = ({
                           readonly= " "
                         />
                         <span class="input__label">
-                          Descripción <span className='text-danger fw-bold'>*</span>
+                          Descripción
                         </span>
                       </label>
                     </div>
@@ -136,7 +136,7 @@ const ProductFormView = ({
                             readonly= " "
                           />
                           <span class="input__label">
-                            Detalles del producto <span className='text-danger fw-bold'>*</span>
+                            Detalles del producto 
                           </span>
                         </label>
                       </div>
@@ -159,7 +159,7 @@ const ProductFormView = ({
                                 {categories.map((e, idx) => <option key={idx} value={e.id}>{e.name}</option>) }
                               </Field>
                               <span class="input__label">
-                                Categoría <span className='text-danger fw-bold'>*</span>
+                                Categoría 
                               </span>
                             </label>
                           </div>
