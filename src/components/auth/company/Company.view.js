@@ -24,7 +24,7 @@ const CompanyView = ({ companySchema, onSubmit }) =>
 
             {
               errors.name && (touched.name || submitCount > 0)
-                ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                ? <div class="mt-2 text-danger" role="alert">
                   {errors.name}
                 </div>
                 : null
@@ -44,7 +44,7 @@ const CompanyView = ({ companySchema, onSubmit }) =>
 
             {
               errors.commonName && (touched.commonName || submitCount > 0)
-                ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                ? <div class="mt-2 text-danger" role="alert">
                   {errors.commonName}
                 </div>
                 : null
@@ -64,7 +64,7 @@ const CompanyView = ({ companySchema, onSubmit }) =>
 
             {
               errors.rfc && (touched.rfc || submitCount > 0)
-                ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                ? <div class="mt-2 text-danger" role="alert">
                   {errors.rfc}
                 </div>
                 : null
