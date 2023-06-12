@@ -4,10 +4,11 @@ import { BrowserRouter, Switch, Link } from "react-router-dom";
 import { Route, FileField } from "seed/helpers"
 import ProfileButton from "components/nav/ProfileButton";
 import InfoUser from "components/profile/InfoUser";
-import InfoCards from "components/profile/InfoCards";
+import InfoCards from "components/profile/ListCard";
 import ModalRoute from "components/helpers/ModalRoute";
 import DeleteCard from "components/profile/DeleteCard";
 import FormSaveCard from "components/profile/FormSaveCard";
+import FormSetCard from "components/profile/FormSetCard";
 
 const ProfileView = ({
   users
@@ -119,6 +120,20 @@ const ProfileView = ({
       width="400"
       height="400"
       style={{ position: "fixed", marginTop: "0", marginLeft: "0" }}
+    />
+
+    <ModalRoute
+      path="/payments/create"
+      component={FormSaveCard}
+      width="920"
+      height="600"
+    />
+
+    <ModalRoute
+      path="/payments/:cardId(\d+)/edit"
+      component={FormSetCard}
+      width="920"
+      height="600"
     />
 
   </BrowserRouter>

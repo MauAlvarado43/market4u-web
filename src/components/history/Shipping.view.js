@@ -32,7 +32,7 @@ const getProductPrice = (product) => {
     const newPrice = price * (disscount / 100);
     return (
       <span className="ml-2 h4 text-dark">
-        <span className="text-danger">-{disscount}%  ${newPrice}</span><br/>
+        <span className="text-danger">-{disscount}%  ${newPrice}</span><br />
         <span className="ml-2 text-muted">
           <small style={{ textDecoration: "line-through" }}>${price}</small>
         </span>
@@ -49,7 +49,7 @@ const ShippingView = ({ shipping, purchases }) => (
     <div className="col-md-4" style={{ maxHeight: "90vh", overflowY: "auto", overflowX: "hidden" }}>
       {
         purchases.map((purchase, idx) => (
-          <div key={idx} className="row my-5" style={{paddingRight: "5px" }}>
+          <div key={idx} className="row my-5" style={{ paddingRight: "5px" }}>
 
             <div className="col-md-4">
               {
@@ -61,7 +61,7 @@ const ShippingView = ({ shipping, purchases }) => (
               }
             </div>
 
-            <div className="col-md-8" style={{padding: "2px"}}>
+            <div className="col-md-8" style={{ padding: "2px" }}>
               <h3>{purchase?.product?.name}</h3>
               <h6>SKU: {purchase?.product?.sku}</h6>
               <h6>Categoría: {purchase?.category?.name}</h6>

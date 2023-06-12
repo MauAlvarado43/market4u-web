@@ -410,18 +410,6 @@ const InfoUserView = ({
                           </div>
                         </div>
 
-                        {/*<div class="form-group">
-                          <div className="d-flex justify-content-center">
-                            <Field
-                              type = "file"
-                              name = "image"
-                              className = "form-control"
-                              onChange = {(event) => {
-                                setSelectedFile("image", event.currentTarget.files[0]);
-                              }}
-                            />
-                          </div>
-                        </div>*/}
                       </div>
                     </Form>
                   )}

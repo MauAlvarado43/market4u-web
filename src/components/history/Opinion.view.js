@@ -79,7 +79,7 @@ const OpinionView = ({
           <Form>
             {
               errors.product && (touched.product || submitCount > 0)
-                ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                ? <div class="mt-2 text-danger" role="alert">
                   {errors.product}
                 </div> : null
             }
@@ -96,7 +96,7 @@ const OpinionView = ({
                   </label>
                   {
                     errors.title && (touched.title || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.title}
                       </div> : null
                   }
@@ -114,7 +114,7 @@ const OpinionView = ({
                   />
                   {
                     errors.rate && (touched.rate || submitCount > 0)
-                      ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                      ? <div class="mt-2 text-danger" role="alert">
                         {errors.rate}
                       </div> : null
                   }
@@ -134,7 +134,7 @@ const OpinionView = ({
                 </label>
                 {
                   errors.description && (touched.description || submitCount > 0)
-                    ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                    ? <div class="mt-2 text-danger" role="alert">
                       {errors.description}
                     </div> : null
                 }

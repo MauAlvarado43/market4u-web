@@ -5,16 +5,17 @@ import { Range } from "react-range";
 const FilterView = ({
     user,
     values,
+    companies,
+    categories,
+    priceRange,
+    selectedCompanies,
     handleFilterClear,
     handlePriceFilter,
     handlePriceChange,
     handleModalToggle,
-    categories,
-    companies,
+    selectedCategories,
     handleCategoryChange,
-    handleCompanyChange,
-    selectedCategories, 
-    selectedCompanies
+    handleCompanyChange
 }) => (
   <>
     <div
@@ -42,16 +43,18 @@ const FilterView = ({
         <div className="col-md-9 mt-4" style={{ marginLeft: "0vw" }}>
           <h2 className="card-title">Bienvenido, {user?.firstName}</h2>
         </div>
-      </div>
-      <button className="mt-3 align-items-center" style={{background:"white", border:"none"}} onClick={handleFilterClear}>
-        <span className = "h2">Limpiar Filtros</span><span className="fa-stack">
-                                                        <i 
-                                                          style = {{zIndex: 100}}
-                                                          className="fas fa-times-circle fa-stack-1x text-danger ml-2 mt-1"></i>
-                                                        <i className="fas fa-filter fa-stack-2x"></i>
-                                                      </span>
-      </button>
-      <div className="card-body ml-3 mt-2">
+      </div>       
+      <div className="card-body ml-3">
+        <button className="mt-1 mr-5 col-md-12 text-right d-inline" 
+          style={{background:"white", border:"none", fontSize:"11px", marginBottom:"-20vh"}} 
+            onClick={handleFilterClear}>
+          <span className="fa-stack">
+            <i 
+              style = {{zIndex: 500}}
+              className="fas fa-times-circle fa-stack-1x text-danger ml-2 mt-1"></i>
+            <i className="fas fa-filter fa-stack-2x"></i>
+          </span>
+        </button>
         <h3>ORDENAR POR:</h3>
         <ul style={{ color: "black" }}>
           <li 
@@ -70,8 +73,8 @@ const FilterView = ({
           <Range
             values={values}
             min={0}
-            max={15000}
-            step={100}
+            max={100000}
+            step={1000}
             onChange={handlePriceChange}
             renderTrack={({ props, children }) => (
               <div
@@ -89,8 +92,8 @@ const FilterView = ({
                   style={{
                     position: "absolute",
                     height: "100%",
-                    left: `${(values[0] / 15000) * 100}%`,
-                    width: `${((values[1] - values[0]) / 15000) * 100}%`,
+                    left: `${(values[0] / 100000) * 100}%`,
+                    width: `${((values[1] - values[0]) / 100000) * 100}%`,
                     background: "#FC4B08",
                   }}
                 />
@@ -140,14 +143,15 @@ const FilterView = ({
                       onChange={handleCategoryChange}
                       checked
                   /> 
-                :
-                  <input 
-                    type="checkbox" 
+                : null}
+                {selectedCategories.length == 0 || !selectedCategories.includes(""+category?.id) ?
+                  <input
+                    type="checkbox"
                     name="category"
                     value={category.id}
                     onChange={handleCategoryChange}
-                  /> 
-                }
+                  />
+                : null}
                 <h4 className="mt-2 ml-1">{category?.name}</h4>
               </label>
             ))}
@@ -165,14 +169,15 @@ const FilterView = ({
                     onChange={handleCompanyChange}
                     checked
                   />
-                :
+                : null}
+                {selectedCompanies.length == 0 || !selectedCompanies.includes(""+company?.id) ?
                   <input
                     type="checkbox"
                     name="category"
                     value={company.id}
                     onChange={handleCompanyChange}
                   />
-                }
+                : null}
                 <h4 className="mt-2 ml-1">{company?.commonName}</h4>
               </label>
             ))}
@@ -195,6 +200,10 @@ const FilterView = ({
 );
 
 FilterView.propTypes = {
+    handleFilterClear: PropTypes.func,
+    handlePriceFilter: PropTypes.func,
+    selectedCategories: PropTypes.array,
+    selectedCompanies: PropTypes.array,
     user: PropTypes.object,
     values: PropTypes.array,
     handlePriceChange: PropTypes.func,

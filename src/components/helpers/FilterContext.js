@@ -6,7 +6,7 @@ export const FilterProvider = ({ children }) => {
   const [selectedPriceFilter, setSelectedPriceFilter] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedCompanies, setSelectedCompanies] = useState([]);
-  const [priceRange, setPriceRange] = useState([]);
+  const [priceRange, setPriceRange] = useState([0,100000]);
   const [saleId, setSaleId] = useState("");
 
   return (

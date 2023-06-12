@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const InfoCards = ({ 
+const ListCardView = ({ 
     payments,
-    onClickDelete 
 }) => (
   <div className="col-md-9 ml-1 mt-1">
     
@@ -12,7 +11,7 @@ const InfoCards = ({
       <div class="col-sm"></div>
       <div class="col-sm-auto">
         <div class="btn-group" role="group">
-          <Link to="/create" className="btn btn-primary rounded-pill px-5">
+          <Link to="/payments/create" className="btn btn-primary rounded-pill px-5">
           <i class="text-white font-weight-bold tio-add mr-1"></i> Nueva tarjeta
           </Link>
         </div>
@@ -47,8 +46,8 @@ const InfoCards = ({
         {payments.map((payment) => (
           <div className="row" key={payment.id}>
             <div className="col-md-10 mx-auto">
-              <div className="card d-flex border-0 bg-transparent shadow-none">
-                <div className="row">
+              <div className="card d-flex border-0 bg-transparent shadow-none justify-content-center">
+                <div className="row justify-content-center">
                   <div className="col-md-2 justify-content-center align-items-center">
                     {payment.bank == "BBVA" ||
                       payment.bank == "BBVA Bancomer" ? (
@@ -82,18 +81,27 @@ const InfoCards = ({
                       />
                     ) : null}
                   </div>
-                  <div className="col-md-7 d-flex flex-column">
+                  <div className="col-md-6 d-flex flex-column">
                     {payment.bank} - {payment.name}
                     <div>Terminada en **{payment.cardNumber.slice(-4)}</div>
                     <div>
                       {payment.expireDate}
                     </div>
                   </div>
-                  <div className="col-md-2 d-flex justify-content-center align-items-center">
-                    <Link to={`/payments/${payment.id}/delete`}
-                      style={{ color: "blue" }}
+                  <div className="col-md-4 d-flex align-items-center text-center">
+                    <Link 
+                      to={`/payments/${payment.id}/delete`}
+                      className="btn btn-secondary btn-sm rounded-pill px-3"
                     >
+                      <i className="fas fa-times mr-3 fa-lg"></i>
                       Eliminar
+                    </Link>
+                    <Link
+                      to={`/payments/${payment.id}/edit`}
+                      className="btn btn-primary btn-sm rounded-pill px-4 ml-3"
+                    >
+                      <i className="fas fa-pen mr-3 fa-lg"></i>
+                      Editar
                     </Link>
                   </div>
                 </div>
@@ -107,9 +115,9 @@ const InfoCards = ({
   </div>
 );
 
-InfoCards.propTypes = {
+ListCardView.propTypes = {
   payments: PropTypes.object,
   onClickDelete: PropTypes.func,
 };
 
-export default InfoCards;
+export default ListCardView;

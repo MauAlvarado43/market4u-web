@@ -1,20 +1,21 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import View from "components/nav/Nav.view";
 import { useDetail } from "seed/gql";
 import { Loading } from "seed/helpers";
 import { useLocation } from "react-router-dom";
 import { useQuery } from "seed/gql";
+import { FilterContext } from "components/helpers/FilterContext";
 
 function Nav() {
+  
   const location = useLocation();
   const searchRef = useRef(null);
   const showFilterIcon = location.pathname.includes("/home");
   const [showModal, setShowModal] = useState(false);
-  const [values, setValues] = useState([1000, 15000]);
+  const [values, setValues] = useState([0, 100000]);
   const [search, setSearch] = useState("");
   const [windowWidth, setWindowWidth] = useState(0);
-
   useEffect(() => {
 
     const handleResize = () => {

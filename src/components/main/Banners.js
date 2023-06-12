@@ -20,6 +20,7 @@ function Banners() {
     autoplaySpeed: 3000, 
     arrows: true
   };
+  
   const {
     saleId,
     setSaleId,

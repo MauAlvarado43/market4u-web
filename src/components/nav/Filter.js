@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useQuery } from "seed/gql";
 import { Loading } from "seed/helpers";
@@ -7,6 +7,8 @@ import { FilterContext } from "components/helpers/FilterContext";
 
 function Filter(props) {
   const { user = [], values = [], handleChange = {}, handleModalToggle = {} } = props;
+
+  console.log(values)
 
   const {
     selectedCategories,
@@ -17,7 +19,11 @@ function Filter(props) {
     setPriceRange,
     selectedPriceFilter,
     setSelectedPriceFilter,
+    saleId,
+    setSaleId
   } = useContext(FilterContext);
+
+  const [filterCleared, setFilterCleared] = useState(false); 
 
   const reqCategory = useQuery(`{
     categories {
@@ -30,6 +36,14 @@ function Filter(props) {
       commonName
     }
   }`);
+
+  useEffect(() => {
+    if(filterCleared){
+      setFilterCleared(false);
+      values[0] = priceRange[0];
+      values[1] = priceRange[1];
+    }
+  }, [filterCleared]); 
 
   if (reqCategory.loading) return <Loading />;
   if (reqCategory.error) return "Error";
@@ -69,19 +83,20 @@ function Filter(props) {
     setSelectedCategories([]);
     setSelectedCompanies([]);
     setSelectedPriceFilter("all");
-    setPriceRange([0, 15000]);
+    setPriceRange([0, 100000]);
+    setSaleId("");
+    console.log(values)
+    handleChange(priceRange);
+    setFilterCleared(true); 
   };
 
   const handlePriceFilter = (filter) => {
     setSelectedPriceFilter(filter);
   };
 
-  console.log(selectedCompanies)
-  console.log(selectedCategories)
-
   const handlePriceChange = (newPriceRange) => {
     setPriceRange(newPriceRange);
-    handleChange(newPriceRange);
+    handleChange(priceRange);
   };
 
   return (
@@ -90,6 +105,7 @@ function Filter(props) {
       values={values}
       companies={companies}
       categories={categories}
+      priceRange={priceRange}
       handleChange={handlePriceChange}
       handleModalToggle={handleModalToggle}
       handlePriceChange={handlePriceChange}

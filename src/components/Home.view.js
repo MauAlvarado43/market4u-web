@@ -38,7 +38,8 @@ const HomeView = ({
         <Route path="/superadmin/users" component={UsersSA} />
         <Route path="/superadmin/companies" component={CompaniesSA} />
 
-        <Route path="/profile/info" component={Profile} />
+        <Route path="/profile/info" component={Profile}/>
+        <Route path="/profile" component={Profile}/>
 
         <Route path="/home" component={Main} />
         <Route path="/product/:productId(\d+)" component={ProductDetail} />
