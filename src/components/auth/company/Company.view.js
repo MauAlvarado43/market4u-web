@@ -84,7 +84,7 @@ const CompanyView = ({ companySchema, onSubmit }) =>
 
             {
               errors.email && (touched.email || submitCount > 0)
-                ? <div class="mt-3 alert alert-soft-danger" role="alert">
+                ? <div class="mt-2 text-danger" role="alert">
                   {errors.email}
                 </div>
                 : null
