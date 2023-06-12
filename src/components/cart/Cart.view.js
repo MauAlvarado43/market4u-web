@@ -8,7 +8,7 @@ const getProductPrice = (product) => {
   const price = product?.variant?.price;
   if (sale) {
     const disscount = sale.disscount;
-    const newPrice = price * (disscount / 100);
+    const newPrice = price - (price * (disscount / 100));
     return (
       <span className="ml-2 h3 text-dark">
         <span className="text-danger">-{disscount}%  ${newPrice}</span>

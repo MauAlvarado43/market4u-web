@@ -29,10 +29,10 @@ const getProductPrice = (product) => {
   const price = product?.variant?.price;
   if (sale) {
     const disscount = sale.disscount;
-    const newPrice = price * (disscount / 100);
+    const newPrice = price - (price * (disscount / 100));
     return (
       <span className="ml-2 h4 text-dark">
-        <span className="text-danger">-{disscount}%  ${newPrice}</span><br />
+        <span className="text-danger">-{disscount}%  ${newPrice}</span><br/>
         <span className="ml-2 text-muted">
           <small style={{ textDecoration: "line-through" }}>${price}</small>
         </span>
@@ -67,7 +67,7 @@ const ShippingView = ({ shipping, purchases }) => (
               <h6>Categoría: {purchase?.category?.name}</h6>
               <h6>Cantidad: {purchase?.amount}</h6>
               <div className="row mt-3">
-                <div className="col-md-7">
+                <div className="col-md-6">
                   {
                     purchase?.variantOption.map((variantOption) => (
                       <>
@@ -77,7 +77,7 @@ const ShippingView = ({ shipping, purchases }) => (
                     ))
                   }
                 </div>
-                <div className="col-md-5 text-right" style={{ paddingRight: "10px" }}>
+                <div className="col-md-6 text-right">
                   {getProductPrice(purchase)}
                 </div>
               </div>
