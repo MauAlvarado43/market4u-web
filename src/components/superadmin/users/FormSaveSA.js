@@ -55,7 +55,7 @@ function FormSave({ onCompleted = () => null, refetchQuery = () => null }) {
   const validateLetters = (e) => {
     const keyCode = e.keyCode || e.which;
     const keyValue = String.fromCharCode(keyCode);
-    const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
+    const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/;
 
     if (!regex.test(keyValue)) e.preventDefault();
   };

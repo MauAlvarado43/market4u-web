@@ -14,7 +14,6 @@ const InfoUserView = ({
   setPasswordConfirm,
   showPassConfirm,
   handlePasswordChange,
-  setSelectedFile,
   validateLetters,
 }) => (
   <div className="col-md-9 ml-1">
@@ -34,7 +33,7 @@ const InfoUserView = ({
             <h2 className="list-title">Datos generales</h2>
           )}
         </p>
-        <div className="card-body text-center" style={{ overflowY: "auto" }}>
+        <div className="card-body" style={{ overflowY: "auto" }}>
           <div className="row">
             <div className="col-md-10 mx-auto">
               <div className="md-form">
@@ -49,86 +48,59 @@ const InfoUserView = ({
                         {/*BASIC FIELDS*/}
                         <div class="form-group">
                           <label className="input">
-                            {user.type !== "ADMIN" ? (
-                              <>
-                                <Field
-                                  type="text"
-                                  name="firstName"
-                                  className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                  placeholder=" "
-                                  required
-                                  onKeyPress={(e) => validateLetters(e)}
-                                />
-                                <span class="input__label">
-                                  Nombre{" "}
-                                  <span className="text-danger fw-bold">*</span>
-                                </span>
-                              </>
-                            ) : (
-                              <>
-                                <Field
-                                  type="text"
-                                  name="company.name"
-                                  className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                  placeholder=" "
-                                  required
-                                />
-                                <span class="input__label">
-                                  Razón Social {" "}
-                                  <span className="text-danger fw-bold">*</span>
-                                </span>
-                              </>
-                            )}
+                            <Field
+                              type="text"
+                              name="firstName"
+                              className="form-control input__field border-top-0 border-left-0
+                                border-right-0 border-bottom-5 border-dark rounded-0"
+                              placeholder=" "
+                              onKeyPress={(e) => validateLetters(e)}
+                            />
+                            <span class="input__label">
+                              Nombre{" "}
+                              <span className="text-danger fw-bold">*</span>
+                            </span>
                           </label>
+                          {errors.firstName &&
+                            (touched.firstName || submitCount > 0) ? (
+                            <div class="text-danger mt-1" role="alert">
+                                {errors.firstName}
+                            </div>
+                          ) : null}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-7">
                           <label className="input">
-                            {user.type !== "ADMIN" ?
-                              <>
-                                <Field
-                                  type="text"
-                                  name="lastName"
-                                  className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                  placeholder=" "
-                                  required
-                                  onKeyPress={(e) => validateLetters(e)}
-                                />
-                                <span class="input__label">
-                                  Apellidos {" "}
-                                  <span className="text-danger fw-bold">*</span>
-                                </span>
-                              </>
-                              :
-                              <>
-                                <Field
-                                  type="text"
-                                  name="company.website"
-                                  className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                  placeholder=" "
-                                  required
-                                />
-                                <span class="input__label">
-                                  Página oficial {" "}
-                                  <span className="text-danger fw-bold">*</span>
-                                </span>
-                              </>}
+                            <Field
+                              type="text"
+                              name="lastName"
+                              className="form-control input__field border-top-0 border-left-0
+                                border-right-0 border-bottom-5 border-dark rounded-0"
+                              placeholder=" "
+                              onKeyPress={(e) => validateLetters(e)}
+                            />
+                            <span class="input__label">
+                              Apellidos {" "}
+                              <span className="text-danger fw-bold">*</span>
+                            </span>
                           </label>
+                          {errors.lastName &&
+                            (touched.lastName || submitCount > 0) ? (
+                            <div class="text-danger mt-1" role="alert">
+                                {errors.lastName}
+                            </div>
+                          ) : null}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-7">
                           <label className="input">
                             <Field
                               type="email"
-                              name={user.type !== "ADMIN" ? "email" : "company.email"}
+                              name="email"
                               className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                  border-right-0 border-bottom-5 border-dark rounded-0"
                               placeholder=" "
-                              required
+                              disabled
                             />
                             <span class="input__label">
                               e-mail{" "}
@@ -137,22 +109,29 @@ const InfoUserView = ({
                           </label>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-7">
                           <label className="input">
                             <Field
+                              id="telephone"
                               type="number"
-                              name={user.type !== "ADMIN" ? "telephone" : "company.phone"}
+                              name="telephone"
                               className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                  border-right-0 border-bottom-5 border-dark rounded-0"
                               placeholder=" "
                             />
                             <span class="input__label">
                               Teléfono
                             </span>
                           </label>
+                          {errors.telephone &&
+                            (touched.telephone || submitCount > 0) ? (
+                              <div class="text-danger mt-1" role="alert">
+                                {errors.telephone}
+                              </div>
+                            ) : null}
                         </div>
 
-                        <div class="form-group text-left">
+                        <div class="form-group text-left mt-7">
                           <h4>Dirección</h4>
                         </div>
 
@@ -160,9 +139,9 @@ const InfoUserView = ({
                           <label className="input">
                             <Field
                               type="text"
-                              name={user.type !== "ADMIN" ? "street" : "company.street"}
+                              name="street"
                               className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                  border-right-0 border-bottom-5 border-dark rounded-0"
                               placeholder=" "
                             />
                             <span class="input__label">
@@ -171,13 +150,13 @@ const InfoUserView = ({
                           </label>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-6">
                           <label className="input">
                             <Field
                               type="text"
-                              name={user.type !== "ADMIN" ? "cologn" : "company.cologn"}
+                              name="cologn"
                               className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                  border-right-0 border-bottom-5 border-dark rounded-0"
                               placeholder=" "
                             />
                             <span class="input__label">
@@ -186,29 +165,37 @@ const InfoUserView = ({
                           </label>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-6">
                           <label className="input">
                             <Field
                               type="text"
-                              name={user.type !== "ADMIN" ? "cp" : "company.cp"}
+                              name="cp"
+                              id="cp"
                               className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                  border-right-0 border-bottom-5 border-dark rounded-0"
                               placeholder=" "
                             />
                             <span class="input__label">
                               CP
                             </span>
                           </label>
+                          {errors.cp &&
+                            (touched.cp || submitCount > 0) ? (
+                              <div class="text-danger mt-1" role="alert">
+                                {errors.cp}
+                              </div>
+                            ) : null}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-6">
                           <label className="input">
                             <Field
                               type="text"
-                              name={user.type !== "ADMIN" ? "city" : "company.city"}
+                              name="city"
                               className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                  border-right-0 border-bottom-5 border-dark rounded-0"
                               placeholder=" "
+                              onKeyPress={(e) => validateLetters(e)}
                             />
                             <span class="input__label">
                               Ciudad
@@ -216,7 +203,7 @@ const InfoUserView = ({
                           </label>
                         </div>
 
-                        <div className="d-flex mb-3">
+                        <div className="d-flex mt-6">
                           <div className="form-group col-md-6">
                             <label className="input">
                               <Field
@@ -274,11 +261,11 @@ const InfoUserView = ({
                             </label>
                           </div>
 
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-6 mt=6">
                             <label className="input">
                               <Field
                                 type="text"
-                                name={user.type !== "ADMIN" ? "city" : "company.city"}
+                                name="municipality"
                                 className="form-control input__field border-top-0 border-left-0
                                   border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
                                 placeholder=" "
@@ -291,25 +278,6 @@ const InfoUserView = ({
                           </div>
                         </div>
 
-                        {user.type !== "ADMIN" ? null : (
-                          <div class="form-group">
-                            <label className="input">
-                              <Field
-                                type="text"
-                                name="company.rfc"
-                                disabled
-                                className="form-control input__field border-top-0 border-left-0
-                                  border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
-                                placeholder=" "
-                              />
-                              <span class="input__label">
-                                RFC
-                                <span className="text-danger fw-bold">*</span>
-                              </span>
-                            </label>
-                          </div>
-                        )}
-
                         <div class="form-group text-left mb-auto">
                           <h4>Contraseña</h4>
                         </div>
@@ -321,11 +289,10 @@ const InfoUserView = ({
                           <div className="form-group col-md-6">
                             <label className="input">
                               <Field
-                                id="pass"
                                 name="password"
                                 type={showPassword ? "text" : "password"}
                                 className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                    border-right-0 border-bottom-5 border-dark rounded-0"
                                 onChange={handlePasswordChange}
                               >
                               </Field>
@@ -337,6 +304,13 @@ const InfoUserView = ({
                                   className="btn btn-outline-secondary bg-transparent border-0"></button>
                               </span>
                             </label>
+                            {
+                              errors.password && (touched.password || submitCount >= 0)
+                                ? <div class="mt-2 text-danger" role="alert">
+                                  {errors.password}
+                                </div>
+                                : null
+                            }
                           </div>
 
                           <div className="form-group col-md-6">
@@ -347,16 +321,15 @@ const InfoUserView = ({
 
                         </div>
 
-                        <div className="d-flex mb-5 mt-auto">
+                        <div className="d-flex mt-7">
 
                           <div className="form-group col-md-6">
                             <label className="input">
                               <Field
-                                id="passConfirm"
                                 name="passwordConfirm"
                                 type={showPassConfirm ? "text" : "password"}
                                 className="form-control input__field border-top-0 border-left-0
-                                    border-right-0 border-bottom-5 border-dark rounded-0 mb-5"
+                                    border-right-0 border-bottom-5 border-dark rounded-0"
                                 onChange={(ev) => setPasswordConfirm(ev.target.value)}
                               >
                               </Field>
@@ -378,12 +351,11 @@ const InfoUserView = ({
                                 </button>
                               </span>
                             </label>
-                            {
-                              errors.password && (touched.password || submitCount >= 0)
-                                ? <div class="mt-2 text-danger" role="alert">
-                                  {errors.password}
+                            {errors.passwordConfirm && (touched.passwordConfirm || submitCount > 0)
+                              ? <div class="mt-2 text-danger" role="alert">
+                                {errors.passwordConfirm} 
                                 </div>
-                                : null
+                              : null
                             }
                           </div>
                         </div>
