@@ -208,7 +208,7 @@ const SaleFormView = ({
                                                                     [product.id]: !selectedProductsCheckbox[product.id],
                                                                 });
                                                             }}
-                                                        ></Field><span>{product.name}</span>
+                                                        /><span>{product.name}</span>
                                                     </div>)
                                             }
                                         </label>
