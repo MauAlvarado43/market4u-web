@@ -21,6 +21,8 @@ function ShippingDetails({ shippingId, onCompleted = () => null, onError = () =>
       address
       status
       total
+      subtotal
+      shipment
       createdAt
       cart { }
       buyer { }

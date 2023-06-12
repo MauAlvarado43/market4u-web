@@ -773,6 +773,8 @@ export const SHIPPING = `
     address
     status
     total
+    subtotal
+    shipment
     cart {
       id
     }
@@ -794,6 +796,8 @@ mutation Set(
   $address: String,
   $status: String,
   $total: Float,
+  $subtotal: Float,
+  $shipment: Float,
   $cart: Int,
   $buyer: Int,
   $company: Int,
@@ -809,6 +813,8 @@ mutation Set(
     buyer: $buyer,
     company: $company,
     total: $total,
+    subtotal: $subtotal,
+    shipment: $shipment,
   ) {
     shipping {
       id
@@ -817,6 +823,8 @@ mutation Set(
       address
       status
       total
+      subtotal
+      shipment
       cart {
         id
       }
@@ -838,6 +846,8 @@ mutation Save(
   $address: String!,
   $status: String!,
   $total: Float!,
+  $subtotal: Float!,
+  $shipment: Float!,
   $cart: Int!,
   $buyer: Int,
   $company: Int,
@@ -852,6 +862,8 @@ mutation Save(
     buyer: $buyer,
     company: $company,
     total: $total,
+    subtotal: $subtotal,
+    shipment: $shipment,
   ) {
     shipping {
       id

@@ -98,6 +98,18 @@ const ShippingFormView = ({ shipping= {}, carts= [], users= [], companies= [], o
             <Field type="number" name="total"
               class="form-control" />
             </div>
+            {/* Subtotal */}
+            <div class="form-group">
+            <label class="input-label">Subtotal</label>
+            <Field type="number" name="subtotal"
+              class="form-control" />
+            </div>
+            {/* Shipment */}
+            <div class="form-group">
+            <label class="input-label">Shipment</label>
+            <Field type="number" name="shipment"
+              class="form-control" />
+            </div>
             </div>
             {error ? <div class="alert alert-soft-danger">{error}</div> : null}
             <button type="submit" class="btn btn-block btn-primary">Send</button>

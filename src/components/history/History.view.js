@@ -52,7 +52,7 @@ const HistoryView = ({
 
       <div>
 
-        {!shippings.id && (
+        {shippings.length == 0 && (
           <div className="col-md-12 d-flex mt-2 justify-content-center align-items-center"
             style={{ flexDirection: 'column' }}>
             <span className="h3">No hay registro de compras</span>

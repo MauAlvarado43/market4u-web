@@ -101,6 +101,14 @@ const ShippingView = ({ shipping, purchases }) => (
             <td>{shipping.folio}</td>
           </tr>
           <tr>
+            <td>Subtotal</td>
+            <td>${shipping.subtotal}</td>
+          </tr>
+          <tr>
+            <td>Envío</td>
+            <td>${shipping.shipment}</td>
+          </tr>
+          <tr>
             <td>Total</td>
             <td>${shipping.total}</td>
           </tr>
