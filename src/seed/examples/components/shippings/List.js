@@ -23,6 +23,8 @@ function ShippingList() {
         address
         status
         total
+        subtotal
+        shipment
         createdAt
         cart { }
         buyer { }

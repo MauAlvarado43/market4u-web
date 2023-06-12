@@ -15,11 +15,10 @@ function Shipping({ shipping }) {
       product: productRaw?.product??{},
       variant: productRaw?.variant??{},
       category: productRaw?.category??{},
+      variantOption: productRaw?.variant_options??[],
       sale: sale || null
     }
   });
-
-  console.log("purchases", purchases)
 
   return <View shipping={shipping} purchases={purchases}/>;
 }

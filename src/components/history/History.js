@@ -25,6 +25,8 @@ function History() {
         address
         status
         createdAt
+        subtotal
+        shipment
         cart {
           payment
         }
@@ -48,14 +50,9 @@ function History() {
   const { totalPages = 0, shippings = [] } = reqShippings.data.shippingPagination;
   const onClickPage = (pageNum) => setPageNum(pageNum);
 
-  console.log("shippings", shippings)
-
-
   const handlePriceFilter = (filter) => {
     setSelectedPriceFilter(filter);
   };
-
-  // return <View shippings={shippings} pageNum={pageNum} totalPages={totalPages} onClickPage={onClickPage} handlePriceFilter={handlePriceFilter}/>;
 
   const refetchQuery = () => {
     reqShippings.refetch();

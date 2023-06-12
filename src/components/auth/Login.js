@@ -17,6 +17,9 @@ function Login({ history }) {
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un correo electrónico" });
 
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
+          return context.createError({ message: "Ingrese un correo electrónico válido" });
+
         return true;
 
       }

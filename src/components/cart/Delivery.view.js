@@ -6,7 +6,7 @@ import { states, getStateName } from "components/utils/constants";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 
-const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit, handleSubmit }) => (
+const DeliveryView = ({ user = {}, savePersonalInfo, setSavePaymentInfo, formikRef, products, deliverySchema, onSubmit, handleSubmit }) => (
 
   <div className='row'>
 
@@ -179,6 +179,14 @@ const DeliveryView = ({ user = {}, formikRef, products, deliverySchema, onSubmit
                   : null
               }
             </div>
+
+            <div class="form-group my-4">
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                  <input type="checkbox" class="custom-control-input" id="saveDelivery" checked={savePersonalInfo} onChange={() => setSavePaymentInfo(!savePersonalInfo)} />
+                  <label class="custom-control-label" for="saveDelivery">Actualizar información personal</label><br/>
+                  <small>Todos los datos se actualizarán en tu perfil excepto las referencias del domicilio y el correo electrónico</small>
+                </div>
+              </div>
             
           </Form>
         }

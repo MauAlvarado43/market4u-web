@@ -10,18 +10,16 @@ const getProductPrice = (product) => {
     const disscount = sale.disscount;
     const newPrice = price * (disscount / 100);
     return (
-      <div className="d-flex">
-        <div className="mr-3" style={{ textDecorationLine: "line-through" }}>
-          ${price.toFixed(2)}
-        </div>
-        <i class="fas fa-long-arrow-alt-right mt-1"></i>
-        <div className="ml-3">
-          ${newPrice.toFixed(2)}
-        </div>
-      </div>)
+      <span className="ml-2 h3 text-dark">
+        <span className="text-danger">-{disscount}%  ${newPrice}</span>
+        <span className="ml-2 text-muted">
+          <small style={{ textDecoration: "line-through" }}>${price}</small>
+        </span>
+      </span>
+    )
 
   }
-  return (<>${price.toFixed(2)}</>)
+  return (<span className="ml-2 h3 text-dark">${price.toFixed(2)}</span>)
 }
 
 const CartView = ({
@@ -36,7 +34,7 @@ const CartView = ({
     <div className='col-md-6 text-left'>
       <h2>Productos agregados ({products.length})</h2>
       <hr style={{ border: "1px solid black" }} />
-      <div>
+      <div style={{ maxHeight: "80vh", overflowY: "auto", overflowX: "hidden" }}>
         {
           products.map((product, idx) => (
             <div className="row my-5" key={idx}>
@@ -68,10 +66,17 @@ const CartView = ({
                 <h6>Categoría: {product?.category?.name}</h6>
                 <div className="row mt-3">
                   <div className="col-md-4">
-
+                    {
+                      product?.variant_options.map((variantOption) => (
+                        <>
+                          <span><b>{variantOption.title}:</b> {variantOption["value"]}</span>
+                          <br />
+                        </>
+                      ))
+                    }
                   </div>
                   <div className="col-md-8">
-                    <h3><b>{getProductPrice(product)}</b></h3>
+                    {getProductPrice(product)}
                   </div>
                 </div>
               </div>
@@ -80,7 +85,7 @@ const CartView = ({
                 <div className="row">
                   <div className="col-md-4">
 
-                    <div className="d-flex justify-content-center align-items-center" onClick={() => onRemoveAmount(product.id)}
+                    <div className="d-flex justify-content-center align-items-center" onClick={() => onRemoveAmount(product.variant.id)}
                       style={{ width: "40px", height: "40px", border: "4px #081856 solid", borderRadius: "50%", color: "#081856", cursor: "pointer" }}>
                       <i class="fas fa-minus"></i>
                     </div>
@@ -93,7 +98,7 @@ const CartView = ({
 
                   <div className="col-md-4">
 
-                    <div className="d-flex justify-content-center align-items-center" onClick={() => onAddAmount(product.id)}
+                    <div className="d-flex justify-content-center align-items-center" onClick={() => onAddAmount(product.variant.id)}
                       style={{ width: "40px", height: "40px", border: "4px #081856 solid", borderRadius: "50%", color: "#081856", cursor: "pointer" }}>
                       <i class="fas fa-plus"></i>
                     </div>

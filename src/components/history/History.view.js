@@ -25,34 +25,35 @@ const HistoryView = ({
           <h2>Historial de compras</h2>
         </div>
         <div class="d-flex justify-content-end col-md-5" style={{ margin: "15px" }}></div>
-          <div class="dropdown">
-            <button
-              class="btn btn-light dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Ordenar por
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <div class="dropdown-item" onClick={() => handlePriceFilter("all")}>
-                Sin ordenar
-              </div>
-              <div class="dropdown-item" onClick={() => handlePriceFilter("highest")}>
-                Mayor precio
-              </div>
-              <div class="dropdown-item" onClick={() => handlePriceFilter("lowest")}>
-                Menor precio
-              </div>
+        <div class="dropdown">
+          <button
+            class="btn btn-light dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Ordenar por
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-item" onClick={() => handlePriceFilter("all")}>
+              Sin ordenar
+            </div>
+            <div class="dropdown-item" onClick={() => handlePriceFilter("highest")}>
+              Mayor precio
+            </div>
+            <div class="dropdown-item" onClick={() => handlePriceFilter("lowest")}>
+              Menor precio
             </div>
           </div>
         </div>
+      </div>
 
       <div>
-        {!shippings.id && (
-          <div className="col-md-12 d-flex mt-2 justify-content-center align-items-center" 
+
+        {shippings.length == 0 && (
+          <div className="col-md-12 d-flex mt-2 justify-content-center align-items-center"
             style={{ flexDirection: 'column' }}>
             <span className="h3">No hay registro de compras</span>
             <img
@@ -60,14 +61,13 @@ const HistoryView = ({
               src="https://img.freepik.com/vector-premium/producto-no-encontrado-ilustracion-plana_418302-105.jpg?w=2000"
               alt="No se encontraron productos"
             />
-          </div>  
+          </div>
         )}
         {
           shippings.map((shipping) => (
             <Shipping shipping={shipping} />
           ))
         }
-
       </div>
 
       <PaginationFooter pageNum={pageNum} totalPages={totalPages} onClickPage={onClickPage} />

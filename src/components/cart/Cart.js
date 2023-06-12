@@ -43,7 +43,7 @@ function Cart({ setDeliveryStep, setData, products, setProducts, setActiveStep }
     const newProducts = [...products];
 
     for (let i = 0; i < newProducts.length; i++) {
-      if (newProducts[i].id == id) {
+      if (newProducts[i].variant.id == id) {
         newProducts[i].amount += 1;
       }
     }
@@ -65,7 +65,7 @@ function Cart({ setDeliveryStep, setData, products, setProducts, setActiveStep }
     const newProducts = [...products];
 
     for (let i = 0; i < newProducts.length; i++) {
-      if (newProducts[i].id == id) {
+      if (newProducts[i].variant.id == id) {
         if (newProducts[i].amount <= 1) {
           swal("Cantidad inválida", "Si deseas quitar el producto, de click en el botón eliminar", "error");
         } else {

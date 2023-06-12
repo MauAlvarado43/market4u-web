@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import View from "components/auth/RestorePassword.view";
 import { usePost } from "seed/api";
+import swal from "sweetalert";
 import { object, string } from "yup";
 
 function RestorePassword(props) {
@@ -52,20 +53,36 @@ function RestorePassword(props) {
 
   const [callRestore, reqRestore] = usePost("/users/restore_password", {
     onCompleted: () => {
-      setError(null);
-      setMessage("El cambio de contraseña ha sido exitoso, ahora puede iniciar sesión");
+      swal({
+        title: "Contraseña actualizada",
+        icon: "success",
+        text: "El cambio de contraseña ha sido exitoso, ahora puede iniciar sesión",
+        buttons: {
+          cancel: {
+            text: "Regresar",
+            className: "swal-button btn-secondary",
+            closeModal: true,
+            visible: true,
+          },
+          confirm: {
+            text: "Iniciar sesión",
+            className: "swal-button btn-primary",
+            visible: true,
+          },
+        },
+      }).then((response) => {
+        if (response) {
+          window.location.replace(`/login`);
+        }
+      });
     },
     onError: (data) => {
-      setMessage(null);
       switch (data.status) {
         case 401:
-          setError("No se encontró la solicutd, por favor intentelo nuevamente");
-          break;
-        case 421:
-          setError("El link ya no es válido, han pasado mas de 20 minutos desde que se generó");
+          swal("Usuario no encontrado", "No se encontró la solicutd, por favor intentelo nuevamente", "error");
           break;
         default:
-          setError("Error");
+          swal("Error inesperado", "Error interno del servidor, por favor intente mas tarde", "error");
           break;
       }
     },

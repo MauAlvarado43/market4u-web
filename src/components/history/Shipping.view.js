@@ -24,27 +24,32 @@ const getStatus = (status) => {
 
 }
 
-const getProductPrice = (purchase) => {
-  const price = purchase?.variant?.price;
-  if (purchase.sale) {
-    const disscount = purchase.sale.disscount;
+const getProductPrice = (product) => {
+  const sale = product?.sale ?? null;
+  const price = product?.variant?.price;
+  if (sale) {
+    const disscount = sale.disscount;
     const newPrice = price * (disscount / 100);
     return (
-      <div>
-        <h5 className="text-danger">-{disscount}% ${newPrice.toFixed(2)}</h5>
-        <h6 className="text-muted" style={{ textDecorationLine: "line-through" }}>${price.toFixed(2)}</h6>
-        {/* <span className="text-muted" style={{ textDecorationLine: "line-through" }}>${price.toFixed(2)}</span> */}
-      </div>)
+      <span className="ml-2 h4 text-dark">
+        <span className="text-danger">-{disscount}%  ${newPrice}</span><br />
+        <span className="ml-2 text-muted">
+          <small style={{ textDecoration: "line-through" }}>${price}</small>
+        </span>
+      </span>
+    )
+
   }
-  return (<>${price.toFixed(2)}</>)
+  return (<span className="ml-2 h4 text-dark">${price.toFixed(2)}</span>)
 }
 
 const ShippingView = ({ shipping, purchases }) => (
   <div className="row border border-dark mb-5 p-3" style={{ borderRadius: "10px" }}>
-    <div className="col-md-4">
+
+    <div className="col-md-4" style={{ maxHeight: "90vh", overflowY: "auto", overflowX: "hidden" }}>
       {
         purchases.map((purchase, idx) => (
-          <div key={idx} className="row my-5">
+          <div key={idx} className="row my-5" style={{ paddingRight: "5px" }}>
 
             <div className="col-md-4">
               {
@@ -56,18 +61,24 @@ const ShippingView = ({ shipping, purchases }) => (
               }
             </div>
 
-            <div className="col-md-8">
+            <div className="col-md-8" style={{ padding: "2px" }}>
               <h3>{purchase?.product?.name}</h3>
               <h6>SKU: {purchase?.product?.sku}</h6>
               <h6>Categoría: {purchase?.category?.name}</h6>
               <h6>Cantidad: {purchase?.amount}</h6>
               <div className="row mt-3">
-                <div className="col-md-4">
-
+                <div className="col-md-7">
+                  {
+                    purchase?.variantOption.map((variantOption) => (
+                      <>
+                        <span><b>{variantOption.title}:</b> {variantOption["value"]}</span>
+                        <br />
+                      </>
+                    ))
+                  }
                 </div>
-                <div className="col-md-8 text-right">
-                  <h3><b>{getProductPrice(purchase)}</b></h3>
-                  {/* <h3><b>$ {purchase?.variant?.price.toFixed(2)}</b></h3> */}
+                <div className="col-md-5 text-right" style={{ paddingRight: "10px" }}>
+                  {getProductPrice(purchase)}
                 </div>
               </div>
             </div>
@@ -88,6 +99,14 @@ const ShippingView = ({ shipping, purchases }) => (
           <tr>
             <td>Folio</td>
             <td>{shipping.folio}</td>
+          </tr>
+          <tr>
+            <td>Subtotal</td>
+            <td>${shipping.subtotal}</td>
+          </tr>
+          <tr>
+            <td>Envío</td>
+            <td>${shipping.shipment}</td>
           </tr>
           <tr>
             <td>Total</td>

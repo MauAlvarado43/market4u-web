@@ -291,13 +291,6 @@ const NavView = ({
                 <Dropdown.Item as={Link} to="/profile/info">
                   Mi perfil
                 </Dropdown.Item>
-                {
-                  user.type == "NORMAL" && (
-                    <Dropdown.Item as={Link} to="/history">
-                      Mis compras
-                    </Dropdown.Item>
-                  )
-                }
                 <Dropdown.Item as={Link} to="/logout">
                   Cerrar Sesión
                 </Dropdown.Item>
