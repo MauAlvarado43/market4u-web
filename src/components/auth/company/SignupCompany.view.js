@@ -24,7 +24,6 @@ const SignupCompanyView = ({
             <div class="card card-lg mb-1">
               <div class="card-body" style={{ border: "0.2rem solid #519FA5", borderRadius: "10px" }}>
 
-
                 <div className="text-center mb-5">
                   <h1 className="display-4" style={{ fontSize: "30px", letterSpacing: "16%" }}>
                     Crear cuenta empresarial

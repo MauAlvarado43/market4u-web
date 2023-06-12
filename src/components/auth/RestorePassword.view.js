@@ -49,7 +49,6 @@ const RestorePasswordView = ({
                               type={passwordField ? "text" : "password"}
                               className="form-control input__field"
                               placeholder=" "
-                              required
                             >
                             </Field>
                             <span class="input__label">
@@ -95,7 +94,6 @@ const RestorePasswordView = ({
                               type={confirmPasswordField ? "text" : "password"}
                               className="form-control input__field"
                               placeholder=" "
-                              required
                             >
                             </Field>
                             <span class="input__label">

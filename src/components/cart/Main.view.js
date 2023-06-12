@@ -25,65 +25,68 @@ const MainView = ({
   setPaymentStep,
   setPurchaseStep,
 }) => (
-<>
-  <div className="p-5 mt-1">
-    <div>
-      <Steps
-        cartStep={cartStep}
-        deliveryStep={deliveryStep}
-        paymentStep={paymentStep}
-        purchaseStep={purchaseStep}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-      />
+  <>
+    <div className="p-5 mt-1">
+      <div className="d-flex justify-content-center">
+        <Steps
+          cartStep={cartStep}
+          deliveryStep={deliveryStep}
+          paymentStep={paymentStep}
+          purchaseStep={purchaseStep}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+        />
+      </div>
+
+      <div className="d-flex justify-content-center mt-5">
+        <div style={{ width: "90%" }}>
+
+            <div style={{ display: activeStep == 1 ? "block" : "none" }}>
+              <Cart
+                setData={setData}
+                products={products}
+                setProducts={setProducts}
+                setActiveStep={setActiveStep}
+                setDeliveryStep={setDeliveryStep}
+              />
+            </div>
+
+            <div style={{ display: activeStep == 2 ? "block" : "none" }}>
+              <Delivery
+                user={user}
+                setData={setData}
+                products={products}
+                setActiveStep={setActiveStep}
+                setPaymentStep={setPaymentStep}
+              />
+            </div>
+          
+            <div style={{ display: activeStep == 3 ? "block" : "none" }}>
+              <Payment
+                user={user}
+                setData={setData}
+                products={products}
+                setActiveStep={setActiveStep}
+                setPurchaseStep={setPurchaseStep}
+              />
+            </div>
+
+            <div style={{ display: activeStep == 4 ? "block" : "none" }}>
+              <Purchase
+                user={user}
+                data={data}
+                setData={setData}
+                products={products}
+                setActiveStep={setActiveStep}
+              />
+            </div>
+
+        </div>
+
+      </div>
+
     </div>
-
-    <div className="steps-content">
-
-      <div className={activeStep === 1 ? 'step-div active' : 'step-div'}>
-        <Cart
-          setData={setData}
-          products={products}
-          setProducts={setProducts}
-          setActiveStep={setActiveStep}
-          setDeliveryStep={setDeliveryStep}
-        />
-      </div>
-
-      <div className={activeStep === 2 ? 'step-div active' : 'step-div'}>
-        <Delivery
-          user={user}
-          setData={setData}
-          products={products}
-          setActiveStep={setActiveStep}
-          setPaymentStep={setPaymentStep}
-        />
-      </div>
-
-      <div className={activeStep === 3 ? 'step-div active' : 'step-div'}>
-        <Payment
-          user={user}
-          setData={setData}
-          products={products}
-          setActiveStep={setActiveStep}
-          setPurchaseStep={setPurchaseStep}
-        />
-      </div>
-
-      <div className={activeStep === 4 ? 'step-div active' : 'step-div'}>
-        <Purchase
-          user={user}
-          data={data}
-          setData={setData}
-          products={products}
-          setActiveStep={setActiveStep}
-        />
-      </div>
-
-    </div>
-
-  </div>
-</>
+  </>
 )
 
 MainView.propTypes = {};

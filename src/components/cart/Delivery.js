@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { useDetail } from "seed/gql";
 import { object, string } from "yup";
@@ -7,6 +7,7 @@ import View from "components/cart/Delivery.view";
 function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
 
   const formikRef = useRef(null);
+  const [savePersonalInfo, setSavePaymentInfo] = useState(false);
 
   const deliverySchema = object({
     telephone: string().test({
@@ -15,6 +16,9 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
 
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un teléfono" });
+
+        if (!/^[0-9]+$/i.test(value))
+          return context.createError({ message: "El teléfono solo debe tener números" });
 
         if (value.length !== 10)
           return context.createError({ message: "El teléfono debe tener 10 caracteres" });
@@ -28,7 +32,7 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
       test(value, context) {
 
         if (!value || value.length === 0)
-          return context.createError({ message: "Ingrese un correo" });
+          return context.createError({ message: "Ingrese un correo electrónico" });
 
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
           return context.createError({ message: "Ingrese un correo electrónico válido" });
@@ -65,9 +69,9 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
 
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un código postal" });
-        
-        if (value.length !== 5)
-          return context.createError({ message: "El código postal debe tener 5 dígitos" });
+
+        if (!/^[0-9]{5}$/i.test(value))
+          return context.createError({ message: "El código postal debe tener 5 números" });
 
         return true;
 
@@ -118,7 +122,7 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
 
     setData((prevData) => {
       const newData = { ...prevData };
-      newData.delivery = values;
+      newData.delivery = { ...values, save: savePersonalInfo };
       return newData;
     })
     setPaymentStep(true);
@@ -126,7 +130,18 @@ function Delivery({ user, setData, products, setActiveStep, setPaymentStep }) {
 
   }
 
-  return <View formikRef={formikRef} user={user} products={products} onSubmit={onSubmit} deliverySchema={deliverySchema} handleSubmit={handleSubmit}/>;
+  return (
+    <View
+      user={user}
+      products={products}
+      onSubmit={onSubmit}
+      formikRef={formikRef}
+      savePersonalInfo={savePersonalInfo}
+      setSavePaymentInfo={setSavePaymentInfo}
+      deliverySchema={deliverySchema}
+      handleSubmit={handleSubmit}
+    />
+  );
 
 }
 

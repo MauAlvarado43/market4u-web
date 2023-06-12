@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
+import { getShortFotmatDate } from "components/utils/dates";
 import { useQuery } from "seed/gql";
 import { Loading } from "seed/helpers";
 import View from "components/main/Banners.view";
@@ -7,6 +8,7 @@ import { FilterContext } from "components/helpers/FilterContext";
 
 function Banners() {
 
+  const actualDate = getShortFotmatDate(new Date());
   const [activeIndex, setActiveIndex] = useState(0);
   const settings = {
     dots: true, 
@@ -25,14 +27,13 @@ function Banners() {
 
   const reqSales = useQuery(`{
     sales {
-      id
       name
       banner {
         name
         url
       }
     }
-  }`);
+  }`, `(startDate <= ${actualDate} AND endDate >= ${actualDate})`);
 
   if (reqSales.loading) return <Loading />;
   if (reqSales.error) return "Error";

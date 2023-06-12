@@ -48,13 +48,11 @@ const HistoryView = ({
       </div>
 
       <div>
-
         {
           shippings.map((shipping) => (
             <Shipping shipping={shipping} />
           ))
         }
-
       </div>
 
       <PaginationFooter pageNum={pageNum} totalPages={totalPages} onClickPage={onClickPage} />

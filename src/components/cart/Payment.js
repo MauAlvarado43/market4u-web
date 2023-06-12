@@ -14,7 +14,7 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
       test(value, context) {
 
         if (!value || value.length === 0)
-          return context.createError({ message: "Ingrese el nombre de la persona" });
+          return context.createError({ message: "Ingrese el nombre del titular de la tarjeta" });
 
         return true;
 
@@ -45,7 +45,7 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
       test(value, context) {
 
         if (!value || value.length === 0)
-          return context.createError({ message: "Ingrese la fecha de expiración" });
+          return context.createError({ message: "Ingrese el vencimiento" });
 
         if (!/^(0[1-9]|1[0-2])\/?([0-9]{2})$/.test(value))
           return context.createError({ message: "El formato de vencimiento debe ser MM/AA" });
@@ -59,10 +59,10 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
       test(value, context) {
 
         if (!value || value.length === 0)
-          return context.createError({ message: "Ingrese el cvv" });
+          return context.createError({ message: "Ingrese el CVV" });
         
         if (value.length !== 3)
-          return context.createError({ message: "El CVV debe tener 3 dígitos" });
+          return context.createError({ message: "El CVV debe tener 3 números" });
 
         return true;
 
@@ -73,7 +73,7 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
       test(value, context) {
 
         if (!value || value.length === 0)
-          return context.createError({ message: "Seleccione un bando" });
+          return context.createError({ message: "Seleccione un banco" });
 
         return true;
 

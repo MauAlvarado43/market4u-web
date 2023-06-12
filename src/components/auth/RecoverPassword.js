@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import View from "components/auth/RecoverPassword.view";
 import { usePost } from "seed/api";
+import swal from "sweetalert";
 import { object, string } from "yup";
 
 function RecoverPassword() {
 
+  const [token, setToken] = useState("");
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
 
@@ -12,9 +14,12 @@ function RecoverPassword() {
     email: string().test({
       name: "email",
       test(value, context) {
-        
-        if(!value || value.length === 0) 
+
+        if (!value || value.length === 0)
           return context.createError({ message: "Ingrese un correo electrónico" });
+
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
+          return context.createError({ message: "Ingrese un correo electrónico válido" });
 
         return true;
 
@@ -22,22 +27,53 @@ function RecoverPassword() {
     }),
   });
 
-  const [callRecover, reqRecover] = usePost("/users/recover_password", {
+  const [callGenerate, reqGenerate] = usePost("/users/registry_generate", {
     onCompleted: () => {
-      setError(null);
-      setMessage("Se ha enviado un link de restablecimiento de contraseña a su correo");
+      window.location.replace(`/verify_email/${token}`);
+    },
+    onError: () => {
+      swal("Error inesperado", "Error interno del servidor, por favor intente mas tarde", "error");
+    },
+    includeAuth: false,
+  });
+
+  const [callRecover, reqRecover] = usePost("/users/recover_password", {
+    onCompleted: (data) => {
+      if (data.token) {
+        swal({
+          title: "Usuario no verificado",
+          icon: "error",
+          text: "Aún no verificas tu correo, hazlo ahora mismo para restablecer tu contraseña",
+          buttons: {
+            cancel: {
+              text: "Regresar",
+              className: "swal-button btn-secondary",
+              closeModal: true,
+              visible: true,
+            },
+            confirm: {
+              text: "Verificar correo",
+              className: "swal-button btn-primary",
+              visible: true,
+            },
+          },
+        }).then((response) => {
+          if (response) {
+            setToken(data.token);
+            callGenerate({ token: data.token });
+          }
+        });
+      } else {
+        swal("Restablecimiento enviado", "Se ha enviado un link de restablecimiento de contraseña a su correo electrónico", "success");
+      }
     },
     onError: (data) => {
-      setMessage(null);
       switch (data.status) {
         case 401:
-          setError("Ese correo electronico no se encuentra registrado");
-          break;
-        case 420:
-          setError("Primero verifique su cuenta a traves del link enviado a su correo electronico");
+          swal("Correo no encontrado", "El correo electrónico ingresado no se encuentra registrado", "error");
           break;
         default:
-          setError("Error");
+          swal("Error inesperado", "Error interno del servidor, por favor intente mas tarde", "error");
           break;
       }
     },
@@ -49,10 +85,10 @@ function RecoverPassword() {
     callRecover({ email: email })
   }
 
-  return <View 
-    onSubmit={onSubmit} 
+  return <View
+    onSubmit={onSubmit}
     error={error}
-    message={message} 
+    message={message}
     recoverPasswordSchema={recoverPasswordSchema}
   />;
 }

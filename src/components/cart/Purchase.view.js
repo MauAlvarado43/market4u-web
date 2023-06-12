@@ -5,11 +5,34 @@ import { getStateName } from "components/utils/constants";
 const getTotal = (products) => {
   let total = 0;
   for (let product of products) {
-    total += (product?.variant?.price * product?.amount)
+    const sale = product?.sale ?? null;
+    if (sale) {
+      total += (product?.variant?.price * (sale.disscount / 100)) * product?.amount;
+    } else {
+      total += (product?.variant?.price * product?.amount)
+    }
   }
   return total;
 }
 
+const getProductPrice = (product) => {
+  const sale = product?.sale ?? null;
+  const price = product?.variant?.price;
+  if (sale) {
+    const disscount = sale.disscount;
+    const newPrice = price * (disscount / 100);
+    return (
+      <span className="ml-2 h3 text-dark">
+        <span className="text-danger">-{disscount}%  ${newPrice}</span>
+        <span className="ml-2 text-muted">
+          <small style={{ textDecoration: "line-through" }}>${price}</small>
+        </span>
+      </span>
+    )
+
+  }
+  return (<span className="ml-2 h3 text-dark">${price.toFixed(2)}</span>)
+}
 
 const PurchaseView = ({ data, products, setActiveStep, onSubmit }) => (
   <div className="row">
@@ -184,14 +207,25 @@ const PurchaseView = ({ data, products, setActiveStep, onSubmit }) => (
                 </div>
               </div>
 
-              <div className="col-md-6">
+              <div className="col-md-8">
                 <h3>{product?.name}</h3>
                 <h6>SKU: {product?.sku}</h6>
-                <h6>{product?.category?.name}</h6>
-              </div>
-
-              <div className="col-md-3">
-                <h3><b>${product?.variant?.price.toFixed(2)}</b></h3>
+                <h6>Categoría: {product?.category?.name}</h6>
+                <div className="row mt-3">
+                  <div className="col-md-4">
+                    {
+                      product?.variant_options.map((variantOption) => (
+                        <>
+                          <span><b>{variantOption.title}:</b> {variantOption["value"]}</span>
+                          <br />
+                        </>
+                      ))
+                    }
+                  </div>
+                  <div className="col-md-8">
+                    {getProductPrice(product)}
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -214,7 +248,17 @@ const PurchaseView = ({ data, products, setActiveStep, onSubmit }) => (
                 {
                   data.products && data.products.map((product) => (
                     <li key={product.id}>
-                      {product?.amount} x {product?.sku} = {(product?.amount * product?.variant?.price).toFixed(2)}
+                      {product?.amount} x {product?.sku} = ${" "}
+                      {
+                        function () {
+                          const sale = product?.sale ?? null;
+                          if (sale) {
+                            return (product?.amount * (product?.variant?.price * (sale.disscount / 100))).toFixed(2);
+                          } else {
+                            return (product?.amount * product?.variant?.price).toFixed(2);
+                          }
+                        }()
+                      }
                     </li>
                   ))
                 }

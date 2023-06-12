@@ -61,7 +61,7 @@ const SignupView = ({
                         <label className="input">
                           <Field type="text" name="lastname" className="form-control input__field" placeholder=" " />
                           <span class="input__label">
-                            Apellido (s) <span className='text-danger fw-bold'>*</span>
+                            Apellidos <span className='text-danger fw-bold'>*</span>
                           </span>
                         </label>
 

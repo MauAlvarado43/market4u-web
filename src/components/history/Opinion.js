@@ -154,6 +154,7 @@ function Opinion({ match, onCompleted = () => null }) {
   const onCancel = () => onCompleted();
 
   const onSelectPurchase = (id) => {
+    alert(id)
     callOpinion({
       product: id,
       user: parseInt(userId)
@@ -163,8 +164,6 @@ function Opinion({ match, onCompleted = () => null }) {
       formikRef.current.setFieldValue("product", id);
     }
   }
-
-  console.log("opinion", opinion);
 
   return (
     <View

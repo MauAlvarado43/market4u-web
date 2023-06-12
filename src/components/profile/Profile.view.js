@@ -14,7 +14,7 @@ const ProfileView = ({
 }) => (
   <BrowserRouter basename="/profile">
     {users && users.map((user) => (
-      <div key={user.id} style = {{overflowX:"hidden"}}>
+      <div key={user.id} style={{ overflowX: "hidden" }}>
         <div className="row justify-content-center align-items-center">
           <div className="col-md-2">
             <h3 className="ml-3 display-4">
@@ -53,7 +53,7 @@ const ProfileView = ({
                     }}
                   />
                 </div>
-              </> 
+              </>
             ) :
               <img
                 style={{
@@ -81,15 +81,19 @@ const ProfileView = ({
                         icon_left={"fas fa-credit-card col-md-2 col-sm-1"}
                       />
                     </Link>
-                    <ProfileButton
-                      text={"Mis compras"}
-                      icon_left={"fas fa-shopping-bag col-md-2 col-sm-1"}
-                    />
                     <div
-                      style={{cursor:"pointer"}} 
-                      onClick={() => { window.location.replace("/wishlist")}}>
+                      style={{ cursor: "pointer" }}
+                      onClick={() => { window.location.replace("/history") }}>
                       <ProfileButton
-                        text={"Wishlist"}
+                        text={"Mis compras"}
+                        icon_left={"fas fa-shopping-bag col-md-2 col-sm-1"}
+                      />
+                    </div>
+                    <div
+                      style={{ cursor: "pointer" }}
+                      onClick={() => { window.location.replace("/wishlist") }}>
+                      <ProfileButton
+                        text={"Lista de deseos"}
                         icon_left={"fas fa-star col-md-2 col-sm-1"}
                       />
                     </div>
@@ -102,7 +106,7 @@ const ProfileView = ({
           <Switch>
             <Route path="/info" component={InfoUser} />
             <Route path="/payments" component={InfoCards} />
-            <Route path="/payments/create" component={FormSaveCard}/>
+            <Route path="/payments/create" component={FormSaveCard} />
           </Switch>
         </div>
       </div>
@@ -111,10 +115,10 @@ const ProfileView = ({
 
     <ModalRoute
       path="/payments/:cardId(\d+)/delete"
-      component={DeleteCard} 
+      component={DeleteCard}
       width="400"
-      height="400" 
-      style = {{position:"fixed", marginTop:"0", marginLeft:"0"}}
+      height="400"
+      style={{ position: "fixed", marginTop: "0", marginLeft: "0" }}
     />
 
   </BrowserRouter>

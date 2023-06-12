@@ -102,7 +102,7 @@ const DetailView = ({
 
         <div className="d-flex align-items-center mt-3">
           <span className="h3 text-dark">Precio:</span>
-          <span className=" ml-2 h3 text-dark">
+          <span className="ml-2 h3 text-dark">
             {function () {
 
               if (product.sale) {
