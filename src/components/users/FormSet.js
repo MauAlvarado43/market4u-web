@@ -110,6 +110,9 @@ function FormSet({
             message: "Ingrese un apellido para el usuario",
           });
 
+        if(value.length < 3)
+          return context.createError({ message: "El apellido debe tener al menos 3 caracteres" });
+
         return true;
       },
     }),
