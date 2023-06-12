@@ -16,6 +16,12 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese el nombre del titular de la tarjeta" });
 
+        if (value.length < 3)
+          return context.createError({ message: "El nombre del titular debe tener al menos 3 caracteres" });
+
+        if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i.test(value))
+          return context.createError({ message: "El nombre del titular solo debe contener letras" });
+
         return true;
 
       }
@@ -33,7 +39,7 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
         if (value.length !== 16)
           return context.createError({ message: "El número de tarjeta debe tener 16 dígitos" });
 
-        if (!visaRegEx.test(value) && !mastercardRegEx.test(value)) 
+        if (!visaRegEx.test(value) && !mastercardRegEx.test(value))
           return context.createError({ message: "El número de tarjeta es inválido" });
 
         return true;
@@ -60,7 +66,7 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
 
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese el CVV" });
-        
+
         if (value.length !== 3)
           return context.createError({ message: "El CVV debe tener 3 números" });
 

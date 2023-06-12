@@ -22,7 +22,7 @@ function Signup({ history }) {
         if (value.length < 3)
           return context.createError({ message: "El nombre debe tener al menos 3 caracteres" });
 
-        if (!/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(?:\s+[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)(?:\s+[-\sa-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)?$/i.test(value))
+        if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i.test(value))
           return context.createError({ message: "El nombre solo debe contener letras" });
 
         return true;
@@ -39,7 +39,7 @@ function Signup({ history }) {
         if (value.length < 3)
           return context.createError({ message: "El apellido debe tener al menos 3 caracteres" });
 
-        if (!/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(?:\s+[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)(?:\s+[-\sa-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)?$/i.test(value))
+        if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i.test(value))
           return context.createError({ message: "Los apellidos solo deben contener letras" });
 
         return true;
