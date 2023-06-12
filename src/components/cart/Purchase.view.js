@@ -6,8 +6,9 @@ const getTotal = (products) => {
   let total = 0;
   for (let product of products) {
     const sale = product?.sale ?? null;
+    const price = product?.variant?.price;
     if (sale) {
-      total += (product?.variant?.price * (sale.disscount / 100)) * product?.amount;
+      total += (product?.amount) * (price - (price * (sale.disscount / 100)));
     } else {
       total += (product?.variant?.price * product?.amount)
     }
@@ -20,7 +21,7 @@ const getProductPrice = (product) => {
   const price = product?.variant?.price;
   if (sale) {
     const disscount = sale.disscount;
-    const newPrice = price * (disscount / 100);
+    const newPrice = price - (price * (disscount / 100));
     return (
       <span className="ml-2 h3 text-dark">
         <span className="text-danger">-{disscount}%  ${newPrice}</span>
@@ -252,8 +253,9 @@ const PurchaseView = ({ data, products, setActiveStep, onSubmit }) => (
                       {
                         function () {
                           const sale = product?.sale ?? null;
+                          const price = product?.variant?.price;
                           if (sale) {
-                            return (product?.amount * (product?.variant?.price * (sale.disscount / 100))).toFixed(2);
+                            return (product?.amount * (price - (price * (sale.disscount / 100)))).toFixed(2);
                           } else {
                             return (product?.amount * product?.variant?.price).toFixed(2);
                           }

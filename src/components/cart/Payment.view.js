@@ -78,7 +78,7 @@ const PaymentView = ({ user, savePayment, setSavePayment, formikRef, products, o
 
                   <div className="col-md-3">
                     <label className="input">
-                      <Field type="number" name="cvv" className="form-control input__field" placeholder=" " />
+                      <Field type="text" name="cvv" className="form-control input__field" placeholder=" " />
                       <span class="input__label">
                         CVV <span className='text-danger fw-bold'>*</span>
                       </span>

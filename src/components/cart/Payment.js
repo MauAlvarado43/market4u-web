@@ -67,7 +67,7 @@ function Payment({ user, setData, products, setActiveStep, setPurchaseStep }) {
         if (!value || value.length === 0)
           return context.createError({ message: "Ingrese el CVV" });
 
-        if (value.length !== 3)
+        if (!/\d{3}$/.test(value))
           return context.createError({ message: "El CVV debe tener 3 números" });
 
         return true;
