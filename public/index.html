@@ -14,6 +14,125 @@
   <link rel="stylesheet" href="/theme/css/theme.min.css?v=1.0">
   <script src="/theme/js/vendor.min.js"></script>
   <script src="/theme/js/theme.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@300;500;600&display=swap');
+
+    * {
+      font-family: "Inter", sans-serif;
+    }
+
+    .module {
+      /* position: fixed; */
+      width: 100%;
+      height: 100%; 
+    }
+
+    .input {
+      position: relative !important;
+      width: 100% !important;
+    }
+
+    .input__label {
+      position: absolute !important;
+      padding: 0 5px !important;
+      left: 10px !important;
+      top: 13px !important;
+      transform: translate(0, 0) !important;
+      transform-origin: 0 0 !important;
+      background: white !important;
+      transition: transform 120ms ease-in !important;
+      line-height: 1.2 !important;
+      cursor: text !important;
+      font-weight: 500 !important;
+      font-size: medium !important; 
+    }
+
+    .input__field {
+      font-weight: 200 !important;
+      font-size: medium !important;
+      box-sizing: border-box !important;
+      display: block !important;
+      width: 100% !important;
+      padding: 10px 15px !important;
+      background: transparent !important;
+      border-top: none !important;
+      border-left: none !important;
+      border-right: none !important;
+      border-bottom: 2px solid black !important; 
+      border-radius: 0px !important;
+    }
+
+    .input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+      transform: translate(0.3rem, -120%) scale(0.85) !important;
+      color: black !important; 
+    }
+
+    .border.border-primary {
+      border: #519EA4 3px solid !important;
+    }
+
+    .list-title {
+      background-color: #fff !important;
+      position: relative !important;
+      top: -1rem !important;
+      width: 17em;
+      margin-left: 2em;
+      text-align: center;
+    }
+
+    .page-link {
+      background-color: #519EA4 !important;
+    }
+
+    .btn-primary {
+      background-color: #519EA4 !important;
+      border-color: #519EA4 !important; 
+      color: #fff !important;
+    }
+
+    .btn-secondary {
+      background-color: #FC4B08 !important;
+      border-color: #FC4B08 !important; 
+      color: #fff !important;
+    }
+
+    .btn-tertiary {
+      background-color: #c9c9c9 !important;
+      border-color: #c9c9c9 !important;
+    }
+
+    .page-link {
+      color: white !important; 
+    }
+
+    .step-item {
+      border: none !important;
+    }
+
+    .step-item.active {
+      border: none !important;
+    }
+
+    .step-item.active .step-icon {
+      background-color: #519ea4 !important;
+      color: white !important;
+    }
+    .step-item.active .step-content {
+      color: #519ea4 !important;
+    }
+
+    .step-item.active .step-title {
+      color: #519EA4 !important;
+    }
+
+    .step-item .step-title::after {
+      border-top: 0.2rem solid #9c9c9c !important;
+    }
+    .step-item .step-icon {
+      background-color: #969696 !important;
+      color: white !important;
+    }
+  </style>
   <title>Market4U</title>
 </head>
 
